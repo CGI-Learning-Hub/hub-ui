@@ -26,9 +26,9 @@ export const Base: Story = {
     }
 }
 
-export const IconedButton: Story = {
-    args: {
-        text: "Iconed Button",
-        icon: <InsertEmoticon />
-    }
-}
+// export const IconedButton: Story = {
+//     args: {
+//         text: "Iconed Button",
+//         icon: <InsertEmoticon />
+//     }
+// }

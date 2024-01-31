@@ -1,6 +1,6 @@
 import React from 'react';
 import ExampleComponent from './components/ExampleComponent';
-import { BasicButtons, AnotherComponent } from '@cgi-learning-hub/ui';
+import { BasicButtons, AnotherComponent, Button} from '@cgi-learning-hub/ui';
 
 const App = () => {
   return (
@@ -11,6 +11,8 @@ const App = () => {
       <BasicButtons/>
 
       <AnotherComponent/>
+
+      <Button/>
 
     </div>
   );
