@@ -12,9 +12,9 @@
         "hub-ui"
     ],
     "repository": {
-      "type": "git",
-      "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
-      "directory": "packages/ui"
+        "type": "git",
+        "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
+        "directory": "packages/ui"
     },
     "sideEffects": false,
     "type": "module",
@@ -36,6 +36,7 @@
     "devDependencies": {
         "@mui/material": "5.15.0",
         "@mui/styles": "5.15.0",
+        "@mui/icons-material": "5.15.0",
         "@emotion/react": "11.11.1",
         "@emotion/styled": "11.11.0",
         "autoprefixer": "10.4.17",

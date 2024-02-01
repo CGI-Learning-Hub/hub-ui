@@ -4,8 +4,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import * as path from 'path';
 
 const resolve = {
-  alias:{
-    '@cgi-learning-hub/ui' : path.resolve(__dirname, '../../packages/ui/src/index.ts')
+  alias: {
+    '@cgi-learning-hub/ui': path.resolve(__dirname, '../../packages/ui/src/index.ts')
   }
 }
 
@@ -18,8 +18,8 @@ const server = {
 };
 
 export default defineConfig({
-    // comments resolve to try your deps built but you need to build them first (see "pnpm -r run build")
-    // resolve,
-    plugins,
-    server
+  // comments resolve to try your deps built but you need to build them first (see "pnpm -r run build")
+  // resolve,
+  plugins,
+  server
 });

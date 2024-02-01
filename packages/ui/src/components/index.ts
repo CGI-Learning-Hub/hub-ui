@@ -1,3 +1,2 @@
-export * from "./BasicButtons"
-export * from "./AnotherComponent"
 export * from "./Button"
+export * from "./SearchField"

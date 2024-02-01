@@ -1,20 +1,21 @@
 import React from 'react';
-import ExampleComponent from './components/ExampleComponent';
-import { BasicButtons, AnotherComponent, Button} from '@cgi-learning-hub/ui';
+import { AddBox } from '@mui/icons-material'
+
+import { Button, SearchField } from '@cgi-learning-hub/ui';
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello, Try your components!</h1>
-      <ExampleComponent text="This is an example component test." />
-      {/* component from ui  */}
-      <BasicButtons/>
-
-      <AnotherComponent/>
-
-      <Button/>
-
-    </div>
+    <>
+      <div>
+        <h2>Buttons</h2>
+        <Button text="Button" className="py-8" onClick={() => alert("Hello, World")} />
+        <Button text="Ajouter une entité" icon={<AddBox />} className="py-8" onClick={() => alert("Hello, World")} />
+      </div>
+      <div>
+        <h2>Search field</h2>
+        <SearchField text="Rechercher" />
+      </div>
+    </>
   );
 };
 

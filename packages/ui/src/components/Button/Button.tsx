@@ -1,16 +1,13 @@
 import { ReactNode } from 'react'
-import { Button as MuiButton } from '@mui/material'
-import { StyledEngineProvider } from '@mui/material/styles';
+import { Button as MuiButton, ButtonProps as ButtonPropsMui } from '@mui/material'
 
-export type ButtonProps = typeof MuiButton & {
+export type ButtonProps = ButtonPropsMui & {
     text: string,
     icon?: ReactNode
 }
 
-const Button = ({ text, icon }: ButtonProps) => (
-    <StyledEngineProvider injectFirst>
-        <MuiButton variant="outlined" startIcon={icon} className="border-8">Bonjourr</MuiButton>
-    </StyledEngineProvider>
+const Button = ({ onClick, text, icon, className, ...props }: ButtonProps) => (
+    <MuiButton onClick={onClick} startIcon={icon} variant="outlined" className={className} {...props}>{text}</MuiButton>
 )
 
 Button.displayName = "Button"

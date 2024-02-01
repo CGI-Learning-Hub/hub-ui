@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Button from './Button'
+import Button, { ButtonProps } from './Button'
 
 import { InsertEmoticon } from '@mui/icons-material'
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<ButtonProps> = {
     title: 'Components/Buttons/Button',
     component: Button,
     argTypes: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Button>
+type Story = StoryObj<ButtonProps>
 
 export const Base: Story = {
     args: {
@@ -26,9 +26,9 @@ export const Base: Story = {
     }
 }
 
-// export const IconedButton: Story = {
-//     args: {
-//         text: "Iconed Button",
-//         icon: <InsertEmoticon />
-//     }
-// }
+export const IconedButton: Story = {
+    args: {
+        text: "Iconed Button",
+        icon: <InsertEmoticon />
+    }
+}
