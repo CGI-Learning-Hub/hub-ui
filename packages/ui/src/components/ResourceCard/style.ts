@@ -1,16 +1,21 @@
 import { Box, Card, SxProps, styled } from "@mui/material";
+import { ResourceCardSize } from "./ResourceCard";
 
 export const ItemCard: SxProps = {
   display: "flex",
   marginTop: "0.5rem",
 };
 
-export const StyledCard = styled(Card)<{ selected?: boolean }>(({ theme, selected }) => ({
+export const StyledCard = styled(Card)<{ selected?: boolean; size?: ResourceCardSize }>(({ theme, selected, size }) => ({
   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06)",
   borderRadius: "0.5rem",
   border: "2px solid transparent",
   transition: "border-color 0.2s ease-in-out",
   position: "relative",
+  ...(size === "sm" && {
+    display: "flex",
+    width: "100%"
+  }),
   ...(selected && {
     borderColor: theme.palette.primary.light,
   }),
@@ -21,15 +26,6 @@ export const StyledCard = styled(Card)<{ selected?: boolean }>(({ theme, selecte
     },
   },
 }));
-
-export const ImageStyle: SxProps = {
-  height: 180,
-  width: "calc(100% - 2rem)",
-  maxWidth: 300,
-  objectFit: "cover",
-  margin: "1rem",
-  borderRadius: "0.5rem",
-};
 
 export const SelectedIcon = styled(Box)<{ selected?: boolean }>(({ theme, selected }) => ({
   position: "absolute",
@@ -43,7 +39,7 @@ export const SelectedIcon = styled(Box)<{ selected?: boolean }>(({ theme, select
   alignItems: "center",
   padding: ".8rem",
   borderRadius: ".5rem",
-  visibility: "hidden",
+  visibility: "visible",
   opacity: 0,
   cursor: "pointer",
   transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out",
@@ -52,8 +48,9 @@ export const SelectedIcon = styled(Box)<{ selected?: boolean }>(({ theme, select
     opacity: 1,
     visibility: "visible",
   }),
-  "&:hover": {
+  "&:hover, &:focus": {
     background: theme.palette.primary.lighter,
+    opacity: 1,
   },
   "& .MuiSvgIcon-root": {
     color: theme.palette.primary.main,
@@ -62,8 +59,8 @@ export const SelectedIcon = styled(Box)<{ selected?: boolean }>(({ theme, select
 
 export const PublicIconWrapper: SxProps = {
   position: "absolute",
-  bottom: ".8rem",
-  right: ".8rem",
+  bottom: "16px",
+  right: "16px",
   display: "flex",
   gap: ".2rem"
 };
