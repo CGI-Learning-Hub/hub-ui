@@ -69,15 +69,7 @@ const meta: Meta<typeof ResourceCard> = {
         type: { summary: "string" },
         defaultValue: { summary: "300px" },
       },
-    },
-    height: {
-      description: "Hauteur de la carte.",
-      control: "text",
-      table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "auto" },
-      },
-    },
+    }
   },
 };
 export default meta;
@@ -88,7 +80,7 @@ export const Default: Story = {
   args: {
     isSelected: false,
     image: "https://dummyimage.com/600x400/000/fff&text=flashquizz",
-    title: "Titre de la Ressource",
+    title: "Titre de la Ressource tres loooooooooooooooooooooooooooooooooooooooooooooooooooooong",
     propertyItems: [
       { text: <Typography color="text.primary">0 questions</Typography>, icon: <QuestionIcon color="primary" /> },
       { text: "27 janvier 2025", icon: <CalendarIcon color="primary" /> },
@@ -97,13 +89,15 @@ export const Default: Story = {
       { text: "Information 1", icon: <PublicIcon color="primary" /> },
       { text: "Information 2", icon: <StarIcon color="primary" /> },
       { text: "Information 3", icon: <StarIcon color="primary" /> },
+      { text: "Information 3", icon: <StarIcon color="primary" /> },
     ],
-    size: "md",
-    width: "300px",
-    height: "auto",
+    size: "sm",
     onSelect: () => {
       console.log("Carte sélectionnée !");
     },
+    onClick: () => {
+      console.log("Select all");
+    }
   },
 };
 
@@ -136,7 +130,6 @@ export const CustomSize: Story = {
   args: {
     ...Default.args,
     width: "400px",
-    height: "200px",
     title: "Carte avec taille personnalisée",
   },
 };
