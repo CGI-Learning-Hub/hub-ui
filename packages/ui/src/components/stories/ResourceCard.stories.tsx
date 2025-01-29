@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ResourceCard } from "../ResourceCard/ResourceCard";
+import ResourceCard from "../ResourceCard/ResourceCard";
 import StarIcon from "@mui/icons-material/Star";
 import PublicIcon from "@mui/icons-material/Public";
 import CalendarIcon from "@mui/icons-material/CalendarToday";
@@ -18,8 +18,8 @@ const meta: Meta<typeof ResourceCard> = {
       },
       required: true,
     },
-    logo: {
-      description: "Logo de l'application",
+    defaultImage: {
+      description: "Image par défaut => Logo de l'application",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -89,7 +89,7 @@ export const Default: Story = {
   args: {
     isSelected: false,
     image: "https://dummyimage.com/600x400/000/fff.png&text=flashquizz",
-    logo: "https://flashquizz-dev.support-ent.fr/images/logo.svg",
+    defaultImage: "https://flashquizz-dev.support-ent.fr/images/logo.svg",
     title: "Titre de la Ressource tres loooooooooooooooooooooooooooooooooooooooooooooooooooooong",
     propertyItems: [
       { text: <Typography color="text.primary">0 questions</Typography>, icon: <QuestionIcon color="primary" /> },
