@@ -4,6 +4,7 @@ import { ResourceCardSize } from "./ResourceCard";
 export const StyledCard = styled(Card)<{ selected?: boolean; size?: ResourceCardSize }>(({ theme, selected, size }) => ({
   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06)",
   borderRadius: "0.5rem",
+  height: "auto",
   border: "2px solid transparent",
   transition: "border-color 0.2s ease-in-out",
   position: "relative",
@@ -52,14 +53,14 @@ export const SelectedIcon = styled(Box)<{ selected?: boolean }>(({ theme, select
   },
 }));
 
-export const ResourceCardImage = styled(CardMedia)<{ size?: ResourceCardSize, image?: string, logo: string }>(({ size, image, logo }) => ({
+export const ResourceCardImage = styled(CardMedia)<{ size?: ResourceCardSize, image?: string, defaultImage: string }>(({ size, image, defaultImage }) => ({
   height: size == "sm" ? 85 : 180,
   width: size == "sm" ? 85 : "calc(100% - 2rem)",
   objectFit: "cover",
   margin: size == "sm" ? "0 10px" : "1rem",
   borderRadius: "0.5rem",
   ...(!image && size === "md" && {
-    backgroundImage: `url(${logo})`,
+    backgroundImage: `url(${defaultImage})`,
     backgroundRepeat: "repeat",
     backgroundSize: "20% 20%",
     backgroundPosition: "center",

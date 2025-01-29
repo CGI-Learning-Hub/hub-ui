@@ -1,5 +1,5 @@
-import { Box, Tooltip } from "@mui/material";
-import { forwardRef, ReactNode, KeyboardEvent as ReactKeyboardEvent } from "react";
+import { Box, Stack, Tooltip } from "@mui/material";
+import { ReactNode, KeyboardEvent as ReactKeyboardEvent } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { PublicIconWrapper, ResourceCardBody, ResourceCardImage, ResourceIconItem, ResourcePropertyItem, ResourcePropertyText, SelectedIcon, StyledCard } from "./style";
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
@@ -20,7 +20,7 @@ export interface ResourceCardProps {
   isSelected?: boolean;
   onSelect?: () => void;
   image?: string;
-  logo: string;
+  defaultImage: string;
   title: string;
   propertyItems?: PropertyItem[];
   infoIcons?: InfoItem[];
@@ -29,28 +29,24 @@ export interface ResourceCardProps {
   onClick?: () => void;
 }
 
-export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({ 
+const ResourceCard: React.FunctionComponent<ResourceCardProps> = (({ 
   isSelected = false, 
   onSelect = () => {}, 
   image, 
   title,
-  logo,
+  defaultImage,
   propertyItems = [], 
   infoIcons = [], 
-  size = "md", 
-  width, 
-  onClick = () => {} 
-}, ref) => {
+  size = "md",
+  width,
+  onClick = () => {}
+}) => {
 
   // 3 maximum
   infoIcons = infoIcons.slice(0, 3);
 
   return (
-    <Box ref={ref} sx={{ 
-      position: "relative",
-      width: width && size === "md" ? width : "320px",
-      height: "auto"
-    }}>
+    <Box sx={{ width: (width && size === "md") ? width : "320px"}}>
       <StyledCard 
         selected={isSelected}
         size={size}
@@ -86,21 +82,21 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
         >
           <MoreVertIcon />
         </SelectedIcon>
-        <Box sx={{
+        <Stack sx={{
           width: size == "sm" ? 110 : "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           boxSizing: "border-box"
         }}>
-          <ResourceCardImage 
+          <ResourceCardImage
             image={image}
-            logo={logo}
+            defaultImage={defaultImage}
             size={size}
             role="img"
             aria-label={`Image for ${title}`}
           />
-        </Box>
+        </Stack>
         <ResourceCardBody
           size={size}
         >
@@ -153,3 +149,5 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
     </Box>
   );
 });
+
+export default ResourceCard;
