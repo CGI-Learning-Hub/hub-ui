@@ -10,6 +10,22 @@ const meta: Meta<typeof ResourceCard> = {
   title: "Components/ResourceCard",
   component: ResourceCard,
   argTypes: {
+    title: {
+      description: "Titre de la carte.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+      required: true,
+    },
+    logo: {
+      description: "Logo de l'application",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+      required: true,
+    },
     isSelected: {
       description: "Indique si la carte est sélectionnée.",
       control: "boolean",
@@ -27,13 +43,6 @@ const meta: Meta<typeof ResourceCard> = {
     },
     image: {
       description: "URL de l'image affichée sur la carte.",
-      control: "text",
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    title: {
-      description: "Titre de la carte.",
       control: "text",
       table: {
         type: { summary: "string" },
