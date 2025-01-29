@@ -1,7 +1,7 @@
-import { Box, CardContent, CardMedia, Tooltip } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import { forwardRef, ReactNode, KeyboardEvent as ReactKeyboardEvent } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { ItemCard, PublicIconWrapper, SelectedIcon, StyledCard } from "./style";
+import { PublicIconWrapper, ResourceCardBody, ResourceCardImage, ResourceIconItem, ResourcePropertyItem, ResourcePropertyText, SelectedIcon, StyledCard } from "./style";
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 
 export type PropertyItem = {
@@ -20,6 +20,7 @@ export interface ResourceCardProps {
   isSelected?: boolean;
   onSelect?: () => void;
   image?: string;
+  logo: string;
   title: string;
   propertyItems?: PropertyItem[];
   infoIcons?: InfoItem[];
@@ -31,7 +32,9 @@ export interface ResourceCardProps {
 export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({ 
   isSelected = false, 
   onSelect = () => {}, 
-  image, title, 
+  image, 
+  title,
+  logo,
   propertyItems = [], 
   infoIcons = [], 
   size = "md", 
@@ -45,7 +48,7 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
   return (
     <Box ref={ref} sx={{ 
       position: "relative",
-      width: width && size === "md" ? width : "360px",
+      width: width && size === "md" ? width : "320px",
       height: "auto"
     }}>
       <StyledCard 
@@ -88,20 +91,16 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
           justifyContent: "center",
           boxSizing: "border-box"
         }}>
-          <CardMedia 
+          <ResourceCardImage 
             image={image}
-            sx={{
-              height: size == "sm" ? "calc(100% - 32px)" : 180,
-              width: size == "sm" ? "calc(100% - 32px)" : "calc(100% - 2rem)",
-              objectFit: "cover",
-              margin: size == "sm" ? 0 : "1rem",
-              borderRadius: "0.5rem",
-            }}
+            logo={logo}
             role="img"
             aria-label={`Image for ${title}`}
           />
         </Box>
-        <CardContent sx={{ padding: size == "sm" ? "1rem 0 !important" : "0 16px 16px 16px !important", width: size === "sm" ? "calc(100% - 110px)" : "100%" }}>
+        <ResourceCardBody
+          size={size}
+        >
           <EllipsisWithTooltip
             typographyProps={{ fontWeight: "700", fontSize: "1.1rem" }}
             tooltipProps={{ placement: "bottom", arrow: true }}
@@ -109,19 +108,24 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
             {title}
           </EllipsisWithTooltip>
           {propertyItems.length > 0 && propertyItems.map((property, index) => (
-            <Box
-              sx={ItemCard}
+            <ResourcePropertyItem
               key={`property-${index}`}
               role="group"
               aria-label={`Property ${index}`}
             >
               {property.icon}
-              <Box sx={{ marginLeft: "0.5rem", display: "flex" }}>
+              <ResourcePropertyText
+                isLast={index === propertyItems.length - 1}
+                size={size}
+                width={width}
+              >
                 {property.text}
-              </Box>
-            </Box>
+              </ResourcePropertyText>
+            </ResourcePropertyItem>
           ))}
-          <Box sx={PublicIconWrapper}>
+          <PublicIconWrapper 
+            size={size}
+          >
             {infoIcons.length > 0 && infoIcons.map((infoItem, index) => (
               <Tooltip
                 title={infoItem.text} 
@@ -129,24 +133,17 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
                 arrow
                 key={`info-${index}`}
               >
-                <Box
+                <ResourceIconItem
                   role="button"
                   tabIndex={0}
                   aria-label={infoItem.text}
-                  sx={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "fit-content",
-                    height: "fit-content",
-                  }}
                 >
                   {infoItem.icon}
-                </Box>
+                </ResourceIconItem>
               </Tooltip>
             ))}
-          </Box>
-        </CardContent>
+          </PublicIconWrapper>
+        </ResourceCardBody>
       </StyledCard>
     </Box>
   );

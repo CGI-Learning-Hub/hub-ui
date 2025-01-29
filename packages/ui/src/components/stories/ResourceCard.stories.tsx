@@ -43,14 +43,14 @@ const meta: Meta<typeof ResourceCard> = {
       description: "Liste des propriétés affichées sous le titre.",
       control: "object",
       table: {
-        type: { summary: "PropertyItem[]" },
+        type: { summary: "PropertyItem[{text: Typography, icon: MuiIcon}]" },
       },
     },
     infoIcons: {
       description: "Liste des icônes d'information affichées dans la carte. (3 maximums)",
       control: "object",
       table: {
-        type: { summary: "InfoItem[]" },
+        type: { summary: "InfoItem[{text: string, icon: MuiIcon}]" },
       },
     },
     size: {
@@ -67,7 +67,7 @@ const meta: Meta<typeof ResourceCard> = {
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "300px" },
+        defaultValue: { summary: "320px" },
       },
     }
   },
@@ -79,19 +79,19 @@ type Story = StoryObj<typeof ResourceCard>;
 export const Default: Story = {
   args: {
     isSelected: false,
-    image: "https://dummyimage.com/600x400/000/fff&text=flashquizz",
+    image: "https://dummyimage.com/600x400/000/fff.png&text=flashquizz",
+    logo: "https://flashquizz-dev.support-ent.fr/images/logo.svg",
     title: "Titre de la Ressource tres loooooooooooooooooooooooooooooooooooooooooooooooooooooong",
     propertyItems: [
       { text: <Typography color="text.primary">0 questions</Typography>, icon: <QuestionIcon color="primary" /> },
-      { text: "27 janvier 2025", icon: <CalendarIcon color="primary" /> },
+      { text: <Typography color="text.primary">27 septembre 2025</Typography>, icon: <CalendarIcon color="primary" /> },
     ],
     infoIcons: [
       { text: "Information 1", icon: <PublicIcon color="primary" /> },
       { text: "Information 2", icon: <StarIcon color="primary" /> },
       { text: "Information 3", icon: <StarIcon color="primary" /> },
-      { text: "Information 3", icon: <StarIcon color="primary" /> },
     ],
-    size: "sm",
+    size: "md",
     onSelect: () => {
       console.log("Carte sélectionnée !");
     },
@@ -117,19 +117,10 @@ export const Small: Story = {
   },
 };
 
-export const NoIcons: Story = {
+export const NoImage: Story = {
   args: {
     ...Default.args,
-    propertyItems: [],
-    infoIcons: [],
-    title: "Carte sans Icônes",
-  },
-};
-
-export const CustomSize: Story = {
-  args: {
-    ...Default.args,
-    width: "400px",
-    title: "Carte avec taille personnalisée",
-  },
-};
+    title: "Pas d'image",
+    image: undefined
+  }
+}
