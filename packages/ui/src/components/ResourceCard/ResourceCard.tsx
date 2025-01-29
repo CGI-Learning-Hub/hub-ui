@@ -94,7 +94,6 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
           <ResourceCardImage 
             image={image}
             logo={logo}
-            size={size}
             role="img"
             aria-label={`Image for ${title}`}
           />
@@ -110,7 +109,6 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
           </EllipsisWithTooltip>
           {propertyItems.length > 0 && propertyItems.map((property, index) => (
             <ResourcePropertyItem
-              size={size}
               key={`property-${index}`}
               role="group"
               aria-label={`Property ${index}`}
@@ -136,7 +134,6 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
                 key={`info-${index}`}
               >
                 <ResourceIconItem
-                  size={size}
                   role="button"
                   tabIndex={0}
                   aria-label={infoItem.text}
