@@ -67,14 +67,12 @@ export const ResourceCard = forwardRef<HTMLDivElement, ResourceCardProps>(({
       >
         <SelectedIcon
           onClick={e => {
-            e.preventDefault();
             e.stopPropagation();
             onSelect();
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              e.stopPropagation()
               onSelect();
             }
           }}
