@@ -126,7 +126,6 @@ export const getMuiTheme = (
             styleOverrides: {
               root: {
                 paddingBottom: 0,
-                lineHeight: "1.5rem",
               },
             },
           },
