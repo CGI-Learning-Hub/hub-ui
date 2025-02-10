@@ -126,9 +126,7 @@ export const getMuiTheme = (
             styleOverrides: {
               root: {
                 paddingBottom: 0,
-                fontSize: "1rem",
                 lineHeight: "1.5rem",
-                fontFamily: "Roboto",
               },
             },
           },
