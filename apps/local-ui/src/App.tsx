@@ -3,11 +3,10 @@ import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   Alert,
   Button,
+  CustomFile,
   DatePicker,
   Dropzone,
   EmptyState,
-  File,
-  FileList,
   IconButton,
   Menu,
   MenuItem,
@@ -27,6 +26,7 @@ import MUIButton from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
+import FileList from "../../../packages/ui/src/components/FileList/FileList";
 import "./App.css";
 import ExampleComponent from "./components/ExampleComponent";
 
@@ -44,6 +44,105 @@ const ButtonComponent = ({ onClick }: { onClick: () => void }) => {
     </StyleButton>
   );
 };
+
+const mockedFiles: CustomFile[] = [
+  {
+    name: "file1 loooooooooooooooooooooooooooooooooooooooong.pdf",
+    size: 237482,
+    isLoading: false,
+    isDeletable: true,
+    isDowlodable: true,
+    ownerName: "Alice Smith",
+  },
+  {
+    name: "file2.svg",
+    size: 5423,
+    isLoading: true,
+    isDeletable: false,
+    isDowlodable: true,
+    ownerName: "Bob Johnson",
+  },
+  {
+    name: "file3.mp4",
+    size: 6548764,
+    isLoading: false,
+    isDeletable: true,
+    isDowlodable: false,
+    ownerName: "John Doe",
+  },
+  {
+    name: "file4.docx",
+    size: 18456,
+    isLoading: true,
+    isDeletable: true,
+    isDowlodable: false,
+    ownerName: "Sarah Lee",
+  },
+  {
+    name: "file5.gif",
+    size: 43954,
+    isLoading: false,
+    isDeletable: false,
+    isDowlodable: true,
+    ownerName: "Michael Brown",
+  },
+  {
+    name: "file6.zip",
+    size: 234723,
+    isLoading: true,
+    isDeletable: false,
+    isDowlodable: false,
+    ownerName: "Emily Davis",
+  },
+  {
+    name: "file7.png",
+    size: 320000,
+    isLoading: false,
+    isDeletable: true,
+    isDowlodable: true,
+    ownerName: "Chris Wilson",
+  },
+  {
+    name: "file8.jpg",
+    size: 98923,
+    isLoading: true,
+    isDeletable: true,
+    isDowlodable: true,
+    ownerName: "Laura Martinez",
+  },
+  {
+    name: "file9.txt",
+    size: 14982,
+    isLoading: false,
+    isDeletable: true,
+    isDowlodable: false,
+    ownerName: "David Moore",
+  },
+  {
+    name: "file10.mp3",
+    size: 2930294,
+    isLoading: true,
+    isDeletable: false,
+    isDowlodable: false,
+    ownerName: "Rachel Taylor",
+  },
+  {
+    name: "file11.xlsx",
+    size: 11234,
+    isLoading: false,
+    isDeletable: true,
+    isDowlodable: true,
+    ownerName: "James White",
+  },
+  {
+    name: "file12.rar",
+    size: 134723,
+    isLoading: true,
+    isDeletable: false,
+    isDowlodable: true,
+    ownerName: "Sophia Harris",
+  },
+];
 
 function App() {
   const [isImtThemeActive, setImtThemeActive] = useState(false);
@@ -143,6 +242,20 @@ function App() {
           <Alert severity="success">Success alert</Alert>
           <Alert severity="warning">Warning alert</Alert>
           <Alert severity="error">Error alert</Alert>
+          <div
+            style={{
+              width: "50%",
+            }}
+          >
+            {
+              <FileList
+                files={mockedFiles}
+                onClick={(file) => console.log("click on : ", file.name)}
+                onDelete={(file) => console.log("delete : ", file.name)}
+                onDownload={(file) => console.log("download : ", file.name)}
+              ></FileList>
+            }
+          </div>
         </header>
       </div>
     </ThemeProvider>
