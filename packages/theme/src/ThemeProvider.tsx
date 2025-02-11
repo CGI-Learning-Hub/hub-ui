@@ -4,6 +4,7 @@ import { PropsWithChildren } from "react";
 import { getMuiTheme } from "./mui";
 import {
   campusTheme,
+  crnaMuiOptions,
   crnaTheme,
   defaultTheme,
   imtMuiOptions,
@@ -19,7 +20,10 @@ const expandTheme = (
     case "campus":
       return getMuiTheme(campusTheme, options);
     case "crna":
-      return getMuiTheme(crnaTheme, options);
+      return getMuiTheme(
+        crnaTheme,
+        options ? deepmerge(crnaMuiOptions, options) : crnaMuiOptions
+      );
     case "imt":
       return getMuiTheme(
         imtTheme,

@@ -19,7 +19,7 @@ const Dialog: React.FunctionComponent<DialogProps> = ({
         <IconButton
           aria-label="close"
           onClick={handleClose}
-          sx={{ position: "absolute", right: 16, top: 16 }}
+          sx={{ position: "absolute", right: 24, top: 24 }}
         >
           <CloseRoundedIcon />
         </IconButton>

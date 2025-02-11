@@ -54,11 +54,26 @@ const theme: Theme = {
   },
 };
 
-const muiTheme = getMuiTheme(theme);
+const muiOptions = {
+  components: {
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          padding: 24,
+          fontSize: "1.625rem",
+          fontWeight: 700,
+        },
+      },
+    },
+  },
+};
+
+const muiTheme = getMuiTheme(theme, muiOptions);
 
 const tailwindThemeConfig = getTailwindThemeConfig(theme);
 
 export {
+  muiOptions as crnaMuiOptions,
   muiTheme as crnaMuiTheme,
   tailwindThemeConfig as crnaTailwindThemeConfig,
   theme as crnaTheme,
