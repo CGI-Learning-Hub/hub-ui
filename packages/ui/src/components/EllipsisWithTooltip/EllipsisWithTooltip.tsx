@@ -60,6 +60,7 @@ const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
         overflow={"hidden"}
         textOverflow={"ellipsis"}
         {...typographyProps}
+        maxWidth="100%"
       >
         {children}
       </Typography>

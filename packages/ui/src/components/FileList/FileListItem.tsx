@@ -1,44 +1,142 @@
-import Delete from "@mui/icons-material/Delete";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import IconButton from "@mui/material/IconButton";
+import { CloseRounded, DownloadRounded } from "@mui/icons-material";
+import { Box, CircularProgress, IconButton } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
+import { FileIcon } from "./FileIcon";
+import { FileInfosSeparator } from "./FileInfosSeparator";
+import { displayExtension, displaySize } from "./utils";
 
-export interface File {
+export interface CustomFile {
   name: string;
-  size: number;
-  uploading?: boolean;
+  size: number; // size in octets
+  isLoading?: boolean;
+  isDeletable?: boolean;
+  isDownloadable?: boolean;
+  ownerName?: string;
 }
 
-export interface FileListItemProps<T extends File> {
+export interface FileListItemProps<T extends CustomFile> {
   file: T;
-  uploading?: boolean;
   onDelete?: (file: T) => void;
+  onClick?: (file: T) => void;
+  onDownload?: (file: T) => void;
 }
 
-const FileListItem = <T extends File>({
+const FileListItem = <T extends CustomFile>({
   file,
-  uploading,
   onDelete,
+  onClick,
+  onDownload,
 }: FileListItemProps<T>) => {
-  const sizeStr = `${file.size} octets`;
+  if (!file.name) return null;
+  const displaySizeValue = displaySize(file.size);
+  const displayExtensionValue = displayExtension(file.name);
 
-  const deleteAction = () => onDelete?.(file);
+  const handleClick = () => onClick?.(file);
+  const handleDelete = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    onDelete?.(file);
+  };
+
+  const handleDownload = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    onDownload?.(file);
+  };
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <InsertDriveFileIcon color="primary" />
-      <Box sx={{ width: "100%" }}>
-        <Typography>{file.name}</Typography>
-        <Typography fontSize="0.875rem" color="grey">
-          {sizeStr}
-        </Typography>
+    <Stack
+      direction="row"
+      alignItems="center"
+      spacing={2}
+      padding="0.5rem 1rem"
+      width="100%"
+      justifyContent="space-between"
+      onClick={handleClick}
+      boxSizing="border-box"
+      sx={{
+        "&:hover": {
+          boxShadow: "0 4px 8px rgba(192, 192, 192, 0.3)",
+          borderRadius: "4px",
+          cursor: "pointer",
+        },
+      }}
+    >
+      <Stack direction="row" alignItems="center" spacing={2} minWidth="0">
+        <Stack
+          borderRadius="4px"
+          minWidth="40px"
+          maxWidth="40px"
+          minHeight="40px"
+          maxHeight="40px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            backgroundColor: "grey.light",
+          }}
+        >
+          <Box
+            color="text.secondary"
+            alignItems="center"
+            justifyContent="center"
+            display="flex"
+          >
+            <FileIcon extension={displayExtensionValue ?? ""} />
+          </Box>
+        </Stack>
+        <Stack
+          direction="column"
+          spacing={0}
+          alignItems="flex-start"
+          minWidth="0"
+        >
+          <EllipsisWithTooltip>{file.name}</EllipsisWithTooltip>
+          <Stack display="flex" flexDirection="row" alignItems="center" gap={1}>
+            {displaySizeValue && (
+              <Typography fontSize="0.8rem" color="text.secondary">
+                {displaySizeValue}
+              </Typography>
+            )}
+            {displaySizeValue && displayExtensionValue && (
+              <FileInfosSeparator />
+            )}
+            {displayExtensionValue && (
+              <Typography fontSize="0.8rem" color="text.secondary">
+                {displayExtensionValue}
+              </Typography>
+            )}
+            {file.ownerName && (displaySizeValue || displayExtensionValue) && (
+              <FileInfosSeparator />
+            )}
+            {file.ownerName && (
+              <Typography fontSize="0.8rem" color="text.secondary">
+                {file.ownerName}
+              </Typography>
+            )}
+          </Stack>
+        </Stack>
+      </Stack>
+      <Box alignItems="center" display="flex" gap="1rem">
+        {file.isLoading ? (
+          <Box marginRight={1}>
+            <CircularProgress size={24} color="primary" />
+          </Box>
+        ) : file.isDownloadable ? (
+          <IconButton onClick={handleDownload}>
+            <DownloadRounded color="primary" />
+          </IconButton>
+        ) : null}
+        {file.isDeletable && (
+          <IconButton onClick={handleDelete}>
+            <CloseRounded />
+          </IconButton>
+        )}
       </Box>
-      <IconButton onClick={deleteAction} disabled={uploading}>
-        {uploading ? <CircularProgress size={24} /> : <Delete />}
-      </IconButton>
     </Stack>
   );
 };
