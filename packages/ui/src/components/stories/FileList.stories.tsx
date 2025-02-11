@@ -52,7 +52,7 @@ const files: CustomFile[] = [
     size: 237482,
     isLoading: false,
     isDeletable: true,
-    isDowlodable: true,
+    isDownloadable: true,
     ownerName: "Alice Smith",
   },
   {
@@ -60,14 +60,14 @@ const files: CustomFile[] = [
     size: 5423,
     isLoading: true,
     isDeletable: false,
-    isDowlodable: true,
+    isDownloadable: true,
   },
   {
     name: "file3.mp4",
     size: 6548764,
     isLoading: false,
     isDeletable: true,
-    isDowlodable: false,
+    isDownloadable: false,
     ownerName: "John Doe",
   },
   {
@@ -75,28 +75,28 @@ const files: CustomFile[] = [
     size: 18456,
     isLoading: true,
     isDeletable: true,
-    isDowlodable: false,
+    isDownloadable: false,
   },
   {
     name: "file5.gif",
     size: 43954,
     isLoading: false,
     isDeletable: false,
-    isDowlodable: true,
+    isDownloadable: true,
   },
   {
     name: "file6.zip",
     size: 234723,
     isLoading: true,
     isDeletable: false,
-    isDowlodable: false,
+    isDownloadable: false,
   },
   {
     name: "file7.png",
     size: 320000,
     isLoading: false,
     isDeletable: true,
-    isDowlodable: true,
+    isDownloadable: true,
     ownerName: "Chris Wilson",
   },
   {
@@ -104,7 +104,7 @@ const files: CustomFile[] = [
     size: 98923,
     isLoading: true,
     isDeletable: true,
-    isDowlodable: true,
+    isDownloadable: true,
     ownerName: "Laura Martinez",
   },
   {
@@ -112,7 +112,7 @@ const files: CustomFile[] = [
     size: 14982,
     isLoading: false,
     isDeletable: true,
-    isDowlodable: false,
+    isDownloadable: false,
     ownerName: "David Moore",
   },
   {
@@ -120,7 +120,7 @@ const files: CustomFile[] = [
     size: 2930294,
     isLoading: true,
     isDeletable: false,
-    isDowlodable: false,
+    isDownloadable: false,
     ownerName: "Rachel Taylor",
   },
   {
@@ -128,7 +128,7 @@ const files: CustomFile[] = [
     size: 11234,
     isLoading: false,
     isDeletable: true,
-    isDowlodable: true,
+    isDownloadable: true,
     ownerName: "James White",
   },
   {
@@ -136,7 +136,7 @@ const files: CustomFile[] = [
     size: 134723,
     isLoading: true,
     isDeletable: false,
-    isDowlodable: true,
+    isDownloadable: true,
     ownerName: "Sophia Harris",
   },
 ];
