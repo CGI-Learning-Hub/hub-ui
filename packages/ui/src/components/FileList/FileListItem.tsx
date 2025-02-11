@@ -99,7 +99,7 @@ const FileListItem = <T extends CustomFile>({
           <Stack display="flex" flexDirection="row" alignItems="center" gap={1}>
             {displaySizeValue && (
               <Typography fontSize="0.8rem" color="text.secondary">
-                {displaySizeValue + "coucou"}
+                {displaySizeValue}
               </Typography>
             )}
             {displaySizeValue && displayExtensionValue && (
