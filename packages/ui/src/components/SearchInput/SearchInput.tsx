@@ -3,7 +3,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import InputBase, { type InputBaseProps } from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 
-export interface SearchInputProps extends InputBaseProps {}
+export type SearchInputProps = InputBaseProps & {};
 
 const StyledInput = styled(InputBase)(({ theme }) => ({
   width: "auto",

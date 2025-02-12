@@ -1,22 +1,32 @@
-import { Box, Stack, Tooltip } from "@mui/material";
-import { ReactNode, KeyboardEvent as ReactKeyboardEvent } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { PublicIconWrapper, ResourceCardBody, ResourceCardImage, ResourceIconItem, ResourcePropertyItem, ResourcePropertyText, SelectedIcon, StyledCard } from "./style";
+import { Box, Stack, Tooltip } from "@mui/material";
+import { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
+import {
+  PublicIconWrapper,
+  ResourceCardBody,
+  ResourceCardImage,
+  ResourceIconItem,
+  ResourcePropertyItem,
+  ResourcePropertyText,
+  SelectedIcon,
+  StyledCard,
+} from "./style";
 
 export type PropertyItem = {
   text: ReactNode;
   icon?: ReactNode;
-}
+};
 
 export type InfoItem = {
   text: string;
   icon: ReactNode;
-}
+};
 
 export type ResourceCardSize = "md" | "sm";
 
-export interface ResourceCardProps {
+export type ResourceCardProps = {
   isSelected?: boolean;
   onSelect?: () => void;
   image?: string;
@@ -27,32 +37,31 @@ export interface ResourceCardProps {
   size?: ResourceCardSize;
   width?: string;
   onClick?: () => void;
-}
+};
 
-const ResourceCard: React.FunctionComponent<ResourceCardProps> = (({ 
-  isSelected = false, 
-  onSelect = () => {}, 
-  image, 
+const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
+  isSelected = false,
+  onSelect = () => {},
+  image,
   title,
   defaultImage,
-  propertyItems = [], 
-  infoIcons = [], 
+  propertyItems = [],
+  infoIcons = [],
   size = "md",
   width,
-  onClick = () => {}
+  onClick = () => {},
 }) => {
-
   // 3 maximum
   infoIcons = infoIcons.slice(0, 3);
 
   return (
-    <Box sx={{ width: (width && size === "md") ? width : "320px"}}>
-      <StyledCard 
+    <Box sx={{ width: width && size === "md" ? width : "320px" }}>
+      <StyledCard
         selected={isSelected}
         size={size}
         onClick={onClick}
         onKeyDown={(e: ReactKeyboardEvent<HTMLDivElement>) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             onClick?.();
           }
@@ -62,15 +71,15 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = (({
         aria-label={`Resource card for ${title}`}
       >
         <SelectedIcon
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             onSelect();
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              e.stopPropagation()
+              e.stopPropagation();
               onSelect();
             }
           }}
@@ -82,13 +91,15 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = (({
         >
           <MoreVertIcon />
         </SelectedIcon>
-        <Stack sx={{
-          width: size == "sm" ? 110 : "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxSizing: "border-box"
-        }}>
+        <Stack
+          sx={{
+            width: size == "sm" ? 110 : "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
+          }}
+        >
           <ResourceCardImage
             image={image}
             defaultImage={defaultImage}
@@ -97,57 +108,55 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = (({
             aria-label={`Image for ${title}`}
           />
         </Stack>
-        <ResourceCardBody
-          size={size}
-        >
+        <ResourceCardBody size={size}>
           <EllipsisWithTooltip
             typographyProps={{ fontWeight: "700", fontSize: "1.1rem" }}
             tooltipProps={{ placement: "bottom", arrow: true }}
           >
             {title}
           </EllipsisWithTooltip>
-          {propertyItems.length > 0 && propertyItems.map((property, index) => (
-            <ResourcePropertyItem
-              size={size}
-              key={`property-${index}`}
-              role="group"
-              aria-label={`Property ${index}`}
-            >
-              {property.icon}
-              <ResourcePropertyText
-                isLast={index === propertyItems.length - 1}
+          {propertyItems.length > 0 &&
+            propertyItems.map((property, index) => (
+              <ResourcePropertyItem
                 size={size}
-                width={width}
+                key={`property-${index}`}
+                role="group"
+                aria-label={`Property ${index}`}
               >
-                {property.text}
-              </ResourcePropertyText>
-            </ResourcePropertyItem>
-          ))}
-          <PublicIconWrapper 
-            size={size}
-          >
-            {infoIcons.length > 0 && infoIcons.map((infoItem, index) => (
-              <Tooltip
-                title={infoItem.text} 
-                placement="top" 
-                arrow
-                key={`info-${index}`}
-              >
-                <ResourceIconItem
+                {property.icon}
+                <ResourcePropertyText
+                  isLast={index === propertyItems.length - 1}
                   size={size}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={infoItem.text}
+                  width={width}
                 >
-                  {infoItem.icon}
-                </ResourceIconItem>
-              </Tooltip>
+                  {property.text}
+                </ResourcePropertyText>
+              </ResourcePropertyItem>
             ))}
+          <PublicIconWrapper size={size}>
+            {infoIcons.length > 0 &&
+              infoIcons.map((infoItem, index) => (
+                <Tooltip
+                  title={infoItem.text}
+                  placement="top"
+                  arrow
+                  key={`info-${index}`}
+                >
+                  <ResourceIconItem
+                    size={size}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={infoItem.text}
+                  >
+                    {infoItem.icon}
+                  </ResourceIconItem>
+                </Tooltip>
+              ))}
           </PublicIconWrapper>
         </ResourceCardBody>
       </StyledCard>
     </Box>
   );
-});
+};
 
 export default ResourceCard;

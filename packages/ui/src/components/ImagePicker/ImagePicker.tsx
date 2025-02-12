@@ -1,13 +1,13 @@
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import CreateIcon from '@mui/icons-material/Create';
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import CreateIcon from "@mui/icons-material/Create";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Box } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState } from "react";
 import {
-  useDropzone,
   type DropzoneProps as ReactDropzoneProps,
+  useDropzone,
 } from "react-dropzone";
 
 export type ImagePickerProps = {
@@ -21,16 +21,26 @@ export type ImagePickerProps = {
 } & ReactDropzoneProps;
 
 const ImagePickerDefaultLabel: FC = () => (
-  <Typography textAlign="center" fontSize="14px" color='grey.darker'>
-    <Box component="span" fontWeight="bold">Glissez-déposez</Box> ou <Box component="span" fontWeight="bold">cliquez</Box> pour choisir une image
+  <Typography textAlign="center" fontSize="14px" color="grey.darker">
+    <Box component="span" fontWeight="bold">
+      Glissez-déposez
+    </Box>{" "}
+    ou{" "}
+    <Box component="span" fontWeight="bold">
+      cliquez
+    </Box>{" "}
+    pour choisir une image
   </Typography>
-)
+);
 
 const ImagePickerDefaultDragLabel: FC = () => (
-  <Typography textAlign="center" fontSize="14px" color='grey.darker'>
-    <Box component="span" fontWeight="bold">Glissez</Box> une image
+  <Typography textAlign="center" fontSize="14px" color="grey.darker">
+    <Box component="span" fontWeight="bold">
+      Glissez
+    </Box>{" "}
+    une image
   </Typography>
-)
+);
 
 const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   defaultLabel = <ImagePickerDefaultLabel />,
@@ -42,7 +52,9 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   initialFile = null,
   ...otherProps
 }) => {
-  const [currentFile, setCurrentFile] = useState<string | File | null>(initialFile);
+  const [currentFile, setCurrentFile] = useState<string | File | null>(
+    initialFile,
+  );
 
   const handleDrop = (acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0] || null;
@@ -59,12 +71,12 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   const handleEdit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     open();
-  }
+  };
 
   const { open, getRootProps, getInputProps, isDragActive } = useDropzone({
     ...otherProps,
-    maxFiles: 1, 
-    onDropAccepted: handleDrop, 
+    maxFiles: 1,
+    onDropAccepted: handleDrop,
     accept: {
       "image/*": [".png", ".jpeg", ".jpg", ".gif"],
     },
@@ -89,7 +101,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
         borderColor: (theme) => !currentFile && theme.palette.grey.main,
       }}
       {...getRootProps({
-        onClick: open
+        onClick: open,
       })}
     >
       <input {...getInputProps()} />
@@ -97,10 +109,13 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
         <>
           {isDragActive ? (
             <>
-              <AddPhotoAlternateIcon color="primary" style={{
-                width: "2.5rem",
-                height: "2.5rem",
-              }}/>
+              <AddPhotoAlternateIcon
+                color="primary"
+                style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                }}
+              />
               {dragLabel}
               {information && (
                 <Typography textAlign="center" fontSize="12px" color="grey">
@@ -109,17 +124,22 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
               )}
             </>
           ) : (
-            <Box sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "0.5rem",
-              gap: "0.3rem"
-            }}>
-              <AddPhotoAlternateIcon color="primary" style={{
-                width: "2.5rem",
-                height: "2.5rem",
-              }}/>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "0.5rem",
+                gap: "0.3rem",
+              }}
+            >
+              <AddPhotoAlternateIcon
+                color="primary"
+                style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                }}
+              />
               {defaultLabel}
               {information && (
                 <Typography textAlign="center" fontSize="12px" color="grey">
@@ -152,15 +172,15 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
                 width: "2rem",
                 height: "2rem",
                 cursor: "pointer",
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: "grey.darker",
-                  '& .MuiSvgIcon-root': {
+                  "& .MuiSvgIcon-root": {
                     fill: (theme) => theme.palette.common.white,
-                  }
-                }
+                  },
+                },
               }}
             >
-              <CreateIcon fontSize="small"/>
+              <CreateIcon fontSize="small" />
             </Box>
             <Box
               onClick={handleDelete}
@@ -174,20 +194,26 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
                 width: "2rem",
                 height: "2rem",
                 cursor: "pointer",
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: "grey.darker",
-                  '& .MuiSvgIcon-root': {
+                  "& .MuiSvgIcon-root": {
                     fill: (theme) => theme.palette.common.white,
-                  }
-                }
+                  },
+                },
               }}
             >
               <DeleteIcon fontSize="small" />
             </Box>
           </Box>
           <img
-            src={typeof currentFile === "string" ? currentFile : URL.createObjectURL(currentFile)}
-            alt={typeof currentFile === "string" ? currentFile : currentFile.name}
+            src={
+              typeof currentFile === "string"
+                ? currentFile
+                : URL.createObjectURL(currentFile)
+            }
+            alt={
+              typeof currentFile === "string" ? currentFile : currentFile.name
+            }
             style={{
               width: "100%",
               height: "100%",

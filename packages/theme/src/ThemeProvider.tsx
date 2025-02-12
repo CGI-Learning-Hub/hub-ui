@@ -1,6 +1,7 @@
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import { PropsWithChildren } from "react";
+
 import { getMuiTheme } from "./mui";
 import {
   campusTheme,
@@ -14,7 +15,7 @@ import { CreateThemeOptions, Theme } from "./types";
 
 const expandTheme = (
   id: ThemeProviderProps["themeId"],
-  options?: ThemeProviderProps["options"]
+  options?: ThemeProviderProps["options"],
 ) => {
   switch (id) {
     case "campus":
@@ -22,12 +23,12 @@ const expandTheme = (
     case "crna":
       return getMuiTheme(
         crnaTheme,
-        options ? deepmerge(crnaMuiOptions, options) : crnaMuiOptions
+        options ? deepmerge(crnaMuiOptions, options) : crnaMuiOptions,
       );
     case "imt":
       return getMuiTheme(
         imtTheme,
-        options ? deepmerge(imtMuiOptions, options) : imtMuiOptions
+        options ? deepmerge(imtMuiOptions, options) : imtMuiOptions,
       );
     case "default":
     default:

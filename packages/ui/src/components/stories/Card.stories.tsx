@@ -3,6 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { Button } from "../Button";
 
 const Card = (props: CardProps) => {

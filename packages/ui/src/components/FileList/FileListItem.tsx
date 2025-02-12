@@ -2,6 +2,7 @@ import { CloseRounded, DownloadRounded } from "@mui/icons-material";
 import { Box, CircularProgress, IconButton } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 import { FileIcon } from "./FileIcon";
 import { FileInfosSeparator } from "./FileInfosSeparator";
@@ -35,14 +36,14 @@ const FileListItem = <T extends CustomFile>({
 
   const handleClick = () => onClick?.(file);
   const handleDelete = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     onDelete?.(file);
   };
 
   const handleDownload = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     onDownload?.(file);

@@ -1,6 +1,7 @@
 import MoodIcon from "@mui/icons-material/Mood";
 import { red } from "@mui/material/colors";
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { Heading } from "../Heading";
 
 const meta: Meta<typeof Heading> = {

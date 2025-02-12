@@ -4,10 +4,10 @@ import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { EmptyState } from "../EmptyState";
 import { isErrorWithMessage, isFetchBaseQueryError } from "./helpers";
 
-export interface QueryErrorProps {
+export type QueryErrorProps = {
   error: FetchBaseQueryError | SerializedError | undefined;
   statusPrefix?: string;
-}
+};
 
 const QueryError: React.FunctionComponent<QueryErrorProps> = ({
   error,

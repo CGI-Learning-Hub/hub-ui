@@ -1,5 +1,6 @@
 import Stack, { StackProps } from "@mui/material/Stack";
 import Typography, { TypographyProps } from "@mui/material/Typography";
+
 import { useLazySvgImport } from "../../hooks/lazySvgImport";
 
 export type EmptyStateProps = {

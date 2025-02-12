@@ -3,8 +3,8 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import {
-  useDropzone,
   type DropzoneProps as ReactDropzoneProps,
+  useDropzone,
 } from "react-dropzone";
 
 export type DropzoneProps = {

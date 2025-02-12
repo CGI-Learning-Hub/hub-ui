@@ -1,12 +1,14 @@
 import { useTheme } from "@mui/material";
-import type {} from "@mui/material/themeCssVarsAugmentation"; // necessary to use theme.vars
+import type {} from "@mui/material/themeCssVarsAugmentation";
+// necessary to use theme.vars
 import React from "react";
+
 import "./example.css";
 
-interface ExampleComponentProps {
+type ExampleComponentProps = {
   primaryText: string;
   secondaryText: string;
-}
+};
 
 const ExampleComponent: React.FC<ExampleComponentProps> = ({
   primaryText,

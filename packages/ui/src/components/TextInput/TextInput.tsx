@@ -1,9 +1,9 @@
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
 
-export type InputTextProps = {} & TextFieldProps
+export type InputTextProps = {} & TextFieldProps;
 
 const TextInput: React.FunctionComponent<InputTextProps> = (
-  props: InputTextProps
+  props: InputTextProps,
 ) => {
   return <TextField {...props} variant={props.variant || "standard"} />;
 };

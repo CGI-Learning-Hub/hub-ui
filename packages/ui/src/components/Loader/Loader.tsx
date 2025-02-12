@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
+
 import "./styles.css";
 
-export interface LoaderProps {}
+export type LoaderProps = {};
 
 const Loader: React.FunctionComponent<LoaderProps> = ({}) => {
   return (

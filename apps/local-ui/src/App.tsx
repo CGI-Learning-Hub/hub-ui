@@ -3,10 +3,10 @@ import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   Alert,
   Button,
+  CustomFile,
   DatePicker,
   Dropzone,
   EmptyState,
-  File,
   FileList,
   IconButton,
   Menu,
@@ -15,6 +15,8 @@ import {
   SearchInput,
   Tab,
   TextInput,
+  ToggleButton,
+  ToggleButtonGroup,
   Tooltip,
   Typography,
 } from "@cgi-learning-hub/ui";
@@ -23,37 +25,30 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import MUIButton from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
+
 import "./App.css";
 import ExampleComponent from "./components/ExampleComponent";
 
-const StyleButton = styled(MUIButton)(({ theme }) => ({
-  backgroundColor: theme.vars.palette.primary.main,
-  "&:hover": {
-    backgroundColor: theme.vars.palette.primary.main,
-  },
-}));
-
-const ButtonComponent = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <StyleButton variant="contained" onClick={onClick}>
-      Change theme
-    </StyleButton>
-  );
-};
+type ThemeId = "campus" | "crna" | "default" | "imt";
 
 function App() {
-  const [isImtThemeActive, setImtThemeActive] = useState(false);
+  const [themeId, setThemeId] = useState<ThemeId>("default");
   const [value, setValue] = useState("1");
   const [password, setPassword] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<CustomFile[]>([]);
   const open = Boolean(anchorEl);
 
-  const changeTheme = () => setImtThemeActive((old) => !old);
+  const handleThemeChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newThemeId: ThemeId | null,
+  ) => {
+    if (newThemeId !== null) {
+      setThemeId(newThemeId);
+    }
+  };
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -68,10 +63,19 @@ function App() {
   };
 
   return (
-    <ThemeProvider themeId={isImtThemeActive ? "imt" : "default"}>
+    <ThemeProvider themeId={themeId}>
       <div className="App">
         <header className="App-header">
-          <ButtonComponent onClick={changeTheme} />
+          <ToggleButtonGroup
+            value={themeId}
+            exclusive
+            onChange={handleThemeChange}
+          >
+            <ToggleButton value="default">Default</ToggleButton>
+            <ToggleButton value="crna">CRNA</ToggleButton>
+            <ToggleButton value="campus">Campus</ToggleButton>
+            <ToggleButton value="imt">IMT</ToggleButton>
+          </ToggleButtonGroup>
           <Button
             variant="outlined"
             color="primary"

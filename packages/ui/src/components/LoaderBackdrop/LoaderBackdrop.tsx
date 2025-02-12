@@ -1,8 +1,9 @@
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
+
 import "./styles.css";
 
-export interface LoaderBackdropProps {}
+export type LoaderBackdropProps = {};
 
 const LoaderBackdrop: React.FunctionComponent<LoaderBackdropProps> = ({}) => {
   return (

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { ImagePicker } from "../ImagePicker";
 
 const meta: Meta<typeof ImagePicker> = {
@@ -14,7 +15,8 @@ const meta: Meta<typeof ImagePicker> = {
       },
     },
     dragLabel: {
-      description: "Texte affiché lorsque l'utilisateur fait glisser un fichier.",
+      description:
+        "Texte affiché lorsque l'utilisateur fait glisser un fichier.",
       control: "text",
       table: {
         type: { summary: "ReactNode" },
@@ -22,14 +24,16 @@ const meta: Meta<typeof ImagePicker> = {
       },
     },
     information: {
-      description: "Informations supplémentaires affichées sous le label par défaut.",
+      description:
+        "Informations supplémentaires affichées sous le label par défaut.",
       control: "text",
       table: {
         type: { summary: "string" },
       },
     },
     onFileChange: {
-      description: "Callback déclenché lorsque l'utilisateur sélectionne ou supprime un fichier.",
+      description:
+        "Callback déclenché lorsque l'utilisateur sélectionne ou supprime un fichier.",
       action: "file-changed",
       table: {
         type: { summary: "(file: File | null) => void" },
@@ -41,8 +45,8 @@ const meta: Meta<typeof ImagePicker> = {
       table: {
         type: { summary: "string | File" },
       },
-    }
-  }
+    },
+  },
 };
 export default meta;
 
@@ -53,9 +57,9 @@ export const Default: Story = {
     information: "SVG, PNG, JPG, GIF",
     onFileChange: (file: File | null) => {
       if (file) {
-        console.log("Image uplaodé")
+        console.log("Image uplaodé");
       } else {
-        console.log("Image supprimé")
+        console.log("Image supprimé");
       }
     },
     width: "160px",

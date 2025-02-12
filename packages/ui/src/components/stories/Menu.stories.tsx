@@ -2,6 +2,7 @@ import MUIMenu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+
 import { Button } from "../Button";
 
 const Menu = (props: MenuProps) => {

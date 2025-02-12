@@ -1,6 +1,6 @@
 import { Divider } from "@mui/material";
 import Box from "@mui/material/Box";
-import "react";
+
 import FileListItem, { CustomFile } from "./FileListItem";
 
 export interface FileListProps<T extends CustomFile> {
