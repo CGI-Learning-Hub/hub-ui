@@ -1,6 +1,6 @@
-# Create a React Library with TypeScript and Vite
+# CGI Learning Hub UI
 
-This Mono repository is an example of a React library created with TypeScript, Vite, Storybook and PNPM.
+React monorepo containing components, theme and icons libraries
 
 ## How to Test setup
 
