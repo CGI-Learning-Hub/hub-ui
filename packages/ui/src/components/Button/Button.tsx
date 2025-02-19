@@ -1,7 +1,8 @@
-import LoadingButton, { type LoadingButtonProps } from "@mui/lab/LoadingButton";
+import MUIButton, { type ButtonProps } from "@mui/material/Button";
+
 import { styled } from "@mui/material/styles";
 
-const StyledLoadingButton = styled(LoadingButton)(({ color, theme }) => ({
+const StyledButton = styled(MUIButton)(({ color, theme }) => ({
   minHeight: 38,
   textTransform: "none",
   transition: "all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
@@ -15,13 +16,11 @@ const StyledLoadingButton = styled(LoadingButton)(({ color, theme }) => ({
   },
 }));
 
-export type ButtonProps = LoadingButtonProps;
-
 const Button: React.FunctionComponent<ButtonProps> = ({
   variant = "outlined",
   ...otherProps
 }) => {
-  return <StyledLoadingButton variant={variant} {...otherProps} />;
+  return <StyledButton variant={variant} {...otherProps} />;
 };
 
 export default Button;

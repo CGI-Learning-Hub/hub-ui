@@ -1,5 +1,4 @@
-import { Divider } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Divider, List } from "@mui/material";
 
 import FileListItem, { CustomFile } from "./FileListItem";
 
@@ -17,7 +16,7 @@ const FileList = <T extends CustomFile>({
   onDownload,
 }: FileListProps<T>) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <List sx={{ display: "flex", flexDirection: "column" }}>
       {files.map((file, index) => (
         <>
           <FileListItem
@@ -30,7 +29,7 @@ const FileList = <T extends CustomFile>({
           {index < files.length - 1 && <Divider variant="middle" />}
         </>
       ))}
-    </Box>
+    </List>
   );
 };
 
