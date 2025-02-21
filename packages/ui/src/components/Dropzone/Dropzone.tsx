@@ -11,12 +11,16 @@ export type DropzoneProps = {
   defaultLabel?: string;
   dragLabel?: string;
   information?: string;
+  width?: string;
+  height?: string;
 } & ReactDropzoneProps;
 
 const Dropzone: React.FunctionComponent<DropzoneProps> = ({
   defaultLabel = "Glisser et déposer des fichiers ici, ou cliquer pour sélectionner des fichiers",
   dragLabel = "Déposer les fichiers ici",
   information,
+  width,
+  height,
   ...otherProps
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(otherProps);
@@ -27,7 +31,8 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       justifyContent="center"
       alignItems="center"
       spacing={1}
-      width="18rem"
+      width={width ?? "18rem"}
+      height={height ?? "auto"}
       padding={1}
       border="1px dashed"
       borderColor="grey.main"
