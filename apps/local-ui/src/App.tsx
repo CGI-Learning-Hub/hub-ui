@@ -7,7 +7,6 @@ import {
   DatePicker,
   Dropzone,
   EmptyState,
-  FileList,
   IconButton,
   Menu,
   MenuItem,
@@ -25,9 +24,10 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import type {} from "@mui/material/themeCssVarsAugmentation";
+import type { } from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
-
+import FileList from "../../../packages/ui/src/components/FileList/FileList";
+import { myFiles } from "../../../packages/ui/src/components/stories/FileList.stories";
 import "./App.css";
 import ExampleComponent from "./components/ExampleComponent";
 
@@ -147,6 +147,19 @@ function App() {
           <Alert severity="success">Success alert</Alert>
           <Alert severity="warning">Warning alert</Alert>
           <Alert severity="error">Error alert</Alert>
+          <div style={{ width:"500px"}}>
+          <FileList files={myFiles} onDelete={
+            (file: CustomFile) => {
+              alert(`Deleted file: ${file.name}`);
+            }
+          }
+          onClick={
+            (file: CustomFile) => {
+              alert(`Clicked file: ${file.name}`);
+            }
+          }
+          />
+          </div>
         </header>
       </div>
     </ThemeProvider>

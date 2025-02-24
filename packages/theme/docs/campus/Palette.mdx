@@ -1,110 +1,12 @@
 {/* Palette.mdx */}
 
-import { ColorItem, ColorPalette, Meta, Title } from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
+
 import { campusMuiTheme } from "../../src/themes";
+import { TemplatePalette } from "../TemplatePalette.mdx";
 
 <Meta title="Themes/Campus/Palette" />
 
 # Palette
 
-<ColorPalette>
-  <ColorItem
-    title="Primary"
-    subtitle="theme.palette.primary"
-    colors={{
-      lighter: campusMuiTheme.palette.primary.lighter,
-      light: campusMuiTheme.palette.primary.light,
-      main: campusMuiTheme.palette.primary.main,
-      dark: campusMuiTheme.palette.primary.dark,
-      darker: campusMuiTheme.palette.primary.darker,
-    }}
-  />
-  <ColorItem
-    title="Secondary"
-    subtitle="theme.palette.secondary"
-    colors={{
-      lighter: campusMuiTheme.palette.secondary.lighter,
-      light: campusMuiTheme.palette.secondary.light,
-      main: campusMuiTheme.palette.secondary.main,
-      dark: campusMuiTheme.palette.secondary.dark,
-      darker: campusMuiTheme.palette.secondary.darker,
-    }}
-  />
-  <ColorItem
-    title="Error"
-    subtitle="theme.palette.error"
-    colors={{
-      light: campusMuiTheme.palette.error.light,
-      main: campusMuiTheme.palette.error.main,
-      dark: campusMuiTheme.palette.error.dark,
-    }}
-  />
-  <ColorItem
-    title="Warning"
-    subtitle="theme.palette.warning"
-    colors={{
-      light: campusMuiTheme.palette.warning.light,
-      main: campusMuiTheme.palette.warning.main,
-      dark: campusMuiTheme.palette.warning.dark,
-    }}
-  />
-  <ColorItem
-    title="Info"
-    subtitle="theme.palette.info"
-    colors={{
-      light: campusMuiTheme.palette.info.light,
-      main: campusMuiTheme.palette.info.main,
-      dark: campusMuiTheme.palette.info.dark,
-    }}
-  />
-  <ColorItem
-    title="Success"
-    subtitle="theme.palette.success"
-    colors={{
-      light: campusMuiTheme.palette.success.light,
-      main: campusMuiTheme.palette.success.main,
-      dark: campusMuiTheme.palette.success.dark,
-    }}
-  />
-  <ColorItem
-    title="Common"
-    subtitle="theme.palette.common"
-    colors={{
-      black: campusMuiTheme.palette.common.black,
-      white: campusMuiTheme.palette.common.white,
-    }}
-  />
-  <ColorItem
-    title="Grey"
-    subtitle="theme.palette.grey"
-    colors={{
-      lighter: campusMuiTheme.palette.grey.lighter,
-      light: campusMuiTheme.palette.grey.light,
-      main: campusMuiTheme.palette.grey.main,
-      dark: campusMuiTheme.palette.grey.dark,
-      darker: campusMuiTheme.palette.grey.darker,
-    }}
-  />
-  <ColorItem
-    title="Text"
-    subtitle="theme.palette.text"
-    colors={{
-      primary: campusMuiTheme.palette.text.primary,
-      secondary: campusMuiTheme.palette.text.secondary,
-      disabled: campusMuiTheme.palette.text.disabled,
-    }}
-  />
-  <ColorItem
-    title="Divider"
-    subtitle="theme.palette.divider"
-    colors={{ divider: campusMuiTheme.palette.divider }}
-  />
-  <ColorItem
-    title="Background"
-    subtitle="theme.palette.background"
-    colors={{
-      paper: campusMuiTheme.palette.background.paper,
-      default: campusMuiTheme.palette.background.default,
-    }}
-  />
-</ColorPalette>
+<TemplatePalette theme={campusMuiTheme} />

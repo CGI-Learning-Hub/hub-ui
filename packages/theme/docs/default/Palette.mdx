@@ -1,110 +1,12 @@
 {/* Palette.mdx */}
 
-import { ColorItem, ColorPalette, Meta, Title } from "@storybook/blocks";
+import { Meta } from "@storybook/blocks";
+
 import { defaultMuiTheme } from "../../src/themes";
+import { TemplatePalette } from "../TemplatePalette.mdx";
 
 <Meta title="Themes/Default/Palette" />
 
 # Palette
 
-<ColorPalette>
-  <ColorItem
-    title="Primary"
-    subtitle="theme.palette.primary"
-    colors={{
-      lighter: defaultMuiTheme.palette.primary.lighter,
-      light: defaultMuiTheme.palette.primary.light,
-      main: defaultMuiTheme.palette.primary.main,
-      dark: defaultMuiTheme.palette.primary.dark,
-      darker: defaultMuiTheme.palette.primary.darker,
-    }}
-  />
-  <ColorItem
-    title="Secondary"
-    subtitle="theme.palette.secondary"
-    colors={{
-      lighter: defaultMuiTheme.palette.secondary.lighter,
-      light: defaultMuiTheme.palette.secondary.light,
-      main: defaultMuiTheme.palette.secondary.main,
-      dark: defaultMuiTheme.palette.secondary.dark,
-      darker: defaultMuiTheme.palette.secondary.darker,
-    }}
-  />
-  <ColorItem
-    title="Error"
-    subtitle="theme.palette.error"
-    colors={{
-      light: defaultMuiTheme.palette.error.light,
-      main: defaultMuiTheme.palette.error.main,
-      dark: defaultMuiTheme.palette.error.dark,
-    }}
-  />
-  <ColorItem
-    title="Warning"
-    subtitle="theme.palette.warning"
-    colors={{
-      light: defaultMuiTheme.palette.warning.light,
-      main: defaultMuiTheme.palette.warning.main,
-      dark: defaultMuiTheme.palette.warning.dark,
-    }}
-  />
-  <ColorItem
-    title="Info"
-    subtitle="theme.palette.info"
-    colors={{
-      light: defaultMuiTheme.palette.info.light,
-      main: defaultMuiTheme.palette.info.main,
-      dark: defaultMuiTheme.palette.info.dark,
-    }}
-  />
-  <ColorItem
-    title="Success"
-    subtitle="theme.palette.success"
-    colors={{
-      light: defaultMuiTheme.palette.success.light,
-      main: defaultMuiTheme.palette.success.main,
-      dark: defaultMuiTheme.palette.success.dark,
-    }}
-  />
-  <ColorItem
-    title="Common"
-    subtitle="theme.palette.common"
-    colors={{
-      black: defaultMuiTheme.palette.common.black,
-      white: defaultMuiTheme.palette.common.white,
-    }}
-  />
-  <ColorItem
-    title="Grey"
-    subtitle="theme.palette.grey"
-    colors={{
-      lighter: defaultMuiTheme.palette.grey.lighter,
-      light: defaultMuiTheme.palette.grey.light,
-      main: defaultMuiTheme.palette.grey.main,
-      dark: defaultMuiTheme.palette.grey.dark,
-      darker: defaultMuiTheme.palette.grey.darker,
-    }}
-  />
-  <ColorItem
-    title="Text"
-    subtitle="theme.palette.text"
-    colors={{
-      primary: defaultMuiTheme.palette.text.primary,
-      secondary: defaultMuiTheme.palette.text.secondary,
-      disabled: defaultMuiTheme.palette.text.disabled,
-    }}
-  />
-  <ColorItem
-    title="Divider"
-    subtitle="theme.palette.divider"
-    colors={{ divider: defaultMuiTheme.palette.divider }}
-  />
-  <ColorItem
-    title="Background"
-    subtitle="theme.palette.background"
-    colors={{
-      paper: defaultMuiTheme.palette.background.paper,
-      default: defaultMuiTheme.palette.background.default,
-    }}
-  />
-</ColorPalette>
+<TemplatePalette theme={defaultMuiTheme} />
