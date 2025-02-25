@@ -138,7 +138,9 @@ const FileListItem = <T extends CustomFile>({
             alignItems="flex-start"
             minWidth="0"
           >
-            <EllipsisWithTooltip>{file.name}</EllipsisWithTooltip>
+            <EllipsisWithTooltip typographyProps={{ variant: "body1" }}>
+              {file.name}
+            </EllipsisWithTooltip>
             <Stack
               display="flex"
               flexDirection="row"
@@ -146,7 +148,7 @@ const FileListItem = <T extends CustomFile>({
               gap={1}
             >
               {displaySizeValue && (
-                <Typography fontSize="0.8rem" color="text.secondary">
+                <Typography variant="caption" color="text.secondary">
                   {displaySizeValue}
                 </Typography>
               )}
@@ -154,7 +156,7 @@ const FileListItem = <T extends CustomFile>({
                 <FileInfosSeparator />
               )}
               {displayExtensionValue && (
-                <Typography fontSize="0.8rem" color="text.secondary">
+                <Typography variant="caption" color="text.secondary">
                   {displayExtensionValue}
                 </Typography>
               )}
@@ -163,7 +165,7 @@ const FileListItem = <T extends CustomFile>({
                   <FileInfosSeparator />
                 )}
               {file.ownerName && (
-                <Typography fontSize="0.8rem" color="text.secondary">
+                <Typography variant="caption" color="text.secondary">
                   {file.ownerName}
                 </Typography>
               )}
