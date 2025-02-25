@@ -1,5 +1,13 @@
 import { CloseRounded, DownloadRounded } from "@mui/icons-material";
-import { Box, CircularProgress, IconButton, ListItem, ListItemButton, ListItemButtonProps, styled } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemButtonProps,
+  styled,
+} from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
@@ -28,23 +36,25 @@ interface ClickableItemProps extends ListItemButtonProps {
   isClickable: boolean;
 }
 
-const ClickableItem = styled(ListItemButton)<ClickableItemProps>(({ isClickable }) => ({
-  "&:hover": {
-    boxShadow: isClickable ? "0 4px 8px rgba(192, 192, 192, 0.3)" : "none",
-    backgroundColor: "transparent",
-  },
-  borderRadius: "4px",
-  cursor: isClickable ? "pointer" : "default",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  padding: "0.5rem 1rem",
-  width: "100%",
-  justifyContent: "space-between",
-  boxSizing: "border-box",
-  paddingRight: "115px !important",
-}));
-
+const ClickableItem = styled(ListItemButton)<ClickableItemProps>(
+  ({ isClickable }) => ({
+    "&:hover": {
+      boxShadow: isClickable ? "0 4px 8px rgba(192, 192, 192, 0.3)" : "none",
+      backgroundColor: "transparent",
+    },
+    opacity: "1 !important",
+    borderRadius: "4px",
+    cursor: isClickable ? "pointer" : "default",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "0.5rem 1rem",
+    width: "100%",
+    justifyContent: "space-between",
+    boxSizing: "border-box",
+    paddingRight: "115px !important",
+  }),
+);
 
 const FileListItem = <T extends CustomFile>({
   file,
@@ -73,30 +83,31 @@ const FileListItem = <T extends CustomFile>({
 
   return (
     <ListItem
-    key={crypto.randomUUID()}
-    secondaryAction={
-      <Box alignItems="center" display="flex" gap="1rem">
-        {file.isLoading ? (
-          <Box marginRight={1}>
-            <CircularProgress size={24} color="primary" />
-          </Box>
-        ) : file.isDownloadable ? (
-          <IconButton onClick={handleDownload}>
-            <DownloadRounded color="primary" />
-          </IconButton>
-        ) : null}
-        {file.isDeletable && (
-          <IconButton onClick={handleDelete} id="coucou">
-            <CloseRounded />
-          </IconButton>
-        )}
-      </Box>
-    }
-    disablePadding 
+      key={crypto.randomUUID()}
+      secondaryAction={
+        <Box alignItems="center" display="flex" gap="1rem">
+          {file.isLoading ? (
+            <Box marginRight={1}>
+              <CircularProgress size={24} color="primary" />
+            </Box>
+          ) : file.isDownloadable ? (
+            <IconButton onClick={handleDownload}>
+              <DownloadRounded color="primary" />
+            </IconButton>
+          ) : null}
+          {file.isDeletable && (
+            <IconButton onClick={handleDelete} id="coucou">
+              <CloseRounded />
+            </IconButton>
+          )}
+        </Box>
+      }
+      disablePadding
     >
       <ClickableItem
         onClick={handleClick}
         isClickable={!!onClick}
+        disabled={!onClick}
       >
         <Stack direction="row" alignItems="center" spacing={2} minWidth="0">
           <Stack
@@ -128,7 +139,12 @@ const FileListItem = <T extends CustomFile>({
             minWidth="0"
           >
             <EllipsisWithTooltip>{file.name}</EllipsisWithTooltip>
-            <Stack display="flex" flexDirection="row" alignItems="center" gap={1}>
+            <Stack
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+              gap={1}
+            >
               {displaySizeValue && (
                 <Typography fontSize="0.8rem" color="text.secondary">
                   {displaySizeValue}
@@ -142,9 +158,10 @@ const FileListItem = <T extends CustomFile>({
                   {displayExtensionValue}
                 </Typography>
               )}
-              {file.ownerName && (displaySizeValue || displayExtensionValue) && (
-                <FileInfosSeparator />
-              )}
+              {file.ownerName &&
+                (displaySizeValue || displayExtensionValue) && (
+                  <FileInfosSeparator />
+                )}
               {file.ownerName && (
                 <Typography fontSize="0.8rem" color="text.secondary">
                   {file.ownerName}
