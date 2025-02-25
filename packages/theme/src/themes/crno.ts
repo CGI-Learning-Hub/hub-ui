@@ -5,7 +5,7 @@ import { Theme } from "../types";
 const theme: Theme = {
   palette: {
     primary: {
-      darker: "",
+      darker: "#974E00",
       dark: "#DA6A0B",
       regular: "#FF8D2E",
       light: "#FFCBA0",
@@ -13,7 +13,7 @@ const theme: Theme = {
       contrastText: "#FFFFFF",
     },
     secondary: {
-      darker: "",
+      darker: "#253F4D",
       dark: "#2F7EA7",
       regular: "#2A9CC8",
       light: "#B9E3F8",
@@ -73,9 +73,8 @@ const muiTheme = getMuiTheme(theme, muiOptions);
 const tailwindThemeConfig = getTailwindThemeConfig(theme);
 
 export {
-    muiOptions as crnoMuiOptions,
-    muiTheme as crnoMuiTheme,
-    tailwindThemeConfig as crnoTailwindThemeConfig,
-    theme as crnoTheme
+  muiOptions as crnoMuiOptions,
+  muiTheme as crnoMuiTheme,
+  tailwindThemeConfig as crnoTailwindThemeConfig,
+  theme as crnoTheme,
 };
-
