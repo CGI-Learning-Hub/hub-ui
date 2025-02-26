@@ -53,6 +53,7 @@ const ClickableItem = styled(ListItemButton)<ClickableItemProps>(
     justifyContent: "space-between",
     boxSizing: "border-box",
     paddingRight: "115px !important",
+    userSelect: "text",
   }),
 );
 
@@ -107,7 +108,7 @@ const FileListItem = <T extends CustomFile>({
       <ClickableItem
         onClick={handleClick}
         isClickable={!!onClick}
-        disabled={!onClick}
+        disableRipple={!onClick}
       >
         <Stack direction="row" alignItems="center" spacing={2} minWidth="0">
           <Stack
