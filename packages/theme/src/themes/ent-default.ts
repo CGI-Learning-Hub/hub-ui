@@ -73,8 +73,8 @@ const muiTheme = getMuiTheme(theme, muiOptions);
 const tailwindThemeConfig = getTailwindThemeConfig(theme);
 
 export {
-  muiOptions as vdpMuiOptions,
-  muiTheme as vdpMuiTheme,
-  tailwindThemeConfig as vdpTailwindThemeConfig,
-  theme as vdpTheme,
+  muiOptions as entDefaultMuiOptions,
+  muiTheme as entDefaultMuiTheme,
+  tailwindThemeConfig as entDefaultTailwindThemeConfig,
+  theme as entDefaultTheme,
 };
