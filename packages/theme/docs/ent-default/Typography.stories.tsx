@@ -2,15 +2,16 @@ import { ThemeProvider } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography, { TypographyProps } from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 
-import { cd16MuiTheme } from "../../src";
+import { entDefaultMuiTheme } from "../../src";
 
 type FontDetailProps = Pick<TypographyProps, "variant">;
 
 const FontDetails: FunctionComponent<FontDetailProps> = ({ variant }) => {
   if (!variant) return null;
-  const { fontFamily, fontSize, fontWeight } = cd16MuiTheme.typography[variant];
+  const { fontFamily, fontSize, fontWeight } =
+    entDefaultMuiTheme.typography[variant];
 
   return (
     <Stack direction="row" spacing={2} mt={1}>
@@ -31,11 +32,11 @@ const FontDetails: FunctionComponent<FontDetailProps> = ({ variant }) => {
 };
 
 const meta: Meta<typeof Typography> = {
-  title: "Themes/CD16/Typography",
+  title: "Themes/ENT Default/Typography",
   component: Typography,
   decorators: [
     (Story, { args }) => (
-      <ThemeProvider theme={cd16MuiTheme}>
+      <ThemeProvider theme={entDefaultMuiTheme}>
         <Story />
         <FontDetails variant={args.variant} />
       </ThemeProvider>
