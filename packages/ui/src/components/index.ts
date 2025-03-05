@@ -159,5 +159,3 @@ export * from "./PasswordInput";
 export * from "./QueryError";
 export * from "./ResourceCard";
 export * from "./SearchInput";
-export * from "./TextInput";
-

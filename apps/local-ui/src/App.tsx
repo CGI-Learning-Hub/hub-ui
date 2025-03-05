@@ -14,7 +14,7 @@ import {
   PasswordInput,
   SearchInput,
   Tab,
-  TextInput,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Tooltip,
@@ -86,7 +86,7 @@ function App() {
           <Button variant="text" color="secondary">
             Bouton couleur secondaire
           </Button>
-          <TextInput label="TextInput" placeholder="test" />
+          <TextField label="TextField" placeholder="test" />
           <ExampleComponent
             primaryText="Example component"
             secondaryText="Secondaire"
