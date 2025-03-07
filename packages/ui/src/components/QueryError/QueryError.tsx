@@ -1,6 +1,9 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
+import ClientErrorSvg from "../../../assets/client-error.svg?react";
+import ErrorSvg from "../../../assets/error.svg?react";
+import ServerErrorSvg from "../../../assets/server-error.svg?react";
 import { EmptyState } from "../EmptyState";
 import { isErrorWithMessage, isFetchBaseQueryError } from "./helpers";
 
@@ -27,7 +30,7 @@ const QueryError: React.FunctionComponent<QueryErrorProps> = ({
     ) {
       return (
         <EmptyState
-          svgName="client-error"
+          image={<ClientErrorSvg height="100%" />}
           title={`Erreur client (${error.status})`}
           description={errMsg ?? undefined}
         />
@@ -38,7 +41,7 @@ const QueryError: React.FunctionComponent<QueryErrorProps> = ({
     ) {
       return (
         <EmptyState
-          svgName="server-error"
+          image={<ServerErrorSvg height="100%" />}
           title={`Erreur serveur (${error.status})`}
           description={errMsg ?? undefined}
         />
@@ -46,7 +49,7 @@ const QueryError: React.FunctionComponent<QueryErrorProps> = ({
     }
     return (
       <EmptyState
-        svgName="error"
+        image={<ErrorSvg height="100%" />}
         title={`${statusPrefix}${error.status}`}
         description={errMsg ?? undefined}
       />
@@ -55,7 +58,7 @@ const QueryError: React.FunctionComponent<QueryErrorProps> = ({
 
   return (
     <EmptyState
-      svgName="error"
+      image={<ErrorSvg height="100%" />}
       title={
         isErrorWithMessage(error) ? error.message : "Une erreur est survenue"
       }
