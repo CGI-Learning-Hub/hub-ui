@@ -1,33 +1,18 @@
-import {
-  AlertTitle,
-  Alert as MUIAlert,
-  AlertProps as MUIAlertProps,
-  styled,
-} from "@mui/material";
+import MUIAlert, {
+  type AlertProps as MUIAlertProps,
+} from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 type AlertProps = {
   title?: string;
-} & Omit<MUIAlertProps, "variant" | "color">;
-
-const StyledAlert = styled(MUIAlert)(() => {
-  return {
-    "& .MuiAlertTitle-root": {
-      fontWeight: 600,
-    },
-  };
-});
+} & Omit<MUIAlertProps, "color">;
 
 const Alert: React.FunctionComponent<AlertProps> = (props) => {
   return (
-    <StyledAlert
-      {...props}
-      severity={props.severity}
-      color={props.severity}
-      variant="standard"
-    >
+    <MUIAlert {...props} color={props.severity}>
       {props.title && <AlertTitle>{props.title}</AlertTitle>}
       {props.children}
-    </StyledAlert>
+    </MUIAlert>
   );
 };
 

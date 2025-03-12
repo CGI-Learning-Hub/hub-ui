@@ -1,3 +1,5 @@
+export * from "@mui/material/AlertTitle";
+export { default as AlertTitle } from "@mui/material/AlertTitle";
 export * from "@mui/material/AppBar";
 export { default as AppBar } from "@mui/material/AppBar";
 export * from "@mui/material/Autocomplete";
