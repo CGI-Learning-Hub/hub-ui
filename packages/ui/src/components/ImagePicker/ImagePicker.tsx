@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Box } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import {
   type DropzoneProps as ReactDropzoneProps,
   useDropzone,
@@ -55,6 +55,10 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   const [currentFile, setCurrentFile] = useState<string | File | null>(
     initialFile,
   );
+
+  useEffect(() => {
+    setCurrentFile(initialFile);
+  }, [initialFile]);
 
   const handleDrop = (acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0] || null;
