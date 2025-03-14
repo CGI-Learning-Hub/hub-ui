@@ -20,18 +20,10 @@ const meta: Meta<typeof TreeView> = {
     },
     onItemSelect: {
       description: "Fonction appelée lorsqu'un élément est sélectionné.",
-      control: "none",
       table: {
         type: {
           summary: "(event: React.SyntheticEvent, itemId: string) => void",
         },
-      },
-    },
-    expandedItemId: {
-      description: "ID de l'élément à développer automatiquement.",
-      control: "text",
-      table: {
-        type: { summary: "string" },
       },
     },
     iconColor: {
@@ -73,13 +65,14 @@ Vous pouvez également passer directement un composant SvgIcon comme valeur de \
 Le composant attend un tableau d'objets \`CustomTreeViewItem\` qui étend l'interface \`TreeViewBaseItem\` de MUI:
 
 \`\`\`typescript
-interface CustomTreeViewItem extends TreeViewBaseItem {
-  id: string;              // Identifiant unique de l'élément (obligatoire)
+interface CustomTreeViewItemProps {
+  internalId: string;      // Identifiant unique de l'élément (obligatoire)
   label: string;           // Libellé à afficher (obligatoire)
-  children?: CustomTreeViewItem[]; // Sous-éléments (facultatif)
   iconType?: IconType;     // Type d'icône (facultatif)
   customIcon?: SvgIconComponent; // Icône personnalisée si iconType est CUSTOM (facultatif)
 }
+
+type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
 \`\`\`
         `,
       },
@@ -90,7 +83,7 @@ interface CustomTreeViewItem extends TreeViewBaseItem {
 export default meta;
 
 // Wrapper pour montrer la sélection en direct
-const SelectionDemo = ({ items }) => {
+const SelectionDemo = ({ items }: { items: CustomTreeViewItem[] }) => {
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
 
   const handleSelect = useCallback(
@@ -109,7 +102,6 @@ const SelectionDemo = ({ items }) => {
       <TreeView
         items={items}
         onItemSelect={handleSelect}
-        expandedItemId={selectedId}
       />
     </Box>
   );
@@ -117,49 +109,49 @@ const SelectionDemo = ({ items }) => {
 
 type Story = StoryObj<typeof TreeView>;
 
-// Exemples de données pour le TreeView
+// Exemples de données pour le TreeView avec internalId au lieu de id
 const standardItems: CustomTreeViewItem[] = [
   {
-    id: "documents",
+    internalId: "documents",
     label: "Mes formulaires",
     iconType: ICON_TYPE.FOLDER,
     children: [
       {
-        id: "folder1",
+        internalId: "folder1",
         label: "Premier dossier",
         iconType: ICON_TYPE.FOLDER,
         children: [
           {
-            id: "subfolder1",
+            internalId: "subfolder1",
             label: "Sous-dossier 1",
             iconType: ICON_TYPE.FOLDER,
           },
           {
-            id: "subfolder2",
+            internalId: "subfolder2",
             label: "Sous-dossier 2",
             iconType: ICON_TYPE.FOLDER,
           },
         ],
       },
       {
-        id: "folder2",
+        internalId: "folder2",
         label: "Deuxième dossier",
         iconType: ICON_TYPE.FOLDER,
       },
       {
-        id: "folder3",
+        internalId: "folder3",
         label: "Troisième dossier",
         iconType: ICON_TYPE.FOLDER,
       },
     ],
   },
   {
-    id: "shared",
+    internalId: "shared",
     label: "Formulaires partagés avec moi",
     iconType: ICON_TYPE.SHARE,
   },
   {
-    id: "trash",
+    internalId: "trash",
     label: "Corbeille",
     iconType: ICON_TYPE.TRASH,
   },
@@ -168,12 +160,12 @@ const standardItems: CustomTreeViewItem[] = [
 // Données avec icônes personnalisées
 const customIconItems: CustomTreeViewItem[] = [
   {
-    id: "bookmarks",
+    internalId: "bookmarks",
     label: "Favoris",
     iconType: BookmarkIcon,
     children: [
       {
-        id: "important",
+        internalId: "important",
         label: "Important",
         iconType: ICON_TYPE.CUSTOM,
         customIcon: PersonIcon,
@@ -198,7 +190,6 @@ export const Default: Story = {
 export const WithExplicitExpand: Story = {
   args: {
     items: standardItems,
-    expandedItemId: "subfolder1",
     onItemSelect: (event, itemId) => {
       console.log(`Élément sélectionné: ${itemId}`);
     },
@@ -234,41 +225,41 @@ export const StructureImbriquee: Story = {
   args: {
     items: [
       {
-        id: "root",
+        internalId: "root",
         label: "Structure imbriquée complexe",
         iconType: ICON_TYPE.FOLDER,
         children: [
           {
-            id: "level1-1",
+            internalId: "level1-1",
             label: "Niveau 1.1",
             iconType: ICON_TYPE.FOLDER,
             children: [
               {
-                id: "level2-1",
+                internalId: "level2-1",
                 label: "Niveau 2.1",
                 iconType: ICON_TYPE.FOLDER,
                 children: [
                   {
-                    id: "level3-1",
+                    internalId: "level3-1",
                     label: "Niveau 3.1",
                     iconType: ICON_TYPE.FOLDER,
                   },
                   {
-                    id: "level3-2",
+                    internalId: "level3-2",
                     label: "Niveau 3.2",
                     iconType: ICON_TYPE.SHARE,
                   },
                 ],
               },
               {
-                id: "level2-2",
+                internalId: "level2-2",
                 label: "Niveau 2.2",
                 iconType: ICON_TYPE.TRASH,
               },
             ],
           },
           {
-            id: "level1-2",
+            internalId: "level1-2",
             label: "Niveau 1.2",
             iconType: ICON_TYPE.CUSTOM,
             customIcon: BookmarkIcon,
