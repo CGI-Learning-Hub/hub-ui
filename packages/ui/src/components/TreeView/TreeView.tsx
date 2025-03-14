@@ -18,7 +18,15 @@ import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
 import { useTreeViewApiRef } from "@mui/x-tree-view/hooks/useTreeViewApiRef";
 import { TreeViewBaseItem } from "@mui/x-tree-view/models/items";
 import { useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
-import { FC, Ref, forwardRef, useEffect, useMemo } from "react";
+import {
+  FC,
+  Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 export type TreeViewItemId = string;
 export type TreeViewItemsReorderingAction =
@@ -70,6 +78,7 @@ interface ExtendedTreeItem2Props extends TreeItem2Props {
     | "info"
     | "success"
     | "warning";
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 interface ItemDataMap {
@@ -108,6 +117,7 @@ const CustomTreeItem = forwardRef(function CustomTreeItem(
     children,
     itemData,
     iconColor = "primary",
+    onClick,
   } = props;
 
   const IconComponent = getIconComponent(
@@ -124,11 +134,29 @@ const CustomTreeItem = forwardRef(function CustomTreeItem(
     status,
   } = useTreeItem2({ id, itemId, label, disabled, children, rootRef: ref });
 
+  // Ajouter l'événement onClick au contenu
+  const contentProps = getContentProps();
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      // Appeler le gestionnaire d'origine s'il existe
+      if (contentProps.onClick) {
+        contentProps.onClick(event);
+      }
+
+      // Appeler notre gestionnaire onClick personnalisé s'il existe
+      if (onClick && itemId) {
+        onClick(event as unknown as React.MouseEvent<HTMLLIElement>);
+      }
+    },
+    [contentProps, onClick, itemId],
+  );
+
   return (
     <TreeItem2Provider itemId={itemId}>
       <TreeItem2Root {...getRootProps()}>
         <TreeItem2Content
-          {...getContentProps()}
+          {...contentProps}
+          onClick={handleClick}
           style={{ display: "flex", alignItems: "center", width: "100%" }}
         >
           <TreeItem2IconContainer {...getIconContainerProps()}>
@@ -215,6 +243,11 @@ const TreeView: FC<TreeViewProps> = ({
   const itemDataMap = useMemo(() => buildItemDataMap(items), [items]);
   const apiRef = useTreeViewApiRef();
 
+  // Utiliser une seule valeur pour l'élément sélectionné plutôt qu'un tableau
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    expandedItemId || null,
+  );
+
   // Calculer tous les éléments parents qui doivent être ouverts si expandedItemId est défini
   const expandedItems = useMemo(() => {
     if (!expandedItemId) return [];
@@ -229,15 +262,42 @@ const TreeView: FC<TreeViewProps> = ({
     return [];
   }, [expandedItemId, itemDataMap, items]);
 
+  // Synchroniser l'élément sélectionné avec expandedItemId
+  useEffect(() => {
+    if (expandedItemId) {
+      setSelectedItem(expandedItemId);
+    }
+  }, [expandedItemId]);
+
   // Utiliser apiRef pour ouvrir l'élément spécifié dynamiquement
   useEffect(() => {
+    // Vérifier que apiRef.current existe et que nous avons des éléments à développer
     if (apiRef.current && expandedItems.length > 0) {
+      // Sécuriser l'accès à apiRef.current en le stockant dans une variable locale
+      const api = apiRef.current;
       expandedItems.forEach((id) => {
-        apiRef.current.setItemExpansion(id, true);
+        // Utiliser un événement synthétique vide et spécifier isExpanded=true
+        try {
+          api.setItemExpansion({} as React.SyntheticEvent, id, true);
+        } catch (e) {
+          console.error("Erreur lors de l'expansion de l'item:", id, e);
+        }
       });
     }
   }, [apiRef, expandedItems]);
-  console.log(expandedItems);
+
+  // Gestionnaire de clic direct sur un élément
+  const handleItemClick = useCallback(
+    (event: React.MouseEvent<HTMLLIElement>, itemId: string) => {
+      if (onItemSelect) {
+        console.log("Clic sur l'item:", itemId);
+        onItemSelect(event, itemId);
+        // Mettre à jour l'élément sélectionné
+        setSelectedItem(itemId);
+      }
+    },
+    [onItemSelect],
+  );
 
   return (
     <Box sx={{ minHeight: 200, minWidth: 200 }}>
@@ -246,22 +306,28 @@ const TreeView: FC<TreeViewProps> = ({
         items={items}
         itemChildrenIndentation={"50px"}
         defaultExpandedItems={expandedItems}
-        onSelect={(event, selectedItemIds) => {
-          if (onItemSelect && typeof selectedItemIds === "string") {
-            onItemSelect(event, selectedItemIds);
-          }
-        }}
+        selectedItems={selectedItem ? [selectedItem] : []}
+        disableSelection={false}
+        multiSelect={false}
         slots={{
           item: (itemProps: TreeItem2Props) => {
             const originalItemData = itemProps.itemId
               ? itemDataMap[itemProps.itemId]
               : undefined;
 
+            // Ajouter le gestionnaire de clic directement à l'élément
+            const handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
+              if (itemProps.itemId) {
+                handleItemClick(event, itemProps.itemId);
+              }
+            };
+
             return (
               <CustomTreeItem
                 {...itemProps}
                 itemData={originalItemData}
                 iconColor={iconColor as ExtendedTreeItem2Props["iconColor"]}
+                onClick={handleClick}
               />
             );
           },

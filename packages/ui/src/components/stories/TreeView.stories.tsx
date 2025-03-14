@@ -1,6 +1,9 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useCallback, useState } from "react";
 
 import { CustomTreeViewItem, ICON_TYPE, TreeView } from "../TreeView";
 
@@ -24,6 +27,23 @@ const meta: Meta<typeof TreeView> = {
         },
       },
     },
+    expandedItemId: {
+      description: "ID de l'élément à développer automatiquement.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    iconColor: {
+      description: "Couleur des icônes.",
+      control: "select",
+      options: ["primary", "secondary", "success", "error", "info", "warning"],
+      defaultValue: "primary",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "primary" },
+      },
+    },
   },
   parameters: {
     docs: {
@@ -42,6 +62,11 @@ Le TreeView permet de personnaliser les icônes selon les types suivants:
 - \`ICON_TYPE.CUSTOM\`: Icône personnalisée (nécessite de définir \`customIcon\`)
 
 Vous pouvez également passer directement un composant SvgIcon comme valeur de \`iconType\`.
+
+### Navigation et sélection
+
+- \`onItemSelect\`: Permet de réagir quand un utilisateur clique sur un élément
+- \`expandedItemId\`: Permet d'ouvrir automatiquement un dossier spécifique
 
 ### Structure des données
 
@@ -63,6 +88,32 @@ interface CustomTreeViewItem extends TreeViewBaseItem {
 };
 
 export default meta;
+
+// Wrapper pour montrer la sélection en direct
+const SelectionDemo = ({ items }) => {
+  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
+
+  const handleSelect = useCallback(
+    (event: React.SyntheticEvent, itemId: string) => {
+      console.log(`Élément sélectionné: ${itemId}`);
+      setSelectedId(itemId);
+    },
+    [],
+  );
+
+  return (
+    <Box>
+      <Typography variant="subtitle1" gutterBottom>
+        Sélection actuelle: {selectedId || "Aucun élément sélectionné"}
+      </Typography>
+      <TreeView
+        items={items}
+        onItemSelect={handleSelect}
+        expandedItemId={selectedId}
+      />
+    </Box>
+  );
+};
 
 type Story = StoryObj<typeof TreeView>;
 
@@ -133,8 +184,21 @@ const customIconItems: CustomTreeViewItem[] = [
 ];
 
 export const Default: Story = {
+  render: () => <SelectionDemo items={standardItems} />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Exemple de base avec des icônes standard et démonstration de sélection.",
+      },
+    },
+  },
+};
+
+export const WithExplicitExpand: Story = {
   args: {
     items: standardItems,
+    expandedItemId: "subfolder1",
     onItemSelect: (event, itemId) => {
       console.log(`Élément sélectionné: ${itemId}`);
     },
@@ -142,7 +206,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Exemple de base avec des icônes standard.",
+        story:
+          "Exemple avec développement automatique d'un dossier spécifique.",
       },
     },
   },
