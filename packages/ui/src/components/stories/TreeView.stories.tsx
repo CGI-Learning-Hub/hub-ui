@@ -5,7 +5,8 @@ import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
 
-import { CustomTreeViewItem, ICON_TYPE, TreeView } from "../TreeView";
+import { TreeView } from "../TreeView";
+import { CustomTreeViewItem, ICON_TYPE } from "../TreeView/types";
 
 const meta: Meta<typeof TreeView> = {
   title: "Components/TreeView",
@@ -105,9 +106,9 @@ const SelectionDemo = ({ items }: { items: CustomTreeViewItem[] }) => {
   );
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: 300 }}>
       <Typography variant="subtitle1" gutterBottom>
-        Sélection actuelle: {selectedId || "Aucun élément sélectionné"}
+        Sélection: {selectedId || "Aucune"}
       </Typography>
       <TreeView
         items={items}
@@ -199,13 +200,17 @@ export const Default: Story = {
 };
 
 export const WithExplicitSelection: Story = {
-  args: {
-    items: standardItems,
-    selectedItemId: "folder1",
-    handleSelectedItemChange: (event, itemId) => {
-      console.log(`Élément sélectionné: ${itemId}`);
-    },
-  },
+  render: () => (
+    <Box sx={{ maxWidth: 300 }}>
+      <TreeView
+        items={standardItems}
+        selectedItemId="folder1"
+        handleSelectedItemChange={(event, itemId) => {
+          console.log(`Élément sélectionné: ${itemId}`);
+        }}
+      />
+    </Box>
+  ),
   parameters: {
     docs: {
       description: {
@@ -230,9 +235,9 @@ export const AvecIconesPersonnalisees: Story = {
     );
 
     return (
-      <Box>
+      <Box sx={{ maxWidth: 300 }}>
         <Typography variant="subtitle1" gutterBottom>
-          Élément sélectionné: {selectedId}
+          Sélection: {selectedId}
         </Typography>
         <TreeView
           items={customIconItems}
@@ -246,7 +251,7 @@ export const AvecIconesPersonnalisees: Story = {
     docs: {
       description: {
         story:
-          "Exemple utilisant à la fois des icônes prédéfinies et des icônes personnalisées avec gestion de la sélection.",
+          "Exemple utilisant à la fois des icônes prédéfinies et des icônes personnalisées.",
       },
     },
   },
@@ -312,9 +317,9 @@ export const StructureImbriquee: Story = {
     );
 
     return (
-      <Box>
+      <Box sx={{ maxWidth: 300 }}>
         <Typography variant="subtitle1" gutterBottom>
-          Niveau sélectionné: {selectedId}
+          Sélection: {selectedId}
         </Typography>
         <TreeView
           items={items}
@@ -329,38 +334,28 @@ export const StructureImbriquee: Story = {
     docs: {
       description: {
         story:
-          "Exemple d'une structure profondément imbriquée avec différents types d'icônes à chaque niveau et gestion de la sélection.",
+          "Exemple d'une structure profondément imbriquée avec différents types d'icônes.",
       },
     },
   },
 };
 
-export const MultipleColors: Story = {
+export const OptionsDeColors: Story = {
   render: () => {
-    const colors = [
-      "primary",
-      "secondary",
-      "success",
-      "error",
-      "info",
-      "warning",
-    ];
+    // Seulement 3 couleurs au lieu de 6
+    const colors = ["primary", "secondary", "info"];
     const [selectedIds, setSelectedIds] = useState<Record<string, string>>({
       primary: "",
       secondary: "",
-      success: "",
-      error: "",
       info: "",
-      warning: "",
     });
 
     return (
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+      <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
         {colors.map((color) => (
-          <Box key={color}>
-            <Typography variant="subtitle1" gutterBottom>
-              TreeView avec icônes {color} - Sélection:{" "}
-              {selectedIds[color] || "aucune"}
+          <Box key={color} sx={{ maxWidth: 250 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Icônes {color}
             </Typography>
             <TreeView
               items={standardItems}
@@ -381,7 +376,7 @@ export const MultipleColors: Story = {
     docs: {
       description: {
         story:
-          "Démonstration des différentes options de couleurs disponibles pour les icônes avec gestion indépendante des sélections.",
+          "Démonstration des principales options de couleurs disponibles pour les icônes.",
       },
     },
   },
