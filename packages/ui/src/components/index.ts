@@ -160,4 +160,5 @@ export * from "./LoaderBackdrop";
 export * from "./PasswordInput";
 export * from "./QueryError";
 export * from "./ResourceCard";
+export * from "./FolderCard";
 export * from "./SearchInput";
