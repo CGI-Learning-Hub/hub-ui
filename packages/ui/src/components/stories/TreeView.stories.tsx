@@ -18,11 +18,19 @@ const meta: Meta<typeof TreeView> = {
         type: { summary: "CustomTreeViewItem[]" },
       },
     },
-    onItemSelect: {
+    selectedItemId: {
+      description: "Identifiant de l'élément sélectionné.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    handleSelectedItemChange: {
       description: "Fonction appelée lorsqu'un élément est sélectionné.",
       table: {
         type: {
-          summary: "(event: React.SyntheticEvent, itemId: string) => void",
+          summary:
+            "(event: React.SyntheticEvent, itemIds: string | null) => void",
         },
       },
     },
@@ -57,8 +65,8 @@ Vous pouvez également passer directement un composant SvgIcon comme valeur de \
 
 ### Navigation et sélection
 
-- \`onItemSelect\`: Permet de réagir quand un utilisateur clique sur un élément
-- \`expandedItemId\`: Permet d'ouvrir automatiquement un dossier spécifique
+- \`handleSelectedItemChange\`: Permet de réagir quand un utilisateur clique sur un élément
+- \`selectedItemId\`: Permet de définir l'élément sélectionné
 
 ### Structure des données
 
@@ -84,12 +92,14 @@ export default meta;
 
 // Wrapper pour montrer la sélection en direct
 const SelectionDemo = ({ items }: { items: CustomTreeViewItem[] }) => {
-  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
+  const [selectedId, setSelectedId] = useState<string>("");
 
-  const handleSelect = useCallback(
-    (event: React.SyntheticEvent, itemId: string) => {
+  const handleSelectedItemChange = useCallback(
+    (event: React.SyntheticEvent, itemId: string | null) => {
       console.log(`Élément sélectionné: ${itemId}`);
-      setSelectedId(itemId);
+      if (itemId) {
+        setSelectedId(itemId);
+      }
     },
     [],
   );
@@ -101,7 +111,8 @@ const SelectionDemo = ({ items }: { items: CustomTreeViewItem[] }) => {
       </Typography>
       <TreeView
         items={items}
-        onItemSelect={handleSelect}
+        selectedItemId={selectedId}
+        handleSelectedItemChange={handleSelectedItemChange}
       />
     </Box>
   );
@@ -187,43 +198,63 @@ export const Default: Story = {
   },
 };
 
-export const WithExplicitExpand: Story = {
+export const WithExplicitSelection: Story = {
   args: {
     items: standardItems,
-    onItemSelect: (event, itemId) => {
+    selectedItemId: "folder1",
+    handleSelectedItemChange: (event, itemId) => {
       console.log(`Élément sélectionné: ${itemId}`);
     },
   },
   parameters: {
     docs: {
       description: {
-        story:
-          "Exemple avec développement automatique d'un dossier spécifique.",
+        story: "Exemple avec sélection explicite d'un élément spécifique.",
       },
     },
   },
 };
 
 export const AvecIconesPersonnalisees: Story = {
-  args: {
-    items: customIconItems,
-    onItemSelect: (event, itemId) => {
-      console.log(`Élément sélectionné: ${itemId}`);
-    },
+  render: () => {
+    const [selectedId, setSelectedId] = useState<string>("bookmarks");
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        console.log(`Élément sélectionné: ${itemId}`);
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box>
+        <Typography variant="subtitle1" gutterBottom>
+          Élément sélectionné: {selectedId}
+        </Typography>
+        <TreeView
+          items={customIconItems}
+          selectedItemId={selectedId}
+          handleSelectedItemChange={handleSelectedItemChange}
+        />
+      </Box>
+    );
   },
   parameters: {
     docs: {
       description: {
         story:
-          "Exemple utilisant à la fois des icônes prédéfinies et des icônes personnalisées.",
+          "Exemple utilisant à la fois des icônes prédéfinies et des icônes personnalisées avec gestion de la sélection.",
       },
     },
   },
 };
 
 export const StructureImbriquee: Story = {
-  args: {
-    items: [
+  render: () => {
+    const items = [
       {
         internalId: "root",
         label: "Structure imbriquée complexe",
@@ -266,16 +297,91 @@ export const StructureImbriquee: Story = {
           },
         ],
       },
-    ],
-    onItemSelect: (event, itemId) => {
-      console.log(`Élément sélectionné: ${itemId}`);
-    },
+    ];
+
+    const [selectedId, setSelectedId] = useState<string>("level2-1");
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        console.log(`Élément sélectionné: ${itemId}`);
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box>
+        <Typography variant="subtitle1" gutterBottom>
+          Niveau sélectionné: {selectedId}
+        </Typography>
+        <TreeView
+          items={items}
+          selectedItemId={selectedId}
+          handleSelectedItemChange={handleSelectedItemChange}
+          iconColor="info"
+        />
+      </Box>
+    );
   },
   parameters: {
     docs: {
       description: {
         story:
-          "Exemple d'une structure profondément imbriquée avec différents types d'icônes à chaque niveau.",
+          "Exemple d'une structure profondément imbriquée avec différents types d'icônes à chaque niveau et gestion de la sélection.",
+      },
+    },
+  },
+};
+
+export const MultipleColors: Story = {
+  render: () => {
+    const colors = [
+      "primary",
+      "secondary",
+      "success",
+      "error",
+      "info",
+      "warning",
+    ];
+    const [selectedIds, setSelectedIds] = useState<Record<string, string>>({
+      primary: "",
+      secondary: "",
+      success: "",
+      error: "",
+      info: "",
+      warning: "",
+    });
+
+    return (
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        {colors.map((color) => (
+          <Box key={color}>
+            <Typography variant="subtitle1" gutterBottom>
+              TreeView avec icônes {color} - Sélection:{" "}
+              {selectedIds[color] || "aucune"}
+            </Typography>
+            <TreeView
+              items={standardItems}
+              selectedItemId={selectedIds[color]}
+              handleSelectedItemChange={(event, itemId) => {
+                if (itemId) {
+                  setSelectedIds((prev) => ({ ...prev, [color]: itemId }));
+                }
+              }}
+              iconColor={color as any}
+            />
+          </Box>
+        ))}
+      </Box>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Démonstration des différentes options de couleurs disponibles pour les icônes avec gestion indépendante des sélections.",
       },
     },
   },

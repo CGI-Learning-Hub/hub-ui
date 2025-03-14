@@ -17,7 +17,7 @@ import {
 import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
 import { TreeViewBaseItem } from "@mui/x-tree-view/models/items";
 import { useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
-import { FC, Ref, forwardRef } from "react";
+import { FC, Ref, forwardRef, useEffect, useMemo, useState } from "react";
 
 export type TreeViewItemId = string;
 export type TreeViewItemsReorderingAction =
@@ -52,7 +52,11 @@ export type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
 
 export interface TreeViewProps {
   items: CustomTreeViewItem[];
-  onItemSelect?: (event: React.SyntheticEvent, itemId: string) => void;
+  selectedItemId: string;
+  handleSelectedItemChange: (
+    event: React.SyntheticEvent,
+    itemIds: string | null,
+  ) => void;
   iconColor?: string;
 }
 
@@ -165,35 +169,118 @@ const CustomTreeItem = forwardRef(function CustomTreeItem(
   );
 });
 
-// Fonction utilitaire pour obtenir l'ID d'un item
-const getItemId = (item: CustomTreeViewItem): string => {
-  return item.internalId;
-};
+// Fonction pour obtenir l'ID de l'élément à partir de internalId
+const getItemId = (item: CustomTreeViewItem) => item.internalId;
 
+// Fonction pour trouver le chemin vers un élément (pour l'expansion automatique)
+const findItemPath = (
+  items: CustomTreeViewItem[],
+  targetId: string,
+  currentPath: string[] = [],
+): string[] | null => {
+  for (const item of items) {
+    // Path pour cet élément
+    const newPath = [...currentPath, item.internalId];
+
+    // Si c'est l'élément cible, retourner le chemin
+    if (item.internalId === targetId) {
+      return newPath;
+    }
+
+    // Rechercher dans les enfants si présents
+    if (item.children && item.children.length > 0) {
+      const foundPath = findItemPath(
+        item.children as CustomTreeViewItem[],
+        targetId,
+        newPath,
+      );
+
+      if (foundPath) {
+        return foundPath;
+      }
+    }
+  }
+
+  return null;
+};
+const buildItemDataMap = (items: CustomTreeViewItem[]): ItemDataMap => {
+  const map: ItemDataMap = {};
+
+  const addItemToMap = (item: CustomTreeViewItem) => {
+    map[item.internalId] = item;
+    if (item.children?.length) {
+      item.children.forEach(addItemToMap);
+    }
+  };
+
+  items.forEach(addItemToMap);
+  return map;
+};
 const TreeView: FC<TreeViewProps> = ({
   items,
-  onItemSelect,
+  selectedItemId,
+  handleSelectedItemChange,
   iconColor = "primary",
 }) => {
+  // État interne pour les éléments déployés
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const itemDataMap = useMemo(() => buildItemDataMap(items), [items]);
+  // Mettre à jour les éléments déployés quand l'élément sélectionné change
+  useEffect(() => {
+    if (selectedItemId) {
+      const path = findItemPath(items, selectedItemId);
+
+      if (path) {
+        // Déployer tous les éléments du chemin sauf le dernier (l'élément sélectionné lui-même)
+        const parentsToExpand = path.slice(0, -1);
+
+        // Mises à jour des éléments déployés en conservant ceux que l'utilisateur
+        // a pu déployer manuellement
+        setExpandedItems((prev) => {
+          const newExpanded = [...prev];
+          let changed = false;
+
+          parentsToExpand.forEach((id) => {
+            if (!newExpanded.includes(id)) {
+              newExpanded.push(id);
+              changed = true;
+            }
+          });
+
+          // Ne mettre à jour l'état que si des changements ont été apportés
+          return changed ? newExpanded : prev;
+        });
+      }
+    }
+  }, [selectedItemId, items]);
+
+  // Gérer l'expansion/la réduction manuelle des éléments
+  const handleExpandedItemsChange = (
+    event: React.SyntheticEvent,
+    itemIds: string[],
+  ) => {
+    setExpandedItems(itemIds);
+  };
+
   return (
     <Box sx={{ minHeight: 200, minWidth: 200 }}>
       <RichTreeView
         items={items}
+        selectedItems={selectedItemId}
+        expandedItems={expandedItems}
+        onExpandedItemsChange={handleExpandedItemsChange}
         itemChildrenIndentation={"50px"}
-        // Fonction pour obtenir l'ID d'un élément
+        onSelectedItemsChange={handleSelectedItemChange}
         getItemId={getItemId}
-        // Utiliser onItemClick pour capturer les clics sur les éléments
-        onItemClick={(event, itemId) => {
-          if (onItemSelect) {
-            onItemSelect(event, itemId);
-          }
-        }}
         slots={{
           item: (itemProps: TreeItem2Props) => {
+            const originalItemData = itemProps.itemId
+              ? itemDataMap[itemProps.itemId]
+              : undefined;
             return (
               <CustomTreeItem
                 {...itemProps}
-                itemData={itemProps.itemData}
+                itemData={originalItemData}
                 iconColor={iconColor as ExtendedTreeItem2Props["iconColor"]}
               />
             );
