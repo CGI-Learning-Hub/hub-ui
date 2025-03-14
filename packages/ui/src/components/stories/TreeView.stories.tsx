@@ -1,6 +1,14 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
@@ -91,30 +99,80 @@ type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
 
 export default meta;
 
-// Wrapper pour montrer la sélection en direct
-const SelectionDemo = ({ items }: { items: CustomTreeViewItem[] }) => {
-  const [selectedId, setSelectedId] = useState<string>("");
+// Fonction pour transformer les structures d'arborescence en liste plate
+const flattenTreeItems = (
+  items: CustomTreeViewItem[],
+): CustomTreeViewItem[] => {
+  const flatList: CustomTreeViewItem[] = [];
 
-  const handleSelectedItemChange = useCallback(
-    (event: React.SyntheticEvent, itemId: string | null) => {
-      console.log(`Élément sélectionné: ${itemId}`);
-      if (itemId) {
-        setSelectedId(itemId);
-      }
-    },
-    [],
-  );
+  const processItem = (item: CustomTreeViewItem) => {
+    flatList.push(item);
+    if (item.children) {
+      item.children.forEach((child) =>
+        processItem(child as CustomTreeViewItem),
+      );
+    }
+  };
+
+  items.forEach((item) => processItem(item));
+  return flatList;
+};
+
+// Composant de sélection externe
+const ExternalSelector = ({
+  items,
+  selectedItemId,
+  onItemSelect,
+}: {
+  items: CustomTreeViewItem[];
+  selectedItemId: string;
+  onItemSelect: (itemId: string) => void;
+}) => {
+  // Aplatir les éléments de l'arbre pour les afficher dans une liste
+  const flatItems = flattenTreeItems(items);
 
   return (
-    <Box sx={{ maxWidth: 300 }}>
-      <Typography variant="subtitle1" gutterBottom>
-        Sélection: {selectedId || "Aucune"}
+    <Paper sx={{ width: "100%", maxHeight: 300, overflow: "auto" }}>
+      <Typography variant="h6" sx={{ p: 2 }}>
+        Sélection externe
       </Typography>
-      <TreeView
-        items={items}
-        selectedItemId={selectedId}
-        handleSelectedItemChange={handleSelectedItemChange}
-      />
+      <Divider />
+      <List>
+        {flatItems.map((item) => (
+          <ListItem key={item.internalId} disablePadding>
+            <ListItemButton
+              selected={selectedItemId === item.internalId}
+              onClick={() => onItemSelect(item.internalId)}
+            >
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Paper>
+  );
+};
+
+// Composant pour tester la sélection aléatoire
+const RandomSelector = ({
+  items,
+  onRandomSelect,
+}: {
+  items: CustomTreeViewItem[];
+  onRandomSelect: (itemId: string) => void;
+}) => {
+  const flatItems = flattenTreeItems(items);
+
+  const handleRandomSelect = () => {
+    const randomIndex = Math.floor(Math.random() * flatItems.length);
+    onRandomSelect(flatItems[randomIndex].internalId);
+  };
+
+  return (
+    <Box sx={{ mt: 2, mb: 2 }}>
+      <Button variant="contained" color="primary" onClick={handleRandomSelect}>
+        Sélection aléatoire
+      </Button>
     </Box>
   );
 };
@@ -187,8 +245,110 @@ const customIconItems: CustomTreeViewItem[] = [
   ...standardItems,
 ];
 
+// Données pour l'exemple de synchronicité
+const syncExampleItems: CustomTreeViewItem[] = [
+  {
+    internalId: "documents",
+    label: "Documents",
+    iconType: ICON_TYPE.SHARE,
+    children: [
+      {
+        internalId: "reports",
+        label: "Rapports",
+        iconType: ICON_TYPE.FOLDER,
+        children: [
+          {
+            internalId: "report1",
+            label: "Rapport Janvier",
+            iconType: ICON_TYPE.FOLDER,
+          },
+          {
+            internalId: "report2",
+            label: "Rapport Février",
+            iconType: ICON_TYPE.FOLDER,
+          },
+          {
+            internalId: "report3",
+            label: "Rapport Mars",
+            iconType: ICON_TYPE.FOLDER,
+          },
+        ],
+      },
+      { internalId: "invoices", label: "Factures", iconType: ICON_TYPE.FOLDER },
+    ],
+  },
+  {
+    internalId: "media",
+    label: "Médias",
+    iconType: ICON_TYPE.FOLDER,
+    children: [
+      { internalId: "images", label: "Images", iconType: ICON_TYPE.FOLDER },
+      { internalId: "videos", label: "Vidéos", iconType: ICON_TYPE.FOLDER },
+    ],
+  },
+  {
+    internalId: "downloads",
+    label: "Téléchargements",
+    iconType: ICON_TYPE.FOLDER,
+  },
+];
+
+// Story contrôlable via les props de Storybook
+export const Controlable: Story = {
+  args: {
+    items: standardItems,
+    selectedItemId: "folder1",
+    handleSelectedItemChange: (event, itemId) => {
+      console.log(`Élément sélectionné: ${itemId}`);
+    },
+    iconColor: "primary",
+  },
+  render: (args) => (
+    <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
+      <Typography variant="subtitle1" gutterBottom>
+        Sélection: {args.selectedItemId}
+      </Typography>
+      <TreeView {...args} />
+    </Box>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Cette story permet de contrôler les propriétés du TreeView directement via le panneau de contrôle de Storybook. Essayez de changer la couleur des icônes pour voir l'effet en temps réel.",
+      },
+    },
+  },
+};
+
+// Story de démonstration de base
 export const Default: Story = {
-  render: () => <SelectionDemo items={standardItems} />,
+  render: () => {
+    const [selectedId, setSelectedId] = useState<string>("");
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        console.log(`Élément sélectionné: ${itemId}`);
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
+        <Typography variant="subtitle1" gutterBottom>
+          Sélection: {selectedId || "Aucune"}
+        </Typography>
+        <TreeView
+          items={standardItems}
+          selectedItemId={selectedId}
+          handleSelectedItemChange={handleSelectedItemChange}
+        />
+      </Box>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -201,7 +361,7 @@ export const Default: Story = {
 
 export const WithExplicitSelection: Story = {
   render: () => (
-    <Box sx={{ maxWidth: 300 }}>
+    <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
       <TreeView
         items={standardItems}
         selectedItemId="folder1"
@@ -235,7 +395,7 @@ export const AvecIconesPersonnalisees: Story = {
     );
 
     return (
-      <Box sx={{ maxWidth: 300 }}>
+      <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
         <Typography variant="subtitle1" gutterBottom>
           Sélection: {selectedId}
         </Typography>
@@ -317,7 +477,7 @@ export const StructureImbriquee: Story = {
     );
 
     return (
-      <Box sx={{ maxWidth: 300 }}>
+      <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
         <Typography variant="subtitle1" gutterBottom>
           Sélection: {selectedId}
         </Typography>
@@ -351,9 +511,22 @@ export const OptionsDeColors: Story = {
     });
 
     return (
-      <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 3,
+          overflowY: "hidden",
+        }}
+      >
         {colors.map((color) => (
-          <Box key={color} sx={{ maxWidth: 250 }}>
+          <Box
+            key={color}
+            sx={{
+              maxWidth: 250,
+              overflowY: "hidden",
+            }}
+          >
             <Typography variant="subtitle2" gutterBottom>
               Icônes {color}
             </Typography>
@@ -377,6 +550,85 @@ export const OptionsDeColors: Story = {
       description: {
         story:
           "Démonstration des principales options de couleurs disponibles pour les icônes.",
+      },
+    },
+  },
+};
+
+export const Synchronicite: Story = {
+  render: () => {
+    // État partagé pour l'élément sélectionné
+    const [selectedItemId, setSelectedItemId] = useState<string>("reports");
+
+    // Gestion de la sélection depuis le TreeView
+    const handleSelectedItemChange = (
+      event: React.SyntheticEvent,
+      itemId: string | null,
+    ) => {
+      console.log("TreeView sélection:", itemId);
+      if (itemId) {
+        setSelectedItemId(itemId);
+      }
+    };
+
+    // Gestion de la sélection depuis la liste externe
+    const handleExternalSelect = (itemId: string) => {
+      console.log("Sélection externe:", itemId);
+      setSelectedItemId(itemId);
+    };
+
+    // Affichage d'informations sur l'élément sélectionné
+    const getSelectedItemInfo = () => {
+      const flatItems = flattenTreeItems(syncExampleItems);
+      const selectedItem = flatItems.find(
+        (item) => item.internalId === selectedItemId,
+      );
+      return selectedItem ? selectedItem.label : "Aucun élément sélectionné";
+    };
+
+    return (
+      <Box sx={{ width: "100%", overflowY: "hidden" }}>
+        <Typography variant="subtitle1" gutterBottom>
+          Élément sélectionné: <strong>{getSelectedItemInfo()}</strong> (ID:{" "}
+          {selectedItemId})
+        </Typography>
+
+        <RandomSelector
+          items={syncExampleItems}
+          onRandomSelect={handleExternalSelect}
+        />
+
+        <Grid container spacing={3} sx={{ overflowY: "hidden" }}>
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2, overflowY: "hidden" }}>
+              <Typography variant="h6" gutterBottom>
+                TreeView
+              </Typography>
+              <TreeView
+                items={syncExampleItems}
+                selectedItemId={selectedItemId}
+                handleSelectedItemChange={handleSelectedItemChange}
+                iconColor="secondary"
+              />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <ExternalSelector
+              items={syncExampleItems}
+              selectedItemId={selectedItemId}
+              onItemSelect={handleExternalSelect}
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Démonstration de la synchronisation entre le TreeView et d'autres composants. Cette story montre comment le TreeView peut être intégré dans une interface complexe où la sélection peut provenir de différentes sources mais reste synchronisée.",
       },
     },
   },
