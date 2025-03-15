@@ -1,7 +1,10 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import DescriptionIcon from "@mui/icons-material/Description";
+import FolderIcon from "@mui/icons-material/Folder";
 import PersonIcon from "@mui/icons-material/Person";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -11,7 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { TreeView } from "../TreeView";
 import { CustomTreeViewItem, ICON_TYPE } from "../TreeView/types";
@@ -82,6 +85,15 @@ Vous pouvez également passer directement un composant SvgIcon comme valeur de \
 
 - \`handleSelectedItemChange\`: Permet de réagir quand un utilisateur clique sur un élément
 - \`selectedItemId\`: Permet de définir l'élément sélectionné
+
+### Gestion du Drag and Drop
+
+Le TreeView inclut des attributs \`data-\` qui vous permettent d'identifier facilement les éléments lors d'opérations de glisser-déposer :
+- \`data-treeview-root="true"\` : Identifie la racine du TreeView
+- \`data-treeview-item="itemId"\` : Contient l'ID de l'élément 
+- \`data-treeview-item-label="label"\` : Contient le libellé de l'élément
+
+Pour gérer le drop, ajoutez des gestionnaires d'événements au niveau du conteneur parent et utilisez \`event.target.closest('[data-treeview-item]')\` pour identifier l'élément cible.
 
 ### Structure des données
 
@@ -177,6 +189,37 @@ const RandomSelector = ({
       <Button variant="contained" color="primary" onClick={handleRandomSelect}>
         Sélection aléatoire
       </Button>
+    </Box>
+  );
+};
+
+// Composant d'élément glissable pour l'exemple
+const DraggableItem = ({ id, label }: { id: string; label: string }) => {
+  return (
+    <Box
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData(
+          "application/json",
+          JSON.stringify({ id, label }),
+        );
+      }}
+      sx={{
+        padding: 1,
+        margin: 1,
+        backgroundColor: "grey.100",
+        borderRadius: 1,
+        display: "inline-block",
+        cursor: "grab",
+        "&:hover": {
+          backgroundColor: "grey.200",
+        },
+      }}
+    >
+      <Typography variant="body2" display="flex" alignItems="center">
+        <DescriptionIcon fontSize="small" sx={{ mr: 1 }} />
+        {label}
+      </Typography>
     </Box>
   );
 };
@@ -600,6 +643,196 @@ export const Synchronicite: Story = {
       description: {
         story:
           "Démonstration de la synchronisation entre le TreeView et d'autres composants. Cette story montre comment le TreeView peut être intégré dans une interface complexe où la sélection peut provenir de différentes sources mais reste synchronisée.",
+      },
+    },
+  },
+};
+
+export const AvecDragAndDrop: Story = {
+  render: () => {
+    // État pour les données du TreeView
+    const [treeItems, setTreeItems] = useState<CustomTreeViewItem[]>([
+      ...standardItems,
+    ]);
+    const [selectedItemId, setSelectedItemId] = useState<string>("folder1");
+
+    // État pour stocker les informations sur le dernier drop
+    const [lastDrop, setLastDrop] = useState<{
+      itemId: string | null;
+      itemLabel: string | null;
+      droppedItem: { id: string; label: string } | null;
+    } | null>(null);
+
+    // Éléments que l'on peut glisser sur le TreeView
+    const draggableItems = [
+      { id: "doc1", label: "Document 1" },
+      { id: "doc2", label: "Document 2" },
+      { id: "doc3", label: "Document 3" },
+    ];
+
+    // Gestionnaire du drop sur le TreeView ou ses éléments
+    const handleDrop = (e: React.DragEvent) => {
+      e.preventDefault();
+
+      // Identifier l'élément cible
+      const target = e.target as HTMLElement;
+      const treeviewItem = target.closest("[data-treeview-item]");
+
+      let targetItemId: string | null = null;
+      let targetItemLabel: string | null = null;
+
+      if (treeviewItem) {
+        // Drop sur un élément spécifique
+        targetItemId = treeviewItem.getAttribute("data-treeview-item");
+        targetItemLabel = treeviewItem.getAttribute("data-treeview-item-label");
+      } else {
+        // Drop sur le TreeView en général
+        const treeviewRoot = target.closest("[data-treeview-root]");
+        if (treeviewRoot) {
+          targetItemId = null;
+          targetItemLabel = "Racine du TreeView";
+        }
+      }
+
+      // Récupérer les données de l'élément glissé
+      try {
+        const data = JSON.parse(e.dataTransfer.getData("application/json"));
+
+        // Mettre à jour les informations du dernier drop
+        setLastDrop({
+          itemId: targetItemId,
+          itemLabel: targetItemLabel,
+          droppedItem: data,
+        });
+
+        // Sélectionner automatiquement le dossier cible
+        if (targetItemId) {
+          setSelectedItemId(targetItemId);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données", error);
+      }
+    };
+
+    return (
+      <Box sx={{ maxWidth: 700, overflowY: "hidden" }}>
+        <Typography variant="h6" gutterBottom>
+          Exemple de Drag & Drop avec le TreeView
+        </Typography>
+
+        <Typography variant="body2" gutterBottom>
+          Glissez-déposez un des documents ci-dessous sur un élément du
+          TreeView.
+        </Typography>
+
+        <Box sx={{ display: "flex", mb: 2 }}>
+          {draggableItems.map((item) => (
+            <DraggableItem key={item.id} id={item.id} label={item.label} />
+          ))}
+        </Box>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                p: 2,
+                border: "1px dashed gray",
+                borderRadius: 1,
+                minHeight: 300,
+                overflowY: "hidden",
+                backgroundColor: "background.paper",
+              }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <Typography variant="subtitle1" gutterBottom>
+                Zone de drop
+              </Typography>
+
+              <TreeView
+                items={treeItems}
+                selectedItemId={selectedItemId}
+                handleSelectedItemChange={(event, itemId) => {
+                  if (itemId) {
+                    setSelectedItemId(itemId);
+                  }
+                }}
+              />
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2, minHeight: 300 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Informations du dernier drop
+              </Typography>
+
+              {lastDrop ? (
+                <Box>
+                  <Typography variant="body2">
+                    <strong>Élément cible :</strong> {lastDrop.itemLabel}{" "}
+                    {lastDrop.itemId && `(ID: ${lastDrop.itemId})`}
+                  </Typography>
+                  <Typography variant="body2">
+                    <strong>Élément déposé :</strong>{" "}
+                    {lastDrop.droppedItem?.label} (ID:{" "}
+                    {lastDrop.droppedItem?.id})
+                  </Typography>
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="body2">
+                      <strong>Code pour gérer ce drop :</strong>
+                    </Typography>
+                    <Paper sx={{ p: 1, mt: 1, backgroundColor: "grey.100" }}>
+                      <pre
+                        style={{
+                          margin: 0,
+                          fontSize: "0.8rem",
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >
+                        {`// Dans votre gestionnaire d'événements
+const handleDrop = (e) => {
+  e.preventDefault();
+  
+  // Identifier l'élément cible
+  const target = e.target;
+  const treeviewItem = target.closest('[data-treeview-item]');
+  
+  if (treeviewItem) {
+    const targetId = treeviewItem.getAttribute('data-treeview-item');
+    const targetLabel = treeviewItem.getAttribute('data-treeview-item-label');
+    
+    // Récupérer les données de l'élément déposé
+    const droppedData = JSON.parse(e.dataTransfer.getData('application/json'));
+    
+    console.log(\`Élément "\${droppedData.label}" déposé sur "\${targetLabel}"\`);
+    
+    // Votre logique pour traiter le drop...
+  }
+};`}
+                      </pre>
+                    </Paper>
+                  </Box>
+                </Box>
+              ) : (
+                <Typography variant="body2">
+                  Aucun élément déposé pour le moment. Glissez un document sur
+                  le TreeView pour voir les informations ici.
+                </Typography>
+              )}
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  },
+  parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
+    docs: {
+      description: {
+        story:
+          "Cette story démontre comment utiliser les attributs `data-` du TreeView pour implémenter une fonctionnalité de drag and drop. Glissez un document sur un élément du TreeView pour voir comment accéder aux informations de l'élément cible.",
       },
     },
   },

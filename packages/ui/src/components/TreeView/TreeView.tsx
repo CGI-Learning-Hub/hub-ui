@@ -3,10 +3,10 @@ import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
 import { TreeItem2Props } from "@mui/x-tree-view/TreeItem2";
 import React, { FC, useEffect, useMemo, useState } from "react";
 
+import CustomTreeItem from "./components/CustomTreeItem";
+import { DEFAULT_CHILDREN_INDENT, treeContainerStyle } from "./style";
 import { ExtendedTreeItem2Props, TreeViewProps } from "./types";
 import { buildItemDataMap, findItemPath, getItemId } from "./utils";
-import { treeContainerStyle } from "./style";
-import CustomTreeItem from "./components/CustomTreeItem";
 
 const TreeView: FC<TreeViewProps> = ({
   items,
@@ -25,16 +25,11 @@ const TreeView: FC<TreeViewProps> = ({
         const parentsToExpand = path.slice(0, -1);
 
         setExpandedItems((prev) => {
-          const newExpanded = [...prev];
-          let changed = false;
+          const uniqueParents = parentsToExpand.filter(
+            (id) => !prev.includes(id),
+          );
 
-          parentsToExpand.forEach((id) => {
-            if (!newExpanded.includes(id)) {
-              newExpanded.push(id);
-              changed = true;
-            }
-          });
-          return changed ? newExpanded : prev;
+          return uniqueParents.length > 0 ? [...prev, ...uniqueParents] : prev;
         });
       }
     }
@@ -48,13 +43,13 @@ const TreeView: FC<TreeViewProps> = ({
   };
 
   return (
-    <Box sx={treeContainerStyle}>
+    <Box sx={treeContainerStyle} data-treeview-root="true">
       <RichTreeView
         items={items}
         selectedItems={selectedItemId}
         expandedItems={expandedItems}
         onExpandedItemsChange={handleExpandedItemsChange}
-        itemChildrenIndentation={"50px"}
+        itemChildrenIndentation={DEFAULT_CHILDREN_INDENT}
         onSelectedItemsChange={handleSelectedItemChange}
         getItemId={getItemId}
         slots={{

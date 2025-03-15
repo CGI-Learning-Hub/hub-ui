@@ -1,5 +1,7 @@
 import { CSSProperties } from "react";
 
+export const DEFAULT_CHILDREN_INDENT = "50px";
+
 export const treeContainerStyle = {
   minHeight: 200,
   minWidth: 200,
