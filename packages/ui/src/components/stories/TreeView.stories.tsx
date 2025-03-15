@@ -458,7 +458,6 @@ export const StructureImbriquee: Story = {
           items={items}
           selectedItemId={selectedId}
           handleSelectedItemChange={handleSelectedItemChange}
-          iconColor="info"
         />
       </Box>
     );
