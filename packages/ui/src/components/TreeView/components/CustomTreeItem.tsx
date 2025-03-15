@@ -10,7 +10,7 @@ import {
 } from "@mui/x-tree-view/TreeItem2";
 import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
 import { useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
-import React, { Ref, forwardRef } from "react";
+import { Ref, forwardRef } from "react";
 
 import {
   arrowContainerStyle,
