@@ -21,22 +21,27 @@ const meta: Meta<typeof TreeView> = {
   component: TreeView,
   argTypes: {
     items: {
-      description: "Liste des éléments à afficher dans le TreeView.",
+      description:
+        "**[Requis]** Liste des éléments à afficher dans le TreeView.",
       control: "object",
       table: {
+        required: true,
         type: { summary: "CustomTreeViewItem[]" },
       },
     },
     selectedItemId: {
-      description: "Identifiant de l'élément sélectionné.",
+      description: "**[Requis]** Identifiant de l'élément sélectionné.",
       control: "text",
       table: {
+        required: true,
         type: { summary: "string" },
       },
     },
     handleSelectedItemChange: {
-      description: "Fonction appelée lorsqu'un élément est sélectionné.",
+      description:
+        "**[Requis]** Fonction appelée lorsqu'un élément est sélectionné.",
       table: {
+        required: true,
         type: {
           summary:
             "(event: React.SyntheticEvent, itemIds: string | null) => void",
@@ -44,11 +49,12 @@ const meta: Meta<typeof TreeView> = {
       },
     },
     iconColor: {
-      description: "Couleur des icônes.",
+      description: "**[Optionnel]** Couleur des icônes.",
       control: "select",
       options: ["primary", "secondary", "success", "error", "info", "warning"],
       defaultValue: "primary",
       table: {
+        required: false,
         type: { summary: "string" },
         defaultValue: { summary: "primary" },
       },
@@ -99,7 +105,6 @@ type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
 
 export default meta;
 
-// Fonction pour transformer les structures d'arborescence en liste plate
 const flattenTreeItems = (
   items: CustomTreeViewItem[],
 ): CustomTreeViewItem[] => {
@@ -128,7 +133,6 @@ const ExternalSelector = ({
   selectedItemId: string;
   onItemSelect: (itemId: string) => void;
 }) => {
-  // Aplatir les éléments de l'arbre pour les afficher dans une liste
   const flatItems = flattenTreeItems(items);
 
   return (
@@ -293,35 +297,6 @@ const syncExampleItems: CustomTreeViewItem[] = [
   },
 ];
 
-// Story contrôlable via les props de Storybook
-export const Controlable: Story = {
-  args: {
-    items: standardItems,
-    selectedItemId: "folder1",
-    handleSelectedItemChange: (event, itemId) => {
-      console.log(`Élément sélectionné: ${itemId}`);
-    },
-    iconColor: "primary",
-  },
-  render: (args) => (
-    <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
-      <Typography variant="subtitle1" gutterBottom>
-        Sélection: {args.selectedItemId}
-      </Typography>
-      <TreeView {...args} />
-    </Box>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Cette story permet de contrôler les propriétés du TreeView directement via le panneau de contrôle de Storybook. Essayez de changer la couleur des icônes pour voir l'effet en temps réel.",
-      },
-    },
-  },
-};
-
-// Story de démonstration de base
 export const Default: Story = {
   render: () => {
     const [selectedId, setSelectedId] = useState<string>("");
@@ -338,9 +313,6 @@ export const Default: Story = {
 
     return (
       <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Sélection: {selectedId || "Aucune"}
-        </Typography>
         <TreeView
           items={standardItems}
           selectedItemId={selectedId}
@@ -350,6 +322,8 @@ export const Default: Story = {
     );
   },
   parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
     docs: {
       description: {
         story:
@@ -359,22 +333,25 @@ export const Default: Story = {
   },
 };
 
-export const WithExplicitSelection: Story = {
-  render: () => (
+export const Controlable: Story = {
+  args: {
+    items: standardItems,
+    selectedItemId: "folder1",
+    handleSelectedItemChange: (event, itemId) => {
+      console.log(`Élément sélectionné: ${itemId}`);
+    },
+    iconColor: "success",
+  },
+  render: (args) => (
     <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
-      <TreeView
-        items={standardItems}
-        selectedItemId="folder1"
-        handleSelectedItemChange={(event, itemId) => {
-          console.log(`Élément sélectionné: ${itemId}`);
-        }}
-      />
+      <TreeView {...args} />
     </Box>
   ),
   parameters: {
     docs: {
       description: {
-        story: "Exemple avec sélection explicite d'un élément spécifique.",
+        story:
+          "Cette story permet de contrôler les propriétés du TreeView directement via le panneau de contrôle de Storybook. Essayez de changer la couleur des icônes pour voir l'effet en temps réel.",
       },
     },
   },
@@ -396,9 +373,6 @@ export const AvecIconesPersonnalisees: Story = {
 
     return (
       <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Sélection: {selectedId}
-        </Typography>
         <TreeView
           items={customIconItems}
           selectedItemId={selectedId}
@@ -408,6 +382,8 @@ export const AvecIconesPersonnalisees: Story = {
     );
   },
   parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
     docs: {
       description: {
         story:
@@ -436,8 +412,8 @@ export const StructureImbriquee: Story = {
                 iconType: ICON_TYPE.FOLDER,
                 children: [
                   {
-                    internalId: "level3-1",
-                    label: "Niveau 3.1",
+                    internalId: "level3-1V",
+                    label: "VOUS M'AVEZ TROUVÉ HIHIHI",
                     iconType: ICON_TYPE.FOLDER,
                   },
                   {
@@ -477,10 +453,7 @@ export const StructureImbriquee: Story = {
     );
 
     return (
-      <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Sélection: {selectedId}
-        </Typography>
+      <Box sx={{ maxWidth: 400, overflowY: "hidden" }}>
         <TreeView
           items={items}
           selectedItemId={selectedId}
@@ -491,18 +464,18 @@ export const StructureImbriquee: Story = {
     );
   },
   parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
     docs: {
       description: {
-        story:
-          "Exemple d'une structure profondément imbriquée avec différents types d'icônes.",
+        story: "Exemple d'une structure profondément imbriquée.",
       },
     },
   },
 };
 
-export const OptionsDeColors: Story = {
+export const OptionsDeCouleurs: Story = {
   render: () => {
-    // Seulement 3 couleurs au lieu de 6
     const colors = ["primary", "secondary", "info"];
     const [selectedIds, setSelectedIds] = useState<Record<string, string>>({
       primary: "",
@@ -546,6 +519,8 @@ export const OptionsDeColors: Story = {
     );
   },
   parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
     docs: {
       description: {
         story:
@@ -557,10 +532,8 @@ export const OptionsDeColors: Story = {
 
 export const Synchronicite: Story = {
   render: () => {
-    // État partagé pour l'élément sélectionné
     const [selectedItemId, setSelectedItemId] = useState<string>("reports");
 
-    // Gestion de la sélection depuis le TreeView
     const handleSelectedItemChange = (
       event: React.SyntheticEvent,
       itemId: string | null,
@@ -571,13 +544,11 @@ export const Synchronicite: Story = {
       }
     };
 
-    // Gestion de la sélection depuis la liste externe
     const handleExternalSelect = (itemId: string) => {
       console.log("Sélection externe:", itemId);
       setSelectedItemId(itemId);
     };
 
-    // Affichage d'informations sur l'élément sélectionné
     const getSelectedItemInfo = () => {
       const flatItems = flattenTreeItems(syncExampleItems);
       const selectedItem = flatItems.find(
@@ -608,7 +579,6 @@ export const Synchronicite: Story = {
                 items={syncExampleItems}
                 selectedItemId={selectedItemId}
                 handleSelectedItemChange={handleSelectedItemChange}
-                iconColor="secondary"
               />
             </Paper>
           </Grid>
@@ -625,6 +595,8 @@ export const Synchronicite: Story = {
     );
   },
   parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
     docs: {
       description: {
         story:

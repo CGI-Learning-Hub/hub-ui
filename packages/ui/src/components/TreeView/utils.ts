@@ -33,15 +33,12 @@ export const findItemPath = (
   currentPath: string[] = [],
 ): string[] | null => {
   for (const item of items) {
-    // Path pour cet élément
     const newPath = [...currentPath, item.internalId];
 
-    // Si c'est l'élément cible, retourner le chemin
     if (item.internalId === targetId) {
       return newPath;
     }
 
-    // Rechercher dans les enfants si présents
     if (item.children && item.children.length > 0) {
       const foundPath = findItemPath(
         item.children as CustomTreeViewItem[],
