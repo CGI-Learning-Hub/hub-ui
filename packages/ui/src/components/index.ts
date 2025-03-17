@@ -162,3 +162,4 @@ export * from "./QueryError";
 export * from "./ResourceCard";
 export * from "./FolderCard";
 export * from "./SearchInput";
+export * from "./TreeView";
