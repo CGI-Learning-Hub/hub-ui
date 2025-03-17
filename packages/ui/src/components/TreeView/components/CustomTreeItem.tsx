@@ -10,7 +10,7 @@ import {
 } from "@mui/x-tree-view/TreeItem2";
 import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
 import { useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
-import { Ref, forwardRef } from "react";
+import { type Ref } from "react";
 
 import {
   arrowContainerStyle,
@@ -20,9 +20,8 @@ import {
 import { ExtendedTreeItem2Props } from "../types";
 import { getIconComponent } from "../utils";
 
-const CustomTreeItem = forwardRef(function CustomTreeItem(
-  props: ExtendedTreeItem2Props,
-  ref: Ref<HTMLLIElement>,
+function CustomTreeItem(
+  props: ExtendedTreeItem2Props & { ref?: Ref<HTMLLIElement> },
 ) {
   const {
     id,
@@ -32,6 +31,7 @@ const CustomTreeItem = forwardRef(function CustomTreeItem(
     children,
     itemData,
     iconColor = "primary",
+    ref,
   } = props;
 
   const IconComponent = getIconComponent(
@@ -80,6 +80,6 @@ const CustomTreeItem = forwardRef(function CustomTreeItem(
       </TreeItem2Root>
     </TreeItem2Provider>
   );
-});
+}
 
 export default CustomTreeItem;
