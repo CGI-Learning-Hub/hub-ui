@@ -7,5 +7,17 @@ export const FolderBodyStyle = {
 
 export const FolderIconStyle = {
   marginRight: ".8rem",
-  fontSize: "2rem",
+  fontSize: "inherit",
 };
+
+export const IconContainerStyle = {
+  flex: 15,
+  alignItems: "center", 
+  display: "flex", 
+  justifyContent: "center"
+}
+
+export const TextContainerStyle = {
+  flex: 85, 
+  minWidth: 0,
+}

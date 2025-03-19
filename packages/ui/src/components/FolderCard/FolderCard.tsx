@@ -1,10 +1,10 @@
 import FolderIcon from "@mui/icons-material/Folder";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box, CardContent } from "@mui/material";
+import { Box, CardContent, Typography } from "@mui/material";
 import { KeyboardEvent as ReactKeyboardEvent } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
-import { FolderBodyStyle, FolderIconStyle } from "./styles";
+import { FolderBodyStyle, FolderIconStyle, IconContainerStyle, TextContainerStyle } from "./styles";
 
 import { StyledCard, SelectedIcon } from "../ResourceCard/style";
 import { subtitleTypographyProps, titleTypographyProps } from "./types";
@@ -16,6 +16,7 @@ export type FolderCardProps = {
   subtitle?: string;
   width?: string;
   onClick?: () => void;
+  iconSize?: string;
 };
 
 const FolderCard: React.FunctionComponent<FolderCardProps> = ({
@@ -23,8 +24,9 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
   onSelect = () => {},
   title,
   subtitle,
-  width,
+  width = "320px",
   onClick = () => {},
+  iconSize= "2rem",
 }) => {
 
   const handleKeyPress = (e: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -32,7 +34,7 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
   }
 
   return (
-    <Box sx={{ width: width || "320px" }}>
+    <Box sx={{ width: width }}>
       <StyledCard
         selected={isSelected}
         onClick={onClick}
@@ -70,8 +72,10 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
           <MoreVertIcon />
         </SelectedIcon>
         <CardContent sx={FolderBodyStyle}>
-          <FolderIcon color="primary" sx={FolderIconStyle} aria-hidden="true" />
-          <Box>
+          <Box fontSize={iconSize} sx={IconContainerStyle}>
+            <FolderIcon color="primary" sx={FolderIconStyle} aria-hidden="true" />
+          </Box>
+          <Box sx={TextContainerStyle}>
             <EllipsisWithTooltip
               typographyProps={titleTypographyProps}
               tooltipProps={{ placement: "bottom", arrow: true }}

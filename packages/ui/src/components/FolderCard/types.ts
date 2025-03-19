@@ -1,12 +1,14 @@
-export const titleTypographyProps={
+import { TypographyProps } from "@mui/material"
+
+export const titleTypographyProps: TypographyProps = {
   fontWeight: "700",
-  fontSize: "1.1rem",
   id: "folder-title",
+  variant: "body1",
 }
 
-export const subtitleTypographyProps={
+export const subtitleTypographyProps: TypographyProps = {
   fontWeight: "400",
-  fontSize: ".8rem",
   fontStyle: "italic",
   id: "folder-subtitle",
+  variant: "body2",
 }
