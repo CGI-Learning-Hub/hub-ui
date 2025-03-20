@@ -41,6 +41,7 @@ export interface TreeViewProps {
     itemIds: string | null,
   ) => void;
   iconColor?: string;
+  height?: string | number;
 }
 
 export interface ExtendedTreeItem2Props extends TreeItem2Props {
@@ -59,4 +60,8 @@ export interface ExtendedTreeItem2Props extends TreeItem2Props {
 
 export interface ItemDataMap {
   [key: string]: CustomTreeViewItem;
+}
+
+export interface TreeContainerProps {
+  height: number | string;
 }

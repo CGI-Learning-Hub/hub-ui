@@ -1,10 +1,8 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DescriptionIcon from "@mui/icons-material/Description";
-import FolderIcon from "@mui/icons-material/Folder";
 import PersonIcon from "@mui/icons-material/Person";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -14,7 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { TreeView } from "../TreeView";
 import { CustomTreeViewItem, ICON_TYPE } from "../TreeView/types";
@@ -62,6 +60,16 @@ const meta: Meta<typeof TreeView> = {
         defaultValue: { summary: "primary" },
       },
     },
+    height: {
+      description:
+        "**[Optionnel]** Hauteur du TreeView avec gestion automatique du défilement.",
+      control: "number",
+      table: {
+        required: false,
+        type: { summary: "number | string" },
+        defaultValue: { summary: "auto" },
+      },
+    },
   },
   parameters: {
     docs: {
@@ -85,6 +93,12 @@ Vous pouvez également passer directement un composant SvgIcon comme valeur de \
 
 - \`handleSelectedItemChange\`: Permet de réagir quand un utilisateur clique sur un élément
 - \`selectedItemId\`: Permet de définir l'élément sélectionné
+
+### Contrôle de la hauteur et du défilement
+
+- \`height\`: Définit une hauteur fixe pour le TreeView et active le défilement vertical automatique
+  - Accepte une valeur numérique (en pixels) ou une chaîne (par exemple "400px", "100%")
+  - Quand spécifié, le TreeView sera limité à cette hauteur et affichera une barre de défilement si nécessaire
 
 ### Gestion du Drag and Drop
 
@@ -567,6 +581,146 @@ export const OptionsDeCouleurs: Story = {
       description: {
         story:
           "Démonstration des principales options de couleurs disponibles pour les icônes.",
+      },
+    },
+  },
+};
+
+export const GrandeHauteurLimitee: Story = {
+  render: () => {
+    // Création d'un grand nombre d'éléments pour tester l'overflow
+    const generateLargeTreeData = (): CustomTreeViewItem[] => {
+      const items: CustomTreeViewItem[] = [];
+
+      // Créer 5 dossiers principaux
+      for (let i = 1; i <= 5; i++) {
+        const mainFolder: CustomTreeViewItem = {
+          internalId: `main-folder-${i}`,
+          label: `Dossier principal ${i}`,
+          iconType: ICON_TYPE.FOLDER,
+          children: [],
+        };
+
+        // Ajouter 10 sous-dossiers à chaque dossier principal
+        for (let j = 1; j <= 10; j++) {
+          const subFolder: CustomTreeViewItem = {
+            internalId: `subfolder-${i}-${j}`,
+            label: `Sous-dossier ${i}.${j}`,
+            iconType: ICON_TYPE.FOLDER,
+            children: [],
+          };
+
+          // Ajouter 5 éléments à chaque sous-dossier
+          for (let k = 1; k <= 5; k++) {
+            subFolder.children?.push({
+              internalId: `item-${i}-${j}-${k}`,
+              label: `Élément ${i}.${j}.${k}`,
+              iconType: ICON_TYPE.CUSTOM,
+              customIcon: DescriptionIcon,
+            });
+          }
+
+          mainFolder.children?.push(subFolder);
+        }
+
+        items.push(mainFolder);
+      }
+
+      return items;
+    };
+
+    const [selectedId, setSelectedId] = useState<string>("");
+    const largeTreeItems = generateLargeTreeData();
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box>
+        <Typography variant="h6" gutterBottom>
+          TreeView avec hauteur limitée et défilement vertical
+        </Typography>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Hauteur de 300px avec overflow
+              </Typography>
+              <Box sx={{ border: "1px solid #e0e0e0", borderRadius: 1 }}>
+                <TreeView
+                  items={largeTreeItems}
+                  selectedItemId={selectedId}
+                  handleSelectedItemChange={handleSelectedItemChange}
+                  height={300} // Utilisation de la nouvelle prop height
+                />
+              </Box>
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Hauteur de 500px avec overflow
+              </Typography>
+              <Box sx={{ border: "1px solid #e0e0e0", borderRadius: 1 }}>
+                <TreeView
+                  items={largeTreeItems}
+                  selectedItemId={selectedId}
+                  handleSelectedItemChange={handleSelectedItemChange}
+                  height={500} // Hauteur plus grande
+                />
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        <Box mt={4}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              TreeView expansé manuellement
+            </Typography>
+            <Box sx={{ display: "flex", mb: 2 }}>
+              <Button
+                variant="outlined"
+                onClick={() => setSelectedId("subfolder-1-1")}
+                sx={{ mr: 1 }}
+              >
+                Sélectionner Sous-dossier 1.1
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={() => setSelectedId("item-3-5-2")}
+              >
+                Sélectionner Élément 3.5.2
+              </Button>
+            </Box>
+            <Box sx={{ borderRadius: 1 }}>
+              <TreeView
+                items={largeTreeItems}
+                selectedItemId={selectedId}
+                handleSelectedItemChange={handleSelectedItemChange}
+                height={400} // Hauteur moyenne
+              />
+            </Box>
+          </Paper>
+        </Box>
+      </Box>
+    );
+  },
+  parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
+    docs: {
+      description: {
+        story:
+          "Cette story démontre l'utilisation de la prop `height` pour contrôler la hauteur du TreeView. Elle permet de vérifier le comportement du défilement (overflow) lorsque le contenu dépasse la hauteur définie. Différentes hauteurs sont utilisées pour voir l'impact sur l'expérience utilisateur.",
       },
     },
   },

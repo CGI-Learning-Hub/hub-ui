@@ -4,7 +4,7 @@ import { TreeItem2Props } from "@mui/x-tree-view/TreeItem2";
 import React, { FC, useEffect, useMemo, useState } from "react";
 
 import CustomTreeItem from "./components/CustomTreeItem";
-import { DEFAULT_CHILDREN_INDENT, treeContainerStyle } from "./style";
+import { DEFAULT_CHILDREN_INDENT, TreeContainer } from "./style";
 import { ExtendedTreeItem2Props, TreeViewProps } from "./types";
 import { buildItemDataMap, findItemPath, getItemId } from "./utils";
 
@@ -13,6 +13,7 @@ const TreeView: FC<TreeViewProps> = ({
   selectedItemId,
   handleSelectedItemChange,
   iconColor = "primary",
+  height = 300,
 }) => {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const itemDataMap = useMemo(() => buildItemDataMap(items), [items]);
@@ -43,7 +44,7 @@ const TreeView: FC<TreeViewProps> = ({
   };
 
   return (
-    <Box sx={treeContainerStyle} data-treeview-root="true">
+    <TreeContainer height={height} data-treeview-root="true">
       <RichTreeView
         items={items}
         selectedItems={selectedItemId}
@@ -67,7 +68,7 @@ const TreeView: FC<TreeViewProps> = ({
           },
         }}
       />
-    </Box>
+    </TreeContainer>
   );
 };
 
