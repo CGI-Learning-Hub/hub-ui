@@ -166,13 +166,28 @@ export const getMuiTheme = (
         },
         typography: {
           h1: {
-            fontSize: "1.5rem",
+            fontSize: "1.875rem",
+            fontWeight: 400,
           },
           h2: {
-            fontSize: "1.25rem",
+            fontSize: "1.5rem",
+            fontWeight: 700,
           },
           h3: {
+            fontSize: "1.250rem",
+            fontWeight: 400,
+          },
+          h4: {
+            fontSize: "1.125rem",
+            fontWeight: 700,
+          },
+          h5: {
+            fontSize: "1.125rem",
+            fontWeight: 400,
+          },
+          h6: {
             fontSize: "1rem",
+            fontWeight: 700,
           },
         },
         frFR,

@@ -54,11 +54,29 @@ const theme: Theme = {
   },
 };
 
-const muiTheme = getMuiTheme(theme);
+const muiOptions = {
+  typography: {
+    h1: {
+      fontSize: "1.5rem",
+      fontWeight: 400,
+    },
+    h2: {
+      fontSize: "1.25rem",
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: "1.25rem",
+      fontWeight: 400,
+    },
+  },
+};
+
+const muiTheme = getMuiTheme(theme, muiOptions);
 
 const tailwindThemeConfig = getTailwindThemeConfig(theme);
 
 export {
+  muiOptions as campusMuiOptions,
   muiTheme as campusMuiTheme,
   tailwindThemeConfig as campusTailwindThemeConfig,
   theme as campusTheme,

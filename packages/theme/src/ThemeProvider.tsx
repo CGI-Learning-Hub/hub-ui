@@ -8,6 +8,7 @@ import { PropsWithChildren } from "react";
 
 import { getMuiTheme } from "./mui";
 import {
+  campusMuiOptions,
   campusTheme,
   cd77MuiOptions,
   cd77Theme,
@@ -27,7 +28,10 @@ const expandTheme = (
 ) => {
   switch (id) {
     case "campus":
-      return getMuiTheme(campusTheme, options);
+      return getMuiTheme(
+        campusTheme,
+        options ? deepmerge(campusMuiOptions, options) : campusMuiOptions,
+      );
     case "cd77":
       return getMuiTheme(
         cd77Theme,

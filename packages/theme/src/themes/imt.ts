@@ -117,6 +117,18 @@ const muiOptions = {
   },
   typography: {
     fontFamily: '"Helvetica", "Roboto", "Arial", sans-serif',
+    h1: {
+      fontSize: "1.5rem",
+      fontWeight: 400,
+    },
+    h2: {
+      fontSize: "1.25rem",
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: "1.25rem",
+      fontWeight: 400,
+    },
   },
 };
 
