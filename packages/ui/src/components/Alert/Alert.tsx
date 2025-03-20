@@ -2,16 +2,26 @@ import MUIAlert, {
   type AlertProps as MUIAlertProps,
 } from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import { alpha, useTheme } from "@mui/material/styles";
 
-type AlertProps = {
+export type AlertProps = {
   title?: string;
 } & Omit<MUIAlertProps, "color">;
 
-const Alert: React.FunctionComponent<AlertProps> = (props) => {
+const Alert: React.FunctionComponent<AlertProps> = ({
+  severity = "success",
+  ...otherProps
+}) => {
+  const theme = useTheme();
+
   return (
-    <MUIAlert {...props} color={props.severity}>
-      {props.title && <AlertTitle>{props.title}</AlertTitle>}
-      {props.children}
+    <MUIAlert
+      color={severity}
+      sx={{ bgcolor: alpha(theme.palette[severity].light, 0.35) }}
+      {...otherProps}
+    >
+      {otherProps.title ? <AlertTitle>{otherProps.title}</AlertTitle> : null}
+      {otherProps.children}
     </MUIAlert>
   );
 };
