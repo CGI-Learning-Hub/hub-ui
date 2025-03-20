@@ -110,7 +110,7 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
         </Stack>
         <ResourceCardBody size={size}>
           <EllipsisWithTooltip
-            typographyProps={{ fontWeight: "700", fontSize: "1.1rem" }}
+            typographyProps={{ variant: "h4", component: "p" }}
             tooltipProps={{ placement: "bottom", arrow: true }}
           >
             {title}
