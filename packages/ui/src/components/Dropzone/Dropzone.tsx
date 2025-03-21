@@ -1,5 +1,6 @@
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { SxProps } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import {
@@ -13,6 +14,7 @@ export type DropzoneProps = {
   information?: string;
   width?: string;
   height?: string;
+  sxProps?: SxProps;
 } & ReactDropzoneProps;
 
 const Dropzone: React.FunctionComponent<DropzoneProps> = ({
@@ -21,6 +23,7 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
   information,
   width,
   height,
+  sxProps,
   ...otherProps
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(otherProps);
@@ -39,6 +42,7 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       borderRadius={1}
       sx={{
         cursor: "pointer",
+        ...sxProps,
       }}
       {...getRootProps()}
     >
