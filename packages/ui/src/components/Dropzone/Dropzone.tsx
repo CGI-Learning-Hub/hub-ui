@@ -53,7 +53,7 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
           <UploadFileIcon color="primary" />
           <Typography>{defaultLabel}</Typography>
           {information ? (
-            <Typography fontSize="0.875rem" color="grey">
+            <Typography variant="body2" color="grey">
               {information}
             </Typography>
           ) : null}
