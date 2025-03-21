@@ -1,12 +1,12 @@
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { SxProps } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import {
   type DropzoneProps as ReactDropzoneProps,
   useDropzone,
 } from "react-dropzone";
+import { DropZoneSlotProps } from "./types";
 
 export type DropzoneProps = {
   defaultLabel?: string;
@@ -14,7 +14,7 @@ export type DropzoneProps = {
   information?: string;
   width?: string;
   height?: string;
-  sxProps?: SxProps;
+  slotProps?: DropZoneSlotProps;
 } & ReactDropzoneProps;
 
 const Dropzone: React.FunctionComponent<DropzoneProps> = ({
@@ -23,7 +23,7 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
   information,
   width,
   height,
-  sxProps,
+  slotProps = {},
   ...otherProps
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(otherProps);
@@ -42,22 +42,22 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       borderRadius={1}
       sx={{
         cursor: "pointer",
-        ...sxProps,
       }}
       {...getRootProps()}
+      {...slotProps.root}
     >
-      <input {...getInputProps()} />
+      <input {...getInputProps()} {...slotProps.input} />
       {isDragActive ? (
         <>
-          <FileUploadIcon color="primary" />
-          <Typography>{dragLabel}</Typography>
+          <FileUploadIcon color="primary" {...slotProps.icon}/>
+          <Typography {...slotProps.label}>{dragLabel}</Typography>
         </>
       ) : (
         <>
-          <UploadFileIcon color="primary" />
-          <Typography>{defaultLabel}</Typography>
+          <UploadFileIcon color="primary" {...slotProps.icon}/>
+          <Typography {...slotProps.label}>{defaultLabel}</Typography>
           {information ? (
-            <Typography variant="body2" color="grey">
+            <Typography variant="body2" color="grey" {...slotProps.information}>
               {information}
             </Typography>
           ) : null}
