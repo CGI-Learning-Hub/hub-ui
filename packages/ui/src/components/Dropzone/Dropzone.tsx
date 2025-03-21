@@ -6,6 +6,7 @@ import {
   type DropzoneProps as ReactDropzoneProps,
   useDropzone,
 } from "react-dropzone";
+import { DropZoneSlotProps } from "./types";
 
 export type DropzoneProps = {
   defaultLabel?: string;
@@ -13,6 +14,7 @@ export type DropzoneProps = {
   information?: string;
   width?: string;
   height?: string;
+  slotProps?: DropZoneSlotProps;
 } & ReactDropzoneProps;
 
 const Dropzone: React.FunctionComponent<DropzoneProps> = ({
@@ -21,6 +23,7 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
   information,
   width,
   height,
+  slotProps = {},
   ...otherProps
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(otherProps);
@@ -41,19 +44,20 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
         cursor: "pointer",
       }}
       {...getRootProps()}
+      {...slotProps.root}
     >
-      <input {...getInputProps()} />
+      <input {...getInputProps()} {...slotProps.input} />
       {isDragActive ? (
         <>
-          <FileUploadIcon color="primary" />
-          <Typography>{dragLabel}</Typography>
+          <FileUploadIcon color="primary" {...slotProps.icon}/>
+          <Typography {...slotProps.label}>{dragLabel}</Typography>
         </>
       ) : (
         <>
-          <UploadFileIcon color="primary" />
-          <Typography>{defaultLabel}</Typography>
+          <UploadFileIcon color="primary" {...slotProps.icon}/>
+          <Typography {...slotProps.label}>{defaultLabel}</Typography>
           {information ? (
-            <Typography fontSize="0.875rem" color="grey">
+            <Typography variant="body2" color="grey" {...slotProps.information}>
               {information}
             </Typography>
           ) : null}
