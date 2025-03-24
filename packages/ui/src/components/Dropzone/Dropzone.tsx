@@ -42,9 +42,9 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       borderRadius={1}
       sx={{
         cursor: "pointer",
+        ...slotProps.root?.sx
       }}
       {...getRootProps()}
-      {...slotProps.root}
     >
       <input {...getInputProps()} {...slotProps.input} />
       {isDragActive ? (
