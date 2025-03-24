@@ -86,6 +86,12 @@ const meta = {
       description: "Autoriser le drag",
       table: { defaultValue: { summary: "true" } },
     },
+    theme: {
+      control: "radio",
+      options: ["light", "dark", "colored"],
+      description: "Thème à utiliser",
+      table: { defaultValue: { summary: "light" } },
+    },
   },
 } satisfies Meta<typeof Component>;
 
@@ -101,5 +107,6 @@ export const Default: Story = {
     closeOnClick: false,
     pauseOnHover: true,
     draggable: true,
+    theme: "light",
   },
 };
