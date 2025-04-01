@@ -8,8 +8,6 @@ export const DEFAULT_CHILDREN_INDENT = "50px";
 export const TreeContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "maxHeight",
 })<TreeContainerProps>(({ maxHeight }) => ({
-  minHeight: 200,
-  minWidth: 200,
   maxHeight: typeof maxHeight === "number" ? `${maxHeight}px` : maxHeight,
   overflowY: "auto",
 }));
@@ -36,7 +34,6 @@ export const expandedGroupStyle: CSSProperties = {
 };
 
 export const iconStyle: CSSProperties = {
-  marginRight: "10px",
   width: "24px",
   height: "24px",
 };
