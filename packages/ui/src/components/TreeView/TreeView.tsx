@@ -13,7 +13,8 @@ const TreeView: FC<TreeViewProps> = ({
   selectedItemId,
   handleSelectedItemChange,
   iconColor = "primary",
-  height = 300,
+  hasNoIcons = false,
+  maxHeight = 300,
 }) => {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const itemDataMap = useMemo(() => buildItemDataMap(items), [items]);
@@ -44,7 +45,7 @@ const TreeView: FC<TreeViewProps> = ({
   };
 
   return (
-    <TreeContainer height={height} data-treeview-root="true">
+    <TreeContainer maxHeight={maxHeight} data-treeview-root="true">
       <RichTreeView
         items={items}
         selectedItems={selectedItemId}
@@ -63,6 +64,7 @@ const TreeView: FC<TreeViewProps> = ({
                 {...itemProps}
                 itemData={originalItemData}
                 iconColor={iconColor as ExtendedTreeItem2Props["iconColor"]}
+                hasNoIcons={hasNoIcons}
               />
             );
           },

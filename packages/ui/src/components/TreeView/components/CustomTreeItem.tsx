@@ -15,7 +15,9 @@ import { type Ref } from "react";
 import {
   arrowContainerStyle,
   expandedGroupStyle,
+  iconStyle,
   treeContentStyle,
+  treeItemRootStyle,
 } from "../style";
 import { ExtendedTreeItem2Props } from "../types";
 import { getIconComponent } from "../utils";
@@ -31,6 +33,7 @@ function CustomTreeItem(
     children,
     itemData,
     iconColor = "primary",
+    hasNoIcons,
     ref,
   } = props;
 
@@ -48,19 +51,27 @@ function CustomTreeItem(
     status,
   } = useTreeItem2({ id, itemId, label, disabled, children, rootRef: ref });
 
+  const labelStyle = {
+    ...(status.selected && { fontWeight: 600 }),
+    color: "palette-grey-darker",
+  };
+
   return (
     <TreeItem2Provider itemId={itemId}>
       <TreeItem2Root
         {...getRootProps()}
         data-treeview-item={itemId || ""}
         data-treeview-item-label={label || ""}
+        sx={treeItemRootStyle}
       >
         <TreeItem2Content {...getContentProps()} style={treeContentStyle}>
-          <TreeItem2IconContainer {...getIconContainerProps()}>
-            <IconComponent fontSize="small" color={iconColor} />
-          </TreeItem2IconContainer>
+          {!hasNoIcons && (
+            <TreeItem2IconContainer {...getIconContainerProps()} sx={iconStyle}>
+              <IconComponent color={iconColor} sx={iconStyle} />
+            </TreeItem2IconContainer>
+          )}
 
-          <TreeItem2Label {...getLabelProps()} />
+          <TreeItem2Label {...getLabelProps()} sx={labelStyle} />
 
           <Box sx={arrowContainerStyle}>
             {status.expandable &&

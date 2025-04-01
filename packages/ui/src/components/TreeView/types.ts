@@ -41,11 +41,13 @@ export interface TreeViewProps {
     itemIds: string | null,
   ) => void;
   iconColor?: string;
-  height?: string | number;
+  maxHeight?: string | number;
+  hasNoIcons?: boolean;
 }
 
 export interface ExtendedTreeItem2Props extends TreeItem2Props {
   itemData?: CustomTreeViewItem;
+  hasNoIcons: boolean;
   iconColor?:
     | "disabled"
     | "primary"
@@ -63,5 +65,5 @@ export interface ItemDataMap {
 }
 
 export interface TreeContainerProps {
-  height: number | string;
+  maxHeight: number | string;
 }

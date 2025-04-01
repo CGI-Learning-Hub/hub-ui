@@ -6,13 +6,15 @@ import { TreeContainerProps } from "./types";
 export const DEFAULT_CHILDREN_INDENT = "50px";
 
 export const TreeContainer = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "height",
-})<TreeContainerProps>(({ height }) => ({
+  shouldForwardProp: (prop) => prop !== "maxHeight",
+})<TreeContainerProps>(({ maxHeight }) => ({
   minHeight: 200,
   minWidth: 200,
-  height: typeof height === "number" ? `${height}px` : height,
+  maxHeight: typeof maxHeight === "number" ? `${maxHeight}px` : maxHeight,
   overflowY: "auto",
 }));
+
+export const treeItemRootStyle: CSSProperties = { margin: "6px 0" };
 
 export const treeContentStyle: CSSProperties = {
   display: "flex",
@@ -28,7 +30,13 @@ export const arrowContainerStyle = {
 export const expandedGroupStyle: CSSProperties = {
   borderLeft: "1px solid #bdbdbd",
   paddingLeft: "12px",
-  marginLeft: "15px",
-  marginTop: "4px",
-  marginBottom: "4px",
+  marginLeft: "11px",
+  marginTop: "8px",
+  marginBottom: "8px",
+};
+
+export const iconStyle: CSSProperties = {
+  marginRight: "10px",
+  width: "24px",
+  height: "24px",
 };

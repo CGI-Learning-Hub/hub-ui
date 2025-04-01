@@ -1,15 +1,18 @@
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DescriptionIcon from "@mui/icons-material/Description";
+import InfoIcon from "@mui/icons-material/Info";
 import PersonIcon from "@mui/icons-material/Person";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip/Tooltip";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
@@ -60,7 +63,7 @@ const meta: Meta<typeof TreeView> = {
         defaultValue: { summary: "primary" },
       },
     },
-    height: {
+    maxHeight: {
       description:
         "**[Optionnel]** Hauteur du TreeView avec gestion automatique du défilement.",
       control: "number",
@@ -450,6 +453,43 @@ export const AvecIconesPersonnalisees: Story = {
   },
 };
 
+export const SansIcones: Story = {
+  render: () => {
+    const [selectedId, setSelectedId] = useState<string>("item1");
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        console.log(`Élément sélectionné: ${itemId}`);
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box sx={{ maxWidth: 300, overflowY: "hidden" }}>
+        <TreeView
+          items={customIconItems}
+          selectedItemId={selectedId}
+          handleSelectedItemChange={handleSelectedItemChange}
+          hasNoIcons={true}
+        />
+      </Box>
+    );
+  },
+  parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
+    docs: {
+      description: {
+        story:
+          "Exemple d'arborescence sans icônes, utilisant la prop hasNoIcons.",
+      },
+    },
+  },
+};
+
 export const StructureImbriquee: Story = {
   render: () => {
     const items = [
@@ -651,15 +691,28 @@ export const GrandeHauteurLimitee: Story = {
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
-                Hauteur de 300px avec overflow
+                Hauteur maximale de 300px avec overflow
               </Typography>
               <Box sx={{ border: "1px solid #e0e0e0", borderRadius: 1 }}>
                 <TreeView
                   items={largeTreeItems}
                   selectedItemId={selectedId}
                   handleSelectedItemChange={handleSelectedItemChange}
-                  height={300} // Utilisation de la nouvelle prop height
+                  maxHeight={300}
                 />
+                <Box
+                  sx={{
+                    p: 2,
+                    bgcolor: "primary.light",
+                    color: "primary.contrastText",
+                    borderTop: "1px solid #e0e0e0",
+                  }}
+                >
+                  <Typography variant="body2">
+                    Cet élément reste collé sous le TreeView, même avec
+                    défilement
+                  </Typography>
+                </Box>
               </Box>
             </Paper>
           </Grid>
@@ -667,15 +720,31 @@ export const GrandeHauteurLimitee: Story = {
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
-                Hauteur de 500px avec overflow
+                Hauteur maximale de 500px avec overflow
               </Typography>
               <Box sx={{ border: "1px solid #e0e0e0", borderRadius: 1 }}>
                 <TreeView
                   items={largeTreeItems}
                   selectedItemId={selectedId}
                   handleSelectedItemChange={handleSelectedItemChange}
-                  height={500} // Hauteur plus grande
+                  maxHeight={500}
                 />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    p: 1.5,
+                    bgcolor: "background.default",
+                    borderTop: "1px solid #e0e0e0",
+                  }}
+                >
+                  <Button size="small" variant="outlined">
+                    Annuler
+                  </Button>
+                  <Button size="small" variant="contained">
+                    Confirmer
+                  </Button>
+                </Box>
               </Box>
             </Paper>
           </Grid>
@@ -701,13 +770,26 @@ export const GrandeHauteurLimitee: Story = {
                 Sélectionner Élément 3.5.2
               </Button>
             </Box>
-            <Box sx={{ borderRadius: 1 }}>
+            <Box sx={{ borderRadius: 1, border: "1px solid #e0e0e0" }}>
               <TreeView
                 items={largeTreeItems}
                 selectedItemId={selectedId}
                 handleSelectedItemChange={handleSelectedItemChange}
-                height={400} // Hauteur moyenne
+                maxHeight={400}
               />
+              <Divider />
+              <Box sx={{ p: 2, display: "flex", alignItems: "center" }}>
+                <Typography variant="body2" sx={{ flexGrow: 1 }}>
+                  {selectedId
+                    ? `Élément sélectionné: ${selectedId}`
+                    : "Aucun élément sélectionné"}
+                </Typography>
+                <Tooltip title="Ce bandeau reste fixé sous l'arborescence">
+                  <IconButton size="small" color="info">
+                    <InfoIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Box>
           </Paper>
         </Box>
@@ -720,7 +802,10 @@ export const GrandeHauteurLimitee: Story = {
     docs: {
       description: {
         story:
-          "Cette story démontre l'utilisation de la prop `height` pour contrôler la hauteur du TreeView. Elle permet de vérifier le comportement du défilement (overflow) lorsque le contenu dépasse la hauteur définie. Différentes hauteurs sont utilisées pour voir l'impact sur l'expérience utilisateur.",
+          "Cette story démontre l'utilisation de la prop `maxHeight` pour contrôler la hauteur maximale du TreeView. " +
+          "Elle permet de vérifier le comportement du défilement (overflow) lorsque le contenu dépasse la hauteur définie. " +
+          "Des éléments sont placés en dessous de chaque TreeView pour montrer que ceux-ci restent bien collés, " +
+          "tandis que seul le contenu de l'arborescence défile.",
       },
     },
   },
