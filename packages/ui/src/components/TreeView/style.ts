@@ -12,12 +12,17 @@ export const TreeContainer = styled(Box, {
   overflowY: "auto",
 }));
 
-export const treeItemRootStyle: CSSProperties = { margin: "6px 0" };
+export const treeItemRootStyle: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+};
 
 export const treeContentStyle: CSSProperties = {
   display: "flex",
   alignItems: "center",
   width: "100%",
+  margin: "4px 0",
+  padding:"8px"
 };
 
 export const arrowContainerStyle = {
@@ -26,11 +31,9 @@ export const arrowContainerStyle = {
 };
 
 export const expandedGroupStyle: CSSProperties = {
-  borderLeft: "1px solid #bdbdbd",
-  paddingLeft: "12px",
-  marginLeft: "11px",
-  marginTop: "8px",
-  marginBottom: "8px",
+  borderLeft: "1px solid var(--theme-palette-divider)",
+  paddingLeft: "15px",
+  marginLeft: "18px",
 };
 
 export const iconStyle: CSSProperties = {

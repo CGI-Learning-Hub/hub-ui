@@ -1076,3 +1076,213 @@ const handleDrop = (e) => {
     },
   },
 };
+
+export const TestAlignementLignes: Story = {
+  render: () => {
+    // Données d'arborescence avec plusieurs niveaux et des labels de différentes longueurs
+    const treeItems: CustomTreeViewItem[] = [
+      {
+        internalId: "root-1",
+        label: "Dossier principal",
+        iconType: ICON_TYPE.FOLDER,
+        children: [
+          {
+            internalId: "folder-1-1",
+            label: "Sous-dossier avec un nom très long pour tester",
+            iconType: ICON_TYPE.FOLDER,
+            children: [
+              {
+                internalId: "file-1-1-1",
+                label: "Document A",
+                iconType: ICON_TYPE.CUSTOM,
+                customIcon: DescriptionIcon,
+              },
+              {
+                internalId: "folder-1-1-2",
+                label: "Sous-sous-dossier",
+                iconType: ICON_TYPE.FOLDER,
+                children: [
+                  {
+                    internalId: "file-1-1-2-1",
+                    label: "Image.jpg",
+                    iconType: ICON_TYPE.CUSTOM,
+                  },
+                  {
+                    internalId: "file-1-1-2-2",
+                    label: "Document.pdf",
+                    iconType: ICON_TYPE.CUSTOM,
+                    children: [
+                      {
+                        internalId: "file-1-1-2-7",
+                        label: "Image.jpg",
+                        iconType: ICON_TYPE.CUSTOM,
+                      },
+                      {
+                        internalId: "file-1-1-2-18",
+                        label: "Document.pdf",
+                        iconType: ICON_TYPE.CUSTOM,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            internalId: "folder-1-2",
+            label: "Court",
+            iconType: ICON_TYPE.FOLDER,
+            children: [
+              {
+                internalId: "file-1-2-1",
+                label: "Fichier",
+                iconType: ICON_TYPE.CUSTOM,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        internalId: "root-2",
+        label: "Second dossier principal",
+        iconType: ICON_TYPE.FOLDER,
+        children: [
+          {
+            internalId: "folder-2-1",
+            label: "Sous-dossier A",
+            iconType: ICON_TYPE.FOLDER,
+          },
+          {
+            internalId: "folder-2-2",
+            label: "Sous-dossier B",
+            iconType: ICON_TYPE.FOLDER,
+            children: [],
+          },
+        ],
+      },
+      {
+        internalId: "root-3",
+        label: "Troisième dossier principal",
+        iconType: ICON_TYPE.FOLDER,
+        children: [
+          {
+            internalId: "folder-3-1",
+            label: "Sous-dossier X",
+            iconType: ICON_TYPE.FOLDER,
+            children: [
+              {
+                internalId: "file-3-1-1",
+                label: "Fichier X-1",
+                iconType: ICON_TYPE.CUSTOM,
+              },
+              {
+                internalId: "file-3-1-2",
+                label: "Fichier X-2",
+                iconType: ICON_TYPE.CUSTOM,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    const [selectedId, setSelectedId] = useState<string>("");
+
+    const handleSelectedItemChange = useCallback(
+      (event: React.SyntheticEvent, itemId: string | null) => {
+        if (itemId) {
+          setSelectedId(itemId);
+        }
+      },
+      [],
+    );
+
+    return (
+      <Box sx={{ p: 2 }}>
+        <Typography variant="h5" gutterBottom>
+          Test d'alignement des lignes verticales
+        </Typography>
+        <Typography variant="body2" color="text.secondary" paragraph>
+          Cette story permet de vérifier si les lignes verticales s'arrêtent
+          toutes au même niveau, indépendamment de la taille des éléments.
+          Essayez d'expandre et de collapser les différents niveaux.
+        </Typography>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                TreeView avec plusieurs niveaux imbriqués
+              </Typography>
+              <Box sx={{ border: "1px solid #e0e0e0", borderRadius: 1 }}>
+                <TreeView
+                  items={treeItems}
+                  selectedItemId={selectedId}
+                  handleSelectedItemChange={handleSelectedItemChange}
+                  maxHeight={400}
+                />
+              </Box>
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Détails de l'élément sélectionné
+              </Typography>
+              <Box
+                sx={{
+                  p: 2,
+                  backgroundColor: "#f5f5f5",
+                  borderRadius: 1,
+                  minHeight: 100,
+                }}
+              >
+                {selectedId ? (
+                  <Typography>
+                    Élément sélectionné: <strong>{selectedId}</strong>
+                  </Typography>
+                ) : (
+                  <Typography color="text.secondary">
+                    Aucun élément sélectionné. Cliquez sur un élément dans
+                    l'arborescence.
+                  </Typography>
+                )}
+              </Box>
+
+              <Box sx={{ mt: 2 }}>
+                <Button
+                  variant="outlined"
+                  onClick={() => setSelectedId("file-1-1-2-1")}
+                  sx={{ mr: 1 }}
+                >
+                  Sélectionner "Image.jpg"
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => setSelectedId("folder-3-1")}
+                >
+                  Sélectionner "Sous-dossier X"
+                </Button>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  },
+  parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
+    docs: {
+      description: {
+        story:
+          "Cette story permet de tester si les lignes verticales du TreeView s'alignent correctement. " +
+          "Elle utilise une arborescence à plusieurs niveaux avec des éléments de différentes tailles " +
+          "et labels de différentes longueurs pour mettre en évidence le comportement des lignes. " +
+          "Vérifiez que toutes les lignes verticales s'arrêtent au même niveau, créant ainsi une " +
+          "structure d'arborescence propre et cohérente.",
+      },
+    },
+  },
+};
