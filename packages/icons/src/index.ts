@@ -1,1 +1,3 @@
-export { default as Moodle, default as MoodleIcon } from "./Moodle";
+export * from "./Moodle";
+export * from "./SortAlphabeticalAscending";
+export * from "./SortAlphabeticalDescending";
