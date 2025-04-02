@@ -18,6 +18,10 @@ export const IconContainerStyle = {
 }
 
 export const TextContainerStyle = {
+  display: "flex",
+  flexDirection: "column",
   flex: 85, 
   minWidth: 0,
+  minHeight: "48px",
+  justifyContent: "center",
 }
