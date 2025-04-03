@@ -43,6 +43,7 @@ export interface TreeViewProps {
   iconColor?: string;
   maxHeight?: string | number;
   hasNoIcons?: boolean;
+  defaultExpandedItems?: string[];
 }
 
 export interface ExtendedTreeItem2Props extends TreeItem2Props {
