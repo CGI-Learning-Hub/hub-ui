@@ -27,37 +27,47 @@ export const StyledCard = styled(Card)<{
   },
 }));
 
-export const SelectedIcon = styled(Box)<{ selected?: boolean }>(
-  ({ theme, selected }) => ({
-    position: "absolute",
-    top: 0,
-    right: 0,
-    width: "2rem",
-    height: "2rem",
-    background: theme.palette.common.white,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: ".8rem",
-    borderRadius: ".5rem",
+export const SelectedIcon = styled(Box)<{
+  selected?: boolean;
+  hasNoButtonOnFocus: boolean;
+}>(({ theme, selected, hasNoButtonOnFocus }) => ({
+  position: "absolute",
+  top: 0,
+  right: 0,
+  width: "2rem",
+  height: "2rem",
+  background: theme.palette.common.white,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: ".8rem",
+  borderRadius: ".5rem",
+  visibility: "visible",
+  opacity: 0,
+  cursor: "pointer",
+  transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out",
+  ...(selected && {
+    background: theme.palette.primary.lighter,
+    opacity: 1,
     visibility: "visible",
-    opacity: 0,
-    cursor: "pointer",
-    transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out",
-    ...(selected && {
-      background: theme.palette.primary.lighter,
-      opacity: 1,
-      visibility: "visible",
-    }),
-    "&:hover, &:focus": {
-      background: theme.palette.primary.lighter,
-      opacity: 1,
-    },
-    "& .MuiSvgIcon-root": {
-      color: theme.palette.primary.main,
-    },
   }),
-);
+  ...(!hasNoButtonOnFocus
+    ? {
+        "&:hover, &:focus": {
+          background: theme.palette.primary.lighter,
+          opacity: 1,
+        },
+      }
+    : {
+        "&:hover": {
+          background: theme.palette.primary.lighter,
+          opacity: 1,
+        },
+      }),
+  "& .MuiSvgIcon-root": {
+    color: theme.palette.primary.main,
+  },
+}));
 
 export const ResourceCardImage = styled(CardMedia)<{
   size?: ResourceCardSize;

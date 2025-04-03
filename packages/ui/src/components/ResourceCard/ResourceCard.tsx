@@ -37,6 +37,7 @@ export type ResourceCardProps = {
   size?: ResourceCardSize;
   width?: string;
   onClick?: () => void;
+  hasNoButtonOnFocus?: boolean;
 };
 
 const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
@@ -50,6 +51,7 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
   size = "md",
   width,
   onClick = () => {},
+  hasNoButtonOnFocus = false,
 }) => {
   // 3 maximum
   infoIcons = infoIcons.slice(0, 3);
@@ -88,6 +90,7 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
           role="button"
           tabIndex={0}
           aria-label={isSelected ? "Unselect card" : "Select card"}
+          hasNoButtonOnFocus={hasNoButtonOnFocus}
         >
           <MoreVertIcon />
         </SelectedIcon>

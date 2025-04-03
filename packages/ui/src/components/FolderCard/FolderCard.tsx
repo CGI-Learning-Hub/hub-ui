@@ -4,9 +4,13 @@ import { Box, CardContent, Typography } from "@mui/material";
 import { KeyboardEvent as ReactKeyboardEvent } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
-import { FolderBodyStyle, FolderIconStyle, IconContainerStyle, TextContainerStyle } from "./styles";
-
-import { StyledCard, SelectedIcon } from "../ResourceCard/style";
+import { SelectedIcon, StyledCard } from "../ResourceCard/style";
+import {
+  FolderBodyStyle,
+  FolderIconStyle,
+  IconContainerStyle,
+  TextContainerStyle,
+} from "./styles";
 import { subtitleTypographyProps, titleTypographyProps } from "./types";
 
 export type FolderCardProps = {
@@ -17,6 +21,7 @@ export type FolderCardProps = {
   width?: string;
   onClick?: () => void;
   iconSize?: string;
+  hasNoButtonOnFocus?: boolean;
 };
 
 const FolderCard: React.FunctionComponent<FolderCardProps> = ({
@@ -26,12 +31,12 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
   subtitle,
   width = "320px",
   onClick = () => {},
-  iconSize= "2rem",
+  iconSize = "2rem",
+  hasNoButtonOnFocus = false,
 }) => {
-
   const handleKeyPress = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    return e.key === "Enter" || e.key === " "
-  }
+    return e.key === "Enter" || e.key === " ";
+  };
 
   return (
     <Box sx={{ width: width }}>
@@ -68,12 +73,17 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
           tabIndex={0}
           aria-label={isSelected ? "Unselect folder" : "Select folder"}
           aria-pressed={isSelected}
+          hasNoButtonOnFocus={hasNoButtonOnFocus}
         >
           <MoreVertIcon />
         </SelectedIcon>
         <CardContent sx={FolderBodyStyle}>
           <Box fontSize={iconSize} sx={IconContainerStyle}>
-            <FolderIcon color="primary" sx={FolderIconStyle} aria-hidden="true" />
+            <FolderIcon
+              color="primary"
+              sx={FolderIconStyle}
+              aria-hidden="true"
+            />
           </Box>
           <Box sx={TextContainerStyle}>
             <EllipsisWithTooltip
