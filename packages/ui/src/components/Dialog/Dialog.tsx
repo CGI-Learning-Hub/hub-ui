@@ -19,9 +19,9 @@ const Dialog: React.FunctionComponent<DialogProps> = ({
         <IconButton
           aria-label="close"
           onClick={handleClose}
-          sx={{ position: "absolute", right: 24, top: 24 }}
+          sx={{ position: "absolute", right: 15, top: 15,color: (theme) => theme.palette.text.primary }}
         >
-          <CloseRoundedIcon />
+          <CloseRoundedIcon color="inherit"/>
         </IconButton>
       ) : null}
       {children}
