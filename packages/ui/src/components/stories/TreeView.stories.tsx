@@ -6,13 +6,13 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton/IconButton";
+import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import Tooltip from "@mui/material/Tooltip/Tooltip";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
@@ -688,7 +688,7 @@ export const GrandeHauteurLimitee: Story = {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Hauteur maximale de 300px avec overflow
@@ -717,7 +717,7 @@ export const GrandeHauteurLimitee: Story = {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Hauteur maximale de 500px avec overflow
@@ -851,7 +851,7 @@ export const Synchronicite: Story = {
         />
 
         <Grid container spacing={3} sx={{ overflowY: "hidden" }}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2, overflowY: "hidden" }}>
               <Typography variant="h6" gutterBottom>
                 TreeView
@@ -864,7 +864,7 @@ export const Synchronicite: Story = {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <ExternalSelector
               items={syncExampleItems}
               selectedItemId={selectedItemId}
@@ -971,7 +971,7 @@ export const AvecDragAndDrop: Story = {
         </Box>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box
               sx={{
                 p: 2,
@@ -1000,7 +1000,7 @@ export const AvecDragAndDrop: Story = {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2, minHeight: 300 }}>
               <Typography variant="subtitle1" gutterBottom>
                 Informations du dernier drop
@@ -1209,7 +1209,7 @@ export const TestAlignementLignes: Story = {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" gutterBottom>
                 TreeView avec plusieurs niveaux imbriqués
@@ -1225,7 +1225,7 @@ export const TestAlignementLignes: Story = {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" gutterBottom>
                 Détails de l'élément sélectionné

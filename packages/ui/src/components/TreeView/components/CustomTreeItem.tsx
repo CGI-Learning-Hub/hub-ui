@@ -1,6 +1,6 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Box from "@mui/material/Box/Box";
+import Box from "@mui/material/Box";
 import {
   TreeItem2Content,
   TreeItem2GroupTransition,

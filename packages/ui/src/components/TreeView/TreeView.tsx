@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box/Box";
 import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
 import { TreeItem2Props } from "@mui/x-tree-view/TreeItem2";
 import React, { FC, useEffect, useMemo, useState } from "react";

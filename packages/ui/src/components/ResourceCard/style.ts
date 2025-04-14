@@ -5,7 +5,7 @@ import { ResourceCardSize } from "./ResourceCard";
 export const StyledCard = styled(Card)<{
   selected?: boolean;
   size?: ResourceCardSize;
-}>(({ theme, selected, size }) => ({
+}>(({ selected, size }) => ({
   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06)",
   borderRadius: "0.5rem",
   height: "auto",
@@ -17,7 +17,7 @@ export const StyledCard = styled(Card)<{
     width: "100%",
   }),
   ...(selected && {
-    borderColor: theme.palette.primary.light,
+    background: "primary.light",
   }),
   "&:hover": {
     "& .MuiBox-root.selected-icon": {
@@ -30,13 +30,13 @@ export const StyledCard = styled(Card)<{
 export const SelectedIcon = styled(Box)<{
   selected?: boolean;
   hasNoButtonOnFocus: boolean;
-}>(({ theme, selected, hasNoButtonOnFocus }) => ({
+}>(({ selected, hasNoButtonOnFocus }) => ({
   position: "absolute",
   top: 0,
   right: 0,
   width: "2rem",
   height: "2rem",
-  background: theme.palette.common.white,
+  background: "common.white",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -47,25 +47,25 @@ export const SelectedIcon = styled(Box)<{
   cursor: "pointer",
   transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out",
   ...(selected && {
-    background: theme.palette.primary.lighter,
+    background: "primary.lighter",
     opacity: 1,
     visibility: "visible",
   }),
   ...(!hasNoButtonOnFocus
     ? {
         "&:hover, &:focus": {
-          background: theme.palette.primary.lighter,
+          background: "primary.lighter",
           opacity: 1,
         },
       }
     : {
         "&:hover": {
-          background: theme.palette.primary.lighter,
+          background: "primary.lighter",
           opacity: 1,
         },
       }),
   "& .MuiSvgIcon-root": {
-    color: theme.palette.primary.main,
+    color: "primary.main",
   },
 }));
 
