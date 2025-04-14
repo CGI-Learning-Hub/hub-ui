@@ -40,12 +40,12 @@
     "@mui/x-date-pickers": "7.28.3",
     "@mui/x-tree-view": "7.28.1",
     "dayjs": "1.11.13",
-    "react-dropzone": "14.3.5"
+    "react-dropzone": "14.3.8"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "2.5.1",
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4"
+    "@reduxjs/toolkit": "2.6.1",
+    "@types/react": "19.1.1",
+    "@types/react-dom": "19.1.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
