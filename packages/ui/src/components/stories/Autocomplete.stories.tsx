@@ -1,8 +1,10 @@
-import MUIAutocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Autocomplete as CGIAutocomplete } from "../Autocomplete";
 
 const Autocomplete = (props: any) => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const options = [
     "Paris",
     "Londres",
@@ -16,13 +18,30 @@ const Autocomplete = (props: any) => {
     "Athènes",
   ];
 
+  const handleChange = (_: any, newValue: string[] | string) => {
+    setSelectedValues(newValue as string[]);
+  };
+
+  const handleSelectAll = () => {
+    setSelectedValues(options);
+  }
+  const handleDeselectAll = () => {
+    setSelectedValues([]);
+  }
+
   return (
-    <MUIAutocomplete
+    <CGIAutocomplete
       options={options}
       sx={{ width: 300 }}
       renderInput={(params) => (
         <TextField {...params} label="Choisissez une ville" />
       )}
+      onChange={handleChange}
+      value={selectedValues}
+      onSelectAll={handleSelectAll}
+      onDeselectAll={handleDeselectAll}
+      multiple={props.multiple}
+      isAllSelectable={props.isAllSelectable}
       {...props}
     />
   );
@@ -56,6 +75,21 @@ Pour explorer les cas d'usage possibles : [Autocomplete component - Material UI]
       description: "Désactive le composant",
       table: { defaultValue: { summary: "false" } },
     },
+    multiple: {
+      control: "boolean",
+      description: "Permet de sélectionner plusieurs options",
+      table: { defaultValue: { summary: "false" } },
+    },
+    isAllSelectable: {
+      control: "boolean",
+      description: "Permet de sélectionner/désélectionner toutes les options",
+      table: { defaultValue: { summary: "false" } },
+    },
+    disableCloseOnSelect: {
+      control: "boolean",
+      description: "Désactive la fermeture de la liste des options lors de la sélection",
+      table: { defaultValue: { summary: "false" } },
+    },
   },
 };
 export default meta;
@@ -67,5 +101,8 @@ export const Default: Story = {
     autoHighlight: false,
     disableClearable: false,
     disabled: false,
+    multiple: true,
+    isAllSelectable: true,
+    disableCloseOnSelect: false,
   },
 };

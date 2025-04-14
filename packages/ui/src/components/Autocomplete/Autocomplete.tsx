@@ -45,6 +45,7 @@ const Autocomplete: FC<AutocompleteProps<any, boolean, boolean, boolean>> = ({
     };
 
     useEffect(() => {
+        if(!otherProps.value || !otherProps.options) return;
         setShowSelectAll(otherProps.value.length !== otherProps.options.length);
     }, [otherProps.value, otherProps.options]);
 
