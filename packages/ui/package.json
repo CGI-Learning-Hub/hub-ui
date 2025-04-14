@@ -1,6 +1,6 @@
 {
   "name": "@cgi-learning-hub/ui",
-  "version": "1.5.1",
+  "version": "1.5.1-dev",
   "private": false,
   "author": "CGI Learning-hub Team",
   "description": "@cgi-learning-hub/ui is an open-source React component library that implements UI for HUB's features",
