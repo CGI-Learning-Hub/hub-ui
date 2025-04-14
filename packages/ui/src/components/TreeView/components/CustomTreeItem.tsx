@@ -53,7 +53,7 @@ function CustomTreeItem(
 
   const labelStyle = {
     ...(status.selected && { fontWeight: 600 }),
-    color: "palette-grey-darker",
+    color: "var(--theme-palette-text-primary)",
   };
 
   return (
