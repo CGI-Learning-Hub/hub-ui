@@ -17,7 +17,7 @@ export const StyledCard = styled(Card)<{
     width: "100%",
   }),
   ...(selected && {
-    background: "primary.light",
+    borderColor: "primary.light",
   }),
   "&:hover": {
     "& .MuiBox-root.selected-icon": {
