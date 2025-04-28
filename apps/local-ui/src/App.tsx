@@ -3,6 +3,7 @@ import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   Alert,
   Button,
+  ColorPicker,
   CustomFile,
   DatePicker,
   Dropzone,
@@ -28,6 +29,7 @@ import type {} from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
 
 import "./App.css";
+import { HexaColor } from "@cgi-learning-hub/ui/dist/components/ColorPicker/types";
 import ExampleComponent from "./components/ExampleComponent";
 
 type ThemeId = "campus" | "crna" | "default" | "imt";
@@ -38,6 +40,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [files, setFiles] = useState<CustomFile[]>([]);
+  const [color, setColor] = useState<string>("#f44336");
   const open = Boolean(anchorEl);
 
   const handleThemeChange = (
@@ -60,6 +63,10 @@ function App() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleColor = (color: HexaColor) => {
+    setColor(color);
+  }
 
   return (
     <ThemeProvider themeId={themeId}>
@@ -127,7 +134,7 @@ function App() {
             <TabPanel value="3">Item Three</TabPanel>
           </TabContext>
           <Dropzone
-            onDrop={(files) => setFiles(files)}
+            onDrop={(files: React.SetStateAction<CustomFile[]>) => setFiles(files)}
             information="SVG, PNG, JPG or GIF (max. 3MB)"
           />
           <FileList files={files} />
@@ -141,6 +148,7 @@ function App() {
           <Alert severity="success">Success alert</Alert>
           <Alert severity="warning">Warning alert</Alert>
           <Alert severity="error">Error alert</Alert>
+          <ColorPicker disabled={false} selectColor={color} onColorChange={handleColor} ></ColorPicker>
         </header>
       </div>
     </ThemeProvider>
