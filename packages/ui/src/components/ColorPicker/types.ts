@@ -12,18 +12,14 @@ export type CirclePickerSlotProps = {
 
 export type ColorPickerProps = {
   disabled?: boolean;
-  colors?: string[];
-  selectColor: string;
-  onColorChange: (newColor: HexaColor) => void;
+  options?: string[];
+  value: string;
+  onChange: (newColor: HexaColor) => void;
   slotProps?: CirclePickerSlotProps;
 }; 
 
 export type PickerBackGroundBoxProps = {
     disabled: boolean | undefined;
   }
-
-export type PickerColorBoxProps = {
-  selectColor: string;
-}  
 
 export type CustomSVGProps = SVGAttributes<SVGSVGElement>;

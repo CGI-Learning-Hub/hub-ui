@@ -9,9 +9,9 @@ import { ColorPickerProps, HexaColor } from "./types";
 
 const ColorPicker: FC<ColorPickerProps> = ({
   disabled = false,
-  colors,
-  selectColor,
-  onColorChange,
+  options,
+  value,
+  onChange,
   slotProps
 }) => {
   const [isCirclePickerVisible, setIsCirclePickerVisible] = useState(false);
@@ -38,14 +38,14 @@ const ColorPicker: FC<ColorPickerProps> = ({
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        <ColorPickerIcon onClick={handlePickerToggle} fill={selectColor} />
+        <ColorPickerIcon onClick={handlePickerToggle} fill={value} />
           {isCirclePickerVisible && (
             <Box sx={circlePickerStyle}>
               <CirclePicker
-                colors={colors}
-                color={selectColor}
+                colors={options}
+                color={value}
                 onChange={(newColor: ColorResult) => {
-                  onColorChange(newColor.hex as HexaColor);
+                  onChange(newColor.hex as HexaColor);
                   handleClose();
                 }}
                 circleSize={20}

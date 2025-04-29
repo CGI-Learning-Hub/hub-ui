@@ -1,5 +1,5 @@
 import { Box, styled, SxProps } from "@mui/material";
-import { PickerBackGroundBoxProps, PickerColorBoxProps} from "./types";
+import { PickerBackGroundBoxProps} from "./types";
 
 export const PickerBackgroundBox = styled(Box)<PickerBackGroundBoxProps>(({ disabled }) => ({
     width: "4.4rem",
