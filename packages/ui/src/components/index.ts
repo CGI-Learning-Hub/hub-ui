@@ -155,6 +155,7 @@ export { default as useMediaQuery } from "@mui/material/useMediaQuery";
 
 export * from "./Alert";
 export * from "./Button";
+export * from "./ColorPicker";
 export * from "./DatePicker";
 export * from "./Dialog";
 export * from "./Dropzone";
