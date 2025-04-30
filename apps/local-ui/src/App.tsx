@@ -1,4 +1,3 @@
-import { MoodleIcon } from "@cgi-learning-hub/icons";
 import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   Alert,
@@ -8,6 +7,7 @@ import {
   DatePicker,
   Dropzone,
   FileList,
+  HexaColor,
   IconButton,
   Menu,
   MenuItem,
@@ -29,7 +29,6 @@ import type {} from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
 
 import "./App.css";
-import { HexaColor } from "@cgi-learning-hub/ui/dist/components/ColorPicker/types";
 import ExampleComponent from "./components/ExampleComponent";
 
 type ThemeId = "campus" | "crna" | "default" | "imt";
@@ -40,7 +39,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [files, setFiles] = useState<CustomFile[]>([]);
-  const [color, setColor] = useState<string>("#f44336");
+  const [color, setColor] = useState<HexaColor>("#F44336");
   const open = Boolean(anchorEl);
 
   const handleThemeChange = (
@@ -63,10 +62,6 @@ function App() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleColor = (color: HexaColor) => {
-    setColor(color);
-  }
 
   return (
     <ThemeProvider themeId={themeId}>
@@ -119,9 +114,6 @@ function App() {
             <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
           </Menu>
-          <div>
-            <MoodleIcon />
-          </div>
           <DatePicker />
           <TabContext value={value}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -134,7 +126,9 @@ function App() {
             <TabPanel value="3">Item Three</TabPanel>
           </TabContext>
           <Dropzone
-            onDrop={(files: React.SetStateAction<CustomFile[]>) => setFiles(files)}
+            onDrop={(files: React.SetStateAction<CustomFile[]>) =>
+              setFiles(files)
+            }
             information="SVG, PNG, JPG or GIF (max. 3MB)"
           />
           <FileList files={files} />
@@ -148,7 +142,7 @@ function App() {
           <Alert severity="success">Success alert</Alert>
           <Alert severity="warning">Warning alert</Alert>
           <Alert severity="error">Error alert</Alert>
-          <ColorPicker disabled={false} selectColor={color} onColorChange={handleColor} ></ColorPicker>
+          <ColorPicker value={color} onChange={setColor} />
         </header>
       </div>
     </ThemeProvider>
