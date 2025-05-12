@@ -5,7 +5,6 @@ import {
   TreeItem2Content,
   TreeItem2GroupTransition,
   TreeItem2IconContainer,
-  TreeItem2Label,
   TreeItem2Root,
 } from "@mui/x-tree-view/TreeItem2";
 import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
@@ -21,6 +20,7 @@ import {
 } from "../style";
 import { ExtendedTreeItem2Props } from "../types";
 import { getIconComponent } from "../utils";
+import { EllipsisWithTooltip } from "../../EllipsisWithTooltip";
 
 function CustomTreeItem(
   props: ExtendedTreeItem2Props & { ref?: Ref<HTMLLIElement> },
@@ -70,9 +70,8 @@ function CustomTreeItem(
               <IconComponent color={iconColor} sx={iconStyle} />
             </TreeItem2IconContainer>
           )}
-
-          <TreeItem2Label {...getLabelProps()} sx={labelStyle} />
-
+          <EllipsisWithTooltip {...getLabelProps()} typographyProps={labelStyle} />
+          
           <Box sx={arrowContainerStyle}>
             {status.expandable &&
               (status.expanded ? (
