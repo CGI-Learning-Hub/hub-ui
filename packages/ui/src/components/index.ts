@@ -168,6 +168,8 @@ export * from "@mui/material/Typography";
 export { default as Typography } from "@mui/material/Typography";
 export * from "@mui/material/useMediaQuery";
 export { default as useMediaQuery } from "@mui/material/useMediaQuery";
+export * from "@mui/material/Badge";
+export { default as Badge } from "@mui/material/Badge"; 
 
 export * from "./Alert";
 export * from "./Button";
