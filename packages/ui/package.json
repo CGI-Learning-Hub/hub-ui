@@ -1,6 +1,6 @@
 {
   "name": "@cgi-learning-hub/ui",
-  "version": "1.5.1-dev",
+  "version": "1.6.0",
   "private": false,
   "author": "CGI Learning-hub Team",
   "description": "@cgi-learning-hub/ui is an open-source React component library that implements UI for HUB's features",
@@ -47,7 +47,7 @@
     "@reduxjs/toolkit": "2.6.1",
     "@types/react": "19.1.1",
     "@types/react-dom": "19.1.2",
-     "@types/react-color": "3.0.13"
+    "@types/react-color": "3.0.13"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
