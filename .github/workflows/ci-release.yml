@@ -1,6 +1,10 @@
 name: ci-release
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
+      - "dev"
 
 jobs:
   build-release:
