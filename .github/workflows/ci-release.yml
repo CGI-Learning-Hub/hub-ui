@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: node:18-alpine
+      image: node:22-alpine
       options: --user root -v ${{ github.workspace }}:/home/node/:rw
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Install PNPM
         run: npm install -g pnpm
       - name: Run install

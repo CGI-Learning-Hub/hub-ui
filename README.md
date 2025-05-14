@@ -11,8 +11,8 @@ React monorepo containing components, theme and icons libraries
 
 #### Requirements
 
-- `pnpm` version 8+
-- `node` version 18+
+- `pnpm` version 9+
+- `node` version 22+
 
 ```sh
 # install global project
@@ -168,7 +168,7 @@ You need to install these dependencies if you use `ui` package in your NextJS pr
 
 - `"@emotion/react": "^11"`
 - `"@emotion/styled": "^11"`
-- `"@mui/material": "^6"`
+- `"@mui/material": "^7"`
 
 You will need to add `"@cgi-learning-hub/ui` in devDependencies and add in docker-compose.yml your local project mount volumes
 
