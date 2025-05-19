@@ -1,7 +1,6 @@
 import { frFR } from "@mui/material/locale";
 import { Theme as MuiTheme, createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
-import { frFR as dateFrFR } from "@mui/x-date-pickers/locales";
 
 import { CreateThemeOptions, Theme } from "../types";
 
@@ -190,9 +189,8 @@ export const getMuiTheme = (
             fontWeight: 700,
           },
         },
-        frFR,
-        dateFrFR,
       },
       options,
     ),
+    frFR,
   );

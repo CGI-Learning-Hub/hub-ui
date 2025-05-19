@@ -39,8 +39,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "5.2.5",
-    "@mui/utils": "7.0.2",
-    "@mui/x-date-pickers": "7.28.3"
+    "@mui/utils": "7.0.2"
   },
   "devDependencies": {
     "tailwindcss": "3.4.17"
