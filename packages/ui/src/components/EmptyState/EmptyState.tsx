@@ -15,6 +15,7 @@ export type EmptyStateProps = (
       imageSrc: string;
     }
 ) & {
+  imageHeight?: string | number;
   title: string;
   description?: string;
   descriptionProps?: TypographyProps;
@@ -31,6 +32,7 @@ const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
   descriptionProps,
   svgProps,
   titleProps,
+  imageHeight = 200,
   ...otherProps
 }) => {
   return (
@@ -40,7 +42,7 @@ const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
       margin="0 auto"
       {...otherProps}
     >
-      <Box height={200} width="auto">
+      <Box height={imageHeight} width="auto">
         {image ?? <img src={imageSrc} height="100%" {...imageProps} />}
       </Box>
       <Typography variant="h2" fontWeight={500} mt={3} {...titleProps}>
