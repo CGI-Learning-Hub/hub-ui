@@ -18,7 +18,10 @@ const Alert: React.FunctionComponent<AlertProps> = ({
     <MUIAlert
       severity={severity}
       color={severity}
-      sx={{ bgcolor: alpha(theme.palette[severity].light, 0.35) }}
+      sx={{
+        bgcolor: alpha(theme.palette[severity].light, 0.35),
+        ...otherProps.sx,
+      }}
       {...otherProps}
     >
       {otherProps.title ? <AlertTitle>{otherProps.title}</AlertTitle> : null}
