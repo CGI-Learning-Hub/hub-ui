@@ -22,7 +22,7 @@ export const treeContentStyle: CSSProperties = {
   alignItems: "center",
   width: "100%",
   margin: "4px 0",
-  padding:"8px"
+  padding: "8px",
 };
 
 export const arrowContainerStyle = {

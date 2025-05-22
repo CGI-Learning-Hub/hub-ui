@@ -1,7 +1,9 @@
-import { Box, styled, SxProps } from "@mui/material";
-import { PickerBackGroundBoxProps} from "./types";
+import { Box, SxProps, styled } from "@mui/material";
 
-export const PickerBackgroundBox = styled(Box)<PickerBackGroundBoxProps>(({ disabled }) => ({
+import { PickerBackGroundBoxProps } from "./types";
+
+export const PickerBackgroundBox = styled(Box)<PickerBackGroundBoxProps>(
+  ({ disabled }) => ({
     width: "4.4rem",
     height: "4.4rem",
     position: "relative",
@@ -11,16 +13,17 @@ export const PickerBackgroundBox = styled(Box)<PickerBackGroundBoxProps>(({ disa
       backgroundColor: disabled ? "transparent" : "#F8F9F9",
       outline: "none",
     },
-  }));
+  }),
+);
 
-  export const circlePickerStyle: SxProps = {
-    position: "absolute",
-    bottom: "5rem",
-    right: "-2rem",
-    backgroundColor: "white",
-    zIndex: 1000,
-    padding: "1rem",
-    borderRadius: "1rem",
-    display: "flex",
-    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
-  };
+export const circlePickerStyle: SxProps = {
+  position: "absolute",
+  bottom: "5rem",
+  right: "-2rem",
+  backgroundColor: "white",
+  zIndex: 1000,
+  padding: "1rem",
+  borderRadius: "1rem",
+  display: "flex",
+  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
+};

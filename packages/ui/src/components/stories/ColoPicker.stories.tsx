@@ -13,7 +13,7 @@ const Component = (props: ColorPickerProps) => {
   };
 
   return (
-    <Box m= "5rem 10rem" >
+    <Box m="5rem 10rem">
       <ColorPicker {...props} value={color} onChange={handleChange} />
     </Box>
   );

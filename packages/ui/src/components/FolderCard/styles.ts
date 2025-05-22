@@ -12,16 +12,16 @@ export const FolderIconStyle = {
 
 export const IconContainerStyle = {
   flex: 15,
-  alignItems: "center", 
-  display: "flex", 
-  justifyContent: "center"
-}
+  alignItems: "center",
+  display: "flex",
+  justifyContent: "center",
+};
 
 export const TextContainerStyle = {
   display: "flex",
   flexDirection: "column",
-  flex: 85, 
+  flex: 85,
   minWidth: 0,
   minHeight: "48px",
   justifyContent: "center",
-}
+};

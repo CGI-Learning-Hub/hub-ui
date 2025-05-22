@@ -6,6 +6,7 @@ import {
   type DropzoneProps as ReactDropzoneProps,
   useDropzone,
 } from "react-dropzone";
+
 import { DropZoneSlotProps } from "./types";
 
 export type DropzoneProps = {
@@ -42,19 +43,19 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       borderRadius={1}
       sx={{
         cursor: "pointer",
-        ...slotProps.root?.sx
+        ...slotProps.root?.sx,
       }}
       {...getRootProps()}
     >
       <input {...getInputProps()} {...slotProps.input} />
       {isDragActive ? (
         <>
-          <FileUploadIcon color="primary" {...slotProps.icon}/>
+          <FileUploadIcon color="primary" {...slotProps.icon} />
           <Typography {...slotProps.label}>{dragLabel}</Typography>
         </>
       ) : (
         <>
-          <UploadFileIcon color="primary" {...slotProps.icon}/>
+          <UploadFileIcon color="primary" {...slotProps.icon} />
           <Typography {...slotProps.label}>{defaultLabel}</Typography>
           {information ? (
             <Typography variant="body2" color="grey" {...slotProps.information}>

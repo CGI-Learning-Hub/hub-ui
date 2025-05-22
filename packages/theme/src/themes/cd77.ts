@@ -76,6 +76,5 @@ export {
   muiOptions as cd77MuiOptions,
   muiTheme as cd77MuiTheme,
   tailwindThemeConfig as cd77TailwindThemeConfig,
-  theme as cd77Theme
+  theme as cd77Theme,
 };
-

@@ -16,7 +16,8 @@ const TreeView: FC<TreeViewProps> = ({
   maxHeight = 300,
   defaultExpandedItems = [],
 }) => {
-  const [expandedItems, setExpandedItems] = useState<string[]>(defaultExpandedItems);
+  const [expandedItems, setExpandedItems] =
+    useState<string[]>(defaultExpandedItems);
   const itemDataMap = useMemo(() => buildItemDataMap(items), [items]);
 
   useEffect(() => {
