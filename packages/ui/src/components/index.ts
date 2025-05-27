@@ -18,6 +18,8 @@ export * from "@mui/material/AppBar";
 export { default as AppBar } from "@mui/material/AppBar";
 export * from "@mui/material/Autocomplete";
 export { default as Autocomplete } from "@mui/material/Autocomplete";
+export * from "@mui/material/Avatar";
+export { default as Avatar } from "@mui/material/Avatar";
 export * from "@mui/material/Backdrop";
 export { default as Backdrop } from "@mui/material/Backdrop";
 export * from "@mui/material/Badge";
