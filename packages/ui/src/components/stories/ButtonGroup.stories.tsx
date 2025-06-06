@@ -12,19 +12,19 @@ import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
 
-import { SwitchView } from "../SwitchView";
+import { ButtonGroup } from "../ButtonGroup";
 
-const meta: Meta<typeof SwitchView> = {
-  title: "Components/SwitchView",
-  component: SwitchView,
+const meta: Meta<typeof ButtonGroup> = {
+  title: "Components/ButtonGroup",
+  component: ButtonGroup,
   argTypes: {
-    toggleButtonList: {
+    buttonList: {
       description:
-        "**[Requis]** Liste des boutons à afficher dans le SwitchView.",
+        "**[Requis]** Liste des boutons à afficher dans le ButtonGroup.",
       control: "object",
       table: {
         required: true,
-        type: { summary: "readonly ToggleButtonItem[]" },
+        type: { summary: "readonly ButtonItem[]" },
       },
     },
     viewMode: {
@@ -83,13 +83,13 @@ const meta: Meta<typeof SwitchView> = {
     docs: {
       description: {
         component: `
-## SwitchView
+## ButtonGroup
 
 Un composant générique TypeScript pour permettre à l'utilisateur de basculer entre différents modes d'affichage ou options avec une sécurité de type complète.
 
 ### 🔥 Typage générique et sécurité des types
 
-Le SwitchView utilise TypeScript générique avancé pour inférer automatiquement les types des valeurs possibles à partir de la liste des boutons fournie. **Il n'est plus nécessaire de définir un enum**, les types sont déduits automatiquement grâce à la magie de TypeScript !
+Le ButtonGroup utilise TypeScript générique avancé pour inférer automatiquement les types des valeurs possibles à partir de la liste des boutons fournie. **Il n'est plus nécessaire de définir un enum**, les types sont déduits automatiquement grâce à la magie de TypeScript !
 
 **Point clé** : Utilisez toujours \`as const\` après votre tableau de boutons pour permettre l'inférence de type littéral.
 
@@ -113,8 +113,8 @@ const handleViewChange = useCallback((value: ViewType) => {
   setCurrentView(value);
 }, []);
 
-<SwitchView 
-  toggleButtonList={viewButtons}
+<ButtonGroup 
+  buttonList={viewButtons}
   viewMode={currentView}
   onChange={handleViewChange} // ← Pas d'erreur 'any' !
 />
@@ -144,18 +144,18 @@ const handleViewChange = (value) => { // ← 'value' aura le type 'any'
 
 ### 📋 Structure des données
 
-Le composant attend un tableau d'objets \`ToggleButtonItem\` typé de manière générique :
+Le composant attend un tableau d'objets \`ButtonItem\` typé de manière générique :
 
 \`\`\`typescript
-interface ToggleButtonItem<T extends string = string> {
+interface ButtonItem<T extends string = string> {
   value: T;           // Valeur unique pour ce bouton (obligatoire)
   icon: ReactNode;    // Icône à afficher (obligatoire)
   disabled?: boolean; // Désactiver ce bouton spécifique (facultatif)
 }
 
 // Le composant infère automatiquement T à partir de votre tableau
-type SwitchViewProps<T extends readonly ToggleButtonItem<string>[]> = {
-  toggleButtonList: T;
+type SwitchViewProps<T extends readonly ButtonItem<string>[]> = {
+  buttonList: T;
   viewMode: T[number]["value"];           // Type inféré automatiquement
   onChange: (value: T[number]["value"]) => void; // Type inféré automatiquement
   // ... autres props
@@ -204,7 +204,7 @@ const createViewButton = <T extends string>(value: T, icon: ReactNode) =>
 
 export default meta;
 
-type Story = StoryObj<typeof SwitchView>;
+type Story = StoryObj<typeof ButtonGroup>;
 
 // ✅ Données d'exemple avec typage correct
 const standardViewButtons = [
@@ -246,8 +246,8 @@ export const Default: Story = {
         <Typography variant="h6" gutterBottom>
           Sélecteur de vue standard
         </Typography>
-        <SwitchView
-          toggleButtonList={standardViewButtons}
+        <ButtonGroup
+          buttonList={standardViewButtons}
           viewMode={selectedView}
           onChange={handleViewChange}
         />
@@ -364,10 +364,10 @@ export const Controlable: Story = {
           </Grid>
         </Grid>
 
-        {/* Le SwitchView */}
+        {/* Le ButtonGroup */}
         <Paper sx={{ p: 3, display: "inline-block" }}>
-          <SwitchView
-            toggleButtonList={standardViewButtons}
+          <ButtonGroup
+            buttonList={standardViewButtons}
             viewMode={viewMode}
             onChange={(value: StandardViewType) => {
               console.log(`Vue sélectionnée: ${value}`);
@@ -446,8 +446,8 @@ export const TypageGenerique: Story = {
               >
                 Activation/Désactivation simple
               </Typography>
-              <SwitchView
-                toggleButtonList={simpleButtons}
+              <ButtonGroup
+                buttonList={simpleButtons}
                 viewMode={simpleState}
                 onChange={(value: SimpleType) => {
                   console.log("Simple:", value); // ← value est "on" | "off"
@@ -473,8 +473,8 @@ export const TypageGenerique: Story = {
               >
                 Gestion d'états métier
               </Typography>
-              <SwitchView
-                toggleButtonList={statusButtons}
+              <ButtonGroup
+                buttonList={statusButtons}
                 viewMode={statusState}
                 onChange={(value: StatusType) => {
                   console.log("Status:", value); // ← value est "active" | "inactive" | "pending"
@@ -501,8 +501,8 @@ export const TypageGenerique: Story = {
               >
                 Interface utilisateur adaptative
               </Typography>
-              <SwitchView
-                toggleButtonList={modeButtons}
+              <ButtonGroup
+                buttonList={modeButtons}
                 viewMode={modeState}
                 onChange={(value: ModeType) => {
                   console.log("Mode:", value); // ← value est "edit" | "view" | "preview"
@@ -570,8 +570,8 @@ export const VariantesDecouleurs: Story = {
                 <Typography variant="subtitle1" gutterBottom>
                   Variante {color}
                 </Typography>
-                <SwitchView
-                  toggleButtonList={standardViewButtons}
+                <ButtonGroup
+                  buttonList={standardViewButtons}
                   viewMode={selectedViews[color]}
                   onChange={(value: StandardViewType) => {
                     setSelectedViews((prev) => ({ ...prev, [color]: value }));
@@ -627,8 +627,8 @@ export const TaillesDifferentes: Story = {
                 <Typography variant="subtitle1" gutterBottom>
                   Taille {size}
                 </Typography>
-                <SwitchView
-                  toggleButtonList={standardViewButtons}
+                <ButtonGroup
+                  buttonList={standardViewButtons}
                   viewMode={selectedViews[size]}
                   onChange={(value: StandardViewType) => {
                     setSelectedViews((prev) => ({ ...prev, [size]: value }));
@@ -676,8 +676,8 @@ export const OrientationVerticale: Story = {
               <Typography variant="subtitle1" gutterBottom>
                 Orientation verticale - Taille medium
               </Typography>
-              <SwitchView
-                toggleButtonList={extendedViewButtons}
+              <ButtonGroup
+                buttonList={extendedViewButtons}
                 viewMode={selectedView}
                 onChange={handleViewChange}
                 orientation="vertical"
@@ -690,8 +690,8 @@ export const OrientationVerticale: Story = {
               <Typography variant="subtitle1" gutterBottom>
                 Orientation horizontale (comparaison)
               </Typography>
-              <SwitchView
-                toggleButtonList={extendedViewButtons}
+              <ButtonGroup
+                buttonList={extendedViewButtons}
                 viewMode={selectedView}
                 onChange={handleViewChange}
                 orientation="horizontal"
@@ -733,8 +733,8 @@ export const AvecBoutonsDesactives: Story = {
           Gestion des boutons désactivés
         </Typography>
         <Paper sx={{ p: 3 }}>
-          <SwitchView
-            toggleButtonList={buttonsWithDisabled}
+          <ButtonGroup
+            buttonList={buttonsWithDisabled}
             viewMode={selectedView}
             onChange={handleViewChange}
             size="medium"
@@ -793,8 +793,8 @@ export const OptionsEtendues: Story = {
           Plus d'options d'affichage
         </Typography>
         <Paper sx={{ p: 3 }}>
-          <SwitchView
-            toggleButtonList={extendedViewButtons}
+          <ButtonGroup
+            buttonList={extendedViewButtons}
             viewMode={selectedView}
             onChange={handleViewChange}
             colorVariant="secondary"
@@ -804,7 +804,7 @@ export const OptionsEtendues: Story = {
             Vue actuelle: <strong>{selectedView}</strong>
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Cet exemple montre un SwitchView avec 5 options différentes en
+            Cet exemple montre un ButtonGroup avec 5 options différentes en
             variante secondary et taille large
           </Typography>
         </Paper>
@@ -868,10 +868,10 @@ export const Synchronisation: Story = {
           <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" gutterBottom>
-                SwitchView Principal
+                ButtonGroup Principal
               </Typography>
-              <SwitchView
-                toggleButtonList={standardViewButtons}
+              <ButtonGroup
+                buttonList={standardViewButtons}
                 viewMode={selectedView}
                 onChange={handleViewChange}
                 size="medium"
@@ -943,7 +943,7 @@ export const Synchronisation: Story = {
     docs: {
       description: {
         story:
-          "Démonstration de la synchronisation entre le SwitchView et d'autres composants. Cette story montre comment le SwitchView peut être intégré dans une interface complexe où la sélection peut provenir de différentes sources mais reste synchronisée.",
+          "Démonstration de la synchronisation entre le ButtonGroup et d'autres composants. Cette story montre comment le ButtonGroup peut être intégré dans une interface complexe où la sélection peut provenir de différentes sources mais reste synchronisée.",
       },
     },
   },
@@ -992,8 +992,8 @@ export const CasUtilisationComplexe: Story = {
               <Typography variant="subtitle1" gutterBottom>
                 Dashboard
               </Typography>
-              <SwitchView
-                toggleButtonList={dashboardButtons}
+              <ButtonGroup
+                buttonList={dashboardButtons}
                 viewMode={dashboardView}
                 onChange={(value: DashboardType) => setDashboardView(value)}
                 colorVariant="primary"
@@ -1011,8 +1011,8 @@ export const CasUtilisationComplexe: Story = {
               <Typography variant="subtitle1" gutterBottom>
                 Explorateur de fichiers
               </Typography>
-              <SwitchView
-                toggleButtonList={fileButtons}
+              <ButtonGroup
+                buttonList={fileButtons}
                 viewMode={fileView}
                 onChange={(value: FileType) => setFileView(value)}
                 colorVariant="secondary"
@@ -1029,8 +1029,8 @@ export const CasUtilisationComplexe: Story = {
               <Typography variant="subtitle1" gutterBottom>
                 Visualisation de données
               </Typography>
-              <SwitchView
-                toggleButtonList={dataButtons}
+              <ButtonGroup
+                buttonList={dataButtons}
                 viewMode={dataView}
                 onChange={(value: DataType) => setDataView(value)}
                 colorVariant="primary"
@@ -1096,7 +1096,7 @@ export const CasUtilisationComplexe: Story = {
     docs: {
       description: {
         story:
-          "Exemple d'utilisation complexe montrant comment le SwitchView peut être utilisé dans différents contextes au sein d'une même interface, avec différentes configurations (tailles, couleurs, orientations) selon le besoin. Chaque instance a son propre type inféré automatiquement.",
+          "Exemple d'utilisation complexe montrant comment le ButtonGroup peut être utilisé dans différents contextes au sein d'une même interface, avec différentes configurations (tailles, couleurs, orientations) selon le besoin. Chaque instance a son propre type inféré automatiquement.",
       },
     },
   },
@@ -1174,8 +1174,8 @@ export const BonnesPratiques: Story = {
               >
                 Utilisation de constantes et factory functions
               </Typography>
-              <SwitchView
-                toggleButtonList={commonViewButtons}
+              <ButtonGroup
+                buttonList={commonViewButtons}
                 viewMode={commonView}
                 onChange={handleCommonViewChange}
                 size="medium"
@@ -1199,8 +1199,8 @@ export const BonnesPratiques: Story = {
               >
                 Types spécialisés avec bouton désactivé
               </Typography>
-              <SwitchView
-                toggleButtonList={adminViewButtons}
+              <ButtonGroup
+                buttonList={adminViewButtons}
                 viewMode={adminView}
                 onChange={handleAdminViewChange}
                 colorVariant="secondary"
@@ -1289,8 +1289,8 @@ const handleChange = useCallback((value: ViewType) => {
               <pre
                 style={{ margin: 0, fontSize: "0.875rem", overflow: "auto" }}
               >
-                {`<SwitchView
-  toggleButtonList={buttons}
+                {`<ButtonGroup
+  buttonList={buttons}
   viewMode={view}
   onChange={handleChange} // ← Pas de type 'any' !
 />`}
@@ -1328,7 +1328,7 @@ const handleChange = useCallback((value: ViewType) => {
     docs: {
       description: {
         story:
-          "Cette story présente les meilleures pratiques pour utiliser le SwitchView avec un typage TypeScript optimal. Elle montre comment structurer votre code pour éviter les types 'any' et maximiser la sécurité de type.",
+          "Cette story présente les meilleures pratiques pour utiliser le ButtonGroup avec un typage TypeScript optimal. Elle montre comment structurer votre code pour éviter les types 'any' et maximiser la sécurité de type.",
       },
     },
   },

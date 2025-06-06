@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
 
-export interface ToggleButtonItem<T extends string = string> {
+export interface ButtonItem<T extends string = string> {
   value: T;
   icon: ReactNode;
   disabled?: boolean;
 }
 
-export interface SwitchViewProps<
-  T extends readonly ToggleButtonItem<string>[],
+export interface ButtonGroupProps<
+  T extends readonly ButtonItem<string>[],
 > {
   onChange: (value: T[number]["value"]) => void;
   viewMode: T[number]["value"];
-  toggleButtonList: T;
+  buttonList: T;
   colorVariant?: ColorVariant;
   size?: "small" | "medium" | "large";
   orientation?: "horizontal" | "vertical";

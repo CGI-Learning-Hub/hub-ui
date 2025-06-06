@@ -1,14 +1,14 @@
 import { StyledToggleButton, StyledToggleButtonGroup } from "./style";
-import { SwitchViewProps, ToggleButtonItem } from "./types";
+import { ButtonGroupProps, ButtonItem } from "./types";
 
-const SwitchView = <T extends readonly ToggleButtonItem<string>[]>({
+const ButtonGroup = <T extends readonly ButtonItem<string>[]>({
   viewMode,
-  toggleButtonList,
+  buttonList,
   onChange,
   colorVariant = "primary",
   size = "small",
   orientation = "horizontal",
-}: SwitchViewProps<T>) => {
+}: ButtonGroupProps<T>) => {
   return (
     <StyledToggleButtonGroup
       value={viewMode}
@@ -22,7 +22,7 @@ const SwitchView = <T extends readonly ToggleButtonItem<string>[]>({
       orientation={orientation}
       colorvariant={colorVariant}
     >
-      {toggleButtonList.map((button) => (
+      {buttonList.map((button) => (
         <StyledToggleButton
           key={button.value}
           value={button.value}
@@ -36,4 +36,4 @@ const SwitchView = <T extends readonly ToggleButtonItem<string>[]>({
   );
 };
 
-export default SwitchView;
+export default ButtonGroup;

@@ -194,4 +194,4 @@ export * from "./QueryError";
 export * from "./ResourceCard";
 export * from "./SearchInput";
 export * from "./TreeView";
-export * from "./SwitchView";
+export * from "./ButtonGroup";
