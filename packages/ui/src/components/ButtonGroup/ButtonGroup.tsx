@@ -30,6 +30,9 @@ const ButtonGroup = <T extends readonly ButtonItem<string>[]>({
           disabled={button.disabled}
         >
           {button.icon}
+          {button.text && (
+            <span style={{ marginLeft: 8 }}>{button.text}</span>
+          )}
         </StyledToggleButton>
       ))}
     </StyledToggleButtonGroup>

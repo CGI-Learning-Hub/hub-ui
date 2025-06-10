@@ -718,6 +718,197 @@ export const OrientationVerticale: Story = {
   },
 };
 
+export const AvecTexteOptionnel: Story = {
+  render: () => {
+    // Boutons avec texte
+    const buttonsWithText = [
+      {
+        value: "grid",
+        icon: <GridViewIcon />,
+        text: "Grille",
+      },
+      {
+        value: "table",
+        icon: <TableRowsIcon />,
+        text: "Tableau",
+      },
+      {
+        value: "list",
+        icon: <ListIcon />,
+        text: "Liste",
+      },
+    ] as const;
+
+    // Boutons sans texte (compatible avec l'ancien format)
+    const buttonsIconOnly = [
+      { value: "cards", icon: <ViewModuleIcon /> },
+      { value: "comfort", icon: <ViewComfyIcon /> },
+      { value: "calendar", icon: <CalendarViewMonthIcon /> },
+    ] as const;
+
+    // Boutons mixtes (certains avec texte, d'autres sans)
+    const buttonsMixed = [
+      {
+        value: "overview",
+        icon: <GridViewIcon />,
+        text: "Vue d'ensemble",
+      },
+      { value: "details", icon: <ViewComfyIcon /> }, // Pas de texte
+      {
+        value: "settings",
+        icon: <CalendarViewMonthIcon />,
+        text: "Paramètres",
+      },
+    ] as const;
+
+    type ButtonsWithTextType = (typeof buttonsWithText)[number]["value"];
+    type ButtonsIconOnlyType = (typeof buttonsIconOnly)[number]["value"];
+    type ButtonsMixedType = (typeof buttonsMixed)[number]["value"];
+
+    const [viewWithText, setViewWithText] =
+      useState<ButtonsWithTextType>("grid");
+    const [viewIconOnly, setViewIconOnly] =
+      useState<ButtonsIconOnlyType>("cards");
+    const [viewMixed, setViewMixed] = useState<ButtonsMixedType>("overview");
+
+    return (
+      <Box sx={{ p: 2 }}>
+        <Typography variant="h6" gutterBottom>
+          Texte optionnel dans les boutons
+        </Typography>
+
+        <Grid container spacing={3}>
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Avec texte
+              </Typography>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                display="block"
+                sx={{ mb: 2 }}
+              >
+                Tous les boutons ont un texte explicatif
+              </Typography>
+              <ButtonGroup
+                buttonList={buttonsWithText}
+                viewMode={viewWithText}
+                onChange={(value: ButtonsWithTextType) =>
+                  setViewWithText(value)
+                }
+                size="medium"
+              />
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Sélection: {viewWithText}
+              </Typography>
+            </Paper>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Icônes seulement
+              </Typography>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                display="block"
+                sx={{ mb: 2 }}
+              >
+                Format classique avec icônes uniquement
+              </Typography>
+              <ButtonGroup
+                buttonList={buttonsIconOnly}
+                viewMode={viewIconOnly}
+                onChange={(value: ButtonsIconOnlyType) =>
+                  setViewIconOnly(value)
+                }
+                colorVariant="secondary"
+                size="medium"
+              />
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Sélection: {viewIconOnly}
+              </Typography>
+            </Paper>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Format mixte
+              </Typography>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                display="block"
+                sx={{ mb: 2 }}
+              >
+                Certains boutons avec texte, d'autres sans
+              </Typography>
+              <ButtonGroup
+                buttonList={buttonsMixed}
+                viewMode={viewMixed}
+                onChange={(value: ButtonsMixedType) => setViewMixed(value)}
+                size="medium"
+                orientation="vertical"
+              />
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Sélection: {viewMixed}
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        <Paper sx={{ p: 3, mt: 3, backgroundColor: "info.light" }}>
+          <Typography variant="subtitle2" gutterBottom>
+            💡 Utilisation du texte optionnel
+          </Typography>
+          <Typography variant="body2" component="div">
+            • Le texte s'affiche automatiquement si la propriété{" "}
+            <code>text</code> est définie
+            <br />
+            • Compatible avec l'ancien format (icônes seules)
+            <br />
+            • Possibilité de mélanger boutons avec et sans texte
+            <br />• L'espacement est automatiquement ajusté entre l'icône et le
+            texte
+          </Typography>
+        </Paper>
+
+        <Paper sx={{ p: 2, mt: 2, backgroundColor: "grey.100" }}>
+          <Typography variant="subtitle2" gutterBottom>
+            Exemple de code
+          </Typography>
+          <pre style={{ margin: 0, fontSize: "0.875rem", overflow: "auto" }}>
+            {`const buttons = [
+  { 
+    value: "grid", 
+    icon: <GridIcon />, 
+    text: "Grille" // ← Texte optionnel
+  },
+  { 
+    value: "list", 
+    icon: <ListIcon /> // ← Pas de texte, seule l'icône
+  }
+] as const;`}
+          </pre>
+        </Paper>
+      </Box>
+    );
+  },
+  parameters: {
+    controls: { disable: true },
+    actions: { disable: true },
+    docs: {
+      description: {
+        story:
+          "Démonstration de l'utilisation du texte optionnel dans les boutons. Le texte s'affiche automatiquement si la propriété `text` est présente, permettant une grande flexibilité dans la présentation.",
+      },
+    },
+  },
+};
+
 export const AvecBoutonsDesactives: Story = {
   render: () => {
     const [selectedView, setSelectedView] =

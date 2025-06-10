@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface ButtonItem<T extends string = string> {
   value: T;
   icon: ReactNode;
+  text?: string;
   disabled?: boolean;
 }
 
