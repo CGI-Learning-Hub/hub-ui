@@ -1,5 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
-import { TreeItem2Props } from "@mui/x-tree-view/TreeItem2";
+import { TreeItemProps } from "@mui/x-tree-view/TreeItem";
 import { TreeViewBaseItem } from "@mui/x-tree-view/models/items";
 
 export type TreeViewItemId = string;
@@ -9,8 +9,8 @@ export type TreeViewItemsReorderingAction =
   | "make-child"
   | "move-to-parent";
 
-declare module "@mui/x-tree-view/TreeItem2" {
-  interface TreeItem2Props {
+declare module "@mui/x-tree-view/TreeItem" {
+  interface TreeItemProps {
     itemData?: CustomTreeViewItem;
   }
 }
@@ -37,7 +37,7 @@ export interface TreeViewProps {
   items: CustomTreeViewItem[];
   selectedItemId: string;
   handleSelectedItemChange: (
-    event: React.SyntheticEvent,
+    event: React.SyntheticEvent | null,
     itemIds: string | null,
   ) => void;
   iconColor?: string;
@@ -46,7 +46,7 @@ export interface TreeViewProps {
   defaultExpandedItems?: string[];
 }
 
-export interface ExtendedTreeItem2Props extends TreeItem2Props {
+export interface ExtendedTreeItemProps extends TreeItemProps {
   itemData?: CustomTreeViewItem;
   hasNoIcons: boolean;
   iconColor?:

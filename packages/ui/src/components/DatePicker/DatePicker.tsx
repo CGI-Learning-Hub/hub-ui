@@ -4,13 +4,12 @@ import {
   DatePickerProps as MuiDatePickerProps,
 } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { Dayjs } from "dayjs";
 import "dayjs/locale/en";
 import "dayjs/locale/fr";
 
 export type DatePickerProps = {
   adapterLocale?: string;
-} & MuiDatePickerProps<Dayjs>;
+} & MuiDatePickerProps;
 
 const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   adapterLocale = "fr",

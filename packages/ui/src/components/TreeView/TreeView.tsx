@@ -1,10 +1,10 @@
 import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
-import { TreeItem2Props } from "@mui/x-tree-view/TreeItem2";
+import { TreeItemProps } from "@mui/x-tree-view/TreeItem";
 import React, { FC, useEffect, useMemo, useState } from "react";
 
 import CustomTreeItem from "./components/CustomTreeItem";
 import { DEFAULT_CHILDREN_INDENT, TreeContainer } from "./style";
-import { ExtendedTreeItem2Props, TreeViewProps } from "./types";
+import { ExtendedTreeItemProps, TreeViewProps } from "./types";
 import { buildItemDataMap, findItemPath, getItemId } from "./utils";
 
 const TreeView: FC<TreeViewProps> = ({
@@ -39,7 +39,7 @@ const TreeView: FC<TreeViewProps> = ({
   }, [selectedItemId, items]);
 
   const handleExpandedItemsChange = (
-    event: React.SyntheticEvent,
+    event: React.SyntheticEvent | null,
     itemIds: string[],
   ) => {
     setExpandedItems(itemIds);
@@ -56,7 +56,7 @@ const TreeView: FC<TreeViewProps> = ({
         onSelectedItemsChange={handleSelectedItemChange}
         getItemId={getItemId}
         slots={{
-          item: (itemProps: TreeItem2Props) => {
+          item: (itemProps: TreeItemProps) => {
             const originalItemData = itemProps.itemId
               ? itemDataMap[itemProps.itemId]
               : undefined;
@@ -64,7 +64,7 @@ const TreeView: FC<TreeViewProps> = ({
               <CustomTreeItem
                 {...itemProps}
                 itemData={originalItemData}
-                iconColor={iconColor as ExtendedTreeItem2Props["iconColor"]}
+                iconColor={iconColor as ExtendedTreeItemProps["iconColor"]}
                 hasNoIcons={hasNoIcons}
               />
             );

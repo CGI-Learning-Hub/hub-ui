@@ -2,13 +2,13 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Box from "@mui/material/Box";
 import {
-  TreeItem2Content,
-  TreeItem2GroupTransition,
-  TreeItem2IconContainer,
-  TreeItem2Root,
-} from "@mui/x-tree-view/TreeItem2";
-import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
-import { useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
+  TreeItemContent,
+  TreeItemGroupTransition,
+  TreeItemIconContainer,
+  TreeItemRoot,
+} from "@mui/x-tree-view/TreeItem";
+import { TreeItemProvider } from "@mui/x-tree-view/TreeItemProvider";
+import { useTreeItem } from "@mui/x-tree-view/useTreeItem";
 import { type Ref } from "react";
 
 import { EllipsisWithTooltip } from "../../EllipsisWithTooltip";
@@ -19,11 +19,11 @@ import {
   treeContentStyle,
   treeItemRootStyle,
 } from "../style";
-import { ExtendedTreeItem2Props } from "../types";
+import { ExtendedTreeItemProps } from "../types";
 import { getIconComponent } from "../utils";
 
 function CustomTreeItem(
-  props: ExtendedTreeItem2Props & { ref?: Ref<HTMLLIElement> },
+  props: ExtendedTreeItemProps & { ref?: Ref<HTMLLIElement> },
 ) {
   const {
     id,
@@ -49,7 +49,7 @@ function CustomTreeItem(
     getGroupTransitionProps,
     getIconContainerProps,
     status,
-  } = useTreeItem2({ id, itemId, label, disabled, children, rootRef: ref });
+  } = useTreeItem({ id, itemId, label, disabled, children, rootRef: ref });
 
   const labelStyle = {
     ...(status.selected && { fontWeight: 600 }),
@@ -57,18 +57,18 @@ function CustomTreeItem(
   };
 
   return (
-    <TreeItem2Provider itemId={itemId}>
-      <TreeItem2Root
+    <TreeItemProvider itemId={itemId}>
+      <TreeItemRoot
         {...getRootProps()}
         data-treeview-item={itemId || ""}
         data-treeview-item-label={label || ""}
         sx={treeItemRootStyle}
       >
-        <TreeItem2Content {...getContentProps()} style={treeContentStyle}>
+        <TreeItemContent {...getContentProps()} style={treeContentStyle}>
           {!hasNoIcons && (
-            <TreeItem2IconContainer {...getIconContainerProps()} sx={iconStyle}>
+            <TreeItemIconContainer {...getIconContainerProps()} sx={iconStyle}>
               <IconComponent color={iconColor} sx={iconStyle} />
-            </TreeItem2IconContainer>
+            </TreeItemIconContainer>
           )}
           <EllipsisWithTooltip
             {...getLabelProps()}
@@ -83,15 +83,15 @@ function CustomTreeItem(
                 <KeyboardArrowRightIcon fontSize="small" />
               ))}
           </Box>
-        </TreeItem2Content>
+        </TreeItemContent>
         {children && (
-          <TreeItem2GroupTransition
+          <TreeItemGroupTransition
             {...getGroupTransitionProps()}
             style={status.expanded ? expandedGroupStyle : undefined}
           />
         )}
-      </TreeItem2Root>
-    </TreeItem2Provider>
+      </TreeItemRoot>
+    </TreeItemProvider>
   );
 }
 

@@ -48,7 +48,7 @@ const meta: Meta<typeof TreeView> = {
         required: true,
         type: {
           summary:
-            "(event: React.SyntheticEvent, itemIds: string | null) => void",
+            "(event: React.SyntheticEvent | null, itemIds: string | null) => void",
         },
       },
     },
@@ -362,7 +362,7 @@ export const Default: Story = {
     const [selectedId, setSelectedId] = useState<string>("");
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         console.log(`Élément sélectionné: ${itemId}`);
         if (itemId) {
           setSelectedId(itemId);
@@ -422,7 +422,7 @@ export const AvecIconesPersonnalisees: Story = {
     const [selectedId, setSelectedId] = useState<string>("bookmarks");
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         console.log(`Élément sélectionné: ${itemId}`);
         if (itemId) {
           setSelectedId(itemId);
@@ -458,7 +458,7 @@ export const SansIcones: Story = {
     const [selectedId, setSelectedId] = useState<string>("item1");
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         console.log(`Élément sélectionné: ${itemId}`);
         if (itemId) {
           setSelectedId(itemId);
@@ -540,7 +540,7 @@ export const StructureImbriquee: Story = {
     const [selectedId, setSelectedId] = useState<string>("level2-1");
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         console.log(`Élément sélectionné: ${itemId}`);
         if (itemId) {
           setSelectedId(itemId);
@@ -673,7 +673,7 @@ export const GrandeHauteurLimitee: Story = {
     const largeTreeItems = generateLargeTreeData();
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         if (itemId) {
           setSelectedId(itemId);
         }
@@ -816,7 +816,7 @@ export const Synchronicite: Story = {
     const [selectedItemId, setSelectedItemId] = useState<string>("reports");
 
     const handleSelectedItemChange = (
-      event: React.SyntheticEvent,
+      event: React.SyntheticEvent | null,
       itemId: string | null,
     ) => {
       console.log("TreeView sélection:", itemId);
@@ -1189,7 +1189,7 @@ export const TestAlignementLignes: Story = {
     const [selectedId, setSelectedId] = useState<string>("");
 
     const handleSelectedItemChange = useCallback(
-      (event: React.SyntheticEvent, itemId: string | null) => {
+      (event: React.SyntheticEvent | null, itemId: string | null) => {
         if (itemId) {
           setSelectedId(itemId);
         }
