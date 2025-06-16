@@ -3,7 +3,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import MUIRadioGroup, { RadioGroupProps } from "@mui/material/RadioGroup";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const RadioGroup = (props: RadioGroupProps) => {
   return (

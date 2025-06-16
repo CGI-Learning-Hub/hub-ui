@@ -1,5 +1,5 @@
 import MUICheckbox, { CheckboxProps } from "@mui/material/Checkbox";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const Checkbox = (props: CheckboxProps) => {
   return <MUICheckbox {...props} />;

@@ -3,7 +3,7 @@ import QuestionIcon from "@mui/icons-material/LiveHelp";
 import PublicIcon from "@mui/icons-material/Public";
 import StarIcon from "@mui/icons-material/Star";
 import { Box, Typography } from "@mui/material";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import ResourceCard from "../ResourceCard/ResourceCard";
 

@@ -1,4 +1,4 @@
-import { ColorItem, ColorPalette } from "@storybook/blocks";
+import { ColorItem, ColorPalette } from "@storybook/addon-docs/blocks";
 import React from "react";
 
 export const TemplatePalette = ({ theme }) => {

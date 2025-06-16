@@ -5,7 +5,7 @@ import StepButton from "@mui/material/StepButton";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper, { StepperProps } from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 

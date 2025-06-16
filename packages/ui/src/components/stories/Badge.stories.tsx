@@ -1,7 +1,7 @@
 import MailIcon from "@mui/icons-material/Mail";
 import { Box } from "@mui/material";
 import Badge from "@mui/material/Badge";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",

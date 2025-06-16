@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { ToastContainer, type ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

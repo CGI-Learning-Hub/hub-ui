@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { FunctionComponent } from "react";
 
 import { cd77MuiTheme } from "../../src";

@@ -2,7 +2,7 @@ import TabContext from "@mui/lab/TabContext";
 import MUITabList, { TabListProps } from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Tab from "@mui/material/Tab";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 const TabList = (props: TabListProps) => {

@@ -1,5 +1,5 @@
 import MUIPaper, { PaperProps } from "@mui/material/Paper";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const Paper = (props: PaperProps) => {
   return (

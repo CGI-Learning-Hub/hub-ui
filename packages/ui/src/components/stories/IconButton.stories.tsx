@@ -1,6 +1,6 @@
 import SchoolIcon from "@mui/icons-material/School";
 import IconButton from "@mui/material/IconButton";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof IconButton> = {
   title: "Components/IconButton",

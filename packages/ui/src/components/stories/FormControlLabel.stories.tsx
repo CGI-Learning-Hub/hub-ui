@@ -4,7 +4,7 @@ import MUIFormControlLabel, {
 } from "@mui/material/FormControlLabel";
 import MUIRadio from "@mui/material/Radio";
 import MUISwitch from "@mui/material/Switch";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const FormControlLabel = (props: FormControlLabelProps) => {
   return <MUIFormControlLabel {...props} />;
