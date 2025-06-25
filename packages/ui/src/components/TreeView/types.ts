@@ -29,6 +29,7 @@ export interface CustomTreeViewItemProps {
   label: string;
   iconType?: IconType;
   customIcon?: SvgIconComponent;
+  children?: CustomTreeViewItem[];
 }
 
 export type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
