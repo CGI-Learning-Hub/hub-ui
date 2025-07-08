@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
+  ActionBar,
   Alert,
   Button,
   ColorPicker,
@@ -143,6 +144,17 @@ function App() {
           <Alert severity="warning">Warning alert</Alert>
           <Alert severity="error">Error alert</Alert>
           <ColorPicker value={color} onChange={setColor} />
+          <ActionBar
+            leftButtons={[
+              { label: "Ouvrir", action: () => ({}) },
+              { label: "Fermer", action: () => ({}) },
+              { label: "Partager", action: () => ({}) },
+            ]}
+            rightButtons={[
+              { label: "Tout selectionner", action: () => ({}) },
+              { label: "Tout déselectionner", action: () => ({}) },
+            ]}
+          ></ActionBar>
         </header>
       </div>
     </ThemeProvider>
