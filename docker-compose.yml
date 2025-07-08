@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     image: "hub-ui:1.0.0"
