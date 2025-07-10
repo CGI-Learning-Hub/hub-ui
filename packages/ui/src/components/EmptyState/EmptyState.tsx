@@ -19,6 +19,7 @@ export type EmptyStateProps = (
   title: string;
   description?: string;
   descriptionProps?: TypographyProps;
+  footer?: ReactNode;
   svgProps?: React.SVGAttributes<SVGSVGElement>;
   titleProps?: TypographyProps;
 } & StackProps;
@@ -30,6 +31,7 @@ const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
   title,
   description,
   descriptionProps,
+  footer,
   svgProps,
   titleProps,
   imageHeight = 200,
@@ -53,6 +55,7 @@ const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
           {description}
         </Typography>
       ) : null}
+      {footer ? <Box mt={3}>{footer}</Box> : null}
     </Stack>
   );
 };
