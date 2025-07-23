@@ -15,6 +15,7 @@ import {
   defaultMuiTheme,
   entDefaultMuiTheme,
   imtMuiTheme,
+  ent1DMuiTheme,
 } from "../packages/theme/src/themes";
 
 export const decorators = [
@@ -26,6 +27,7 @@ export const decorators = [
       default: defaultMuiTheme,
       entDefault: entDefaultMuiTheme,
       imt: imtMuiTheme,
+      ent1D: ent1DMuiTheme,
     },
     defaultTheme: "default",
     Provider: ThemeProvider,
