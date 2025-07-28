@@ -1,61 +1,58 @@
-import { FC } from "react";
-
-import { Box, Button } from "../index";
 import {
-  actionBarButtonStyle,
-  actionBarWrapper,
-  flexEndBoxStyle,
-  flexStartBoxStyle,
+  LeftAction,
+  LeftActionsContainer,
+  RightAction,
+  RightActionsContainer,
+  Root,
 } from "./style";
 import { ActionBarProps } from "./types";
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = ({
-  leftButtons,
-  rightButtons,
-  boxLeftWrapperProps,
-  boxRightWrapperProps,
-  buttonLeftProps,
-  buttonRightProps,
-  ...otherProps
+  leftActions,
+  rightActions,
+  slotProps = {},
 }) => {
-  const { sx: otherSxProps, ...restProps } = otherProps;
-  const sxProps = Array.isArray(otherSxProps) ? otherSxProps : [otherSxProps];
-
   return (
-    <Box sx={[actionBarWrapper, ...sxProps]} {...restProps}>
-      <Box
-        sx={{ ...flexStartBoxStyle, ...boxLeftWrapperProps?.sx }}
-        {...boxLeftWrapperProps}
+    <Root direction="row" justifyContent="space-between" {...slotProps.root}>
+      <LeftActionsContainer
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center"
+        width="100%"
+        {...slotProps.leftActionsContainer}
       >
-        {leftButtons.map((item) => (
-          <Button
+        {leftActions.map((item) => (
+          <LeftAction
             key={item.label}
+            variant="text"
             color="primary"
-            sx={{ ...actionBarButtonStyle, ...buttonLeftProps?.sx }}
             onClick={item.action}
-            {...buttonLeftProps}
+            {...slotProps.leftActions}
           >
             {item.label}
-          </Button>
+          </LeftAction>
         ))}
-      </Box>
-      <Box
-        sx={{ ...flexEndBoxStyle, ...boxRightWrapperProps?.sx }}
-        {...boxRightWrapperProps}
+      </LeftActionsContainer>
+      <RightActionsContainer
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        width="100%"
+        {...slotProps.rightActionsContainer}
       >
-        {rightButtons.map((item) => (
-          <Button
+        {rightActions.map((item) => (
+          <RightAction
             key={item.label}
+            variant="text"
             color="primary"
-            sx={{ ...actionBarButtonStyle, ...buttonRightProps?.sx }}
             onClick={item.action}
-            {...buttonRightProps}
+            {...slotProps.rightActions}
           >
             {item.label}
-          </Button>
+          </RightAction>
         ))}
-      </Box>
-    </Box>
+      </RightActionsContainer>
+    </Root>
   );
 };
 
