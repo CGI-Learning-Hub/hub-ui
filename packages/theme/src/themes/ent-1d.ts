@@ -57,18 +57,63 @@ const theme: Theme = {
 const muiOptions = {
   typography: {
     h1: {
-      fontSize: "1.5rem",
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
       fontWeight: 400,
+      textTransform: "uppercase",
     },
     h2: {
-      fontSize: "1.25rem",
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
       fontWeight: 700,
+      textTransform: "uppercase",
     },
     h3: {
-      fontSize: "1.25rem",
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
       fontWeight: 400,
+      textTransform: "uppercase",
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: "outlined" },
+              style: {
+                fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+                fontSize: "22px",
+                borderRadius: "12px !important",
+                "&:hover": {
+                  transform: "translateY(-.2rem)",
+                  boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
+                }
+              },
+            },
+            {
+              props: { variant: "filled" },
+              style: {
+                fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+                fontSize: "22px",
+                borderRadius: "12px !important",
+                "&:hover": {
+                  transform: "translateY(-.2rem)",
+                  boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
+                }
+              },
+            },
+            {
+              props: { variant: "text" },
+              style: {
+                fontFamily: '"Arimo", "Roboto", "Arial", sans-serif',
+                fontSize: "16px",
+                borderRadius: "8px !important",
+              },
+            },
+          ]
+        }
+      }
+    }
+  }
 };
 
 const muiTheme = getMuiTheme(theme, muiOptions);
