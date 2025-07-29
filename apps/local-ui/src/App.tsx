@@ -146,12 +146,12 @@ function App() {
           <Alert severity="error">Error alert</Alert>
           <ColorPicker value={color} onChange={setColor} />
           <ActionBar
-            leftButtons={[
+            leftActions={[
               { label: "Ouvrir", action: () => ({}) },
               { label: "Fermer", action: () => ({}) },
               { label: "Partager", action: () => ({}) },
             ]}
-            rightButtons={[
+            rightActions={[
               { label: "Tout selectionner", action: () => ({}) },
               { label: "Tout déselectionner", action: () => ({}) },
             ]}

@@ -56,6 +56,7 @@ const theme: Theme = {
 
 const muiOptions = {
   typography: {
+    fontFamily: '"Arimo", "Roboto", "Arial", sans-serif',
     h1: {
       fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
       fontWeight: 400,
@@ -83,6 +84,7 @@ const muiOptions = {
                 fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
                 fontSize: "22px",
                 borderRadius: "12px !important",
+                textTransform: "uppercase !important",
                 "&:hover": {
                   transform: "translateY(-.2rem)",
                   boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
@@ -95,6 +97,7 @@ const muiOptions = {
                 fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
                 fontSize: "22px",
                 borderRadius: "12px !important",
+                textTransform: "uppercase !important",
                 "&:hover": {
                   transform: "translateY(-.2rem)",
                   boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
@@ -104,15 +107,33 @@ const muiOptions = {
             {
               props: { variant: "text" },
               style: {
-                fontFamily: '"Arimo", "Roboto", "Arial", sans-serif',
                 fontSize: "16px",
                 borderRadius: "8px !important",
+                textTransform: "uppercase !important",
               },
             },
           ]
         }
       }
-    }
+    },
+    MuiActionBar: {
+
+      styleOverrides: {
+        root: {
+          background: 'rgba(255, 255, 255, 0.8)',
+          color: '#000000',
+        },
+        leftActionsContainer:{
+          gap: '8px'
+        },
+        leftActions: {
+          defaultProps: {
+            variant:"contained",
+          },
+          color: '#FFFFFF',
+        }
+      },
+    },
   }
 };
 
