@@ -109,7 +109,6 @@ const muiOptions = {
               style: {
                 fontSize: "16px",
                 borderRadius: "8px !important",
-                textTransform: "uppercase !important",
               },
             },
           ]
@@ -117,21 +116,32 @@ const muiOptions = {
       }
     },
     MuiActionBar: {
-
       styleOverrides: {
         root: {
           background: 'rgba(255, 255, 255, 0.8)',
           color: '#000000',
         },
-        leftActionsContainer:{
+        leftActionsContainer: {
+          gap: '8px'
+        },
+        rightActionsContainer: {
           gap: '8px'
         },
         leftActions: {
-          defaultProps: {
-            variant:"contained",
-          },
-          color: '#FFFFFF',
+          fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+          fontSize: "22px",
+          borderRadius: "12px !important",
+          textTransform: "uppercase !important",
+        },
+        rightActions: {
+          fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+          fontSize: "22px",
+          borderRadius: "12px !important",
+          textTransform: "uppercase !important",
         }
+      },
+      defaultProps: {
+        buttonVariant: "contained",
       },
     },
   }

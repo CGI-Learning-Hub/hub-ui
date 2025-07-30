@@ -6,12 +6,17 @@ import {
   Root,
 } from "./style";
 import { ActionBarProps } from "./types";
+import { useTheme } from "@mui/material";
+
+
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = ({
   leftActions,
   rightActions,
   slotProps = {},
 }) => {
+  const theme = useTheme();
+  
   return (
     <Root direction="row" justifyContent="space-between" {...slotProps.root}>
       <LeftActionsContainer
@@ -24,7 +29,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = ({
         {leftActions.map((item) => (
           <LeftAction
             key={item.label}
-            variant="text"
+            // @ts-expect-error custom component
+            variant={theme.components?.MuiActionBar?.defaultProps?.buttonVariant ?? "text"}
             color="primary"
             onClick={item.action}
             {...slotProps.leftActions}
@@ -43,7 +49,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = ({
         {rightActions.map((item) => (
           <RightAction
             key={item.label}
-            variant="text"
+            // @ts-expect-error custom component
+            variant={theme.components?.MuiActionBar?.defaultProps?.buttonVariant ?? "text"}
             color="primary"
             onClick={item.action}
             {...slotProps.rightActions}
