@@ -1,15 +1,19 @@
-import { BoxProps, ButtonProps, SxProps } from "@mui/material";
+import { ButtonProps } from "@mui/material/Button";
+import { StackProps } from "@mui/material/Stack";
 
-export interface IActionBarButton {
+export type ActionBarButton = {
   label: string;
   action: () => void;
-}
+};
 
 export type ActionBarProps = {
-  leftButtons: IActionBarButton[];
-  rightButtons: IActionBarButton[];
-  boxLeftWrapperProps?: BoxProps;
-  boxRightWrapperProps?: BoxProps;
-  buttonLeftProps?: ButtonProps;
-  buttonRightProps?: ButtonProps;
-} & BoxProps;
+  leftActions: ActionBarButton[];
+  rightActions: ActionBarButton[];
+  slotProps?: {
+    leftActions?: ButtonProps;
+    leftActionsContainer?: StackProps;
+    rightActions?: ButtonProps;
+    rightActionsContainer?: StackProps;
+    root?: StackProps;
+  };
+};

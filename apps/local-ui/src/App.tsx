@@ -1,8 +1,7 @@
-import { ThemeProvider } from "@cgi-learning-hub/theme";
+import { ThemeProvider } from "../../../packages/theme/src";
 import {
   ActionBar,
   Alert,
-  Button,
   ColorPicker,
   CustomFile,
   DatePicker,
@@ -26,13 +25,14 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import type {} from "@mui/material/themeCssVarsAugmentation";
+import type { } from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
 
 import "./App.css";
 import ExampleComponent from "./components/ExampleComponent";
+import { Button } from "../../../packages/ui/src/components/Button"
 
-type ThemeId = "campus" | "crna" | "default" | "imt";
+type ThemeId = "campus" | "crna" | "default" | "imt" | "ent1D";
 
 function App() {
   const [themeId, setThemeId] = useState<ThemeId>("default");
@@ -77,6 +77,7 @@ function App() {
             <ToggleButton value="crna">CRNA</ToggleButton>
             <ToggleButton value="campus">Campus</ToggleButton>
             <ToggleButton value="imt">IMT</ToggleButton>
+            <ToggleButton value="ent1D">1D</ToggleButton>
           </ToggleButtonGroup>
           <Button
             variant="outlined"
@@ -145,12 +146,12 @@ function App() {
           <Alert severity="error">Error alert</Alert>
           <ColorPicker value={color} onChange={setColor} />
           <ActionBar
-            leftButtons={[
+            leftActions={[
               { label: "Ouvrir", action: () => ({}) },
               { label: "Fermer", action: () => ({}) },
               { label: "Partager", action: () => ({}) },
             ]}
-            rightButtons={[
+            rightActions={[
               { label: "Tout selectionner", action: () => ({}) },
               { label: "Tout déselectionner", action: () => ({}) },
             ]}

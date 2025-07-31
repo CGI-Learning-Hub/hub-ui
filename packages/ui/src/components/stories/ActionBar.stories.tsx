@@ -1,61 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ActionBar } from "../ActionBar";
 import { Box } from "@mui/material";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-// const meta: Meta<typeof ActionBar> = {
-//   title: "Components/ActionBar",
-//   component: ActionBar,
-// };
-// export default meta;
-
-// type Story = StoryObj<typeof ActionBar>;
-
-// export const Default: Story = {
-//   args: {
-//     leftButtons: [
-//       { label: "Ouvrir", action: () => ({}) },
-//       { label: "Fermer", action: () => ({}) },
-//       { label: "Partager", action: () => ({}) },
-//       { label: "AutreBouton", action: () => ({}) },
-//     ],
-//     rightButtons: [
-//       { label: "Tout selectionner", action: () => ({}) },
-//       { label: "Tout déselectionner", action: () => ({}) },
-//     ],
-//   },
-// };
+import { ActionBar } from "../ActionBar";
 
 const meta: Meta<typeof ActionBar> = {
   title: "Components/ActionBar",
   component: ActionBar,
   tags: ["autodocs"],
   argTypes: {
-    leftButtons: {
+    leftActions: {
       description: "Liste de boutons à afficher à gauche de la barre",
       control: "object",
     },
-    rightButtons: {
+    rightActions: {
       description: "Liste de boutons à afficher à droite de la barre",
       control: "object",
     },
-    boxLeftWrapperProps: {
-      description: "Props supplémentaires pour le conteneur de gauche (Box)",
-      control: "object",
-    },
-    boxRightWrapperProps: {
-      description: "Props supplémentaires pour le conteneur de droite (Box)",
-      control: "object",
-    },
-    buttonLeftProps: {
-      description: "Props supplémentaires pour les boutons à gauche",
-      control: "object",
-    },
-    buttonRightProps: {
-      description: "Props supplémentaires pour les boutons à droite",
-      control: "object",
-    },
-    sx: {
-      description: "Styles supplémentaires à appliquer au wrapper principal",
+    slotProps: {
+      description: "Props supplémentaires",
       control: "object",
     },
   },
@@ -69,81 +31,82 @@ const sampleAction = (msg: string) => () => alert(msg);
 
 export const Default: Story = {
   args: {
-    leftButtons: [
-      { label: "Retour", action: sampleAction("Retour") },
-    ],
-    rightButtons: [
+    leftActions: [{ label: "Retour", action: sampleAction("Retour") }],
+    rightActions: [
       { label: "Valider", action: sampleAction("Valider") },
       { label: "Annuler", action: sampleAction("Annuler") },
     ],
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={Default.args?.leftButtons ?? []}
-            rightButtons={Default.args?.rightButtons ?? []}
-          ></ActionBar>
+          leftActions={Default.args?.leftActions ?? []}
+          rightActions={Default.args?.rightActions ?? []}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Affiche une `ActionBar` classique avec des boutons à gauche et à droite.",
+        story:
+          "Affiche une `ActionBar` classique avec des boutons à gauche et à droite.",
       },
     },
   },
 };
 
-export const OnlyLeftButtons: Story = {
+export const OnlyLeftActions: Story = {
   args: {
-    leftButtons: [
+    leftActions: [
       { label: "Précédent", action: sampleAction("Précédent") },
       { label: "Fermer", action: sampleAction("Fermer") },
     ],
-    rightButtons: [],
+    rightActions: [],
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={OnlyLeftButtons.args?.leftButtons ?? []}
-            rightButtons={OnlyLeftButtons.args?.rightButtons ?? []}
-          ></ActionBar>
+          leftActions={OnlyLeftActions.args?.leftActions ?? []}
+          rightActions={OnlyLeftActions.args?.rightActions ?? []}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Affiche uniquement les boutons à gauche. Utile pour les étapes intermédiaires ou navigation simple.",
+        story:
+          "Affiche uniquement les boutons à gauche. Utile pour les étapes intermédiaires ou navigation simple.",
       },
     },
   },
 };
 
-export const OnlyRightButtons: Story = {
+export const OnlyRightActions: Story = {
   args: {
-    leftButtons: [],
-    rightButtons: [
+    leftActions: [],
+    rightActions: [
       { label: "Sauvegarder", action: sampleAction("Sauvegarder") },
     ],
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={OnlyRightButtons.args?.leftButtons ?? []}
-            rightButtons={OnlyRightButtons.args?.rightButtons ?? []}
-          ></ActionBar>
+          leftActions={OnlyRightActions.args?.leftActions ?? []}
+          rightActions={OnlyRightActions.args?.rightActions ?? []}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Affiche uniquement des boutons à droite. Fréquent pour les actions finales.",
+        story:
+          "Affiche uniquement des boutons à droite. Fréquent pour les actions finales.",
       },
     },
   },
@@ -151,37 +114,35 @@ export const OnlyRightButtons: Story = {
 
 export const WithCustomButtonProps: Story = {
   args: {
-    leftButtons: [
-      { label: "Aide", action: sampleAction("Aide") },
-    ],
-    rightButtons: [
-      { label: "Envoyer", action: sampleAction("Envoyer") },
-    ],
-    buttonLeftProps: {
-      color: "secondary",
-      variant: "outlined",
-    },
-    buttonRightProps: {
-      color: "success",
-      variant: "contained",
+    leftActions: [{ label: "Aide", action: sampleAction("Aide") }],
+    rightActions: [{ label: "Envoyer", action: sampleAction("Envoyer") }],
+    slotProps: {
+      leftActions: {
+        color: "secondary",
+        variant: "outlined",
+      },
+      rightActions: {
+        color: "success",
+        variant: "contained",
+      },
     },
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={WithCustomButtonProps.args?.leftButtons ?? []}
-            rightButtons={WithCustomButtonProps.args?.rightButtons ?? []}
-            buttonLeftProps={WithCustomButtonProps.args?.buttonLeftProps ?? {}}
-            buttonRightProps={WithCustomButtonProps.args?.buttonRightProps ?? {}}
-          ></ActionBar>
+          leftActions={WithCustomButtonProps.args?.leftActions ?? []}
+          rightActions={WithCustomButtonProps.args?.rightActions ?? []}
+          slotProps={WithCustomButtonProps.args?.slotProps}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Personnalisation des boutons via `buttonLeftProps` et `buttonRightProps`.",
+        story:
+          "Personnalisation des boutons via `buttonLeftProps` et `buttonRightProps`.",
       },
     },
   },
@@ -189,35 +150,33 @@ export const WithCustomButtonProps: Story = {
 
 export const WithBoxCustomProps: Story = {
   args: {
-    leftButtons: [
-      { label: "Infos", action: sampleAction("Infos") },
-    ],
-    rightButtons: [
-      { label: "Suivant", action: sampleAction("Suivant") },
-    ],
-    boxLeftWrapperProps: {
-      sx: { backgroundColor: "lightgray", p: 1 },
-    },
-    boxRightWrapperProps: {
-      sx: { backgroundColor: "whitesmoke", p: 1 },
+    leftActions: [{ label: "Infos", action: sampleAction("Infos") }],
+    rightActions: [{ label: "Suivant", action: sampleAction("Suivant") }],
+    slotProps: {
+      leftActionsContainer: {
+        sx: { backgroundColor: "lightgray", p: 1 },
+      },
+      rightActionsContainer: {
+        sx: { backgroundColor: "whitesmoke", p: 1 },
+      },
     },
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={WithBoxCustomProps.args?.leftButtons ?? []}
-            rightButtons={WithBoxCustomProps.args?.rightButtons ?? []}
-            boxLeftWrapperProps={WithBoxCustomProps.args?.boxLeftWrapperProps ?? {}}
-            boxRightWrapperProps={WithBoxCustomProps.args?.boxRightWrapperProps ?? {}}
-          ></ActionBar>
+          leftActions={WithBoxCustomProps.args?.leftActions ?? []}
+          rightActions={WithBoxCustomProps.args?.rightActions ?? []}
+          slotProps={WithBoxCustomProps.args?.slotProps}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Ajoute du style aux conteneurs de gauche et de droite via `boxLeftWrapperProps` et `boxRightWrapperProps`.",
+        story:
+          "Ajoute du style aux conteneurs de gauche et de droite via `boxLeftWrapperProps` et `boxRightWrapperProps`.",
       },
     },
   },
@@ -225,31 +184,39 @@ export const WithBoxCustomProps: Story = {
 
 export const ResponsiveExample: Story = {
   args: {
-    leftButtons: [
-      { label: "Mobile", action: sampleAction("Mobile") },
-    ],
-    rightButtons: [
-      { label: "Continue", action: sampleAction("Continue") },
-    ],
-    sx: [
-      { flexDirection: "column", gap: 1, '@media (min-width: 600px)': { flexDirection: "row", justifyContent: "space-between" } },
-    ],
+    leftActions: [{ label: "Mobile", action: sampleAction("Mobile") }],
+    rightActions: [{ label: "Continue", action: sampleAction("Continue") }],
+    slotProps: {
+      root: {
+        direction: "column",
+        spacing: 1,
+        sx: [
+          {
+            "@media (min-width: 600px)": {
+              flexDirection: "row",
+              justifyContent: "space-between",
+            },
+          },
+        ],
+      },
+    },
   },
   render: () => {
-    return(
+    return (
       <Box sx={{ p: 4 }}>
         <ActionBar
-            leftButtons={ResponsiveExample.args?.leftButtons ?? []}
-            rightButtons={ResponsiveExample.args?.rightButtons ?? []}
-            sx={ResponsiveExample.args?.sx ?? {}}
-          ></ActionBar>
+          leftActions={ResponsiveExample.args?.leftActions ?? []}
+          rightActions={ResponsiveExample.args?.rightActions ?? []}
+          slotProps={ResponsiveExample.args?.slotProps}
+        />
       </Box>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: "Démontre l’adaptabilité de la barre via une prop `sx` responsive.",
+        story:
+          "Démontre l’adaptabilité de la barre via une prop `sx` responsive.",
       },
     },
   },
