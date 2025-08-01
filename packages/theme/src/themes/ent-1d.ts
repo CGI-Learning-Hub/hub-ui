@@ -1,6 +1,6 @@
 import { getMuiTheme } from "../mui";
 import { getTailwindThemeConfig } from "../tailwind";
-import { Theme } from "../types";
+import { CreateThemeOptions, Theme } from "../types";
 
 const theme: Theme = {
   palette: {
@@ -77,43 +77,40 @@ const muiOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
-          variants: [
-            {
-              props: { variant: "outlined" },
-              style: {
-                fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
-                fontSize: "22px",
-                borderRadius: "12px !important",
-                textTransform: "uppercase !important",
-                "&:hover": {
-                  transform: "translateY(-.2rem)",
-                  boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
-                }
-              },
+          fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+          fontSize: "22px",
+          borderRadius: "12px",
+          textTransform: "uppercase",
+          transition: "transform 0.1s ease",
+        },
+      },
+      variants: [
+        {
+          props: { variant: "outlined" },
+          style: {
+            "&:hover": {
+              transform: "translateY(-0.2rem)",
+              boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
             },
-            {
-              props: { variant: "filled" },
-              style: {
-                fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
-                fontSize: "22px",
-                borderRadius: "12px !important",
-                textTransform: "uppercase !important",
-                "&:hover": {
-                  transform: "translateY(-.2rem)",
-                  boxShadow: "0 .2rem 0 0 var(--theme-palette-primary-dark) !important",
-                }
-              },
+          },
+        },
+        {
+          props: { variant: "contained" },
+          style: {
+            "&:hover": {
+              transform: "translateY(-0.2rem)",
+              boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
             },
-            {
-              props: { variant: "text" },
-              style: {
-                fontSize: "16px",
-                borderRadius: "8px !important",
-              },
-            },
-          ]
-        }
-      }
+          },
+        },
+        {
+          props: { variant: "text" },
+          style: {
+            fontSize: "16px",
+            borderRadius: "8px",
+          },
+        },
+      ],
     },
     MuiActionBar: {
       styleOverrides: {
@@ -122,23 +119,23 @@ const muiOptions = {
           color: '#000000',
         },
         leftActionsContainer: {
-          gap: '8px'
+          gap: '8px',
         },
         rightActionsContainer: {
-          gap: '8px'
+          gap: '8px',
         },
         leftActions: {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
           fontSize: "22px",
-          borderRadius: "12px !important",
-          textTransform: "uppercase !important",
+          borderRadius: "12px",
+          textTransform: "uppercase",
         },
         rightActions: {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
           fontSize: "22px",
-          borderRadius: "12px !important",
-          textTransform: "uppercase !important",
-        }
+          borderRadius: "12px",
+          textTransform: "uppercase",
+        },
       },
       defaultProps: {
         buttonVariant: "contained",
