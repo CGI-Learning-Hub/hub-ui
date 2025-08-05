@@ -1,19 +1,20 @@
 {
   "name": "@cgi-learning-hub/monorepo",
-  "private": true,
+  "type": "module",
   "scripts": {
-    "build": "pnpm -r run build",
-    "build-icons-library": "cd packages/icons && pnpm run build",
-    "build-icons-library-watch": "cd packages/icons && pnpm run build:watch",
-    "build-theme-library": "cd packages/theme && pnpm run build",
-    "build-theme-library-watch": "cd packages/theme && pnpm run build:watch",
-    "build-ui-library": "cd packages/ui && pnpm run build",
-    "build-ui-library-watch": "cd packages/ui && pnpm run build:watch",
+    "dev": "pnpm --filter cgi-learning-hub-local-ui dev",
+    "build": "pnpm --filter '@cgi-learning-hub/*' build",
+    "build:icons": "pnpm --filter @cgi-learning-hub/icons build",
+    "build:theme": "pnpm --filter @cgi-learning-hub/theme build",
+    "build:ui": "pnpm --filter @cgi-learning-hub/ui build",
+    "watch:icons": "pnpm --filter @cgi-learning-hub/icons build:watch",
+    "watch:theme": "pnpm --filter @cgi-learning-hub/theme build:watch",
+    "watch:ui": "pnpm --filter @cgi-learning-hub/ui build:watch",
+    "preview": "pnpm --filter cgi-learning-hub-local preview",
     "clean": "rm -rf */**/node_modules && rm -rf node_modules pnpm-lock.yaml && rm -rf */**/dist",
     "prettier": "npx prettier --write packages/**/src apps/local-ui/src",
     "publish": "pnpm publish -r --access public",
     "publish:dev": "pnpm publish -r --access public --tag develop",
-    "start-app-local-ui": "cd apps/local-ui && pnpm run dev",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -29,7 +30,7 @@
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
-    "@vitejs/plugin-react": "4.5.2",
+    "@vitejs/plugin-react-swc": "3.11.0",
     "glob": "11.0.3",
     "prettier": "3.5.3",
     "react": "19.1.0",
@@ -37,10 +38,10 @@
     "react-toastify": "11.0.5",
     "storybook": "9.0.10",
     "typescript": "5.8.3",
-    "vite": "6.3.5",
+    "vite": "7.0.6",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-lib-inject-css": "2.2.2",
     "vite-plugin-svgr": "4.3.0",
-    "vite-tsconfig-paths": "4.3.2"
+    "vite-tsconfig-paths": "5.1.4"
   }
 }

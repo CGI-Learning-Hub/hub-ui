@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import ClientErrorSvg from "../../../assets/client-error.svg?react";
 import { EmptyState } from "../EmptyState";
 
 const meta: Meta<typeof EmptyState> = {
@@ -27,7 +26,7 @@ type Story = StoryObj<typeof EmptyState>;
 
 export const Default: Story = {
   args: {
-    image: <ClientErrorSvg height="100%" />,
+    imageSrc: "/assets/client-error.svg",
     title: "Une erreur est  survenue",
   },
 };

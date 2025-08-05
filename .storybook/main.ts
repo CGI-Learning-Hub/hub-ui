@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: [
@@ -10,11 +9,12 @@ const config: StorybookConfig = {
     "../packages/ui/src/**/*.mdx",
     "../packages/ui/src/components/stories/*.stories.@(ts|tsx)",
   ],
-  async viteFinal(config) {
+  viteFinal: async (config) => {
     const { mergeConfig } = await import("vite");
 
     return mergeConfig(config, {
-      plugins: [svgr()],
+      plugins: [],
+      assetsInclude: ["**/*.svg"],
     });
   },
   addons: [

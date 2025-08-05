@@ -1,8 +1,6 @@
 {
   "name": "@cgi-learning-hub/ui",
   "version": "1.7.0-dev",
-  "private": false,
-  "author": "CGI Learning-hub Team",
   "description": "@cgi-learning-hub/ui is an open-source React component library that implements UI for HUB's features",
   "keywords": [
     "cgi-learning-hub",
@@ -11,12 +9,12 @@
     "hub",
     "hub-ui"
   ],
+  "author": "CGI Learning Hub Team",
   "repository": {
     "type": "git",
     "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
     "directory": "packages/ui"
   },
-  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
@@ -44,17 +42,19 @@
     "react-color": "2.19.3",
     "react-dropzone": "14.3.8"
   },
-  "devDependencies": {
-    "@reduxjs/toolkit": "2.8.2",
-    "@types/react": "19.1.8",
-    "@types/react-color": "3.0.13",
-    "@types/react-dom": "19.1.6"
-  },
   "peerDependencies": {
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@mui/material": "^7",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
-  }
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "2.8.2",
+    "@types/react": "19.1.8",
+    "@types/react-color": "3.0.13",
+    "@types/react-dom": "19.1.6"
+  },
+  "sideEffects": false,
+  "private": false
 }

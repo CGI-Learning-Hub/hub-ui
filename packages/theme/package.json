@@ -1,8 +1,6 @@
 {
   "name": "@cgi-learning-hub/theme",
   "version": "1.7.0-dev",
-  "private": false,
-  "author": "CGI Learning-hub Team",
   "description": "@cgi-learning-hub/theme is a theme compatible with tailwind and mui",
   "keywords": [
     "cgi-learning-hub",
@@ -11,12 +9,12 @@
     "hub",
     "hub-ui"
   ],
+  "author": "CGI Learning Hub Team",
   "repository": {
     "type": "git",
     "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
     "directory": "packages/theme"
   },
-  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
@@ -39,12 +37,14 @@
     "@fontsource/arimo": "5.2.6",
     "@mui/utils": "7.1.1"
   },
-  "devDependencies": {
-    "tailwindcss": "3.4.17"
-  },
   "peerDependencies": {
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@mui/material": "^7"
-  }
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  },
+  "sideEffects": false,
+  "private": false
 }
