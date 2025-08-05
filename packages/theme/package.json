@@ -35,12 +35,12 @@
     "build:watch": "vite build --watch"
   },
   "dependencies": {
-    "@fontsource/roboto": "5.2.6",
     "@fontsource/arimo": "5.2.6",
-    "@mui/utils": "7.1.1"
+    "@fontsource/roboto": "5.2.6",
+    "@mui/utils": "7.3.0"
   },
   "devDependencies": {
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "4.1.11"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
