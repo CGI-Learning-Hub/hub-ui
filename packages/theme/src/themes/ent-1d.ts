@@ -1,6 +1,7 @@
+import { ThemeOptions } from "@mui/material";
 import { getMuiTheme } from "../mui";
 import { getTailwindThemeConfig } from "../tailwind";
-import { CreateThemeOptions, Theme } from "../types";
+import { Theme } from "../types";
 
 const theme: Theme = {
   palette: {
@@ -142,7 +143,7 @@ const muiOptions = {
       },
     },
   }
-};
+} as ThemeOptions;
 
 const muiTheme = getMuiTheme(theme, muiOptions);
 
