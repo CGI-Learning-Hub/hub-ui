@@ -73,6 +73,21 @@ const muiOptions = {
       fontWeight: 400,
       textTransform: "uppercase",
     },
+    h4: {
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+      fontWeight: 700,
+      textTransform: "uppercase",
+    },
+    h5: {
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+      fontWeight: 400,
+      textTransform: "uppercase",
+    },
+    h6: {
+      fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
+      fontWeight: 700,
+      textTransform: "uppercase",
+    },
   },
   components: {
     MuiButton: {
@@ -80,33 +95,56 @@ const muiOptions = {
         root: {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
           fontSize: "22px",
-          borderRadius: "12px",
-          textTransform: "uppercase",
           transition: "transform 0.1s ease",
+
+          // Display darker shade corresponding to current color for button's boxShadow prop on hover
+          "&.MuiButton-containedPrimary:hover, &.MuiButton-outlinedPrimary:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
+          },
+          "&.MuiButton-containedSecondary:hover, &.MuiButton-outlinedSecondary:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-secondary-dark)",
+          },
+          "&.MuiButton-containedRed:hover, &.MuiButton-outlinedRed:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-red-dark)",
+          },
+          "&.MuiButton-containedBlue:hover, &.MuiButton-outlinedBlue:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-blue-dark)",
+          },
+          "&.MuiButton-containedGreen:hover, &.MuiButton-outlinedGreen:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-green-dark)",
+          },
+          "&.MuiButton-containedYellow:hover, &.MuiButton-outlinedYellow:hover": {
+            boxShadow: "0 0.2rem 0 0 var(--theme-palette-yellow-dark)",
+          },
         },
       },
       variants: [
         {
           props: { variant: "outlined" },
           style: {
+            textTransform: "uppercase",
+            padding: "2px 16px 0",
+            borderRadius: "12px",
             "&:hover": {
               transform: "translateY(-0.2rem)",
-              boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
             },
           },
         },
         {
           props: { variant: "contained" },
           style: {
+            textTransform: "uppercase",
+            padding: "2px 16px 0",
+            borderRadius: "12px",
             "&:hover": {
               transform: "translateY(-0.2rem)",
-              boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
             },
           },
         },
         {
           props: { variant: "text" },
           style: {
+            fontFamily: '"Arimo", "Roboto", "Arial", sans-serif',
             fontSize: "16px",
             borderRadius: "8px",
           },
@@ -129,12 +167,14 @@ const muiOptions = {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
           fontSize: "22px",
           borderRadius: "12px",
+          padding: "2px 16px 0",
           textTransform: "uppercase",
         },
         rightActions: {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
           fontSize: "22px",
           borderRadius: "12px",
+          padding: "2px 16px 0",
           textTransform: "uppercase",
         },
       },
