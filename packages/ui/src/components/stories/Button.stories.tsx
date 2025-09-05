@@ -6,7 +6,24 @@ import { Button } from "../Button";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
-  component: Button,
+  component: Button,argTypes: {
+    color: {
+      control: "select",
+      options: [
+        "inherit",
+        "default",
+        "primary",
+        "secondary",
+        "error",
+        "info",
+        "success",
+        "warning",
+      ],
+    },
+    disabled: {
+      control: "boolean",
+    },
+  },
 };
 export default meta;
 
