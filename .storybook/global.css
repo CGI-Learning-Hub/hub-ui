@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "KGJune";
+  src: url("./assets/fonts/KGJuneBug.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
