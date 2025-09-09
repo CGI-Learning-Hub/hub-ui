@@ -1,6 +1,6 @@
 {
   "name": "@cgi-learning-hub/icons",
-  "version": "1.9.0",
+  "version": "1.9.0-dev",
   "private": false,
   "author": "CGI Learning-hub Team",
   "description": "@cgi-learning-hub/icons is an open-source React component library icons specific that implements icons for HUB's features",
