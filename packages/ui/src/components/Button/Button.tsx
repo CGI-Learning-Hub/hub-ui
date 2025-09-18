@@ -3,10 +3,10 @@ import { CSSObject, styled } from "@mui/material/styles";
 
 const StyledButton = styled(MUIButton)(({ color, theme }) => {
   const outlinedVariant = theme.components?.MuiButton?.variants?.find(
-    (v): boolean => (v.props as Partial<ButtonProps>)?.variant === "outlined"
+    (v): boolean => (v.props as Partial<ButtonProps>)?.variant === "outlined",
   );
   const containedVariant = theme.components?.MuiButton?.variants?.find(
-    (v): boolean => (v.props as Partial<ButtonProps>)?.variant === "contained"
+    (v): boolean => (v.props as Partial<ButtonProps>)?.variant === "contained",
   );
   const outlinedStyle = outlinedVariant?.style as CSSObject | undefined;
   const containedStyle = containedVariant?.style as CSSObject | undefined;
@@ -31,7 +31,7 @@ const StyledButton = styled(MUIButton)(({ color, theme }) => {
       borderWidth: containedStyle?.borderWidth ?? 2,
       textTransform: containedStyle?.textTransform ?? "none",
     },
-  }
+  };
 });
 
 const Button: React.FunctionComponent<ButtonProps> = ({
@@ -42,3 +42,5 @@ const Button: React.FunctionComponent<ButtonProps> = ({
 };
 
 export default Button;
+
+export type { ButtonProps };
