@@ -31,9 +31,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
-    "build:watch": "vite build --watch"
+    "watch": "vite build --watch"
   },
   "devDependencies": {
     "@types/react": "19.1.9",

@@ -19,20 +19,20 @@ React monorepo containing components, theme and icons libraries
 pnpm install
 
 # run your playground app
-pnpm run start-app-playground
+pnpm run dev
 
 # depending in apps/playground/vite.config.ts
 # if you comment "resolve" object part, you need to run build and then (re-)run playground app
 pnpm run build
-pnpm run start-app-playground
+pnpm run dev
 
 # build specific package (your choices)
-pnpm run build-icons-library
-pnpm run build-theme-library
-pnpm run build-ui-library
+pnpm run build:icons
+pnpm run build:theme
+pnpm run build:ui
 
 # run total
-pnpm clean; pnpm install; pnpm build; pnpm install; pnpm run start-app-playground # we do a reinstall in order to apply playground the updated deps workspace:*
+pnpm clean; pnpm install; pnpm build; pnpm install; pnpm run dev # we do a reinstall in order to apply playground the updated deps workspace:*
 ```
 
 ### Docker mode
@@ -44,26 +44,26 @@ the file `cli.sh` is available for each project in order to run your instance
 ./cli.sh install
 
 # run your playground app
-./cli.sh runPlayground
+./cli.sh dev
 
 # depending in apps/playground/vite.config.ts
 # if you comment "resolve" object part, you need to run build and then (re-)run playground app
 ./cli.sh build
-./cli.sh runPlayground
+./cli.sh dev
 
 # build specific package (your choices)
-./cli.sh buildIconsLibrary
-./cli.sh buildThemeLibrary
-./cli.sh buildUiLibrary
+./cli.sh buildIcons
+./cli.sh buildTheme
+./cli.sh buildUi
 
 # run total
-./cli.sh clean install build install runPlayground # we do a reinstall in order to apply playground the updated deps workspace:*
+./cli.sh clean install build install dev # we do a reinstall in order to apply playground the updated deps workspace:*
 ```
 
 ### CLI shortcut (with docker)
 
 ```bash
-./cli.sh install build runPlayground
+./cli.sh install build dev
 ```
 
 ### Publish
@@ -84,7 +84,7 @@ pnpm run publish
 
 ### Extra command line
 
-Please check all arguments in `cli.sh` and adapt it with/without docker for running lint/test/format...
+Please check all arguments in `cli.sh` and adapt it with/without docker for running format...
 
 ## Storybook dev
 
@@ -111,14 +111,14 @@ If you use `file:` mode, you will need to build your library local and in your m
 
 ```bash
 # run build watch mode
-./cli.sh buildIconsLibraryWatch
-./cli.sh buildThemeLibraryWatch
-./cli.sh buildUiLibraryWatch
+./cli.sh watchIcons
+./cli.sh watchTheme
+./cli.sh watchUi
 
 # same instruction without docker
-pnpm run build-icons-library-watch
-pnpm run build-theme-library-watch
-pnpm run build-ui-library-watch
+pnpm run watch:icons
+pnpm run watch:theme
+pnpm run watch:ui
 
 ```
 
@@ -195,12 +195,12 @@ volumes:
   - ../project/hub-ui/packages/ui:/hub-ui/packages/ui <== localisation de votre projet ui local
 ```
 
-From this library repository, run `pnpm run build:watch` from any libs you would like to work
+From this library repository, run `pnpm run watch` from any libs you would like to work
 And from the another repository (NextJS), `next dev` and anytime you make any change from this repository, ViteJS will upgrade again your dist during its build-time but you will need to re-install your local library package
 
 TLDR :
 
-- (From repository library) : `pnpm run build:watch`
+- (From repository library) : `pnpm run watch`
 - (From NextJS repository) : `pnpm run install`
 - (From NextJS repository) : `next dev` => run your local but can be make earlier
 - (From repository library) : Make any change => ViteJS build watch will proceed

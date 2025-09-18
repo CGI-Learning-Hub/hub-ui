@@ -18,125 +18,147 @@ case `uname -s` in
     fi
 esac
 
-# install global
-install () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm install
+# Development & serving
+dev() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run dev
 }
 
-# run playground
-runPlayground() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run start-app-playground
+devWithWatch() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run dev:with-watch
 }
 
-# run storybook
-storybook() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run storybook --no-open
+preview() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run preview
 }
 
-# build icons library
-buildIconsLibrary() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-icons-library
-}
-
-# build icons library watch mode
-buildIconsLibraryWatch() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-icons-library-watch
-}
-
-# build theme library
-buildThemeLibrary() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-theme-library
-}
-
-# build theme library watch mode
-buildThemeLibraryWatch() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-theme-library-watch
-}
-
-# build ui library
-buildUiLibrary() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-ui-library
-}
-
-# build ui library watch mode
-buildUiLibraryWatch() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-ui-library-watch
-}
-
-# global build
+# Building
 build() {
   docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build
 }
 
-# publish
+buildIcons() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build:icons
+}
+
+buildTheme() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build:theme
+}
+
+buildUi() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build:ui
+}
+
+buildPlayground() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build:playground
+}
+
+# Watching
+watch() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run watch
+}
+
+watchIcons() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run watch:icons
+}
+
+watchTheme() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run watch:theme
+}
+
+watchUi() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run watch:ui
+}
+
+# Storybook
+storybook() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run storybook --no-open
+}
+
+buildStorybook() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run build-storybook
+}
+
+# Publishing
 publish() {
   docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run publish
 }
 
-# clean projects
-clean () {
+publishDev() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run publish:dev
+}
+
+# Setup & maintenance
+install() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm install
+}
+
+clean() {
   docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run clean && docker-compose down ; rm -rf .pnpm-store ; docker rmi hub-ui:1.0.0
 }
 
-test() {
-  docker-compose run -u "$USER_UID:$GROUP_GID" app pnpm run test
-}
-
-lint() {
-  docker-compose run -u "$USER_UID:$GROUP_GID" app pnpm run lint
-}
-
-formatLint() {
-  docker-compose run -u "$USER_UID:$GROUP_GID" app pnpm run lint-fix
+format() {
+  docker-compose run -u "$USER_UID:$GROUP_GID" app pnpm run format
 }
 
 for param in "$@"
 do
   case $param in
-    clean)
-      clean
+    dev)
+      dev
       ;;
-    install)
-      install
+    devWithWatch)
+      devWithWatch
       ;;
-    runPlayground)
-      runPlayground
-      ;;
-    storybook)
-      storybook
-      ;;
-    buildIconsLibrary)
-      buildIconsLibrary
-      ;;
-    buildIconsLibraryWatch)
-      buildIconsLibraryWatch
-      ;;
-    buildThemeLibrary)
-      buildThemeLibrary
-      ;;
-    buildThemeLibraryWatch)
-      buildThemeLibraryWatch
-      ;;
-    buildUiLibrary)
-      buildUiLibrary
-      ;;
-    buildUiLibraryWatch)
-      buildUiLibraryWatch
+    preview)
+      preview
       ;;
     build)
       build
       ;;
+    buildIcons)
+      buildIcons
+      ;;
+    buildTheme)
+      buildTheme
+      ;;
+    buildUi)
+      buildUi
+      ;;
+    buildPlayground)
+      buildPlayground
+      ;;
+    watch)
+      watch
+      ;;
+    watchIcons)
+      watchIcons
+      ;;
+    watchTheme)
+      watchTheme
+      ;;
+    watchUi)
+      watchUi
+      ;;
+    storybook)
+      storybook
+      ;;
+    buildStorybook)
+      buildStorybook
+      ;;
     publish)
       publish
       ;;
-    test)
-      test
+    publishDev)
+      publishDev
       ;;
-    lint)
-      lint
+    install)
+      install
       ;;
-    formatLint)
-      formatLint
+    clean)
+      clean
+      ;;
+    format)
+      format
       ;;
     *)
       echo "Invalid argument : $param"

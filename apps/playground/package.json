@@ -4,7 +4,8 @@
   "main": "index.tsx",
   "scripts": {
     "dev": "vite",
-    "serve": "vite preview"
+    "preview": "vite preview",
+    "build": "vite build"
   },
   "dependencies": {
     "@cgi-learning-hub/icons": "workspace:*",
