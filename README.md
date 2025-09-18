@@ -4,7 +4,7 @@ React monorepo containing components, theme and icons libraries
 
 ## How to Test setup
 
-- `apps/local-ui` is the local app to try out your libraries and will be run via http://localhost:3000
+- `apps/playground` is the local app to try out your libraries and will be run via http://localhost:3000
 - `packages/*` will be your libraries
 
 ### Without docker (using your environment)
@@ -18,13 +18,13 @@ React monorepo containing components, theme and icons libraries
 # install global project
 pnpm install
 
-# run your local app dev
-pnpm run start-app-local-ui
+# run your playground app
+pnpm run start-app-playground
 
-# depending in apps/local-ui/vite.config.ts
-# if you comment "resolve" object part, you need to run build and then (re-)run local app dev
+# depending in apps/playground/vite.config.ts
+# if you comment "resolve" object part, you need to run build and then (re-)run playground app
 pnpm run build
-pnpm run start-app-local-ui
+pnpm run start-app-playground
 
 # build specific package (your choices)
 pnpm run build-icons-library
@@ -32,7 +32,7 @@ pnpm run build-theme-library
 pnpm run build-ui-library
 
 # run total
-pnpm clean; pnpm install; pnpm build; pnpm install; pnpm run start-app-local-ui # we do a reinstall in order to apply local-ui the updated deps workspace:*
+pnpm clean; pnpm install; pnpm build; pnpm install; pnpm run start-app-playground # we do a reinstall in order to apply playground the updated deps workspace:*
 ```
 
 ### Docker mode
@@ -43,13 +43,13 @@ the file `cli.sh` is available for each project in order to run your instance
 # install global project
 ./cli.sh install
 
-# run your local app dev
-./cli.sh runLocalUi
+# run your playground app
+./cli.sh runPlayground
 
-# depending in apps/local-ui/vite.config.ts
-# if you comment "resolve" object part, you need to run build and then (re-)run local app dev
+# depending in apps/playground/vite.config.ts
+# if you comment "resolve" object part, you need to run build and then (re-)run playground app
 ./cli.sh build
-./cli.sh runLocalUi
+./cli.sh runPlayground
 
 # build specific package (your choices)
 ./cli.sh buildIconsLibrary
@@ -57,13 +57,13 @@ the file `cli.sh` is available for each project in order to run your instance
 ./cli.sh buildUiLibrary
 
 # run total
-./cli.sh clean install build install runLocalUi # we do a reinstall in order to apply local-ui the updated deps workspace:*
+./cli.sh clean install build install runPlayground # we do a reinstall in order to apply playground the updated deps workspace:*
 ```
 
 ### CLI shortcut (with docker)
 
 ```bash
-./cli.sh install build runLocalUi
+./cli.sh install build runPlayground
 ```
 
 ### Publish
@@ -91,7 +91,7 @@ Please check all arguments in `cli.sh` and adapt it with/without docker for runn
 Try `pnpm run storybook` to run storybook in `http://localhost:6006`
 alternatively you can run `./cli.sh storybook` if you use `docker`
 
-# apps / local-ui
+# apps / playground
 
 in `vite.config.ts` you can comment out `resolve` to try your truth libs
 resolve allows you to have `live reload` in your libs.

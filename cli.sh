@@ -23,9 +23,9 @@ install () {
   docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm install
 }
 
-# run local test ui
-runLocalUi() {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run start-app-local-ui
+# run playground
+runPlayground() {
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" app pnpm run start-app-playground
 }
 
 # run storybook
@@ -99,8 +99,8 @@ do
     install)
       install
       ;;
-    runLocalUi)
-      runLocalUi
+    runPlayground)
+      runPlayground
       ;;
     storybook)
       storybook
@@ -122,9 +122,6 @@ do
       ;;
     buildUiLibraryWatch)
       buildUiLibraryWatch
-      ;;
-    runLocalUi)
-      runLocalUi
       ;;
     build)
       build

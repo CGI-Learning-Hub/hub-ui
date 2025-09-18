@@ -10,10 +10,10 @@
     "build-ui-library": "cd packages/ui && pnpm run build",
     "build-ui-library-watch": "cd packages/ui && pnpm run build:watch",
     "clean": "rm -rf */**/node_modules && rm -rf node_modules pnpm-lock.yaml && rm -rf */**/dist",
-    "prettier": "npx prettier --write packages/**/src apps/local-ui/src",
+    "prettier": "npx prettier --write packages/**/src apps/**/src",
     "publish": "pnpm publish -r --access public",
     "publish:dev": "pnpm publish -r --access public --tag develop",
-    "start-app-local-ui": "cd apps/local-ui && pnpm run dev",
+    "start-app-playground": "cd apps/playground && pnpm run dev",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

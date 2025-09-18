@@ -1,5 +1,5 @@
 {
-  "name": "hub-ui-local",
+  "name": "cgi-learning-hub-playground",
   "private": true,
   "main": "index.tsx",
   "scripts": {
