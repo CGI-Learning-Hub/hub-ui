@@ -1,6 +1,12 @@
 {
   "name": "@cgi-learning-hub/monorepo",
   "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "pnpm --filter cgi-learning-hub-playground dev",
     "dev:with-watch": "pnpm --parallel run dev & pnpm run watch",
@@ -33,7 +39,7 @@
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
-    "@vitejs/plugin-react": "4.7.0",
+    "@vitejs/plugin-react-swc": "4.1.0",
     "glob": "11.0.3",
     "prettier": "3.6.2",
     "react": "19.1.1",
@@ -41,10 +47,10 @@
     "react-toastify": "11.0.5",
     "storybook": "9.0.18",
     "typescript": "5.9.2",
-    "vite": "6.3.5",
+    "vite": "6.3.6",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-lib-inject-css": "2.2.2",
-    "vite-plugin-svgr": "4.3.0",
-    "vite-tsconfig-paths": "4.3.2"
+    "vite-plugin-svgr": "4.5.0",
+    "vite-tsconfig-paths": "5.1.4"
   }
 }

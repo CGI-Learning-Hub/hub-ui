@@ -1,45 +1,29 @@
-import react from "@vitejs/plugin-react";
-import { glob } from "glob";
-import { fileURLToPath } from "node:url";
-import { extname, relative, resolve } from "path";
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
-// https://vitejs.dev/config/
+import { dependencies, peerDependencies } from "./package.json";
+
 export default defineConfig({
-  plugins: [react(), libInjectCss(), dts({ include: ["src"] })],
+  plugins: [react(), libInjectCss(), dts({ rollupTypes: true })],
   build: {
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      formats: ["es", "cjs"]
+      name: "CGILearningHubTheme",
+      formats: ["es", "cjs"],
+      fileName: (format) => `index.${format === "es" ? "es" : "cjs"}.js`,
     },
     rollupOptions: {
       external: [
-        "react",
-        "react-dom",
+        ...Object.keys(dependencies),
+        ...Object.keys(peerDependencies),
         "react/jsx-runtime",
-        "@emotion/react",
-        "@emotion/styled",
-        "@mui/material",
-        "@mui/styled-engine-sc",
       ],
-      input: Object.fromEntries(
-        // https://rollupjs.org/configuration-options/#input
-        glob.sync("src/**/*.{ts,tsx}").map((file) => [
-          // 1. The name of the entry point
-          // lib/nested/foo.js becomes nested/foo
-          relative("src", file.slice(0, file.length - extname(file).length)),
-          // 2. The absolute path to the entry file
-          // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-          fileURLToPath(new URL(file, import.meta.url)),
-        ])
-      ),
-      output: {
-        assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].[format].js"
-      },
     },
+    sourcemap: true,
+    minify: false,
   },
 });

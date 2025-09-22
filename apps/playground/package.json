@@ -1,7 +1,7 @@
 {
   "name": "cgi-learning-hub-playground",
   "private": true,
-  "main": "index.tsx",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",

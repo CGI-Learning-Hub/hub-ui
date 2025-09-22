@@ -1,22 +1,18 @@
 {
   "name": "@cgi-learning-hub/icons",
   "version": "1.9.0-dev",
-  "private": false,
-  "author": "CGI Learning-hub Team",
-  "description": "@cgi-learning-hub/icons is an open-source React component library icons specific that implements icons for HUB's features",
+  "description": "SVG React icon components for Hub's design system, extending @mui/icons-material with additional general-purpose icons.",
   "keywords": [
     "cgi-learning-hub",
     "react",
-    "react-component",
-    "hub",
-    "hub-ui"
+    "icons"
   ],
+  "author": "CGI Learning Hub Team",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
+    "url": "git+https://github.com/CGI-Learning-Hub/hub-ui.git",
     "directory": "packages/icons"
   },
-  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
@@ -25,18 +21,16 @@
       "require": "./dist/index.cjs.js"
     }
   },
+  "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "vite build",
     "watch": "vite build --watch"
-  },
-  "devDependencies": {
-    "@types/react": "19.1.9",
-    "@types/react-dom": "19.1.7"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
@@ -44,5 +38,9 @@
     "@mui/material": "^7",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.9",
+    "@types/react-dom": "19.1.7"
   }
 }

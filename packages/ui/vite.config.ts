@@ -1,46 +1,38 @@
-import react from "@vitejs/plugin-react";
-import { glob } from "glob";
-import { fileURLToPath } from "node:url";
-import { extname, relative, resolve } from "path";
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import svgr from "vite-plugin-svgr";
 
-// https://vitejs.dev/config/
+import { dependencies, peerDependencies } from "./package.json";
+
 export default defineConfig({
-  plugins: [react(), dts({ include: ["src"] }), libInjectCss(), svgr()],
+  plugins: [
+    react(),
+    svgr(),
+    libInjectCss(),
+    dts({
+      rollupTypes: true,
+      exclude: ["src/**/*.stories.*", "src/**/*.test.*"],
+    }),
+  ],
   build: {
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
+      name: "CGILearningHubUI",
       formats: ["es", "cjs"],
+      fileName: (format) => `index.${format === "es" ? "es" : "cjs"}.js`,
     },
     rollupOptions: {
       external: [
-        "react",
-        "react-dom",
+        ...Object.keys(dependencies),
+        ...Object.keys(peerDependencies),
         "react/jsx-runtime",
-        "@emotion/react",
-        "@emotion/styled",
-        "@mui/material",
-        "@mui/styled-engine-sc",
       ],
-      input: Object.fromEntries(
-        // https://rollupjs.org/configuration-options/#input
-        glob.sync("src/**/*.{ts,tsx}").map((file) => [
-          // 1. The name of the entry point
-          // lib/nested/foo.js becomes nested/foo
-          relative("src", file.slice(0, file.length - extname(file).length)),
-          // 2. The absolute path to the entry file
-          // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-          fileURLToPath(new URL(file, import.meta.url)),
-        ])
-      ),
-      output: {
-        assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].[format].js",
-      },
     },
+    sourcemap: true,
+    minify: false,
   },
 });

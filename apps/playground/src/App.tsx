@@ -1,7 +1,8 @@
-import { ThemeProvider } from "../../../packages/theme/src";
+import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   ActionBar,
   Alert,
+  Button,
   ColorPicker,
   CustomFile,
   DatePicker,
@@ -25,12 +26,11 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import type { } from "@mui/material/themeCssVarsAugmentation";
+import type {} from "@mui/material/themeCssVarsAugmentation";
 import React, { useState } from "react";
 
 import "./App.css";
 import ExampleComponent from "./components/ExampleComponent";
-import { Button } from "../../../packages/ui/src/components/Button"
 
 type ThemeId = "campus" | "crna" | "default" | "imt" | "ent1D";
 
