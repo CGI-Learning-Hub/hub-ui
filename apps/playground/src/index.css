@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
