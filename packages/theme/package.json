@@ -21,7 +21,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
-    }
+    },
+    "./index.css": "./dist/theme.css"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",

@@ -2,12 +2,11 @@ import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import { libInjectCss } from "vite-plugin-lib-inject-css";
 
-import { dependencies, peerDependencies } from "./package.json";
+import { peerDependencies } from "./package.json";
 
 export default defineConfig({
-  plugins: [react(), libInjectCss(), dts({ rollupTypes: true })],
+  plugins: [react(), dts({ rollupTypes: true })],
   build: {
     copyPublicDir: false,
     lib: {
@@ -18,7 +17,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        ...Object.keys(dependencies),
+        "@mui/utils",
         ...Object.keys(peerDependencies),
         "react/jsx-runtime",
       ],
