@@ -1,5 +1,12 @@
 {
   "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true
+  },
   "include": ["src", "../theme/src/types/mui.ts"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["dist", "node_modules", "docs", "**/*.stories.*"]
 }
