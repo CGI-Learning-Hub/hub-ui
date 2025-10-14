@@ -1,10 +1,16 @@
-import { Box, ClickAwayListener } from "@mui/material";
+import { Box, ClickAwayListener, SxProps } from "@mui/material";
 import { FC, KeyboardEvent, useState } from "react";
 import { CirclePicker, ColorResult } from "react-color";
 
+import { CheckmarkSwatch } from "./CheckmarkSwatch";
 import { ColorPickerIcon } from "./ColorPickerIcon";
-import { PickerBackgroundBox, circlePickerStyle } from "./styles";
-import { ColorPickerProps, HexaColor } from "./types";
+import { DEFAULT_COLOR_OPTIONS } from "./constants";
+import {
+  PickerBackgroundBox,
+  checkmarkSwatchBox,
+  circlePickerStyle,
+} from "./styles";
+import { ColorOption, ColorPickerProps, HexaColor } from "./types";
 
 const ColorPicker: FC<ColorPickerProps> = ({
   disabled = false,
@@ -12,6 +18,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
   value,
   onChange,
   slotProps,
+  useCheckmarkSwatch = false,
 }) => {
   const [isCirclePickerVisible, setIsCirclePickerVisible] = useState(false);
 
@@ -30,8 +37,23 @@ const ColorPicker: FC<ColorPickerProps> = ({
     }
   };
 
+  // Normaliser les options pour gérer à la fois string[] et ColorOption[]
+  const normalizedOptions: ColorOption[] = options
+    ? options.map((option) =>
+        typeof option === "string"
+          ? { color: option, showBorder: false }
+          : { ...option, showBorder: option.showBorder ?? false },
+      )
+    : DEFAULT_COLOR_OPTIONS;
+
+  // Extraire uniquement les couleurs pour CirclePicker
+  const colorStrings = normalizedOptions.map((opt) => opt.color);
+
   return (
-    <ClickAwayListener onClickAway={handleClose}>
+    <ClickAwayListener
+      onClickAway={handleClose}
+      {...slotProps?.clickAwayListener}
+    >
       <PickerBackgroundBox
         disabled={disabled}
         tabIndex={0}
@@ -39,22 +61,48 @@ const ColorPicker: FC<ColorPickerProps> = ({
       >
         <ColorPickerIcon onClick={handlePickerToggle} fill={value} />
         {isCirclePickerVisible && (
-          <Box sx={circlePickerStyle}>
-            <CirclePicker
-              colors={options}
-              color={value}
-              onChange={(newColor: ColorResult) => {
-                onChange(newColor.hex as HexaColor);
-                handleClose();
-              }}
-              circleSize={20}
-              circleSpacing={5}
-              width="15rem"
-            />
+          <Box
+            sx={
+              {
+                ...circlePickerStyle,
+                ...(slotProps?.circlePickerBox?.sx || {}),
+              } as SxProps
+            }
+          >
+            {useCheckmarkSwatch ? (
+              <Box sx={checkmarkSwatchBox}>
+                {normalizedOptions.map((option) => (
+                  <CheckmarkSwatch
+                    key={option.color}
+                    color={option.color}
+                    active={option.color === value}
+                    onClick={() => {
+                      onChange(option.color as HexaColor);
+                      handleClose();
+                    }}
+                    showBorder={option.showBorder}
+                  />
+                ))}
+              </Box>
+            ) : (
+              <CirclePicker
+                colors={colorStrings}
+                color={value}
+                onChange={(newColor: ColorResult) => {
+                  onChange(newColor.hex as HexaColor);
+                  handleClose();
+                }}
+                circleSize={20}
+                circleSpacing={5}
+                width="15rem"
+                {...slotProps?.circlePicker}
+              />
+            )}
           </Box>
         )}
       </PickerBackgroundBox>
     </ClickAwayListener>
   );
 };
+
 export default ColorPicker;

@@ -1,20 +1,34 @@
-import { ClickAwayListenerProps } from "@mui/material";
+import { BoxProps, ClickAwayListenerProps } from "@mui/material";
 import { SVGAttributes } from "react";
 import { CirclePickerProps } from "react-color";
 
 export type HexaColor = `#${string}`;
 
+export type SwatchProps = {
+  color: string;
+  onClick: () => void;
+  active: boolean;
+  showBorder?: boolean;
+};
+
+export type ColorOption = {
+  color: string;
+  showBorder?: boolean;
+};
+
 export type ColorPickerSlotProps = {
   clickAwayListener?: Omit<ClickAwayListenerProps, "onClickAway" | "children">;
   circlePicker?: Omit<CirclePickerProps, "colors" | "color" | "onChange">;
+  circlePickerBox?: BoxProps;
 };
 
 export type ColorPickerProps = {
   value: HexaColor;
   disabled?: boolean;
-  options?: string[];
+  options?: string[] | ColorOption[];
   slotProps?: ColorPickerSlotProps;
   onChange: (value: HexaColor) => void;
+  useCheckmarkSwatch?: boolean;
 };
 
 export type PickerBackGroundBoxProps = {
@@ -22,3 +36,8 @@ export type PickerBackGroundBoxProps = {
 };
 
 export type CustomSVGProps = SVGAttributes<SVGSVGElement>;
+
+export interface StyledSwatchBoxProps {
+  showBorder?: boolean;
+  backgroundColor?: string;
+}
