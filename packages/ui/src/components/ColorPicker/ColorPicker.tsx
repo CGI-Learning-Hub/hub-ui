@@ -18,6 +18,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
   value,
   onChange,
   slotProps,
+  useCheckmarkSwatch = false,
 }) => {
   const [isCirclePickerVisible, setIsCirclePickerVisible] = useState(false);
 
@@ -68,7 +69,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
               } as SxProps
             }
           >
-            {slotProps?.useCheckmarkSwatch ? (
+            {useCheckmarkSwatch ? (
               <Box sx={checkmarkSwatchBox}>
                 {normalizedOptions.map((option) => (
                   <CheckmarkSwatch

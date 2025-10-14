@@ -46,8 +46,9 @@ export const StyledSwatchBox = styled(Box)<StyledSwatchBoxProps>(
     alignItems: "center",
     justifyContent: "center",
     transition: "transform 0.2s",
-    boxShadow: showBorder ? "0 0 0 2px black" : "none",
     backgroundColor: backgroundColor,
+    boxSizing: "border-box",
+    border: showBorder ? "2px solid black" : "none",
     "&:hover": {
       transform: "scale(1.1)",
     },

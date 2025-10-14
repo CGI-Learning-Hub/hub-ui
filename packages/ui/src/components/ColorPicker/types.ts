@@ -20,7 +20,6 @@ export type ColorPickerSlotProps = {
   clickAwayListener?: Omit<ClickAwayListenerProps, "onClickAway" | "children">;
   circlePicker?: Omit<CirclePickerProps, "colors" | "color" | "onChange">;
   circlePickerBox?: BoxProps;
-  useCheckmarkSwatch?: boolean;
 };
 
 export type ColorPickerProps = {
@@ -29,6 +28,7 @@ export type ColorPickerProps = {
   options?: string[] | ColorOption[];
   slotProps?: ColorPickerSlotProps;
   onChange: (value: HexaColor) => void;
+  useCheckmarkSwatch?: boolean;
 };
 
 export type PickerBackGroundBoxProps = {
