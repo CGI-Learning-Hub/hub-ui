@@ -27,7 +27,10 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "dist/**/*.css",
+    "!dist/**/*.map"
   ],
   "sideEffects": false,
   "scripts": {
