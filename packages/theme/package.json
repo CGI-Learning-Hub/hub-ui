@@ -39,9 +39,9 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@fontsource/arimo": "5.2.6",
-    "@fontsource/roboto": "5.2.6",
-    "@mui/utils": "7.3.1"
+    "@fontsource/arimo": "5.2.8",
+    "@fontsource/roboto": "5.2.8",
+    "@mui/utils": "7.3.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
@@ -51,6 +51,6 @@
     "react-dom": "^18 || ^19"
   },
   "devDependencies": {
-    "tailwindcss": "4.1.11"
+    "tailwindcss": "4.1.16"
   }
 }
