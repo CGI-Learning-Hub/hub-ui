@@ -3,6 +3,7 @@ import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   ActionBar,
   Alert,
+  Box,
   Button,
   ColorPicker,
   CustomFile,
@@ -14,6 +15,7 @@ import {
   Menu,
   MenuItem,
   PasswordInput,
+  ResourceCard,
   SearchInput,
   TextField,
   ToggleButton,
@@ -127,6 +129,19 @@ function App() {
           { label: "Tout déselectionner", action: () => ({}) },
         ]}
       ></ActionBar>
+      <ResourceCard 
+        title={"Ma grande ressource"}
+        image={undefined}
+        defaultImage={"../public/vite.svg"}
+        size={"md"}
+        ></ResourceCard>
+      <ResourceCard 
+        title={"Ma petite ressource"}
+        image={undefined}
+        defaultImage={"../public/vite.svg"}
+        size={"sm"}
+        ></ResourceCard>
+      <Box marginBottom="5rem"></Box>
     </ThemeProvider>
   );
 }

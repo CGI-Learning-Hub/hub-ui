@@ -77,16 +77,15 @@ export const ResourceCardImage = styled(CardMedia)<{
   height: size == "sm" ? 85 : 180,
   width: size == "sm" ? 85 : "calc(100% - 2rem)",
   objectFit: "cover",
-  margin: size == "sm" ? "0 10px" : "1rem",
+  margin: size == "sm" ? "10px" : "1rem",
   borderRadius: "0.5rem",
-  ...(!image &&
-    size === "md" && {
-      backgroundImage: `url(${defaultImage})`,
-      backgroundRepeat: "repeat",
-      backgroundSize: "20% 20%",
-      backgroundPosition: "center",
-      opacity: "0.7",
-    }),
+  ...(!image && {
+    backgroundImage: `url(${defaultImage})`,
+    backgroundRepeat: size === "md" ? "repeat": "no-repeat",
+    backgroundSize: size === "md" ? "20% 20%" : (size === "sm" ? "80% 80%" : undefined),
+    backgroundPosition: "center",
+    opacity: "0.7",
+}),
 }));
 
 export const ResourceCardBody = styled(CardContent)<{
