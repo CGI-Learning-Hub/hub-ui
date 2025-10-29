@@ -18,6 +18,7 @@ export type ImagePickerProps = {
   width?: string;
   height?: string;
   initialFile?: string | File;
+  disabled?: boolean;
 } & ReactDropzoneProps;
 
 const ImagePickerDefaultLabel: FC = () => (
@@ -50,6 +51,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   width = "160px",
   height = "160px",
   initialFile = null,
+  disabled = false,
   ...otherProps
 }) => {
   const [currentFile, setCurrentFile] = useState<string | File | null>(
@@ -61,18 +63,21 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   }, [initialFile]);
 
   const handleDrop = (acceptedFiles: File[]) => {
+    if (disabled) return;
     const selectedFile = acceptedFiles[0] || null;
     setCurrentFile(selectedFile);
     onFileChange(selectedFile);
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (disabled) return;
     e.stopPropagation();
     setCurrentFile(null);
     onFileChange(null);
   };
 
   const handleEdit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (disabled) return;
     e.stopPropagation();
     open();
   };
@@ -85,6 +90,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
       "image/*": [".png", ".jpeg", ".jpg", ".gif"],
     },
     noClick: true,
+    disabled,
   });
 
   return (
@@ -98,20 +104,21 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
       height={height}
       borderRadius={1}
       sx={{
-        cursor: "pointer",
+        cursor: disabled ? "default" : "pointer",
         position: "relative",
         background: `${!currentFile && "linear-gradient(180deg, #F5F7F9 0%, #FFF 100%)"}`,
         border: `${!currentFile && "1px dashed"}`,
         borderColor: (theme) => !currentFile && theme.palette.grey.main,
+        opacity: disabled ? 0.6 : 1,
       }}
       {...getRootProps({
-        onClick: open,
+        onClick: disabled ? undefined : open,
       })}
     >
       <input {...getInputProps()} />
       {!currentFile ? (
         <>
-          {isDragActive ? (
+          {isDragActive && !disabled ? (
             <>
               <AddPhotoAlternateIcon
                 color="primary"
@@ -155,60 +162,62 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
         </>
       ) : (
         <>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "0.5rem",
-              right: "0.5rem",
-              display: "flex",
-              gap: "0.3rem",
-            }}
-          >
+          {!disabled && (
             <Box
-              onClick={handleEdit}
               sx={{
-                backgroundColor: "common.white",
+                position: "absolute",
+                top: "0.5rem",
+                right: "0.5rem",
                 display: "flex",
-                borderRadius: "3px",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: 1,
-                width: "2rem",
-                height: "2rem",
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "grey.darker",
-                  "& .MuiSvgIcon-root": {
-                    fill: (theme) => theme.palette.common.white,
-                  },
-                },
+                gap: "0.3rem",
               }}
             >
-              <CreateIcon fontSize="small" />
-            </Box>
-            <Box
-              onClick={handleDelete}
-              sx={{
-                backgroundColor: "common.white",
-                display: "flex",
-                borderRadius: "3px",
-                alignItems: "center",
-                boxShadow: 1,
-                justifyContent: "center",
-                width: "2rem",
-                height: "2rem",
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "grey.darker",
-                  "& .MuiSvgIcon-root": {
-                    fill: (theme) => theme.palette.common.white,
+              <Box
+                onClick={handleEdit}
+                sx={{
+                  backgroundColor: "common.white",
+                  display: "flex",
+                  borderRadius: "3px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: 1,
+                  width: "2rem",
+                  height: "2rem",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "grey.darker",
+                    "& .MuiSvgIcon-root": {
+                      fill: (theme) => theme.palette.common.white,
+                    },
                   },
-                },
-              }}
-            >
-              <DeleteIcon fontSize="small" />
+                }}
+              >
+                <CreateIcon fontSize="small" />
+              </Box>
+              <Box
+                onClick={handleDelete}
+                sx={{
+                  backgroundColor: "common.white",
+                  display: "flex",
+                  borderRadius: "3px",
+                  alignItems: "center",
+                  boxShadow: 1,
+                  justifyContent: "center",
+                  width: "2rem",
+                  height: "2rem",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "grey.darker",
+                    "& .MuiSvgIcon-root": {
+                      fill: (theme) => theme.palette.common.white,
+                    },
+                  },
+                }}
+              >
+                <DeleteIcon fontSize="small" />
+              </Box>
             </Box>
-          </Box>
+          )}
           <img
             src={
               typeof currentFile === "string"
