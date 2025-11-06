@@ -6,11 +6,17 @@ import type { ImgHTMLAttributes, ReactNode } from "react";
 export type EmptyStateProps = (
   | {
       image: ReactNode;
+      /**
+       * @deprecated Use `slotProps.image` instead.
+       */
       imageProps?: never;
       imageSrc?: never;
     }
   | {
       image?: never;
+      /**
+       * @deprecated Use `slotProps.image` instead.
+       */
       imageProps?: ImgHTMLAttributes<HTMLImageElement>;
       imageSrc: string;
     }
@@ -18,23 +24,34 @@ export type EmptyStateProps = (
   imageHeight?: string | number;
   title: string;
   description?: string;
-  descriptionProps?: TypographyProps;
   footer?: ReactNode;
-  svgProps?: React.SVGAttributes<SVGSVGElement>;
+  slotProps?: {
+    root?: StackProps;
+    image?: ImgHTMLAttributes<HTMLImageElement>;
+    title?: TypographyProps;
+    description?: TypographyProps;
+  };
+  /**
+   * @deprecated Use `slotProps.description` instead.
+   */
+  descriptionProps?: TypographyProps;
+  /**
+   * @deprecated Use `slotProps.title` instead.
+   */
   titleProps?: TypographyProps;
 } & StackProps;
 
 const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
   image,
-  imageProps,
   imageSrc,
   title,
   description,
-  descriptionProps,
   footer,
-  svgProps,
-  titleProps,
   imageHeight = 200,
+  slotProps = {},
+  imageProps,
+  descriptionProps,
+  titleProps,
   ...otherProps
 }) => {
   return (
@@ -43,15 +60,31 @@ const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
       alignItems="center"
       margin="0 auto"
       {...otherProps}
+      {...slotProps.root}
     >
       <Box height={imageHeight} width="auto">
-        {image ?? <img src={imageSrc} height="100%" {...imageProps} />}
+        {image ?? (
+          <img
+            src={imageSrc}
+            height="100%"
+            {...(slotProps.image ?? imageProps)}
+          />
+        )}
       </Box>
-      <Typography variant="h2" fontWeight={500} mt={3} {...titleProps}>
+      <Typography
+        variant="h2"
+        fontWeight={500}
+        mt={3}
+        {...(slotProps.title ?? titleProps)}
+      >
         {title}
       </Typography>
       {description ? (
-        <Typography color="textSecondary" mt={2} {...descriptionProps}>
+        <Typography
+          color="textSecondary"
+          mt={2}
+          {...(slotProps.description ?? descriptionProps)}
+        >
           {description}
         </Typography>
       ) : null}

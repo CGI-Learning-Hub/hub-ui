@@ -1,22 +1,29 @@
-import {
-  Tooltip,
-  TooltipProps,
-  Typography,
-  TypographyProps,
-} from "@mui/material";
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import Tooltip, { type TooltipProps } from "@mui/material/Tooltip";
+import Typography, { type TypographyProps } from "@mui/material/Typography";
+import { type FC, type ReactNode, useEffect, useRef, useState } from "react";
 
 export type EllipsisWithTooltipProps = {
+  children: ReactNode;
+  slotProps?: {
+    text?: Omit<TypographyProps, "noWrap" | "overflow" | "textOverflow">;
+    tooltip?: Omit<TooltipProps, "children" | "title">;
+  };
+  /**
+   * @deprecated Use `slotProps.tooltip` instead.
+   */
   tooltipProps?: Omit<TooltipProps, "children" | "title">;
+  /**
+   * @deprecated Use `slotProps.text` instead.
+   */
   typographyProps?: Omit<
     TypographyProps,
     "noWrap" | "overflow" | "textOverflow"
   >;
-  children: ReactNode;
 };
 
 const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
   children,
+  slotProps = {},
   tooltipProps,
   typographyProps,
 }) => {
@@ -52,15 +59,15 @@ const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
     <Tooltip
       disableHoverListener={!isTextEllipsized}
       title={children}
-      {...tooltipProps}
+      {...(slotProps.tooltip ?? tooltipProps)}
     >
       <Typography
         ref={textRef}
         noWrap
-        overflow={"hidden"}
-        textOverflow={"ellipsis"}
-        {...typographyProps}
+        overflow="hidden"
+        textOverflow="ellipsis"
         maxWidth="100%"
+        {...(slotProps.text ?? typographyProps)}
       >
         {children}
       </Typography>

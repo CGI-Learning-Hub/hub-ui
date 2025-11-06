@@ -1,12 +1,12 @@
-import Box from "@mui/material/Box";
+import Box, { type BoxProps } from "@mui/material/Box";
 
 import "./styles.css";
 
-export type LoaderProps = {};
+export type LoaderProps = BoxProps;
 
-const Loader: React.FunctionComponent<LoaderProps> = ({}) => {
+const Loader: React.FunctionComponent<LoaderProps> = (props) => {
   return (
-    <Box className="cs-loader" color="primary.main">
+    <Box className="cs-loader" color="primary.main" {...props}>
       <Box className="cs-loader-inner">
         <label>●</label>
         <label>●</label>
