@@ -83,7 +83,6 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
   };
 
   const { open, getRootProps, getInputProps, isDragActive } = useDropzone({
-    ...otherProps,
     maxFiles: 1,
     onDropAccepted: handleDrop,
     accept: {
@@ -91,6 +90,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
     },
     noClick: true,
     disabled,
+    ...otherProps,
   });
 
   return (
