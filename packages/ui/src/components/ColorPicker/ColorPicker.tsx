@@ -46,6 +46,9 @@ const ColorPicker: FC<ColorPickerProps> = ({
       )
     : DEFAULT_COLOR_OPTIONS;
 
+  // Trouver l'option correspondant à la valeur actuelle pour récupérer showBorder
+  const currentOption = normalizedOptions.find((opt) => opt.color === value);
+
   // Extraire uniquement les couleurs pour CirclePicker
   const colorStrings = normalizedOptions.map((opt) => opt.color);
 
@@ -59,7 +62,11 @@ const ColorPicker: FC<ColorPickerProps> = ({
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        <ColorPickerIcon onClick={handlePickerToggle} fill={value} />
+        <ColorPickerIcon
+          onClick={handlePickerToggle}
+          fill={value}
+          showBorder={currentOption?.showBorder ?? false}
+        />
         {isCirclePickerVisible && (
           <Box
             sx={
