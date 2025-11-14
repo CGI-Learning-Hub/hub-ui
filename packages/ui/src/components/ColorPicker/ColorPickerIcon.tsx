@@ -26,8 +26,8 @@ export const ColorPickerIcon: FC<
             cy="20.2168"
             r="10"
             fill="none"
-            stroke="black"
-            strokeWidth="1.5"
+            stroke="var(--theme-palette-grey-dark)"
+            strokeWidth="1"
           />
         )}
         <circle cx="29" cy="28.2168" r="5" fill="white" />
