@@ -48,7 +48,7 @@ export const StyledSwatchBox = styled(Box)<StyledSwatchBoxProps>(
     transition: "transform 0.2s",
     backgroundColor: backgroundColor,
     boxSizing: "border-box",
-    border: showBorder ? "2px solid black" : "none",
+    border: showBorder ? "1px solid var(--theme-palette-grey-dark)" : "none",
     "&:hover": {
       transform: "scale(1.1)",
     },
