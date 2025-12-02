@@ -38,11 +38,11 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@mui/icons-material": "7.3.4",
-    "@mui/lab": "7.0.1-beta.18",
-    "@mui/x-date-pickers": "8.15.0",
-    "@mui/x-tree-view": "8.15.0",
-    "dayjs": "1.11.18",
+    "@mui/icons-material": "7.3.5",
+    "@mui/lab": "7.0.1-beta.19",
+    "@mui/x-date-pickers": "8.19.0",
+    "@mui/x-tree-view": "8.19.0",
+    "dayjs": "1.11.19",
     "react-color": "2.19.3",
     "react-dropzone": "14.3.8"
   },
@@ -54,9 +54,9 @@
     "react-dom": "^18 || ^19"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "2.9.2",
-    "@types/react": "19.2.2",
-    "@types/react-color": "3.0.13",
-    "@types/react-dom": "19.2.2"
+    "@reduxjs/toolkit": "^2",
+    "@types/react": "^19",
+    "@types/react-color": "^3",
+    "@types/react-dom": "^19"
   }
 }

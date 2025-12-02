@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@fontsource/arimo": "5.2.8",
-    "@fontsource/roboto": "5.2.8",
-    "@mui/utils": "7.3.3"
+    "@fontsource/roboto": "5.2.9",
+    "@mui/utils": "7.3.5"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
@@ -51,6 +51,6 @@
     "react-dom": "^18 || ^19"
   },
   "devDependencies": {
-    "tailwindcss": "4.1.16"
+    "tailwindcss": "^4"
   }
 }
