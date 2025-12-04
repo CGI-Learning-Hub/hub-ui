@@ -34,6 +34,8 @@ export const LeftAction = styled(Button, {
   color: theme.palette.common.white,
   transition: "all 0.2s ease-in-out",
   borderRadius: "4px",
+  fontSize: "1rem",
+  fontWeight: 700,
   padding: "8px 16px",
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
@@ -52,6 +54,8 @@ export const RightAction = styled(Button, {
   color: theme.palette.common.white,
   transition: "all 0.2s ease-in-out",
   borderRadius: "4px",
+  fontSize: "1rem",
+  fontWeight: 700,
   padding: "8px 16px",
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
