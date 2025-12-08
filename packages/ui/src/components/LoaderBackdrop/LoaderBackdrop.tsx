@@ -1,7 +1,7 @@
 import Backdrop, { type BackdropProps } from "@mui/material/Backdrop";
-import Box, { type BoxProps } from "@mui/material/Box";
+import type { BoxProps } from "@mui/material/Box";
 
-import "./styles.css";
+import { StyledLoaderBackdropInner } from "./LoaderBackdrop.styles";
 
 export type LoaderBackdropProps = {
   slotProps?: {
@@ -19,16 +19,12 @@ const LoaderBackdrop: React.FunctionComponent<LoaderBackdropProps> = ({
       sx={{ bgcolor: "background.default" }}
       {...slotProps.backdrop}
     >
-      <Box
-        className="cs-loader-backdrop-inner"
-        color="primary.main"
-        {...slotProps.loader}
-      >
+      <StyledLoaderBackdropInner color="primary.main" {...slotProps.loader}>
         <label>●</label>
         <label>●</label>
         <label>●</label>
         <label>●</label>
-      </Box>
+      </StyledLoaderBackdropInner>
     </Backdrop>
   );
 };

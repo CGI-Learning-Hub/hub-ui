@@ -1,19 +1,19 @@
-import Box, { type BoxProps } from "@mui/material/Box";
+import type { BoxProps } from "@mui/material/Box";
 
-import "./styles.css";
+import { StyledLoader, StyledLoaderInner } from "./Loader.styles";
 
 export type LoaderProps = BoxProps;
 
 const Loader: React.FunctionComponent<LoaderProps> = (props) => {
   return (
-    <Box className="cs-loader" color="primary.main" {...props}>
-      <Box className="cs-loader-inner">
+    <StyledLoader color="primary.main" {...props}>
+      <StyledLoaderInner>
         <label>●</label>
         <label>●</label>
         <label>●</label>
         <label>●</label>
-      </Box>
-    </Box>
+      </StyledLoaderInner>
+    </StyledLoader>
   );
 };
 
