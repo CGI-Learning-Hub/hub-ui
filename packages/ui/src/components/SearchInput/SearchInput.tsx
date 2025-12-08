@@ -1,12 +1,14 @@
-import { Search } from "@mui/icons-material";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputBase, { type InputBaseProps } from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 
-export type SearchInputProps = InputBaseProps & {};
+export type SearchInputProps = InputBaseProps & {
+  loading?: boolean;
+};
 
 const StyledInput = styled(InputBase)(({ theme }) => ({
-  width: "auto",
   padding: "0px 12px",
   backgroundColor: theme.palette.grey[50],
   borderRadius: 30,
@@ -21,16 +23,23 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchInput: React.FunctionComponent<SearchInputProps> = ({
+  name = "search",
   placeholder = "Rechercher",
+  loading = false,
   ...otherProps
-}: SearchInputProps) => {
+}) => {
   return (
     <StyledInput
       {...otherProps}
+      name={name}
       placeholder={placeholder}
       startAdornment={
         <InputAdornment position="start" disablePointerEvents>
-          <Search />
+          {loading ? (
+            <CircularProgress size="16px" sx={{ mx: 0.5 }} />
+          ) : (
+            <SearchRoundedIcon />
+          )}
         </InputAdornment>
       }
       type="search"
