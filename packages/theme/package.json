@@ -1,6 +1,6 @@
 {
   "name": "@cgi-learning-hub/theme",
-  "version": "1.11.0-dev",
+  "version": "1.11.1",
   "description": "Multi-tenant theming system for Hub's design system, providing customizable themes for different client organizations.",
   "keywords": [
     "cgi-learning-hub",
