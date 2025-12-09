@@ -24,7 +24,7 @@ import {
   Typography,
 } from "@cgi-learning-hub/ui";
 import type {} from "@mui/material/themeCssVarsAugmentation";
-import React, { useState } from "react";
+import { MouseEvent, SetStateAction, useState } from "react";
 
 import ExampleComponent from "./components/ExampleComponent";
 
@@ -39,7 +39,7 @@ function App() {
   const open = Boolean(anchorEl);
 
   const handleThemeChange = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     newThemeId: ThemeId | null,
   ) => {
     if (newThemeId !== null) {
@@ -47,7 +47,7 @@ function App() {
     }
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -103,7 +103,7 @@ function App() {
       </Menu>
       <DatePicker />
       <Dropzone
-        onDrop={(files: React.SetStateAction<CustomFile[]>) => setFiles(files)}
+        onDrop={(files: SetStateAction<CustomFile[]>) => setFiles(files)}
         information="SVG, PNG, JPG or GIF (max. 3MB)"
       />
       <FileList files={files} />
@@ -129,18 +129,18 @@ function App() {
           { label: "Tout déselectionner", action: () => ({}) },
         ]}
       ></ActionBar>
-      <ResourceCard 
+      <ResourceCard
         title={"Ma grande ressource"}
         image={undefined}
         defaultImage={"../public/vite.svg"}
         size={"md"}
-        ></ResourceCard>
-      <ResourceCard 
+      ></ResourceCard>
+      <ResourceCard
         title={"Ma petite ressource"}
         image={undefined}
         defaultImage={"../public/vite.svg"}
         size={"sm"}
-        ></ResourceCard>
+      ></ResourceCard>
       <Box marginBottom="5rem"></Box>
     </ThemeProvider>
   );

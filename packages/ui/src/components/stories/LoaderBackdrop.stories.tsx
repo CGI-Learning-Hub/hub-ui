@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { LoaderBackdrop } from "../LoaderBackdrop";
+import { LoaderBackdrop } from "..";
 
 const meta: Meta<typeof LoaderBackdrop> = {
   title: "Components/LoaderBackdrop",

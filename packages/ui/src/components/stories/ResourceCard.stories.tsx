@@ -1,11 +1,10 @@
-import CalendarIcon from "@mui/icons-material/CalendarToday";
-import QuestionIcon from "@mui/icons-material/LiveHelp";
-import PublicIcon from "@mui/icons-material/Public";
-import StarIcon from "@mui/icons-material/Star";
-import { Box, Typography } from "@mui/material";
+import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded";
+import LiveHelpRoundedIcon from "@mui/icons-material/LiveHelpRounded";
+import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import ResourceCard from "../ResourceCard/ResourceCard";
+import { ResourceCard, Typography } from "..";
 
 const meta: Meta<typeof ResourceCard> = {
   title: "Components/ResourceCard",
@@ -98,17 +97,17 @@ export const Default: Story = {
     propertyItems: [
       {
         text: <Typography color="text.primary">0 questions</Typography>,
-        icon: <QuestionIcon color="primary" />,
+        icon: <LiveHelpRoundedIcon color="primary" />,
       },
       {
         text: <Typography color="text.primary">27 septembre 2025</Typography>,
-        icon: <CalendarIcon color="primary" />,
+        icon: <CalendarTodayRoundedIcon color="primary" />,
       },
     ],
     infoIcons: [
-      { text: "Information 1", icon: <PublicIcon color="primary" /> },
-      { text: "Information 2", icon: <StarIcon color="primary" /> },
-      { text: "Information 3", icon: <StarIcon color="primary" /> },
+      { text: "Information 1", icon: <PublicRoundedIcon color="primary" /> },
+      { text: "Information 2", icon: <StarRoundedIcon color="primary" /> },
+      { text: "Information 3", icon: <StarRoundedIcon color="primary" /> },
     ],
     size: "md",
     onSelect: () => {

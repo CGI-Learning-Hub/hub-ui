@@ -1,12 +1,14 @@
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import MUISelect, {
-  SelectChangeEvent,
-  SelectProps,
-} from "@mui/material/Select";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+
+import {
+  Select as BaseSelect,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  type SelectChangeEvent,
+  type SelectProps,
+} from "..";
 
 const Select = (props: SelectProps) => {
   const [status, setStatus] = useState("pending");
@@ -17,7 +19,7 @@ const Select = (props: SelectProps) => {
   return (
     <FormControl variant={props.variant} sx={{ width: "10rem" }}>
       <InputLabel id="simple-select-label">Status</InputLabel>
-      <MUISelect
+      <BaseSelect
         labelId="simple-select-label"
         id="simple-select"
         value={status}
@@ -29,7 +31,7 @@ const Select = (props: SelectProps) => {
         <MenuItem value="ongoing">Ongoing</MenuItem>
         <MenuItem value="validated">Validated</MenuItem>
         <MenuItem value="rejected">Rejected</MenuItem>
-      </MUISelect>
+      </BaseSelect>
     </FormControl>
   );
 };

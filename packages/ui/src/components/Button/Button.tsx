@@ -1,7 +1,8 @@
-import MUIButton, { type ButtonProps } from "@mui/material/Button";
-import { CSSObject, styled } from "@mui/material/styles";
+import BaseButton, { type ButtonProps } from "@mui/material/Button";
+import { type CSSObject, styled } from "@mui/material/styles";
+import type { FC } from "react";
 
-const StyledButton = styled(MUIButton)(({ color, theme }) => {
+const StyledButton = styled(BaseButton)(({ color, theme }) => {
   const outlinedVariant = theme.components?.MuiButton?.variants?.find(
     (v): boolean => (v.props as Partial<ButtonProps>)?.variant === "outlined",
   );
@@ -34,10 +35,7 @@ const StyledButton = styled(MUIButton)(({ color, theme }) => {
   };
 });
 
-const Button: React.FunctionComponent<ButtonProps> = ({
-  variant = "outlined",
-  ...otherProps
-}) => {
+const Button: FC<ButtonProps> = ({ variant = "outlined", ...otherProps }) => {
   return <StyledButton variant={variant} {...otherProps} />;
 };
 

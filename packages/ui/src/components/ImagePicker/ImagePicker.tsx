@@ -1,14 +1,17 @@
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Box } from "@mui/material";
+import AddPhotoAlternateRoundedIcon from "@mui/icons-material/AddPhotoAlternateRounded";
+import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { FC, ReactNode, useEffect, useState } from "react";
 import {
-  type DropzoneProps as ReactDropzoneProps,
-  useDropzone,
-} from "react-dropzone";
+  type FC,
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useState,
+} from "react";
+import { type DropzoneProps, useDropzone } from "react-dropzone";
 
 export type ImagePickerProps = {
   defaultLabel?: ReactNode;
@@ -19,7 +22,7 @@ export type ImagePickerProps = {
   height?: string;
   initialFile?: string | File;
   disabled?: boolean;
-} & ReactDropzoneProps;
+} & DropzoneProps;
 
 const ImagePickerDefaultLabel: FC = () => (
   <Typography textAlign="center" fontSize="14px" color="grey.darker">
@@ -43,7 +46,7 @@ const ImagePickerDefaultDragLabel: FC = () => (
   </Typography>
 );
 
-const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
+const ImagePicker: FC<ImagePickerProps> = ({
   defaultLabel = <ImagePickerDefaultLabel />,
   dragLabel = <ImagePickerDefaultDragLabel />,
   information,
@@ -69,14 +72,14 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
     onFileChange(selectedFile);
   };
 
-  const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleDelete = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (disabled) return;
     e.stopPropagation();
     setCurrentFile(null);
     onFileChange(null);
   };
 
-  const handleEdit = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleEdit = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (disabled) return;
     e.stopPropagation();
     open();
@@ -120,7 +123,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
         <>
           {isDragActive && !disabled ? (
             <>
-              <AddPhotoAlternateIcon
+              <AddPhotoAlternateRoundedIcon
                 color="primary"
                 style={{
                   width: "2.5rem",
@@ -144,7 +147,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
                 gap: "0.3rem",
               }}
             >
-              <AddPhotoAlternateIcon
+              <AddPhotoAlternateRoundedIcon
                 color="primary"
                 style={{
                   width: "2.5rem",
@@ -192,7 +195,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
                   },
                 }}
               >
-                <CreateIcon fontSize="small" />
+                <CreateRoundedIcon fontSize="small" />
               </Box>
               <Box
                 onClick={handleDelete}
@@ -214,7 +217,7 @@ const ImagePicker: React.FunctionComponent<ImagePickerProps> = ({
                   },
                 }}
               >
-                <DeleteIcon fontSize="small" />
+                <DeleteRoundedIcon fontSize="small" />
               </Box>
             </Box>
           )}

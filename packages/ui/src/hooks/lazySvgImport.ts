@@ -1,4 +1,10 @@
-import { ComponentProps, FC, useEffect, useRef, useState } from "react";
+import {
+  type ComponentProps,
+  type FC,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 export const useLazySvgImport = (name: string) => {
   const importRef = useRef<FC<ComponentProps<"svg">>>();

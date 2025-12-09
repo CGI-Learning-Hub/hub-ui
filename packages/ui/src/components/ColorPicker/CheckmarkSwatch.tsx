@@ -1,8 +1,8 @@
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { StyledSwatchBox } from "./styles";
-import { SwatchProps } from "./types";
+import type { SwatchProps } from "./types";
 
 export const CheckmarkSwatch: FC<SwatchProps> = ({
   color,

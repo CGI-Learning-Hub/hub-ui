@@ -1,6 +1,7 @@
-import { SvgIconComponent } from "@mui/icons-material";
-import { TreeItemProps } from "@mui/x-tree-view/TreeItem";
+import type { SvgIconComponent } from "@mui/icons-material";
+import type { TreeItemProps } from "@mui/x-tree-view/TreeItem";
 import { TreeViewBaseItem } from "@mui/x-tree-view/models/items";
+import type { SyntheticEvent } from "react";
 
 export type TreeViewItemId = string;
 export type TreeViewItemsReorderingAction =
@@ -38,7 +39,7 @@ export interface TreeViewProps {
   items: CustomTreeViewItem[];
   selectedItemId: string;
   handleSelectedItemChange: (
-    event: React.SyntheticEvent | null,
+    event: SyntheticEvent | null,
     itemIds: string | null,
   ) => void;
   iconColor?: string;

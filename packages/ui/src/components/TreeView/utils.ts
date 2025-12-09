@@ -1,27 +1,32 @@
-import { SvgIconComponent } from "@mui/icons-material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import FolderIcon from "@mui/icons-material/Folder";
-import ShareIcon from "@mui/icons-material/Share";
+import type { SvgIconComponent } from "@mui/icons-material";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 
-import { CustomTreeViewItem, ICON_TYPE, IconType, ItemDataMap } from "./types";
+import {
+  type CustomTreeViewItem,
+  ICON_TYPE,
+  type IconType,
+  type ItemDataMap,
+} from "./types";
 
 export const getIconComponent = (
   iconType: IconType | undefined,
   customIcon: SvgIconComponent | undefined,
 ): SvgIconComponent => {
-  if (!iconType) return FolderIcon;
+  if (!iconType) return FolderRoundedIcon;
   if (typeof iconType !== "string") return iconType;
 
   switch (iconType) {
     case ICON_TYPE.SHARE:
-      return ShareIcon;
+      return ShareRoundedIcon;
     case ICON_TYPE.TRASH:
-      return DeleteIcon;
+      return DeleteRoundedIcon;
     case ICON_TYPE.CUSTOM:
-      return customIcon || FolderIcon;
+      return customIcon || FolderRoundedIcon;
     case ICON_TYPE.FOLDER:
     default:
-      return FolderIcon;
+      return FolderRoundedIcon;
   }
 };
 

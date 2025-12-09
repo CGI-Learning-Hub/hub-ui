@@ -1,7 +1,7 @@
-import MailIcon from "@mui/icons-material/Mail";
-import { Box } from "@mui/material";
-import Badge from "@mui/material/Badge";
+import MailRoundedIcon from "@mui/icons-material/MailRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Badge, Box } from "..";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -64,7 +64,7 @@ export const Colors: Story = {
       {["primary", "secondary", "error", "info", "success", "warning"].map(
         (c) => (
           <Badge key={c} {...args} color={c as any}>
-            <MailIcon />
+            <MailRoundedIcon />
           </Badge>
         ),
       )}
@@ -99,7 +99,7 @@ export const ShowZero: Story = {
     max: 99,
     overlap: "rectangular",
     anchorOrigin: { vertical: "top", horizontal: "right" },
-    children: <MailIcon />,
+    children: <MailRoundedIcon />,
   },
   parameters: {
     docs: {
@@ -119,7 +119,7 @@ export const Dot: Story = {
     invisible: false,
     overlap: "circular",
     anchorOrigin: { vertical: "top", horizontal: "right" },
-    children: <MailIcon />,
+    children: <MailRoundedIcon />,
   },
   parameters: {
     docs: {
@@ -171,7 +171,7 @@ export const Origin: Story = {
           {...args}
           anchorOrigin={origin}
         >
-          <MailIcon />
+          <MailRoundedIcon />
         </Badge>
       ))}
     </Box>
@@ -204,7 +204,7 @@ export const MaxValue: Story = {
     invisible: false,
     overlap: "rectangular",
     anchorOrigin: { vertical: "top", horizontal: "right" },
-    children: <MailIcon />,
+    children: <MailRoundedIcon />,
   },
   parameters: {
     docs: {

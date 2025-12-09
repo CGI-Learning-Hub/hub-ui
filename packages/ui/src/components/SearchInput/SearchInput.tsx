@@ -3,6 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputBase, { type InputBaseProps } from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
+import type { FC } from "react";
 
 export type SearchInputProps = InputBaseProps & {
   loading?: boolean;
@@ -22,7 +23,7 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchInput: React.FunctionComponent<SearchInputProps> = ({
+const SearchInput: FC<SearchInputProps> = ({
   name = "search",
   placeholder = "Rechercher",
   loading = false,

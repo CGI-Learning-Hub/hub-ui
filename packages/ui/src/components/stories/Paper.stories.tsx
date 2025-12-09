@@ -1,11 +1,12 @@
-import MUIPaper, { PaperProps } from "@mui/material/Paper";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Paper as BasePaper, type PaperProps } from "..";
 
 const Paper = (props: PaperProps) => {
   return (
-    <MUIPaper sx={{ width: "10rem", height: "10rem", p: 1 }} {...props}>
+    <BasePaper sx={{ width: "10rem", height: "10rem", p: 1 }} {...props}>
       children
-    </MUIPaper>
+    </BasePaper>
   );
 };
 

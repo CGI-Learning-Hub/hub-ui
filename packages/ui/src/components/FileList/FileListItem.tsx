@@ -1,15 +1,16 @@
-import { CloseRounded, DownloadRounded } from "@mui/icons-material";
-import {
-  Box,
-  CircularProgress,
-  IconButton,
-  ListItem,
-  ListItemButton,
-  ListItemButtonProps,
-  styled,
-} from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import IconButton from "@mui/material/IconButton";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton, {
+  type ListItemButtonProps,
+} from "@mui/material/ListItemButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import type { MouseEvent } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 import { FileIcon } from "./FileIcon";
@@ -68,16 +69,12 @@ const FileListItem = <T extends CustomFile>({
   const displayExtensionValue = displayExtension(file.name);
 
   const handleClick = () => onClick?.(file);
-  const handleDelete = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
+  const handleDelete = (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     onDelete?.(file);
   };
 
-  const handleDownload = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
+  const handleDownload = (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     onDownload?.(file);
   };
@@ -93,12 +90,12 @@ const FileListItem = <T extends CustomFile>({
             </Box>
           ) : file.isDownloadable ? (
             <IconButton onClick={handleDownload}>
-              <DownloadRounded color="primary" />
+              <DownloadRoundedIcon color="primary" />
             </IconButton>
           ) : null}
           {file.isDeletable && (
             <IconButton onClick={handleDelete} id="coucou">
-              <CloseRounded />
+              <CloseRoundedIcon />
             </IconButton>
           )}
         </Box>

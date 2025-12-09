@@ -1,6 +1,8 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box, Stack, Tooltip } from "@mui/material";
-import { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import type { FC, KeyboardEvent, ReactNode } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 import {
@@ -40,7 +42,7 @@ export type ResourceCardProps = {
   hasNoButtonOnFocus?: boolean;
 };
 
-const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
+const ResourceCard: FC<ResourceCardProps> = ({
   isSelected = false,
   onSelect = () => {},
   image,
@@ -62,7 +64,7 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
         selected={isSelected}
         size={size}
         onClick={onClick}
-        onKeyDown={(e: ReactKeyboardEvent<HTMLDivElement>) => {
+        onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             onClick?.();
@@ -92,7 +94,7 @@ const ResourceCard: React.FunctionComponent<ResourceCardProps> = ({
           aria-label={isSelected ? "Unselect card" : "Select card"}
           hasNoButtonOnFocus={hasNoButtonOnFocus}
         >
-          <MoreVertIcon />
+          <MoreVertRoundedIcon />
         </SelectedIcon>
         <Stack
           sx={{

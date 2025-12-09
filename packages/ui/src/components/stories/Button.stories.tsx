@@ -1,12 +1,13 @@
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import SaveIcon from "@mui/icons-material/Save";
+import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "../Button";
+import { Button } from "..";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
-  component: Button,argTypes: {
+  component: Button,
+  argTypes: {
     color: {
       control: "select",
       options: [
@@ -34,7 +35,7 @@ export const Contained: Story = {
     children: "Enregistrer",
     color: "primary",
     disabled: false,
-    startIcon: <SaveIcon />,
+    startIcon: <SaveRoundedIcon />,
     variant: "contained",
     onClick: () => alert("Alert"),
   },
@@ -45,7 +46,7 @@ export const Outlined: Story = {
     children: "Ajouter un utilisateur",
     color: "secondary",
     disabled: false,
-    startIcon: <PersonAddIcon />,
+    startIcon: <PersonAddRoundedIcon />,
     variant: "outlined",
     onClick: () => alert("Alert"),
   },

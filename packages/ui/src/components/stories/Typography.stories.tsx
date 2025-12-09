@@ -1,5 +1,6 @@
-import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Typography } from "..";
 
 const meta: Meta<typeof Typography> = {
   title: "Components/Typography",

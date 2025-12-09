@@ -1,8 +1,9 @@
-import MUICheckbox, { CheckboxProps } from "@mui/material/Checkbox";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Checkbox as BaseCheckbox, type CheckboxProps } from "..";
+
 const Checkbox = (props: CheckboxProps) => {
-  return <MUICheckbox {...props} />;
+  return <BaseCheckbox {...props} />;
 };
 
 const meta: Meta<typeof Checkbox> = {

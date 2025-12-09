@@ -1,10 +1,16 @@
 import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
-import { TreeItemProps } from "@mui/x-tree-view/TreeItem";
-import React, { FC, useEffect, useMemo, useState } from "react";
+import type { TreeItemProps } from "@mui/x-tree-view/TreeItem";
+import {
+  type FC,
+  type SyntheticEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import CustomTreeItem from "./components/CustomTreeItem";
 import { DEFAULT_CHILDREN_INDENT, TreeContainer } from "./style";
-import { ExtendedTreeItemProps, TreeViewProps } from "./types";
+import type { ExtendedTreeItemProps, TreeViewProps } from "./types";
 import { buildItemDataMap, findItemPath, getItemId } from "./utils";
 
 const TreeView: FC<TreeViewProps> = ({
@@ -39,7 +45,7 @@ const TreeView: FC<TreeViewProps> = ({
   }, [selectedItemId, items]);
 
   const handleExpandedItemsChange = (
-    event: React.SyntheticEvent | null,
+    event: SyntheticEvent | null,
     itemIds: string[],
   ) => {
     setExpandedItems(itemIds);

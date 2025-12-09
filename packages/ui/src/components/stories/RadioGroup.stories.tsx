@@ -1,15 +1,19 @@
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import Radio from "@mui/material/Radio";
-import MUIRadioGroup, { RadioGroupProps } from "@mui/material/RadioGroup";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import {
+  RadioGroup as BaseRadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  type RadioGroupProps,
+} from "..";
 
 const RadioGroup = (props: RadioGroupProps) => {
   return (
     <FormControl>
       <FormLabel id="radio-buttons-group-label">Label</FormLabel>
-      <MUIRadioGroup
+      <BaseRadioGroup
         aria-labelledby="radio-buttons-group-label"
         defaultValue="first"
         name="radio-buttons-group"
@@ -18,7 +22,7 @@ const RadioGroup = (props: RadioGroupProps) => {
         <FormControlLabel value="first" control={<Radio />} label="First" />
         <FormControlLabel value="second" control={<Radio />} label="Second" />
         <FormControlLabel value="third" control={<Radio />} label="Third" />
-      </MUIRadioGroup>
+      </BaseRadioGroup>
     </FormControl>
   );
 };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { ImagePicker } from "../ImagePicker";
+import { ImagePicker } from "..";
 
 const meta: Meta<typeof ImagePicker> = {
   title: "Components/ImagePicker",

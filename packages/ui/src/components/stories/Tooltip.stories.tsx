@@ -1,12 +1,12 @@
-import Button from "@mui/material/Button";
-import MUITooltip, { TooltipProps } from "@mui/material/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Tooltip as BaseTooltip, Button, type TooltipProps } from "..";
 
 const Tooltip = (props: TooltipProps) => {
   return (
-    <MUITooltip {...props}>
+    <BaseTooltip {...props}>
       <Button>Hover to display tooltip</Button>
-    </MUITooltip>
+    </BaseTooltip>
   );
 };
 

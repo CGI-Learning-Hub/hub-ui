@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Dropzone } from "../Dropzone";
+import { Dropzone } from "..";
 
 const meta: Meta<typeof Dropzone> = {
   title: "Components/Dropzone",

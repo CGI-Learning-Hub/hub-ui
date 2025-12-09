@@ -1,6 +1,7 @@
-import { Divider, List } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
 
-import FileListItem, { CustomFile } from "./FileListItem";
+import FileListItem, { type CustomFile } from "./FileListItem";
 
 export interface FileListProps<T extends CustomFile> {
   files: T[];

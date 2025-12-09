@@ -1,6 +1,7 @@
-import SchoolIcon from "@mui/icons-material/School";
-import IconButton from "@mui/material/IconButton";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { IconButton } from "..";
 
 const meta: Meta<typeof IconButton> = {
   title: "Components/IconButton",
@@ -44,7 +45,7 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
   args: {
-    children: <SchoolIcon />,
+    children: <SchoolRoundedIcon />,
     color: "default",
     disabled: false,
     disableFocusRipple: false,

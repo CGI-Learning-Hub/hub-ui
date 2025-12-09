@@ -1,7 +1,8 @@
-import FolderIcon from "@mui/icons-material/Folder";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box, CardContent, Typography } from "@mui/material";
-import { KeyboardEvent as ReactKeyboardEvent } from "react";
+import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
+import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
+import Box from "@mui/material/Box";
+import CardContent from "@mui/material/CardContent";
+import type { FC, KeyboardEvent } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 import { SelectedIcon, StyledCard } from "../ResourceCard/style";
@@ -24,7 +25,7 @@ export type FolderCardProps = {
   hasNoButtonOnFocus?: boolean;
 };
 
-const FolderCard: React.FunctionComponent<FolderCardProps> = ({
+const FolderCard: FC<FolderCardProps> = ({
   isSelected = false,
   onSelect = () => {},
   title,
@@ -34,7 +35,7 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
   iconSize = "2rem",
   hasNoButtonOnFocus = false,
 }) => {
-  const handleKeyPress = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
     return e.key === "Enter" || e.key === " ";
   };
 
@@ -43,7 +44,7 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
       <StyledCard
         selected={isSelected}
         onClick={onClick}
-        onKeyDown={(e: ReactKeyboardEvent<HTMLDivElement>) => {
+        onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
           if (handleKeyPress(e)) {
             e.preventDefault();
             onClick?.();
@@ -75,11 +76,11 @@ const FolderCard: React.FunctionComponent<FolderCardProps> = ({
           aria-pressed={isSelected}
           hasNoButtonOnFocus={hasNoButtonOnFocus}
         >
-          <MoreVertIcon />
+          <MoreVertRoundedIcon />
         </SelectedIcon>
         <CardContent sx={FolderBodyStyle}>
           <Box fontSize={iconSize} sx={IconContainerStyle}>
-            <FolderIcon
+            <FolderRoundedIcon
               color="primary"
               sx={FolderIconStyle}
               aria-hidden="true"

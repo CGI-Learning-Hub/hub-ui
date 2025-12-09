@@ -1,8 +1,8 @@
-import { Button } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ToastContainer, type ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { Button } from "../src";
 import "../src/styles/toastify.css";
 
 type ComponentProps = {

@@ -1,4 +1,4 @@
-import { TypographyProps } from "@mui/material";
+import type { TypographyProps } from "@mui/material/Typography";
 
 export const titleTypographyProps: TypographyProps = {
   fontWeight: "700",

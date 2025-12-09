@@ -1,24 +1,32 @@
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import DescriptionIcon from "@mui/icons-material/Description";
-import InfoIcon from "@mui/icons-material/Info";
-import PersonIcon from "@mui/icons-material/Person";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Paper from "@mui/material/Paper";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
+import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
+import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useCallback, useState } from "react";
+import {
+  type DragEvent,
+  type SyntheticEvent,
+  useCallback,
+  useState,
+} from "react";
 
-import { TreeView } from "../TreeView";
-import { CustomTreeViewItem, ICON_TYPE } from "../TreeView/types";
+import {
+  Box,
+  Button,
+  CustomTreeViewItem,
+  Divider,
+  Grid,
+  ICON_TYPE,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Paper,
+  Tooltip,
+  TreeView,
+  Typography,
+} from "..";
 
 const meta: Meta<typeof TreeView> = {
   title: "Components/TreeView",
@@ -234,7 +242,7 @@ const DraggableItem = ({ id, label }: { id: string; label: string }) => {
       }}
     >
       <Typography variant="body2" display="flex" alignItems="center">
-        <DescriptionIcon fontSize="small" sx={{ mr: 1 }} />
+        <DescriptionRoundedIcon fontSize="small" sx={{ mr: 1 }} />
         {label}
       </Typography>
     </Box>
@@ -296,13 +304,13 @@ const customIconItems: CustomTreeViewItem[] = [
   {
     internalId: "bookmarks",
     label: "Favoris",
-    iconType: BookmarkIcon,
+    iconType: BookmarkRoundedIcon,
     children: [
       {
         internalId: "important",
         label: "Important",
         iconType: ICON_TYPE.CUSTOM,
-        customIcon: PersonIcon,
+        customIcon: PersonRoundedIcon,
       },
     ],
   },
@@ -531,7 +539,7 @@ export const StructureImbriquee: Story = {
             internalId: "level1-2",
             label: "Niveau 1.2",
             iconType: ICON_TYPE.CUSTOM,
-            customIcon: BookmarkIcon,
+            customIcon: BookmarkRoundedIcon,
           },
         ],
       },
@@ -656,7 +664,7 @@ export const GrandeHauteurLimitee: Story = {
               internalId: `item-${i}-${j}-${k}`,
               label: `Élément ${i}.${j}.${k}`,
               iconType: ICON_TYPE.CUSTOM,
-              customIcon: DescriptionIcon,
+              customIcon: DescriptionRoundedIcon,
             });
           }
 
@@ -786,7 +794,7 @@ export const GrandeHauteurLimitee: Story = {
                 </Typography>
                 <Tooltip title="Ce bandeau reste fixé sous l'arborescence">
                   <IconButton size="small" color="info">
-                    <InfoIcon fontSize="small" />
+                    <InfoRoundedIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
               </Box>
@@ -816,7 +824,7 @@ export const Synchronicite: Story = {
     const [selectedItemId, setSelectedItemId] = useState<string>("reports");
 
     const handleSelectedItemChange = (
-      event: React.SyntheticEvent | null,
+      event: SyntheticEvent | null,
       itemId: string | null,
     ) => {
       console.log("TreeView sélection:", itemId);
@@ -910,7 +918,7 @@ export const AvecDragAndDrop: Story = {
     ];
 
     // Gestionnaire du drop sur le TreeView ou ses éléments
-    const handleDrop = (e: React.DragEvent) => {
+    const handleDrop = (e: DragEvent) => {
       e.preventDefault();
 
       // Identifier l'élément cible
@@ -1095,7 +1103,7 @@ export const TestAlignementLignes: Story = {
                 internalId: "file-1-1-1",
                 label: "Document A",
                 iconType: ICON_TYPE.CUSTOM,
-                customIcon: DescriptionIcon,
+                customIcon: DescriptionRoundedIcon,
               },
               {
                 internalId: "folder-1-1-2",

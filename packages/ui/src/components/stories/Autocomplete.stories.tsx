@@ -1,6 +1,6 @@
-import MUIAutocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Autocomplete as BaseAutocomplete, TextField } from "..";
 
 const Autocomplete = (props: any) => {
   const options = [
@@ -17,7 +17,7 @@ const Autocomplete = (props: any) => {
   ];
 
   return (
-    <MUIAutocomplete
+    <BaseAutocomplete
       options={options}
       sx={{ width: 300 }}
       renderInput={(params) => (

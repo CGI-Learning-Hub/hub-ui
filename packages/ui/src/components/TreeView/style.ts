@@ -1,7 +1,8 @@
-import { Box, styled } from "@mui/material";
-import { CSSProperties } from "react";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import type { CSSProperties } from "react";
 
-import { TreeContainerProps } from "./types";
+import type { TreeContainerProps } from "./types";
 
 export const DEFAULT_CHILDREN_INDENT = "50px";
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
+import { EllipsisWithTooltip } from "..";
 
 const meta: Meta<typeof EllipsisWithTooltip> = {
   title: "Components/EllipsisWithTooltip",

@@ -1,5 +1,5 @@
-import { ButtonProps } from "@mui/material/Button";
-import { StackProps } from "@mui/material/Stack";
+import type { ButtonProps } from "@mui/material/Button";
+import type { StackProps } from "@mui/material/Stack";
 
 export type ActionBarButton = {
   label: string;

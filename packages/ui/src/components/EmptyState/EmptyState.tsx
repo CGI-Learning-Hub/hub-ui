@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Stack, { type StackProps } from "@mui/material/Stack";
 import Typography, { type TypographyProps } from "@mui/material/Typography";
-import type { ImgHTMLAttributes, ReactNode } from "react";
+import type { FC, ImgHTMLAttributes, ReactNode } from "react";
 
 export type EmptyStateProps = (
   | {
@@ -41,7 +41,7 @@ export type EmptyStateProps = (
   titleProps?: TypographyProps;
 } & StackProps;
 
-const EmptyState: React.FunctionComponent<EmptyStateProps> = ({
+const EmptyState: FC<EmptyStateProps> = ({
   image,
   imageSrc,
   title,

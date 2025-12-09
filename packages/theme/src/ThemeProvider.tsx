@@ -1,6 +1,6 @@
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
-import { PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { getMuiTheme } from "./mui";
 import {
@@ -86,7 +86,7 @@ export type ThemeProviderProps = PropsWithChildren<
   )
 >;
 
-export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
+export const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
   customTheme,
   defaultMode = "light",

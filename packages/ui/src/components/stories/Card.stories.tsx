@@ -1,14 +1,17 @@
-import MUICard, { CardProps } from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "../Button";
+import {
+  Card as BaseCard,
+  Button,
+  CardActions,
+  CardContent,
+  type CardProps,
+  Typography,
+} from "..";
 
 const Card = (props: CardProps) => {
   return (
-    <MUICard sx={{ minWidth: 275 }} {...props}>
+    <BaseCard sx={{ minWidth: 275 }} {...props}>
       <CardContent>
         <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
           Word of the Day
@@ -30,7 +33,7 @@ const Card = (props: CardProps) => {
           Learn More
         </Button>
       </CardActions>
-    </MUICard>
+    </BaseCard>
   );
 };
 

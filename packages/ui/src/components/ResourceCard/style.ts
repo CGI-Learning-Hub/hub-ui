@@ -1,6 +1,10 @@
-import { Box, Card, CardContent, CardMedia, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { styled } from "@mui/material/styles";
 
-import { ResourceCardSize } from "./ResourceCard";
+import type { ResourceCardSize } from "./ResourceCard";
 
 export const StyledCard = styled(Card)<{
   selected?: boolean;
@@ -81,11 +85,12 @@ export const ResourceCardImage = styled(CardMedia)<{
   borderRadius: "0.5rem",
   ...(!image && {
     backgroundImage: `url(${defaultImage})`,
-    backgroundRepeat: size === "md" ? "repeat": "no-repeat",
-    backgroundSize: size === "md" ? "20% 20%" : (size === "sm" ? "80% 80%" : undefined),
+    backgroundRepeat: size === "md" ? "repeat" : "no-repeat",
+    backgroundSize:
+      size === "md" ? "20% 20%" : size === "sm" ? "80% 80%" : undefined,
     backgroundPosition: "center",
     opacity: "0.7",
-}),
+  }),
 }));
 
 export const ResourceCardBody = styled(CardContent)<{

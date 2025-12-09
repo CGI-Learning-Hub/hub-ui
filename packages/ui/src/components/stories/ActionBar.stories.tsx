@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { ActionBar } from "../ActionBar";
+import { ActionBar, Box } from "..";
 
 const meta: Meta<typeof ActionBar> = {
   title: "Components/ActionBar",

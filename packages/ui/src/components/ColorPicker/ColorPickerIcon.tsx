@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { CustomSVGProps } from "./types";
+import type { CustomSVGProps } from "./types";
 
 export const ColorPickerIcon: FC<
   CustomSVGProps & { onClick?: () => void; showBorder?: boolean }

@@ -1,5 +1,6 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import type { FC } from "react";
 
 import ClientErrorSvg from "../../../assets/client-error.svg?react";
 import ErrorSvg from "../../../assets/error.svg?react";
@@ -12,7 +13,7 @@ export type QueryErrorProps = {
   statusPrefix?: string;
 };
 
-const QueryError: React.FunctionComponent<QueryErrorProps> = ({
+const QueryError: FC<QueryErrorProps> = ({
   error,
   statusPrefix = "Erreur ",
 }: QueryErrorProps) => {

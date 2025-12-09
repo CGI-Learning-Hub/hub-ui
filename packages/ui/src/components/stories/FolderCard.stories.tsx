@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import FolderCard from "../FolderCard/FolderCard";
+import { FolderCard } from "..";
 
 const meta: Meta<typeof FolderCard> = {
   title: "Components/FolderCard",

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { EmptyState } from "..";
 import ClientErrorSvg from "../../../assets/client-error.svg?react";
-import { EmptyState } from "../EmptyState";
 
 const meta: Meta<typeof EmptyState> = {
   title: "Components/EmptyState",

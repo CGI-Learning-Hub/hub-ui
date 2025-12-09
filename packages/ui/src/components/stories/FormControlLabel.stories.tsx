@@ -1,13 +1,15 @@
-import MUICheckbox from "@mui/material/Checkbox";
-import MUIFormControlLabel, {
-  FormControlLabelProps,
-} from "@mui/material/FormControlLabel";
-import MUIRadio from "@mui/material/Radio";
-import MUISwitch from "@mui/material/Switch";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import {
+  FormControlLabel as BaseFormControlLabel,
+  Checkbox,
+  type FormControlLabelProps,
+  Radio,
+  Switch,
+} from "..";
+
 const FormControlLabel = (props: FormControlLabelProps) => {
-  return <MUIFormControlLabel {...props} />;
+  return <BaseFormControlLabel {...props} />;
 };
 
 const meta: Meta<typeof FormControlLabel> = {
@@ -39,9 +41,9 @@ export default meta;
 
 type Story = StoryObj<typeof FormControlLabel>;
 
-export const Checkbox: Story = {
+export const WithCheckbox: Story = {
   args: {
-    control: <MUICheckbox />,
+    control: <Checkbox />,
     checked: undefined,
     disabled: undefined,
     disableTypography: undefined,
@@ -51,16 +53,16 @@ export const Checkbox: Story = {
   },
 };
 
-export const Radio: Story = {
+export const WithRadio: Story = {
   args: {
-    control: <MUIRadio />,
+    control: <Radio />,
     label: "Label",
   },
 };
 
-export const Switch: Story = {
+export const WithSwitch: Story = {
   args: {
-    control: <MUISwitch />,
+    control: <Switch />,
     label: "Label",
   },
 };

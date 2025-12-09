@@ -1,8 +1,9 @@
-import MUITextField, { TextFieldProps } from "@mui/material/TextField";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { TextField as BaseTextField, type TextFieldProps } from "..";
 
 const TextField = (props: TextFieldProps) => {
-  return <MUITextField {...props} />;
+  return <BaseTextField {...props} />;
 };
 
 const meta: Meta<typeof TextField> = {

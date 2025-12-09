@@ -1,12 +1,15 @@
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { Button } from "../Button";
-import { Dialog as CustomDialog, DialogProps } from "../Dialog";
+import {
+  Dialog as BaseDialog,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  type DialogProps,
+  DialogTitle,
+} from "..";
 
 const Dialog = (props: DialogProps) => {
   const [isOpen, setOpen] = useState(false);
@@ -20,7 +23,7 @@ const Dialog = (props: DialogProps) => {
       <Button variant="outlined" onClick={openDialog}>
         Open dialog
       </Button>
-      <CustomDialog {...props} open={isOpen} onClose={closeDialog}>
+      <BaseDialog {...props} open={isOpen} onClose={closeDialog}>
         <DialogTitle>Dialog title</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -44,7 +47,7 @@ const Dialog = (props: DialogProps) => {
             Save
           </Button>
         </DialogActions>
-      </CustomDialog>
+      </BaseDialog>
     </>
   );
 };

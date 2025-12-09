@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { CustomFile, FileList } from "../FileList";
+import { type CustomFile, FileList } from "..";
 
 const meta: Meta<typeof FileList> = {
   title: "Components/FileList",

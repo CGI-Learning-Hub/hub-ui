@@ -1,4 +1,5 @@
-import { ThemeOptions } from "@mui/material";
+import { ThemeOptions } from "@mui/material/styles";
+
 import { getMuiTheme } from "../mui";
 import { getTailwindThemeConfig } from "../tailwind";
 import { Theme } from "../types";
@@ -98,12 +99,14 @@ const muiOptions = {
           transition: "transform 0.1s ease",
 
           // Display darker shade corresponding to current color for button's boxShadow prop on hover
-          "&.MuiButton-containedPrimary:hover, &.MuiButton-outlinedPrimary:hover": {
-            boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
-          },
-          "&.MuiButton-containedSecondary:hover, &.MuiButton-outlinedSecondary:hover": {
-            boxShadow: "0 0.2rem 0 0 var(--theme-palette-secondary-dark)",
-          },
+          "&.MuiButton-containedPrimary:hover, &.MuiButton-outlinedPrimary:hover":
+            {
+              boxShadow: "0 0.2rem 0 0 var(--theme-palette-primary-dark)",
+            },
+          "&.MuiButton-containedSecondary:hover, &.MuiButton-outlinedSecondary:hover":
+            {
+              boxShadow: "0 0.2rem 0 0 var(--theme-palette-secondary-dark)",
+            },
           "&.MuiButton-containedRed:hover, &.MuiButton-outlinedRed:hover": {
             boxShadow: "0 0.2rem 0 0 var(--theme-palette-red-dark)",
           },
@@ -113,9 +116,10 @@ const muiOptions = {
           "&.MuiButton-containedGreen:hover, &.MuiButton-outlinedGreen:hover": {
             boxShadow: "0 0.2rem 0 0 var(--theme-palette-green-dark)",
           },
-          "&.MuiButton-containedYellow:hover, &.MuiButton-outlinedYellow:hover": {
-            boxShadow: "0 0.2rem 0 0 var(--theme-palette-yellow-dark)",
-          },
+          "&.MuiButton-containedYellow:hover, &.MuiButton-outlinedYellow:hover":
+            {
+              boxShadow: "0 0.2rem 0 0 var(--theme-palette-yellow-dark)",
+            },
         },
       },
       variants: [
@@ -154,14 +158,14 @@ const muiOptions = {
     MuiActionBar: {
       styleOverrides: {
         root: {
-          background: 'rgba(255, 255, 255, 0.8)',
-          color: '#000000',
+          background: "rgba(255, 255, 255, 0.8)",
+          color: "#000000",
         },
         leftActionsContainer: {
-          gap: '8px',
+          gap: "8px",
         },
         rightActionsContainer: {
-          gap: '8px',
+          gap: "8px",
         },
         leftActions: {
           fontFamily: '"KGJune", "Roboto", "Arial", sans-serif',
@@ -182,7 +186,7 @@ const muiOptions = {
         buttonVariant: "contained",
       },
     },
-  }
+  },
 } as ThemeOptions;
 
 const muiTheme = getMuiTheme(theme, muiOptions);

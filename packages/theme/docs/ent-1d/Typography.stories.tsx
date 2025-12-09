@@ -1,16 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import { ThemeProvider } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import React, { FunctionComponent } from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { FC } from "react";
+
 import { ent1DMuiTheme } from "../../src";
 
 type FontDetailProps = Pick<TypographyProps, "variant">;
 
-const FontDetails: FunctionComponent<FontDetailProps> = ({ variant }) => {
+const FontDetails: FC<FontDetailProps> = ({ variant }) => {
   if (!variant) return null;
-  const { fontFamily, fontSize, fontWeight } = ent1DMuiTheme.typography[variant];
+  const { fontFamily, fontSize, fontWeight } =
+    ent1DMuiTheme.typography[variant];
 
   return (
     <Stack direction="row" spacing={2} mt={1}>

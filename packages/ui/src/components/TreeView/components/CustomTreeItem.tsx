@@ -1,5 +1,5 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import Box from "@mui/material/Box";
 import {
   TreeItemContent,
@@ -9,7 +9,7 @@ import {
 } from "@mui/x-tree-view/TreeItem";
 import { TreeItemProvider } from "@mui/x-tree-view/TreeItemProvider";
 import { useTreeItem } from "@mui/x-tree-view/useTreeItem";
-import { type Ref } from "react";
+import type { Ref } from "react";
 
 import { EllipsisWithTooltip } from "../../EllipsisWithTooltip";
 import {
@@ -19,7 +19,7 @@ import {
   treeContentStyle,
   treeItemRootStyle,
 } from "../style";
-import { ExtendedTreeItemProps } from "../types";
+import type { ExtendedTreeItemProps } from "../types";
 import { getIconComponent } from "../utils";
 
 function CustomTreeItem(
@@ -78,9 +78,9 @@ function CustomTreeItem(
           <Box sx={arrowContainerStyle}>
             {status.expandable &&
               (status.expanded ? (
-                <KeyboardArrowDownIcon fontSize="small" />
+                <KeyboardArrowDownRoundedIcon fontSize="small" />
               ) : (
-                <KeyboardArrowRightIcon fontSize="small" />
+                <KeyboardArrowRightRoundedIcon fontSize="small" />
               ))}
           </Box>
         </TreeItemContent>

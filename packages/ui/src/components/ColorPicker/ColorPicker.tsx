@@ -1,6 +1,8 @@
-import { Box, ClickAwayListener, SxProps } from "@mui/material";
-import { FC, KeyboardEvent, useState } from "react";
-import { CirclePicker, ColorResult } from "react-color";
+import Box from "@mui/material/Box";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import type { SxProps } from "@mui/material/styles";
+import { type FC, type KeyboardEvent, useState } from "react";
+import { CirclePicker, type ColorResult } from "react-color";
 
 import { CheckmarkSwatch } from "./CheckmarkSwatch";
 import { ColorPickerIcon } from "./ColorPickerIcon";
@@ -10,7 +12,7 @@ import {
   checkmarkSwatchBox,
   circlePickerStyle,
 } from "./styles";
-import { ColorOption, ColorPickerProps, HexaColor } from "./types";
+import type { ColorOption, ColorPickerProps, HexaColor } from "./types";
 
 const ColorPicker: FC<ColorPickerProps> = ({
   disabled = false,

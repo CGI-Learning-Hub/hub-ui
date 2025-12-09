@@ -1,7 +1,9 @@
-import { SvgIconComponent } from "@mui/icons-material";
-import type { Color, SvgIconProps } from "@mui/material";
+import type { SvgIconComponent } from "@mui/icons-material";
 import Stack, { type StackProps } from "@mui/material/Stack";
+import type { SvgIconProps } from "@mui/material/SvgIcon";
 import Typography, { type TypographyProps } from "@mui/material/Typography";
+import type { Color } from "@mui/material/styles";
+import type { FC } from "react";
 
 export type HeadingProps = {
   title: string;
@@ -23,7 +25,7 @@ export type HeadingProps = {
   titleProps?: TypographyProps;
 } & StackProps;
 
-const Heading: React.FunctionComponent<HeadingProps> = ({
+const Heading: FC<HeadingProps> = ({
   title,
   IconComponent,
   iconColor,

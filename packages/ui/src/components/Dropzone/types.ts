@@ -1,8 +1,11 @@
-import { StackProps, SvgIconProps, TypographyProps } from "@mui/material";
+import type { StackProps } from "@mui/material/Stack";
+import type { SvgIconProps } from "@mui/material/SvgIcon";
+import type { TypographyProps } from "@mui/material/Typography";
+import type { InputHTMLAttributes } from "react";
 
 export type DropZoneSlotProps = {
   root?: StackProps;
-  input?: React.InputHTMLAttributes<HTMLInputElement>;
+  input?: InputHTMLAttributes<HTMLInputElement>;
   icon?: SvgIconProps;
   label?: TypographyProps;
   information?: TypographyProps;

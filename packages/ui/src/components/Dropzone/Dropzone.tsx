@@ -1,13 +1,14 @@
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
+import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
+import UploadFileRoundedIcon from "@mui/icons-material/UploadFileRounded";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import type { FC } from "react";
 import {
   type DropzoneProps as ReactDropzoneProps,
   useDropzone,
 } from "react-dropzone";
 
-import { DropZoneSlotProps } from "./types";
+import type { DropZoneSlotProps } from "./types";
 
 export type DropzoneProps = {
   defaultLabel?: string;
@@ -18,7 +19,7 @@ export type DropzoneProps = {
   slotProps?: DropZoneSlotProps;
 } & ReactDropzoneProps;
 
-const Dropzone: React.FunctionComponent<DropzoneProps> = ({
+const Dropzone: FC<DropzoneProps> = ({
   defaultLabel = "Glisser et déposer des fichiers ici, ou cliquer pour sélectionner des fichiers",
   dragLabel = "Déposer les fichiers ici",
   information,
@@ -50,12 +51,12 @@ const Dropzone: React.FunctionComponent<DropzoneProps> = ({
       <input {...getInputProps()} {...slotProps.input} />
       {isDragActive ? (
         <>
-          <FileUploadIcon color="primary" {...slotProps.icon} />
+          <FileUploadRoundedIcon color="primary" {...slotProps.icon} />
           <Typography {...slotProps.label}>{dragLabel}</Typography>
         </>
       ) : (
         <>
-          <UploadFileIcon color="primary" {...slotProps.icon} />
+          <UploadFileRoundedIcon color="primary" {...slotProps.icon} />
           <Typography {...slotProps.label}>{defaultLabel}</Typography>
           {information ? (
             <Typography variant="body2" color="grey" {...slotProps.information}>

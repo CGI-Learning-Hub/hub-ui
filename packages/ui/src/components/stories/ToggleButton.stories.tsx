@@ -1,17 +1,21 @@
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
+import FormatAlignCenterRoundedIcon from "@mui/icons-material/FormatAlignCenterRounded";
+import FormatAlignJustifyRoundedIcon from "@mui/icons-material/FormatAlignJustifyRounded";
+import FormatAlignLeftRoundedIcon from "@mui/icons-material/FormatAlignLeftRounded";
+import FormatAlignRightRoundedIcon from "@mui/icons-material/FormatAlignRightRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 
-import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps } from "..";
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+  type ToggleButtonGroupProps,
+} from "..";
 
 const ToggleButtons = (props: ToggleButtonGroupProps) => {
   const [alignment, setAlignment] = useState<string | null>("left");
 
   const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     newAlignment: string | null,
   ) => {
     setAlignment(newAlignment);
@@ -20,16 +24,16 @@ const ToggleButtons = (props: ToggleButtonGroupProps) => {
   return (
     <ToggleButtonGroup value={alignment} onChange={handleAlignment} {...props}>
       <ToggleButton value="left" aria-label="left aligned">
-        <FormatAlignLeftIcon />
+        <FormatAlignLeftRoundedIcon />
       </ToggleButton>
       <ToggleButton value="center" aria-label="centered">
-        <FormatAlignCenterIcon />
+        <FormatAlignCenterRoundedIcon />
       </ToggleButton>
       <ToggleButton value="right" aria-label="right aligned">
-        <FormatAlignRightIcon />
+        <FormatAlignRightRoundedIcon />
       </ToggleButton>
       <ToggleButton value="justify" aria-label="justified" disabled>
-        <FormatAlignJustifyIcon />
+        <FormatAlignJustifyRoundedIcon />
       </ToggleButton>
     </ToggleButtonGroup>
   );

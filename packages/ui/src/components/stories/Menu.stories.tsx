@@ -1,15 +1,13 @@
-import MUIMenu, { MenuProps } from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 
-import { Button } from "../Button";
+import { Menu as BaseMenu, Button, MenuItem, type MenuProps } from "..";
 
 const Menu = (props: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -27,7 +25,7 @@ const Menu = (props: MenuProps) => {
       >
         Open menu
       </Button>
-      <MUIMenu
+      <BaseMenu
         {...props}
         id="basic-menu"
         anchorEl={anchorEl}
@@ -40,7 +38,7 @@ const Menu = (props: MenuProps) => {
         <MenuItem onClick={closeMenu}>Profile</MenuItem>
         <MenuItem onClick={closeMenu}>My account</MenuItem>
         <MenuItem onClick={closeMenu}>Logout</MenuItem>
-      </MUIMenu>
+      </BaseMenu>
     </>
   );
 };

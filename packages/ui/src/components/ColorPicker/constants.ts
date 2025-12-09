@@ -1,4 +1,4 @@
-import { ColorOption } from "./types";
+import type { ColorOption } from "./types";
 
 export const DEFAULT_COLOR_OPTIONS: ColorOption[] = [
   { color: "#F44336", showBorder: false },

@@ -1,9 +1,7 @@
-import { Box } from "@mui/material";
-import { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { ColorPicker } from "../ColorPicker";
-import { ColorPickerProps, HexaColor } from "../ColorPicker/types";
+import { Box, ColorPicker, type ColorPickerProps, type HexaColor } from "..";
 
 const Component = (props: ColorPickerProps) => {
   const [color, setColor] = useState(props.value);

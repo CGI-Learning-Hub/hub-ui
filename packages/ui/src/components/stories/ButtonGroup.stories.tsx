@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { ButtonGroup, ButtonGroupProps } from "..";
+import { ButtonGroup, type ButtonGroupProps } from "..";
 
 const BasicButtonGroup = (props: ButtonGroupProps) => {
   return (

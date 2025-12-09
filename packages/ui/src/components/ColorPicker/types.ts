@@ -1,6 +1,7 @@
-import { BoxProps, ClickAwayListenerProps } from "@mui/material";
-import { SVGAttributes } from "react";
-import { CirclePickerProps } from "react-color";
+import type { BoxProps } from "@mui/material/Box";
+import type { ClickAwayListenerProps } from "@mui/material/ClickAwayListener";
+import type { SVGAttributes } from "react";
+import type { CirclePickerProps } from "react-color";
 
 export type HexaColor = `#${string}`;
 

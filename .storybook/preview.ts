@@ -5,8 +5,8 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import "./global.css";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 
 import {
@@ -14,10 +14,11 @@ import {
   cd77MuiTheme,
   crnaMuiTheme,
   defaultMuiTheme,
+  ent1DMuiTheme,
   entDefaultMuiTheme,
   imtMuiTheme,
-  ent1DMuiTheme,
 } from "../packages/theme/src/themes";
+import "./global.css";
 
 export const decorators = [
   withThemeFromJSXProvider({

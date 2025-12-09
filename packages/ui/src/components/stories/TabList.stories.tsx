@@ -1,19 +1,23 @@
-import TabContext from "@mui/lab/TabContext";
-import MUITabList, { TabListProps } from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import Tab from "@mui/material/Tab";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { type SyntheticEvent, useState } from "react";
+
+import {
+  TabList as BaseTabList,
+  Tab,
+  TabContext,
+  type TabListProps,
+  TabPanel,
+} from "..";
 
 const TabList = (props: TabListProps) => {
   const [value, setValue] = useState("1");
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) =>
+  const handleChange = (event: SyntheticEvent, newValue: string) =>
     setValue(newValue);
 
   return (
     <TabContext value={value}>
-      <MUITabList
+      <BaseTabList
         {...props}
         onChange={handleChange}
         aria-label="lib tablist example"
@@ -21,7 +25,7 @@ const TabList = (props: TabListProps) => {
         <Tab label="Item one" value="1" />
         <Tab label="Item two" value="2" />
         <Tab label="Item three" value="3" />
-      </MUITabList>
+      </BaseTabList>
       <TabPanel value="1">Item one</TabPanel>
       <TabPanel value="2">Item two</TabPanel>
       <TabPanel value="3">Item three</TabPanel>

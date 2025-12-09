@@ -1,5 +1,6 @@
 import Backdrop, { type BackdropProps } from "@mui/material/Backdrop";
 import type { BoxProps } from "@mui/material/Box";
+import type { FC } from "react";
 
 import { StyledLoaderBackdropInner } from "./LoaderBackdrop.styles";
 
@@ -10,9 +11,7 @@ export type LoaderBackdropProps = {
   };
 };
 
-const LoaderBackdrop: React.FunctionComponent<LoaderBackdropProps> = ({
-  slotProps = {},
-}) => {
+const LoaderBackdrop: FC<LoaderBackdropProps> = ({ slotProps = {} }) => {
   return (
     <Backdrop
       open

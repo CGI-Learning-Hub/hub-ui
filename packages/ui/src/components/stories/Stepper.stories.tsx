@@ -1,13 +1,16 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Step from "@mui/material/Step";
-import StepButton from "@mui/material/StepButton";
-import StepLabel from "@mui/material/StepLabel";
-import Stepper, { StepperProps } from "@mui/material/Stepper";
-import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
-import { Fragment } from "react/jsx-runtime";
+import { type ReactNode, useState } from "react";
+
+import {
+  Box,
+  Button,
+  Step,
+  StepButton,
+  StepLabel,
+  Stepper,
+  type StepperProps,
+  Typography,
+} from "..";
 
 const steps = ["Paramètres", "Créer un groupe", "Validation"];
 
@@ -63,7 +66,7 @@ const LinearStepper = (props: StepperProps) => {
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
-            optional?: React.ReactNode;
+            optional?: ReactNode;
           } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
@@ -81,7 +84,7 @@ const LinearStepper = (props: StepperProps) => {
         })}
       </Stepper>
       {activeStep === steps.length ? (
-        <Fragment>
+        <>
           <Typography sx={{ mt: 2, mb: 1 }}>
             Toutes les étapes sont complétées - vous avez terminé
           </Typography>
@@ -89,9 +92,9 @@ const LinearStepper = (props: StepperProps) => {
             <Box sx={{ flex: "1 1 auto" }} />
             <Button onClick={handleReset}>Réinitialiser</Button>
           </Box>
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <Typography sx={{ mt: 2, mb: 1 }}>Étape {activeStep + 1}</Typography>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
@@ -112,7 +115,7 @@ const LinearStepper = (props: StepperProps) => {
               {activeStep === steps.length - 1 ? "Terminer" : "Suivant"}
             </Button>
           </Box>
-        </Fragment>
+        </>
       )}
     </Box>
   );
@@ -184,7 +187,7 @@ const NonLinearStepper = (props: StepperProps) => {
       </Stepper>
       <div>
         {allStepsCompleted() ? (
-          <Fragment>
+          <>
             <Typography sx={{ mt: 2, mb: 1 }}>
               Toutes les étapes sont complétées - vous avez terminé
             </Typography>
@@ -192,9 +195,9 @@ const NonLinearStepper = (props: StepperProps) => {
               <Box sx={{ flex: "1 1 auto" }} />
               <Button onClick={handleReset}>Réinitialiser</Button>
             </Box>
-          </Fragment>
+          </>
         ) : (
-          <Fragment>
+          <>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               Étape {activeStep + 1}
             </Typography>
@@ -227,7 +230,7 @@ const NonLinearStepper = (props: StepperProps) => {
                   </Button>
                 ))}
             </Box>
-          </Fragment>
+          </>
         )}
       </div>
     </Box>

@@ -1,8 +1,7 @@
-import MoodIcon from "@mui/icons-material/Mood";
-import { red } from "@mui/material/colors";
+import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Heading } from "../Heading";
+import { Heading, red } from "..";
 
 const meta: Meta<typeof Heading> = {
   title: "Components/Heading",
@@ -16,6 +15,6 @@ export const Default: Story = {
   args: {
     title: "Heading",
     iconColor: red,
-    IconComponent: MoodIcon,
+    IconComponent: MoodRoundedIcon,
   },
 };

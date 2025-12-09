@@ -1,19 +1,18 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
-import React, { useState } from "react";
+import { type FC, type MouseEvent, useState } from "react";
 
 export type PasswordInputProps = Omit<TextFieldProps, "variant" | "type">;
 
-const PasswordInput: React.FunctionComponent<PasswordInputProps> = (props) => {
+const PasswordInput: FC<PasswordInputProps> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -31,7 +30,11 @@ const PasswordInput: React.FunctionComponent<PasswordInputProps> = (props) => {
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
               >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
+                {showPassword ? (
+                  <VisibilityRoundedIcon />
+                ) : (
+                  <VisibilityOffRoundedIcon />
+                )}
               </IconButton>
             </InputAdornment>
           ),

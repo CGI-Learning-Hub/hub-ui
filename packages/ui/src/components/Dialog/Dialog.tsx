@@ -1,12 +1,15 @@
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { IconButton } from "@mui/material";
-import MUIDialog, { DialogProps as MUIDialogProps } from "@mui/material/Dialog";
+import BaseDialog, {
+  type DialogProps as BaseDialogProps,
+} from "@mui/material/Dialog";
+import IconButton from "@mui/material/IconButton";
+import type { FC } from "react";
 
 export type DialogProps = {
   showCloseButton?: boolean;
-} & MUIDialogProps;
+} & BaseDialogProps;
 
-const Dialog: React.FunctionComponent<DialogProps> = ({
+const Dialog: FC<DialogProps> = ({
   children,
   showCloseButton = true,
   ...otherProps
@@ -14,7 +17,7 @@ const Dialog: React.FunctionComponent<DialogProps> = ({
   const handleClose = () => otherProps.onClose?.({}, "escapeKeyDown");
 
   return (
-    <MUIDialog {...otherProps}>
+    <BaseDialog {...otherProps}>
       {showCloseButton ? (
         <IconButton
           aria-label="close"
@@ -30,7 +33,7 @@ const Dialog: React.FunctionComponent<DialogProps> = ({
         </IconButton>
       ) : null}
       {children}
-    </MUIDialog>
+    </BaseDialog>
   );
 };
 export default Dialog;

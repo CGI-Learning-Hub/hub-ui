@@ -1,5 +1,6 @@
-import Chip from "@mui/material/Chip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Chip } from "..";
 
 const meta: Meta<typeof Chip> = {
   title: "Components/Chip",

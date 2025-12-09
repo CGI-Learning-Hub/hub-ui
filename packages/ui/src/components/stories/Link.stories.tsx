@@ -1,8 +1,9 @@
-import MUILink, { LinkProps } from "@mui/material/Link";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Link as BaseLink, type LinkProps } from "..";
+
 const Link = (props: LinkProps) => {
-  return <MUILink {...props} />;
+  return <BaseLink {...props} />;
 };
 
 const meta: Meta<typeof Link> = {

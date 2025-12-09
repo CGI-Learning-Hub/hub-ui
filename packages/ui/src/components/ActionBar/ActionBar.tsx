@@ -1,3 +1,6 @@
+import { useTheme } from "@mui/material/styles";
+import type { FC } from "react";
+
 import {
   LeftAction,
   LeftActionsContainer,
@@ -5,18 +8,15 @@ import {
   RightActionsContainer,
   Root,
 } from "./style";
-import { ActionBarProps } from "./types";
-import { useTheme } from "@mui/material";
+import type { ActionBarProps } from "./types";
 
-
-
-const ActionBar: React.FunctionComponent<ActionBarProps> = ({
+const ActionBar: FC<ActionBarProps> = ({
   leftActions,
   rightActions,
   slotProps = {},
 }) => {
   const theme = useTheme();
-  
+
   return (
     <Root direction="row" justifyContent="space-between" {...slotProps.root}>
       <LeftActionsContainer
@@ -30,7 +30,10 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = ({
           <LeftAction
             key={item.label}
             // @ts-expect-error custom component
-            variant={theme.components?.MuiActionBar?.defaultProps?.buttonVariant ?? "text"}
+            variant={
+              theme.components?.MuiActionBar?.defaultProps?.buttonVariant ??
+              "text"
+            }
             color="primary"
             onClick={item.action}
             {...slotProps.leftActions}
@@ -50,7 +53,10 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = ({
           <RightAction
             key={item.label}
             // @ts-expect-error custom component
-            variant={theme.components?.MuiActionBar?.defaultProps?.buttonVariant ?? "text"}
+            variant={
+              theme.components?.MuiActionBar?.defaultProps?.buttonVariant ??
+              "text"
+            }
             color="primary"
             onClick={item.action}
             {...slotProps.rightActions}
