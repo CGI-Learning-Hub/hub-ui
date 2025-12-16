@@ -49,25 +49,23 @@ export const SelectedIcon = styled(Box)<{
   visibility: "visible",
   opacity: 0,
   cursor: "pointer",
-  transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out",
+  transition: "opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, background 0.2s ease-in-out",
   ...(selected && {
     background: theme.palette.primary.lighter,
     opacity: 1,
     visibility: "visible",
   }),
-  ...(!hasNoButtonOnFocus
-    ? {
-        "&:hover, &:focus": {
-          background: theme.palette.primary.lighter,
-          opacity: 1,
-        },
-      }
-    : {
-        "&:hover": {
-          background: theme.palette.primary.lighter,
-          opacity: 1,
-        },
-      }),
+  ".MuiCard-root:hover &": {
+    background: theme.palette.primary.lighter,
+    opacity: 1,
+    visibility: "visible",
+  },
+  ...(!hasNoButtonOnFocus && {
+    "&:focus": {
+      background: theme.palette.primary.lighter,
+      opacity: 1,
+    },
+  }),
   "& .MuiSvgIcon-root": {
     color: theme.palette.primary.main,
   },
