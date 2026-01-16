@@ -1,6 +1,6 @@
 {
   "name": "@cgi-learning-hub/icons",
-  "version": "1.11.1-dev",
+  "version": "1.12.0",
   "description": "SVG React icon components for Hub's design system, extending @mui/icons-material with additional general-purpose icons.",
   "keywords": [
     "cgi-learning-hub",
