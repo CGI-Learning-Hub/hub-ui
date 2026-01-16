@@ -41,7 +41,7 @@
   "dependencies": {
     "@fontsource/arimo": "5.2.8",
     "@fontsource/roboto": "5.2.9",
-    "@mui/utils": "7.3.5"
+    "@mui/utils": "7.3.7"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
