@@ -81,6 +81,13 @@ const meta: Meta<typeof ResourceCard> = {
         defaultValue: { summary: "320px" },
       },
     },
+    maxWidth: {
+      description: "Largeur maximum de la carte.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
   },
 };
 export default meta;
