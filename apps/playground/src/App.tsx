@@ -130,13 +130,16 @@ function App() {
         ]}
       ></ActionBar>
       <ResourceCard
+        width="300px"
         title={"Ma grande ressource"}
         image={undefined}
         defaultImage={"../public/vite.svg"}
         size={"md"}
       ></ResourceCard>
       <ResourceCard
-        title={"Ma petite ressource"}
+        width="90%"
+        maxWidth="400px"
+        title={"Ma petite ressource plus grande que la grande"}
         image={undefined}
         defaultImage={"../public/vite.svg"}
         size={"sm"}

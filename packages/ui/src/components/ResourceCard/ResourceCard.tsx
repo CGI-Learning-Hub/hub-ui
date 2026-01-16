@@ -38,6 +38,7 @@ export type ResourceCardProps = {
   infoIcons?: InfoItem[];
   size?: ResourceCardSize;
   width?: string;
+  maxWidth?: string;
   onClick?: () => void;
   hasNoButtonOnFocus?: boolean;
 };
@@ -52,6 +53,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
   infoIcons = [],
   size = "md",
   width,
+  maxWidth,
   onClick = () => {},
   hasNoButtonOnFocus = false,
 }) => {
@@ -59,7 +61,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
   infoIcons = infoIcons.slice(0, 3);
 
   return (
-    <Box sx={{ width: width && size === "md" ? width : "320px" }}>
+    <Box sx={{ width: width ?? "320px", ...(maxWidth && { maxWidth }) }}>
       <StyledCard
         selected={isSelected}
         size={size}
