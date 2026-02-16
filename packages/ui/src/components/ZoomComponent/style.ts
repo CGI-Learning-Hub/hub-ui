@@ -1,8 +1,8 @@
 import { SxProps, Theme } from "@mui/material";
 
-const MAGNETO_GREY = "rgba(238, 238, 238, 0.75)";
-const MAGNETO_LIGHT_GREY = "#D6D6D6";
-const MAGNETO_WHITE = "#FFFFFF";
+const GREY = "rgba(238, 238, 238, 0.75)";
+const LIGHT_GREY = "#D6D6D6";
+const WHITE = "#FFFFFF";
 
 interface ContainerStyle {
   opacity: number;
@@ -15,8 +15,8 @@ interface IconStyle {
 export const containerStyle = ({
   opacity,
 }: ContainerStyle): SxProps<Theme> => ({
-  backgroundColor: MAGNETO_GREY,
-  color: MAGNETO_WHITE,
+  backgroundColor: GREY,
+  color: WHITE,
   borderRadius: "1.6rem",
   padding: "0.8rem",
   display: "inline-flex",
@@ -40,7 +40,7 @@ export const iconButtonStyle: SxProps<Theme> = {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   "&.Mui-disabled": {
-    color: MAGNETO_LIGHT_GREY,
+    color: LIGHT_GREY,
   },
 };
 
@@ -52,7 +52,7 @@ export const iconStyle = ({ disabled }: IconStyle): SxProps<Theme> => ({
 export const lineStyle: SxProps<Theme> = {
   width: "4rem",
   height: "1px",
-  backgroundColor: MAGNETO_WHITE,
+  backgroundColor: WHITE,
 };
 
 export const labelStyle: SxProps<Theme> = {

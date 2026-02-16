@@ -1,6 +1,6 @@
 import { IconButton } from "@cgi-learning-hub/ui";
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, BoxProps, Typography } from "@mui/material";
 import { FC } from "react";
 
 import {
@@ -18,6 +18,9 @@ interface ZoomComponentProps {
   zoomOut: () => void;
   resetZoom: () => void;
   label?: string;
+  slotProps?: {
+    boxStyle?: BoxProps;
+  };
 }
 
 const ZoomComponent: FC<ZoomComponentProps> = ({
@@ -28,12 +31,13 @@ const ZoomComponent: FC<ZoomComponentProps> = ({
   zoomOut,
   resetZoom,
   label = "Zoom",
+  slotProps = {},
 }: ZoomComponentProps) => {
   const isMinZoom = zoomLevel === 0;
   const isMaxZoom = zoomLevel === zoomMaxLevel;
 
   return (
-    <Box sx={containerStyle({ opacity })}>
+    <Box sx={containerStyle({ opacity })} {...slotProps.boxStyle}>
       <IconButton onClick={zoomOut} disabled={isMinZoom} sx={iconButtonStyle}>
         <RemoveRounded sx={iconStyle({ disabled: isMinZoom })} />
       </IconButton>
