@@ -22,6 +22,7 @@ import {
   ToggleButtonGroup,
   Tooltip,
   Typography,
+  ZoomControl,
 } from "@cgi-learning-hub/ui";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import { MouseEvent, SetStateAction, useState } from "react";
@@ -35,8 +36,14 @@ function App() {
   const [password, setPassword] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [files, setFiles] = useState<CustomFile[]>([]);
+  const [zoomLevel, setZoomLevel] = useState<number>(100);
   const [color, setColor] = useState<HexaColor>("#F44336");
   const open = Boolean(anchorEl);
+
+  const applyZoom = (level: number) => {
+    setZoomLevel(level);
+    document.body.style.zoom = `${level}%`;
+  };
 
   const handleThemeChange = (
     event: MouseEvent<HTMLElement>,
@@ -57,6 +64,7 @@ function App() {
 
   return (
     <ThemeProvider themeId={themeId}>
+      <ZoomControl onChange={applyZoom} value={zoomLevel} min={40} max={300} />
       <ToggleButtonGroup value={themeId} exclusive onChange={handleThemeChange}>
         <ToggleButton value="default">Default</ToggleButton>
         <ToggleButton value="crna">CRNA</ToggleButton>
