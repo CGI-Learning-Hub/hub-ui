@@ -1,33 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { Box, ZoomComponent } from "..";
+import { ZoomControl } from "..";
 
-const meta: Meta<typeof ZoomComponent> = {
-  title: "Components/ZoomComponent",
-  component: ZoomComponent,
+const meta: Meta<typeof ZoomControl> = {
+  title: "Components/ZoomControl",
+  component: ZoomControl,
   tags: ["autodocs"],
   argTypes: {
     opacity: {
       description: "Opacité du composant",
       control: { type: "range", min: 0, max: 1, step: 0.1 },
     },
-    zoomLevel: {
+    value: {
       description: "Niveau de zoom actuel",
       control: "number",
     },
-    zoomMaxLevel: {
+    max: {
       description: "Niveau de zoom maximum",
       control: "number",
     },
-    zoomIn: {
-      description: "Callback à l'action du bouton + (zoom)",
+    min: {
+      description: "Niveau de zoom minimum",
+      control: "number",
     },
-    zoomOut: {
-      description: "Callback à l'action du bouton - (dé-zoom)",
+    step: {
+      description: "Pas de zoom",
+      control: "number",
     },
-    resetZoom: {
-      description: "Callback pour réinitialiser le zoom",
+    defaultValue: {
+      description: "Valeur de zoom par défaut (reset)",
+      control: "number",
+    },
+    onChange: {
+      description: "Callback appelé avec la nouvelle valeur de zoom",
     },
     label: {
       description: "Label affiché au centre (cliquable pour reset)",
@@ -42,31 +48,38 @@ const meta: Meta<typeof ZoomComponent> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ZoomComponent>;
+type Story = StoryObj<typeof ZoomControl>;
 
 const ZoomWrapper = ({
-  zoomMaxLevel = 300,
+  max = 300,
+  min = 0,
   step = 10,
-  initialZoom = 100,
-  ...props
+  defaultValue = 100,
+  opacity,
+  label,
+  slotProps,
 }: {
-  zoomMaxLevel?: number;
+  max?: number;
+  min?: number;
   step?: number;
-  initialZoom?: number;
+  defaultValue?: number;
   opacity?: number;
   label?: string;
-  slotProps?: React.ComponentProps<typeof ZoomComponent>["slotProps"];
+  slotProps?: React.ComponentProps<typeof ZoomControl>["slotProps"];
 }) => {
-  const [zoomLevel, setZoomLevel] = useState(initialZoom);
+  const [zoomLevel, setZoomLevel] = useState(defaultValue);
 
   return (
-    <ZoomComponent
-      zoomLevel={zoomLevel}
-      zoomMaxLevel={zoomMaxLevel}
-      zoomIn={() => setZoomLevel((prev) => Math.min(prev + step, zoomMaxLevel))}
-      zoomOut={() => setZoomLevel((prev) => Math.max(prev - step, 0))}
-      resetZoom={() => setZoomLevel(initialZoom)}
-      {...props}
+    <ZoomControl
+      value={zoomLevel}
+      max={max}
+      min={min}
+      step={step}
+      defaultValue={defaultValue}
+      onChange={setZoomLevel}
+      opacity={opacity}
+      label={label}
+      slotProps={slotProps}
     />
   );
 };
@@ -77,7 +90,7 @@ export const Default: Story = {
     docs: {
       description: {
         story:
-          "Affiche un `ZoomComponent` avec les valeurs par défaut. Zoom de 0 à 300, pas de 10.",
+          "Affiche un `ZoomControl` avec les valeurs par défaut. Zoom de 0 à 300, pas de 10.",
       },
     },
   },
@@ -107,13 +120,13 @@ export const WithOpacity: Story = {
 
 export const SmallRange: Story = {
   render: () => (
-    <ZoomWrapper zoomMaxLevel={3} step={1} initialZoom={1} label="x1" />
+    <ZoomWrapper max={3} min={1} step={1} defaultValue={1} label="x1" />
   ),
   parameters: {
     docs: {
       description: {
         story:
-          "Zoom avec une plage réduite (0 à 3), pour des niveaux de zoom plus discrets.",
+          "Zoom avec une plage réduite (1 à 3), pour des niveaux de zoom plus discrets.",
       },
     },
   },
@@ -123,7 +136,7 @@ export const WithSlotProps: Story = {
   render: () => (
     <ZoomWrapper
       slotProps={{
-        boxStyle: {
+        root: {
           sx: {
             height: "8rem",
             width: "15rem",
@@ -137,7 +150,7 @@ export const WithSlotProps: Story = {
     docs: {
       description: {
         story:
-          "Personnalisation du conteneur via `slotProps.boxStyle` pour modifier la taille et la couleur de fond.",
+          "Personnalisation du conteneur via `slotProps.root` pour modifier la taille et la couleur de fond.",
       },
     },
   },

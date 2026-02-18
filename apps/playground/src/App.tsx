@@ -22,7 +22,7 @@ import {
   ToggleButtonGroup,
   Tooltip,
   Typography,
-  ZoomComponent,
+  ZoomControl,
 } from "@cgi-learning-hub/ui";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import { MouseEvent, SetStateAction, useState } from "react";
@@ -64,12 +64,12 @@ function App() {
 
   return (
     <ThemeProvider themeId={themeId}>
-      <ZoomComponent
-        zoomLevel={zoomLevel}
-        zoomMaxLevel={300}
-        zoomIn={() => applyZoom(Math.min(zoomLevel + 10, 300))}
-        zoomOut={() => applyZoom(Math.max(zoomLevel - 10, 40))}
-        resetZoom={() => applyZoom(100)}
+      <ZoomControl
+        onChange={applyZoom}
+        value={zoomLevel}
+        min={40}
+        max={300}
+        defaultValue={100}
       />
       <ToggleButtonGroup value={themeId} exclusive onChange={handleThemeChange}>
         <ToggleButton value="default">Default</ToggleButton>
