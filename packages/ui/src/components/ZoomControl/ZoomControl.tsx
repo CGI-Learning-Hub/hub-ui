@@ -1,7 +1,7 @@
 import { IconButton } from "@cgi-learning-hub/ui";
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import { Box, BoxProps, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useRef } from "react";
 
 import {
   containerStyle,
@@ -12,9 +12,8 @@ import {
 
 interface ZoomControlProps {
   step?: number;
-  defaultValue?: number;
-  value?: number;
-  onChange?: (value: number) => void;
+  value: number;
+  onChange: (value: number) => void;
   max?: number;
   min?: number;
   label?: string;
@@ -26,7 +25,6 @@ interface ZoomControlProps {
 
 const ZoomControl: FC<ZoomControlProps> = ({
   step = 10,
-  defaultValue = 50,
   value = 50,
   onChange,
   max = 100,
@@ -37,10 +35,11 @@ const ZoomControl: FC<ZoomControlProps> = ({
 }: ZoomControlProps) => {
   const isMinZoom = value === min;
   const isMaxZoom = value === max;
+  const initialValue = useRef(value);
 
   const handleDecrease = () => onChange?.(Math.max(value - step, min));
   const handleIncrease = () => onChange?.(Math.min(value + step, max));
-  const handleReset = () => onChange?.(defaultValue);
+  const handleReset = () => onChange?.(initialValue.current);
 
   return (
     <Box sx={containerStyle({ opacity })} {...slotProps.root}>

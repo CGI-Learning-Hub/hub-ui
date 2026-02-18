@@ -28,10 +28,6 @@ const meta: Meta<typeof ZoomControl> = {
       description: "Pas de zoom",
       control: "number",
     },
-    defaultValue: {
-      description: "Valeur de zoom par défaut (reset)",
-      control: "number",
-    },
     onChange: {
       description: "Callback appelé avec la nouvelle valeur de zoom",
     },
@@ -75,7 +71,6 @@ const ZoomWrapper = ({
       max={max}
       min={min}
       step={step}
-      defaultValue={defaultValue}
       onChange={setZoomLevel}
       opacity={opacity}
       label={label}

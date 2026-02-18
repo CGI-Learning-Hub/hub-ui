@@ -64,13 +64,7 @@ function App() {
 
   return (
     <ThemeProvider themeId={themeId}>
-      <ZoomControl
-        onChange={applyZoom}
-        value={zoomLevel}
-        min={40}
-        max={300}
-        defaultValue={100}
-      />
+      <ZoomControl onChange={applyZoom} value={zoomLevel} min={40} max={300} />
       <ToggleButtonGroup value={themeId} exclusive onChange={handleThemeChange}>
         <ToggleButton value="default">Default</ToggleButton>
         <ToggleButton value="crna">CRNA</ToggleButton>
