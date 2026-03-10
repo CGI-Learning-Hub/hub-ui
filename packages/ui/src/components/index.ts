@@ -133,6 +133,8 @@ export * from "@mui/material/Skeleton";
 export { default as Skeleton } from "@mui/material/Skeleton";
 export * from "@mui/material/Slide";
 export { default as Slide } from "@mui/material/Slide";
+export * from "@mui/material/Slider";
+export { default as Slider } from "@mui/material/Slider";
 export * from "@mui/material/Snackbar";
 export { default as Snackbar } from "@mui/material/Snackbar";
 export * from "@mui/material/Stack";
@@ -208,5 +210,7 @@ export * from "./PasswordInput";
 export * from "./QueryError";
 export * from "./ResourceCard";
 export * from "./SearchInput";
+export * from "./TimePicker";
 export * from "./TreeView";
 export * from "./ZoomControl";
+
