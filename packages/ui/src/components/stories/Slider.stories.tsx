@@ -58,6 +58,12 @@ const meta: Meta<typeof Slider> = {
       description:
         "Determines the behavior of the slider track. 'normal' shows the track before the thumb, 'inverted' shows it after.",
     },
+    valueLabelDisplay: {
+      control: "radio",
+      options: ["auto", "on", "off"],
+      description:
+        "Controls when the value label is displayed: 'auto' shows it on interaction, 'on' always shows it, 'off' hides it.",
+    },
   },
 };
 
@@ -76,6 +82,7 @@ export const Default: Story = {
     size: "medium",
     orientation: "horizontal",
     track: "normal",
+    valueLabelDisplay: "auto",
   },
 };
 
