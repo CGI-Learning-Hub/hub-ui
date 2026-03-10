@@ -43,9 +43,9 @@ const meta: Meta<typeof Slider> = {
       description: "The maximum allowed value of the slider.",
     },
     marks: {
-      control: "boolean",
+      control: "object",
       description:
-        "If true, the slider will display marks at each step along the track.",
+        "Marks indicate predefined values along the slider track. Can be true to show marks at each step, or an array of objects like { value: number, label?: string }.",
     },
     orientation: {
       control: "radio",
@@ -83,6 +83,7 @@ export const Default: Story = {
     orientation: "horizontal",
     track: "normal",
     valueLabelDisplay: "auto",
+    marks: [{ value: 0, label: "0" }, { value: 50, label: "50" }, { value: 100, label: "100" }]
   },
 };
 
