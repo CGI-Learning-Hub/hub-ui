@@ -140,9 +140,9 @@ export const getMuiTheme = (
             styleOverrides: {
               input: {
                 "&:-webkit-autofill": {
-                  "-webkit-box-shadow": "0 0 0 100px var(--text-primary) inset",
-                  "-webkit-text-fill-color": "var(--text-primary)",
-                  "caret-color": "#000000",
+                  WebkitBoxShadow: "0 0 0 100px var(--text-primary) inset",
+                  WebkitTextFillColor: "var(--text-primary)",
+                  caretColor: "#000000",
                 },
               },
             },
