@@ -22,8 +22,8 @@ export type EmptyStateProps = (
     }
 ) & {
   imageHeight?: string | number;
-  title: string;
-  description?: string;
+  title: ReactNode;
+  description?: ReactNode;
   footer?: ReactNode;
   slotProps?: {
     root?: StackProps;
@@ -73,7 +73,6 @@ const EmptyState: FC<EmptyStateProps> = ({
       </Box>
       <Typography
         variant="h2"
-        fontWeight={500}
         mt={3}
         {...(slotProps.title ?? titleProps)}
       >
