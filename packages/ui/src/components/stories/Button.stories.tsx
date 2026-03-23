@@ -24,6 +24,20 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: "boolean",
     },
+    fullWidth: {
+      control: "boolean",
+    },
+    loading: {
+      control: "boolean",
+    },
+    size: {
+      control: "radio",
+      options: ["small", "medium", "large"],
+    },
+    variant: {
+      control: "radio",
+      options: ["text", "contained", "outlined"],
+    },
   },
 };
 export default meta;
@@ -35,6 +49,9 @@ export const Contained: Story = {
     children: "Enregistrer",
     color: "primary",
     disabled: false,
+    fullWidth: false,
+    loading: false,
+    size: "medium",
     startIcon: <SaveRoundedIcon />,
     variant: "contained",
     onClick: () => alert("Alert"),
@@ -46,6 +63,9 @@ export const Outlined: Story = {
     children: "Ajouter un utilisateur",
     color: "secondary",
     disabled: false,
+    fullWidth: false,
+    loading: false,
+    size: "medium",
     startIcon: <PersonAddRoundedIcon />,
     variant: "outlined",
     onClick: () => alert("Alert"),
@@ -57,6 +77,9 @@ export const Text: Story = {
     children: "Annuler",
     color: "secondary",
     disabled: false,
+    fullWidth: false,
+    loading: false,
+    size: "medium",
     variant: "text",
     onClick: () => alert("Alert"),
   },

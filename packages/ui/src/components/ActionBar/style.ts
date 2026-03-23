@@ -1,7 +1,7 @@
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
-import { Button } from "../Button";
+import { Button } from "..";
 
 export const Root = styled(Stack, {
   name: "MuiActionBar",

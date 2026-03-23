@@ -5,7 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
 import { type FC, type MouseEvent, useState } from "react";
 
-export type PasswordInputProps = Omit<TextFieldProps, "variant" | "type">;
+export type PasswordInputProps = Omit<TextFieldProps, "type">;
 
 const PasswordInput: FC<PasswordInputProps> = (props) => {
   const [showPassword, setShowPassword] = useState(false);

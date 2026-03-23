@@ -69,8 +69,16 @@ export const getMuiTheme = (
         },
         components: {
           MuiButton: {
+            defaultProps: {
+              variant: "outlined",
+            },
             styleOverrides: {
               root: {
+                minHeight: 38,
+                textTransform: "none",
+                borderRadius: 5,
+                borderWidth: 2,
+                transition: "all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 variants: [
                   {
                     props: { variant: "outlined", color: "primary" },

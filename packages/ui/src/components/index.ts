@@ -28,6 +28,8 @@ export * from "@mui/material/Box";
 export { default as Box } from "@mui/material/Box";
 export * from "@mui/material/Breadcrumbs";
 export { default as Breadcrumbs } from "@mui/material/Breadcrumbs";
+export * from "@mui/material/Button";
+export { default as Button } from "@mui/material/Button";
 export * from "@mui/material/ButtonGroup";
 export { default as ButtonGroup } from "@mui/material/ButtonGroup";
 export * from "@mui/material/Card";
@@ -193,7 +195,6 @@ export { default as Zoom } from "@mui/material/Zoom";
 
 export * from "./ActionBar";
 export * from "./Alert";
-export * from "./Button";
 export * from "./ColorPicker";
 export * from "./DatePicker";
 export * from "./Dialog";
@@ -213,4 +214,3 @@ export * from "./SearchInput";
 export * from "./TimePicker";
 export * from "./TreeView";
 export * from "./ZoomControl";
-
