@@ -38,13 +38,13 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@mui/icons-material": "7.3.7",
-    "@mui/lab": "7.0.1-beta.21",
-    "@mui/x-date-pickers": "8.25.0",
-    "@mui/x-tree-view": "8.25.0",
-    "dayjs": "1.11.19",
+    "@mui/icons-material": "7.3.9",
+    "@mui/lab": "7.0.1-beta.23",
+    "@mui/x-date-pickers": "8.27.2",
+    "@mui/x-tree-view": "8.27.2",
+    "dayjs": "1.11.20",
     "react-color": "2.19.3",
-    "react-dropzone": "14.3.8"
+    "react-dropzone": "15.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11",

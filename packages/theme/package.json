@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@fontsource/arimo": "5.2.8",
-    "@fontsource/roboto": "5.2.9",
-    "@mui/utils": "7.3.7"
+    "@fontsource/roboto": "5.2.10",
+    "@mui/utils": "7.3.9"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
