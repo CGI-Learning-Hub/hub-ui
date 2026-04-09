@@ -136,7 +136,7 @@ const FileListItem = <T extends CustomFile>({
             alignItems="flex-start"
             minWidth="0"
           >
-            <EllipsisWithTooltip typographyProps={{ variant: "body1" }}>
+            <EllipsisWithTooltip slotProps={{ text: { variant: "body1" } }}>
               {file.name}
             </EllipsisWithTooltip>
             <Stack

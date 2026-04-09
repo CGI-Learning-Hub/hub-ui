@@ -72,7 +72,9 @@ function CustomTreeItem(
           )}
           <EllipsisWithTooltip
             {...getLabelProps()}
-            typographyProps={labelStyle}
+            slotProps={{
+              text: labelStyle,
+            }}
           />
 
           <Box sx={arrowContainerStyle}>

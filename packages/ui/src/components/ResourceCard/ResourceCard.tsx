@@ -117,8 +117,16 @@ const ResourceCard: FC<ResourceCardProps> = ({
         </Stack>
         <ResourceCardBody size={size}>
           <EllipsisWithTooltip
-            typographyProps={{ variant: "h4", component: "p" }}
-            tooltipProps={{ placement: "bottom", arrow: true }}
+            slotProps={{
+              text: {
+                component: "p",
+                variant: "h4",
+              },
+              tooltip: {
+                placement: "bottom",
+                arrow: true,
+              },
+            }}
           >
             {title}
           </EllipsisWithTooltip>

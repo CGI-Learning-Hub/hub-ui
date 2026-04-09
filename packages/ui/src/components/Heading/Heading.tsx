@@ -15,14 +15,6 @@ export type HeadingProps = {
     text?: TypographyProps;
   };
   iconSize?: number;
-  /**
-   * @deprecated Use `slotProps.icon` instead.
-   */
-  iconProps?: SvgIconProps;
-  /**
-   * @deprecated Use `slotProps.text` instead.
-   */
-  titleProps?: TypographyProps;
 } & StackProps;
 
 const Heading: FC<HeadingProps> = ({
@@ -31,8 +23,6 @@ const Heading: FC<HeadingProps> = ({
   iconColor,
   iconSize = 28,
   slotProps = {},
-  iconProps,
-  titleProps,
   ...otherProps
 }) => {
   return (
@@ -52,14 +42,10 @@ const Heading: FC<HeadingProps> = ({
             color: iconColor?.[500],
             backgroundColor: iconColor?.[50],
           }}
-          {...(slotProps.icon ?? iconProps)}
+          {...slotProps.icon}
         />
       ) : null}
-      <Typography
-        component="h3"
-        variant="h2"
-        {...(slotProps.text ?? titleProps)}
-      >
+      <Typography component="h3" variant="h2" {...slotProps.text}>
         {title}
       </Typography>
     </Stack>

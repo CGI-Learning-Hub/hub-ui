@@ -13,20 +13,6 @@ const meta: Meta<typeof EllipsisWithTooltip> = {
         type: { summary: "ReactNode" },
       },
     },
-    tooltipProps: {
-      description: "Les props de Tooltip (MUI).",
-      control: "text",
-      table: {
-        type: { summary: "Omit<TooltipProps, 'children' | 'title'>" },
-      },
-    },
-    typographyProps: {
-      description: "Les props de Typography (MUI).",
-      control: "text",
-      table: {
-        type: { summary: "TypographyProps" },
-      },
-    },
   },
 };
 export default meta;

@@ -6,18 +6,10 @@ import type { FC, ImgHTMLAttributes, ReactNode } from "react";
 export type EmptyStateProps = (
   | {
       image: ReactNode;
-      /**
-       * @deprecated Use `slotProps.image` instead.
-       */
-      imageProps?: never;
       imageSrc?: never;
     }
   | {
       image?: never;
-      /**
-       * @deprecated Use `slotProps.image` instead.
-       */
-      imageProps?: ImgHTMLAttributes<HTMLImageElement>;
       imageSrc: string;
     }
 ) & {
@@ -31,14 +23,6 @@ export type EmptyStateProps = (
     title?: TypographyProps;
     description?: TypographyProps;
   };
-  /**
-   * @deprecated Use `slotProps.description` instead.
-   */
-  descriptionProps?: TypographyProps;
-  /**
-   * @deprecated Use `slotProps.title` instead.
-   */
-  titleProps?: TypographyProps;
 } & StackProps;
 
 const EmptyState: FC<EmptyStateProps> = ({
@@ -49,9 +33,6 @@ const EmptyState: FC<EmptyStateProps> = ({
   footer,
   imageHeight = 200,
   slotProps = {},
-  imageProps,
-  descriptionProps,
-  titleProps,
   ...otherProps
 }) => {
   return (
@@ -63,27 +44,13 @@ const EmptyState: FC<EmptyStateProps> = ({
       {...slotProps.root}
     >
       <Box height={imageHeight} width="auto">
-        {image ?? (
-          <img
-            src={imageSrc}
-            height="100%"
-            {...(slotProps.image ?? imageProps)}
-          />
-        )}
+        {image ?? <img src={imageSrc} height="100%" {...slotProps.image} />}
       </Box>
-      <Typography
-        variant="h2"
-        mt={3}
-        {...(slotProps.title ?? titleProps)}
-      >
+      <Typography variant="h2" mt={3} {...slotProps.title}>
         {title}
       </Typography>
       {description ? (
-        <Typography
-          color="textSecondary"
-          mt={2}
-          {...(slotProps.description ?? descriptionProps)}
-        >
+        <Typography color="textSecondary" mt={2} {...slotProps.description}>
           {description}
         </Typography>
       ) : null}

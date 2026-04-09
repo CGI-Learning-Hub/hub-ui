@@ -88,15 +88,25 @@ const FolderCard: FC<FolderCardProps> = ({
           </Box>
           <Box sx={TextContainerStyle}>
             <EllipsisWithTooltip
-              typographyProps={titleTypographyProps}
-              tooltipProps={{ placement: "bottom", arrow: true }}
+              slotProps={{
+                text: titleTypographyProps,
+                tooltip: {
+                  placement: "bottom",
+                  arrow: true,
+                },
+              }}
             >
               {title}
             </EllipsisWithTooltip>
             {subtitle && (
               <EllipsisWithTooltip
-                typographyProps={subtitleTypographyProps}
-                tooltipProps={{ placement: "bottom", arrow: true }}
+                slotProps={{
+                  text: subtitleTypographyProps,
+                  tooltip: {
+                    placement: "bottom",
+                    arrow: true,
+                  },
+                }}
               >
                 {subtitle}
               </EllipsisWithTooltip>

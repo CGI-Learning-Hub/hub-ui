@@ -8,24 +8,11 @@ export type EllipsisWithTooltipProps = {
     text?: Omit<TypographyProps, "noWrap" | "overflow" | "textOverflow">;
     tooltip?: Omit<TooltipProps, "children" | "title">;
   };
-  /**
-   * @deprecated Use `slotProps.tooltip` instead.
-   */
-  tooltipProps?: Omit<TooltipProps, "children" | "title">;
-  /**
-   * @deprecated Use `slotProps.text` instead.
-   */
-  typographyProps?: Omit<
-    TypographyProps,
-    "noWrap" | "overflow" | "textOverflow"
-  >;
 };
 
 const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
   children,
   slotProps = {},
-  tooltipProps,
-  typographyProps,
 }) => {
   const [isTextEllipsized, setIsTextEllipsized] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
@@ -59,7 +46,7 @@ const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
     <Tooltip
       disableHoverListener={!isTextEllipsized}
       title={children}
-      {...(slotProps.tooltip ?? tooltipProps)}
+      {...slotProps.tooltip}
     >
       <Typography
         ref={textRef}
@@ -67,7 +54,7 @@ const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
         overflow="hidden"
         textOverflow="ellipsis"
         maxWidth="100%"
-        {...(slotProps.text ?? typographyProps)}
+        {...slotProps.text}
       >
         {children}
       </Typography>
