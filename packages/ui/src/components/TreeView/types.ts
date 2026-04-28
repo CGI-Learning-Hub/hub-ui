@@ -1,6 +1,5 @@
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { TreeItemProps } from "@mui/x-tree-view/TreeItem";
-import { TreeViewBaseItem } from "@mui/x-tree-view/models/items";
 import type { SyntheticEvent } from "react";
 
 export type TreeViewItemId = string;
@@ -25,15 +24,13 @@ export enum ICON_TYPE {
 
 export type IconType = ICON_TYPE | SvgIconComponent;
 
-export interface CustomTreeViewItemProps {
+export type CustomTreeViewItem = {
   internalId: string;
   label: string;
   iconType?: IconType;
   customIcon?: SvgIconComponent;
   children?: CustomTreeViewItem[];
-}
-
-export type CustomTreeViewItem = TreeViewBaseItem<CustomTreeViewItemProps>;
+};
 
 export interface TreeViewProps {
   items: CustomTreeViewItem[];

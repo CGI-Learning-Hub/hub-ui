@@ -1,16 +1,17 @@
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
-import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton, {
   type ListItemButtonProps,
 } from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import type { MouseEvent } from "react";
+import type { MouseEventHandler } from "react";
 
 import { EllipsisWithTooltip } from "../EllipsisWithTooltip";
 import { FileIcon } from "./FileIcon";
@@ -33,11 +34,11 @@ export interface FileListItemProps<T extends CustomFile> {
   onDownload?: (file: T) => void;
 }
 
-interface ClickableItemProps extends ListItemButtonProps {
+interface StyledListItemButtonProps extends ListItemButtonProps {
   isClickable: boolean;
 }
 
-const ClickableItem = styled(ListItemButton)<ClickableItemProps>(
+const StyledListItemButton = styled(ListItemButton)<StyledListItemButtonProps>(
   ({ isClickable }) => ({
     "&:hover": {
       boxShadow: isClickable ? "0 4px 8px rgba(192, 192, 192, 0.3)" : "none",
@@ -69,12 +70,13 @@ const FileListItem = <T extends CustomFile>({
   const displayExtensionValue = displayExtension(file.name);
 
   const handleClick = () => onClick?.(file);
-  const handleDelete = (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+
+  const handleDelete: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     onDelete?.(file);
   };
 
-  const handleDownload = (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleDownload: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     onDownload?.(file);
   };
@@ -83,70 +85,52 @@ const FileListItem = <T extends CustomFile>({
     <ListItem
       key={crypto.randomUUID()}
       secondaryAction={
-        <Box alignItems="center" display="flex" gap="1rem">
+        <Stack
+          direction="row"
+          spacing={2}
+          useFlexGap
+          sx={{ alignItems: "center" }}
+        >
           {file.isLoading ? (
-            <Box marginRight={1}>
-              <CircularProgress size={24} color="primary" />
-            </Box>
+            <CircularProgress size={24} color="primary" sx={{ mr: 1 }} />
           ) : file.isDownloadable ? (
             <IconButton onClick={handleDownload}>
               <DownloadRoundedIcon color="primary" />
             </IconButton>
           ) : null}
           {file.isDeletable && (
-            <IconButton onClick={handleDelete} id="coucou">
+            <IconButton onClick={handleDelete}>
               <CloseRoundedIcon />
             </IconButton>
           )}
-        </Box>
+        </Stack>
       }
       disablePadding
     >
-      <ClickableItem
+      <StyledListItemButton
         onClick={handleClick}
         isClickable={!!onClick}
         disableRipple={!onClick}
       >
-        <Stack direction="row" alignItems="center" spacing={2} minWidth="0">
-          <Stack
-            borderRadius="4px"
-            minWidth="40px"
-            maxWidth="40px"
-            minHeight="40px"
-            maxHeight="40px"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            sx={{
-              backgroundColor: "grey.light",
-            }}
-          >
-            <Box
-              color="text.secondary"
-              alignItems="center"
-              justifyContent="center"
-              display="flex"
-            >
-              <FileIcon extension={displayExtensionValue ?? ""} />
-            </Box>
-          </Stack>
-          <Stack
-            direction="column"
-            spacing={0}
-            alignItems="flex-start"
-            minWidth="0"
-          >
+        <ListItemIcon
+          sx={{
+            p: "8px",
+            borderRadius: 1,
+            backgroundColor: "grey.light",
+          }}
+        >
+          <FileIcon extension={displayExtensionValue ?? ""} color="inherit" />
+        </ListItemIcon>
+        <ListItemText
+          primary={
             <EllipsisWithTooltip slotProps={{ text: { variant: "body1" } }}>
               {file.name}
             </EllipsisWithTooltip>
-            <Stack
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-              gap={1}
-            >
+          }
+          secondary={
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
               {displaySizeValue && (
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="textSecondary">
                   {displaySizeValue}
                 </Typography>
               )}
@@ -154,7 +138,7 @@ const FileListItem = <T extends CustomFile>({
                 <FileInfosSeparator />
               )}
               {displayExtensionValue && (
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="textSecondary">
                   {displayExtensionValue}
                 </Typography>
               )}
@@ -163,14 +147,15 @@ const FileListItem = <T extends CustomFile>({
                   <FileInfosSeparator />
                 )}
               {file.ownerName && (
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="textSecondary">
                   {file.ownerName}
                 </Typography>
               )}
             </Stack>
-          </Stack>
-        </Stack>
-      </ClickableItem>
+          }
+          sx={{ ml: 2, my: 0 }}
+        />
+      </StyledListItemButton>
     </ListItem>
   );
 };

@@ -241,7 +241,10 @@ const DraggableItem = ({ id, label }: { id: string; label: string }) => {
         },
       }}
     >
-      <Typography variant="body2" display="flex" alignItems="center">
+      <Typography
+        variant="body2"
+        sx={{ display: "flex", alignItems: "center" }}
+      >
         <DescriptionRoundedIcon fontSize="small" sx={{ mr: 1 }} />
         {label}
       </Typography>
@@ -758,7 +761,7 @@ export const GrandeHauteurLimitee: Story = {
           </Grid>
         </Grid>
 
-        <Box mt={4}>
+        <Box sx={{ mt: 4 }}>
           <Paper sx={{ p: 2 }}>
             <Typography variant="subtitle2" gutterBottom>
               TreeView expansé manuellement
@@ -1210,7 +1213,7 @@ export const TestAlignementLignes: Story = {
         <Typography variant="h5" gutterBottom>
           Test d'alignement des lignes verticales
         </Typography>
-        <Typography variant="body2" color="text.secondary" paragraph>
+        <Typography variant="body2" color="textSecondary">
           Cette story permet de vérifier si les lignes verticales s'arrêtent
           toutes au même niveau, indépendamment de la taille des éléments.
           Essayez d'expandre et de collapser les différents niveaux.
@@ -1251,7 +1254,7 @@ export const TestAlignementLignes: Story = {
                     Élément sélectionné: <strong>{selectedId}</strong>
                   </Typography>
                 ) : (
-                  <Typography color="text.secondary">
+                  <Typography color="textSecondary">
                     Aucun élément sélectionné. Cliquez sur un élément dans
                     l'arborescence.
                   </Typography>

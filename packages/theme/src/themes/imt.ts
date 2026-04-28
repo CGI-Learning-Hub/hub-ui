@@ -2,7 +2,7 @@ import { alpha } from "@mui/material/styles";
 
 import { getMuiTheme } from "../mui";
 import { getTailwindThemeConfig } from "../tailwind";
-import { Theme } from "../types";
+import { CreateThemeOptions, Theme } from "../types";
 
 const theme: Theme = {
   palette: {
@@ -130,7 +130,7 @@ const muiOptions = {
       fontWeight: 400,
     },
   },
-};
+} satisfies CreateThemeOptions;
 
 const muiTheme = getMuiTheme(theme, muiOptions);
 

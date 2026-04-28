@@ -45,7 +45,7 @@ const TreeView: FC<TreeViewProps> = ({
   }, [selectedItemId, items]);
 
   const handleExpandedItemsChange = (
-    event: SyntheticEvent | null,
+    _event: SyntheticEvent | null,
     itemIds: string[],
   ) => {
     setExpandedItems(itemIds);

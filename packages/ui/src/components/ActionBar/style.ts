@@ -7,6 +7,7 @@ export const Root = styled(Stack, {
   name: "MuiActionBar",
   slot: "Root",
 })(({ theme }) => ({
+  justifyContent: "space-between",
   position: "fixed",
   bottom: 0,
   right: 0,
@@ -20,12 +21,20 @@ export const Root = styled(Stack, {
 export const LeftActionsContainer = styled(Stack, {
   name: "MuiActionBar",
   slot: "LeftActionsContainer",
-})({});
+})({
+  justifyContent: "flex-start",
+  alignItems: "center",
+  width: "100%",
+});
 
 export const RightActionsContainer = styled(Stack, {
   name: "MuiActionBar",
   slot: "RightActionsContainer",
-})({});
+})({
+  justifyContent: "flex-end",
+  alignItems: "center",
+  width: "100%",
+});
 
 export const LeftAction = styled(Button, {
   name: "MuiActionBar",

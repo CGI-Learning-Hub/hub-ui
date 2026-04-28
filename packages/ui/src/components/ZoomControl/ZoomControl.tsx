@@ -1,5 +1,8 @@
-import { AddRounded, RemoveRounded } from "@mui/icons-material";
-import { Box, BoxProps, IconButton, Typography } from "@mui/material";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import Box, { type BoxProps } from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import { FC, useRef } from "react";
 
 import {
@@ -47,7 +50,7 @@ const ZoomControl: FC<ZoomControlProps> = ({
         disabled={isMinZoom}
         sx={iconButtonStyle}
       >
-        <RemoveRounded sx={iconStyle({ disabled: isMinZoom })} />
+        <RemoveRoundedIcon sx={iconStyle({ disabled: isMinZoom })} />
       </IconButton>
       <Typography onClick={handleReset} sx={labelStyle} component="button">
         {label}
@@ -57,7 +60,7 @@ const ZoomControl: FC<ZoomControlProps> = ({
         disabled={isMaxZoom}
         sx={iconButtonStyle}
       >
-        <AddRounded sx={iconStyle({ disabled: isMaxZoom })} />
+        <AddRoundedIcon sx={iconStyle({ disabled: isMaxZoom })} />
       </IconButton>
     </Box>
   );

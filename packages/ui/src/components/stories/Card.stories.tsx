@@ -13,13 +13,13 @@ const Card = (props: CardProps) => {
   return (
     <BaseCard sx={{ minWidth: 275 }} {...props}>
       <CardContent>
-        <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
+        <Typography gutterBottom sx={{ color: "textSecondary", fontSize: 14 }}>
           Word of the Day
         </Typography>
         <Typography variant="h5" component="div">
           be-nev-o-lent
         </Typography>
-        <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+        <Typography sx={{ color: "textSecondary", mb: 1.5 }}>
           adjective
         </Typography>
         <Typography variant="body2">

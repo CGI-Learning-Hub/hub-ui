@@ -15,10 +15,13 @@ const LoaderBackdrop: FC<LoaderBackdropProps> = ({ slotProps = {} }) => {
   return (
     <Backdrop
       open
-      sx={{ bgcolor: "background.default" }}
       {...slotProps.backdrop}
+      sx={{ bgcolor: "background.default", ...slotProps.backdrop?.sx }}
     >
-      <StyledLoaderBackdropInner color="primary.main" {...slotProps.loader}>
+      <StyledLoaderBackdropInner
+        {...slotProps.loader}
+        sx={{ color: "primary.main", ...slotProps.loader?.sx }}
+      >
         <label>●</label>
         <label>●</label>
         <label>●</label>

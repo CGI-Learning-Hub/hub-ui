@@ -51,10 +51,13 @@ const EllipsisWithTooltip: FC<EllipsisWithTooltipProps> = ({
       <Typography
         ref={textRef}
         noWrap
-        overflow="hidden"
-        textOverflow="ellipsis"
-        maxWidth="100%"
         {...slotProps.text}
+        sx={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          maxWidth: "100%",
+          ...slotProps.text?.sx,
+        }}
       >
         {children}
       </Typography>

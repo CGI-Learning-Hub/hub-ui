@@ -3,7 +3,7 @@ import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
-import { type FC, type MouseEvent, useState } from "react";
+import { type FC, type MouseEventHandler, useState } from "react";
 
 export type PasswordInputProps = Omit<TextFieldProps, "type">;
 
@@ -12,7 +12,9 @@ const PasswordInput: FC<PasswordInputProps> = (props) => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
     event.preventDefault();
   };
 

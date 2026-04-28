@@ -28,10 +28,10 @@ const Heading: FC<HeadingProps> = ({
   return (
     <Stack
       direction="row"
-      alignItems="center"
       spacing={1}
       {...otherProps}
       {...slotProps.root}
+      sx={{ alignItems: "center", ...slotProps.root?.sx }}
     >
       {IconComponent ? (
         <IconComponent
@@ -45,7 +45,7 @@ const Heading: FC<HeadingProps> = ({
           {...slotProps.icon}
         />
       ) : null}
-      <Typography component="h3" variant="h2" {...slotProps.text}>
+      <Typography component="h3" sx={{ fontSize: "10rem" }} {...slotProps.text}>
         {title}
       </Typography>
     </Stack>

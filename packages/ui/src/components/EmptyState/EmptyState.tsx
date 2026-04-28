@@ -38,23 +38,34 @@ const EmptyState: FC<EmptyStateProps> = ({
   return (
     <Stack
       direction="column"
-      alignItems="center"
-      margin="0 auto"
       {...otherProps}
       {...slotProps.root}
+      sx={{
+        alignItems: "center",
+        margin: "0 auto",
+        ...slotProps.root?.sx,
+      }}
     >
-      <Box height={imageHeight} width="auto">
+      <Box sx={{ height: imageHeight, width: "auto" }}>
         {image ?? <img src={imageSrc} height="100%" {...slotProps.image} />}
       </Box>
-      <Typography variant="h2" mt={3} {...slotProps.title}>
+      <Typography
+        variant="h2"
+        {...slotProps.title}
+        sx={{ mt: 3, ...slotProps.title?.sx }}
+      >
         {title}
       </Typography>
       {description ? (
-        <Typography color="textSecondary" mt={2} {...slotProps.description}>
+        <Typography
+          color="textSecondary"
+          {...slotProps.description}
+          sx={{ mt: 2, ...slotProps.description?.sx }}
+        >
           {description}
         </Typography>
       ) : null}
-      {footer ? <Box mt={3}>{footer}</Box> : null}
+      {footer ? <Box sx={{ mt: 3 }}>{footer}</Box> : null}
     </Stack>
   );
 };

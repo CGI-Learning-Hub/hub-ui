@@ -12,9 +12,9 @@ const Component = (props: ColorPickerProps) => {
   };
 
   return (
-    <Box m="5rem 10rem">
+    <Box sx={{ m: "5rem 10rem" }}>
       <ColorPicker {...props} value={color} onChange={handleChange} />
-      <Box mt={2}>Couleur sélectionnée : {color}</Box>
+      <Box sx={{ mt: 2 }}>Couleur sélectionnée : {color}</Box>
     </Box>
   );
 };

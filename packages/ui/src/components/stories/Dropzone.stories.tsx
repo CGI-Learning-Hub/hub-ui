@@ -13,6 +13,6 @@ type Story = StoryObj<typeof Dropzone>;
 export const Default: Story = {
   args: {
     information: "SVG, PNG, JPG or GIF (max. 3MB)",
-    onDrop: (files: any[]) => alert("dropped"),
+    onDrop: () => alert("dropped"),
   },
 };

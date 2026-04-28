@@ -64,9 +64,6 @@ const meta: Meta<typeof Dialog> = {
     },
   },
   argTypes: {
-    disableEscapeKeyDown: {
-      control: "boolean",
-    },
     fullScreen: {
       control: "boolean",
     },
@@ -88,7 +85,6 @@ type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
   args: {
-    disableEscapeKeyDown: false,
     fullScreen: false,
     fullWidth: false,
     maxWidth: "sm",

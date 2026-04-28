@@ -1,6 +1,5 @@
 import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
 import UploadFileRoundedIcon from "@mui/icons-material/UploadFileRounded";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { FC } from "react";
 import {
@@ -8,6 +7,7 @@ import {
   useDropzone,
 } from "react-dropzone";
 
+import { StyledStack } from "./styles";
 import type { DropZoneSlotProps } from "./types";
 
 export type DropzoneProps = {
@@ -23,27 +23,20 @@ const Dropzone: FC<DropzoneProps> = ({
   defaultLabel = "Glisser et déposer des fichiers ici, ou cliquer pour sélectionner des fichiers",
   dragLabel = "Déposer les fichiers ici",
   information,
-  width,
-  height,
+  width = "18rem",
+  height = "auto",
   slotProps = {},
   ...otherProps
 }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(otherProps);
 
   return (
-    <Stack
+    <StyledStack
       direction="column"
-      justifyContent="center"
-      alignItems="center"
       spacing={1}
-      width={width ?? "18rem"}
-      height={height ?? "auto"}
-      padding={1}
-      border="1px dashed"
-      borderColor="grey.main"
-      borderRadius={1}
       sx={{
-        cursor: "pointer",
+        width,
+        height,
         ...slotProps.root?.sx,
       }}
       {...getRootProps()}
@@ -59,13 +52,17 @@ const Dropzone: FC<DropzoneProps> = ({
           <UploadFileRoundedIcon color="primary" {...slotProps.icon} />
           <Typography {...slotProps.label}>{defaultLabel}</Typography>
           {information ? (
-            <Typography variant="body2" color="grey" {...slotProps.information}>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              {...slotProps.information}
+            >
               {information}
             </Typography>
           ) : null}
         </>
       )}
-    </Stack>
+    </StyledStack>
   );
 };
 

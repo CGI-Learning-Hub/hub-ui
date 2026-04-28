@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { type MouseEvent, useState } from "react";
+import { type MouseEventHandler, useState } from "react";
 
 import { Menu as BaseMenu, Button, MenuItem, type MenuProps } from "..";
 
@@ -7,7 +7,7 @@ const Menu = (props: MenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -31,8 +31,10 @@ const Menu = (props: MenuProps) => {
         anchorEl={anchorEl}
         open={isOpen}
         onClose={closeMenu}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
+        slotProps={{
+          list: {
+            "aria-labelledby": "basic-button",
+          },
         }}
       >
         <MenuItem onClick={closeMenu}>Profile</MenuItem>

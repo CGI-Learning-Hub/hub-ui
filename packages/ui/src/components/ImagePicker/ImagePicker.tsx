@@ -6,12 +6,14 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import {
   type FC,
-  type MouseEvent,
+  type MouseEventHandler,
   type ReactNode,
   useEffect,
   useState,
 } from "react";
 import { type DropzoneProps, useDropzone } from "react-dropzone";
+
+import { StyledStack } from "./styles";
 
 export type ImagePickerProps = {
   defaultLabel?: ReactNode;
@@ -25,24 +27,18 @@ export type ImagePickerProps = {
 } & DropzoneProps;
 
 const ImagePickerDefaultLabel: FC = () => (
-  <Typography textAlign="center" fontSize="14px" color="grey.darker">
-    <Box component="span" fontWeight="bold">
-      Glissez-déposez
-    </Box>{" "}
-    ou{" "}
-    <Box component="span" fontWeight="bold">
-      cliquez
-    </Box>{" "}
-    pour choisir une image
+  <Typography variant="body2">
+    <strong>Glissez-déposez</strong>
+    {" ou "}
+    <strong>cliquez</strong>
+    {" pour choisir une image"}
   </Typography>
 );
 
 const ImagePickerDefaultDragLabel: FC = () => (
-  <Typography textAlign="center" fontSize="14px" color="grey.darker">
-    <Box component="span" fontWeight="bold">
-      Glissez
-    </Box>{" "}
-    une image
+  <Typography variant="body2">
+    <strong>Glissez</strong>
+    {" une image"}
   </Typography>
 );
 
@@ -50,7 +46,7 @@ const ImagePicker: FC<ImagePickerProps> = ({
   defaultLabel = <ImagePickerDefaultLabel />,
   dragLabel = <ImagePickerDefaultDragLabel />,
   information,
-  onFileChange = (file: File | null) => {},
+  onFileChange = () => {},
   width = "160px",
   height = "160px",
   initialFile = null,
@@ -72,16 +68,16 @@ const ImagePicker: FC<ImagePickerProps> = ({
     onFileChange(selectedFile);
   };
 
-  const handleDelete = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClickDelete: MouseEventHandler<HTMLDivElement> = (event) => {
     if (disabled) return;
-    e.stopPropagation();
+    event.stopPropagation();
     setCurrentFile(null);
     onFileChange(null);
   };
 
-  const handleEdit = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClickEdit: MouseEventHandler<HTMLDivElement> = (event) => {
     if (disabled) return;
-    e.stopPropagation();
+    event.stopPropagation();
     open();
   };
 
@@ -97,72 +93,41 @@ const ImagePicker: FC<ImagePickerProps> = ({
   });
 
   return (
-    <Stack
+    <StyledStack
       direction="column"
-      justifyContent="center"
-      alignItems="center"
+      disabled={disabled}
+      hasFile={!!currentFile}
       width={width}
-      minWidth="150px"
-      minHeight="150px"
       height={height}
-      borderRadius={1}
-      sx={{
-        cursor: disabled ? "default" : "pointer",
-        position: "relative",
-        background: `${!currentFile && "linear-gradient(180deg, #F5F7F9 0%, #FFF 100%)"}`,
-        border: `${!currentFile && "1px dashed"}`,
-        borderColor: (theme) => !currentFile && theme.palette.grey.main,
-        opacity: disabled ? 0.6 : 1,
-      }}
       {...getRootProps({
         onClick: disabled ? undefined : open,
       })}
     >
       <input {...getInputProps()} />
       {!currentFile ? (
-        <>
-          {isDragActive && !disabled ? (
-            <>
-              <AddPhotoAlternateRoundedIcon
-                color="primary"
-                style={{
-                  width: "2.5rem",
-                  height: "2.5rem",
-                }}
-              />
-              {dragLabel}
-              {information && (
-                <Typography textAlign="center" fontSize="12px" color="grey">
-                  {information}
-                </Typography>
-              )}
-            </>
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "0.5rem",
-                gap: "0.3rem",
-              }}
+        <Stack
+          spacing="5px"
+          sx={{
+            alignItems: "center",
+            padding: "0.5rem",
+            textAlign: "center",
+          }}
+        >
+          <AddPhotoAlternateRoundedIcon
+            color="primary"
+            sx={{ fontSize: "2.5rem" }}
+          />
+          {isDragActive && !disabled ? dragLabel : defaultLabel}
+          {information ? (
+            <Typography
+              variant="caption"
+              color="textSecondary"
+              sx={{ textAlign: "center" }}
             >
-              <AddPhotoAlternateRoundedIcon
-                color="primary"
-                style={{
-                  width: "2.5rem",
-                  height: "2.5rem",
-                }}
-              />
-              {defaultLabel}
-              {information && (
-                <Typography textAlign="center" fontSize="12px" color="grey">
-                  {information}
-                </Typography>
-              )}
-            </Box>
-          )}
-        </>
+              {information}
+            </Typography>
+          ) : null}
+        </Stack>
       ) : (
         <>
           {!disabled && (
@@ -176,7 +141,7 @@ const ImagePicker: FC<ImagePickerProps> = ({
               }}
             >
               <Box
-                onClick={handleEdit}
+                onClick={handleClickEdit}
                 sx={{
                   backgroundColor: "common.white",
                   display: "flex",
@@ -198,7 +163,7 @@ const ImagePicker: FC<ImagePickerProps> = ({
                 <CreateRoundedIcon fontSize="small" />
               </Box>
               <Box
-                onClick={handleDelete}
+                onClick={handleClickDelete}
                 sx={{
                   backgroundColor: "common.white",
                   display: "flex",
@@ -240,7 +205,7 @@ const ImagePicker: FC<ImagePickerProps> = ({
           />
         </>
       )}
-    </Stack>
+    </StyledStack>
   );
 };
 

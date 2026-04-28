@@ -1,14 +1,14 @@
-import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
 export const FileInfosSeparator = () => {
   return (
-    <Stack height="100%">
-      <Stack
-        height="4px"
-        width="4px"
-        borderRadius="50%"
-        sx={{ backgroundColor: "divider" }}
-      />
-    </Stack>
+    <Box
+      sx={{
+        width: "4px",
+        height: "4px",
+        borderRadius: 2,
+        backgroundColor: "divider",
+      }}
+    />
   );
 };

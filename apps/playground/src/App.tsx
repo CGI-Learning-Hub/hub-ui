@@ -3,7 +3,6 @@ import { ThemeProvider } from "@cgi-learning-hub/theme";
 import {
   ActionBar,
   Alert,
-  Box,
   Button,
   ColorPicker,
   CustomFile,
@@ -46,7 +45,7 @@ function App() {
   };
 
   const handleThemeChange = (
-    event: MouseEvent<HTMLElement>,
+    _event: MouseEvent<HTMLElement>,
     newThemeId: ThemeId | null,
   ) => {
     if (newThemeId !== null) {
@@ -101,8 +100,10 @@ function App() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
+        slotProps={{
+          list: {
+            "aria-labelledby": "basic-button",
+          },
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -152,7 +153,6 @@ function App() {
         defaultImage={"../public/vite.svg"}
         size={"sm"}
       ></ResourceCard>
-      <Box marginBottom="5rem"></Box>
     </ThemeProvider>
   );
 }

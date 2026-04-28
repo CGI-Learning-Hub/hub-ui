@@ -18,19 +18,13 @@ const ActionBar: FC<ActionBarProps> = ({
   const theme = useTheme();
 
   return (
-    <Root direction="row" justifyContent="space-between" {...slotProps.root}>
-      <LeftActionsContainer
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
-        width="100%"
-        {...slotProps.leftActionsContainer}
-      >
+    <Root direction="row" {...slotProps.root}>
+      <LeftActionsContainer direction="row" {...slotProps.leftActionsContainer}>
         {leftActions.map((item) => (
           <LeftAction
             key={item.label}
-            // @ts-expect-error custom component
             variant={
+              // @ts-expect-error custom component
               theme.components?.MuiActionBar?.defaultProps?.buttonVariant ??
               "text"
             }
@@ -44,16 +38,13 @@ const ActionBar: FC<ActionBarProps> = ({
       </LeftActionsContainer>
       <RightActionsContainer
         direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
-        width="100%"
         {...slotProps.rightActionsContainer}
       >
         {rightActions.map((item) => (
           <RightAction
             key={item.label}
-            // @ts-expect-error custom component
             variant={
+              // @ts-expect-error custom component
               theme.components?.MuiActionBar?.defaultProps?.buttonVariant ??
               "text"
             }

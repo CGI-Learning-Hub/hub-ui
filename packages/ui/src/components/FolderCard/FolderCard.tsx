@@ -12,7 +12,6 @@ import {
   IconContainerStyle,
   TextContainerStyle,
 } from "./styles";
-import { subtitleTypographyProps, titleTypographyProps } from "./types";
 
 export type FolderCardProps = {
   isSelected?: boolean;
@@ -79,7 +78,7 @@ const FolderCard: FC<FolderCardProps> = ({
           <MoreVertRoundedIcon />
         </SelectedIcon>
         <CardContent sx={FolderBodyStyle}>
-          <Box fontSize={iconSize} sx={IconContainerStyle}>
+          <Box sx={{ fontSize: iconSize, ...IconContainerStyle }}>
             <FolderRoundedIcon
               color="primary"
               sx={FolderIconStyle}
@@ -89,9 +88,14 @@ const FolderCard: FC<FolderCardProps> = ({
           <Box sx={TextContainerStyle}>
             <EllipsisWithTooltip
               slotProps={{
-                text: titleTypographyProps,
+                text: {
+                  variant: "body1",
+                  id: "folder-title",
+                  sx: {
+                    fontWeight: "bold",
+                  },
+                },
                 tooltip: {
-                  placement: "bottom",
                   arrow: true,
                 },
               }}
@@ -101,9 +105,14 @@ const FolderCard: FC<FolderCardProps> = ({
             {subtitle && (
               <EllipsisWithTooltip
                 slotProps={{
-                  text: subtitleTypographyProps,
+                  text: {
+                    variant: "body2",
+                    id: "folder-subtitle",
+                    sx: {
+                      fontStyle: "italic",
+                    },
+                  },
                   tooltip: {
-                    placement: "bottom",
                     arrow: true,
                   },
                 }}

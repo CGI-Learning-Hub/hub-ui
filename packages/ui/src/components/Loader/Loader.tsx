@@ -7,7 +7,7 @@ export type LoaderProps = BoxProps;
 
 const Loader: FC<LoaderProps> = (props) => {
   return (
-    <StyledLoader color="primary.main" {...props}>
+    <StyledLoader {...props} sx={{ color: "primary.main", ...props.sx }}>
       <StyledLoaderInner>
         <label>●</label>
         <label>●</label>

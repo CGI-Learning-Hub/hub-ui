@@ -6,47 +6,52 @@ import MusicNoteRoundedIcon from "@mui/icons-material/MusicNoteRounded";
 import OndemandVideoRoundedIcon from "@mui/icons-material/OndemandVideoRounded";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
+import { SvgIconProps } from "@mui/material";
 import type { FC } from "react";
 
-export const FileIcon: FC<{ extension: string }> = ({ extension }) => {
+type FileIconProps = {
+  extension: string;
+} & SvgIconProps;
+
+export const FileIcon: FC<FileIconProps> = ({ extension, ...otherProps }) => {
   switch (extension.toUpperCase()) {
     case "MP3":
     case "MIDI":
     case "WAV":
-      return <MusicNoteRoundedIcon />;
+      return <MusicNoteRoundedIcon {...otherProps} />;
 
     case "JPG":
     case "JPEG":
     case "PNG":
     case "SVG":
-      return <PhotoOutlinedIcon />;
+      return <PhotoOutlinedIcon {...otherProps} />;
 
     case "MP4":
     case "MOV":
     case "AVI":
-      return <MovieOutlinedIcon />;
+      return <MovieOutlinedIcon {...otherProps} />;
 
     case "CSV":
     case "ODS":
     case "XLS":
     case "XLSX":
-      return <CalendarViewMonthRoundedIcon />;
+      return <CalendarViewMonthRoundedIcon {...otherProps} />;
 
     case "PDF":
-      return <PictureAsPdfOutlinedIcon />;
+      return <PictureAsPdfOutlinedIcon {...otherProps} />;
 
     case "ODT":
     case "DOC":
     case "DOCX":
     case "TXT":
-      return <DescriptionOutlinedIcon />;
+      return <DescriptionOutlinedIcon {...otherProps} />;
 
     case "ODP":
     case "PPT":
     case "PPTX":
-      return <OndemandVideoRoundedIcon />;
+      return <OndemandVideoRoundedIcon {...otherProps} />;
 
     default:
-      return <InsertDriveFileOutlinedIcon />;
+      return <InsertDriveFileOutlinedIcon {...otherProps} />;
   }
 };

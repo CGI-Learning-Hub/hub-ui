@@ -45,6 +45,7 @@ function CustomTreeItem(
   const {
     getRootProps,
     getContentProps,
+    getContextProviderProps,
     getLabelProps,
     getGroupTransitionProps,
     getIconContainerProps,
@@ -57,7 +58,7 @@ function CustomTreeItem(
   };
 
   return (
-    <TreeItemProvider itemId={itemId}>
+    <TreeItemProvider {...getContextProviderProps()}>
       <TreeItemRoot
         {...getRootProps()}
         data-treeview-item={itemId || ""}
