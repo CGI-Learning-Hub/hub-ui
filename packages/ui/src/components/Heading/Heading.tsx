@@ -45,7 +45,7 @@ const Heading: FC<HeadingProps> = ({
           {...slotProps.icon}
         />
       ) : null}
-      <Typography component="h3" sx={{ fontSize: "10rem" }} {...slotProps.text}>
+      <Typography component="h3" variant="h2" {...slotProps.text}>
         {title}
       </Typography>
     </Stack>
