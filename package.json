@@ -30,6 +30,7 @@
   "devDependencies": {
     "@fontsource/material-icons": "5.2.7",
     "@fontsource/roboto": "5.2.10",
+    "@microsoft/api-extractor": "7.58.7",
     "@mui/material": "^9",
     "@storybook/addon-a11y": "10.3.3",
     "@storybook/addon-docs": "10.3.3",
@@ -39,7 +40,7 @@
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react-swc": "4.3.0",
+    "@vitejs/plugin-react": "6.0.2",
     "glob": "13.0.6",
     "prettier": "3.8.1",
     "react": "19.2.4",
@@ -47,9 +48,8 @@
     "react-toastify": "11.0.5",
     "storybook": "10.3.3",
     "typescript": "5.9.3",
-    "vite": "7.3.1",
-    "vite-plugin-dts": "4.5.4",
-    "vite-plugin-svgr": "4.5.0",
-    "vite-tsconfig-paths": "6.1.1"
+    "unplugin-dts": "1.0.1",
+    "vite": "8.0.13",
+    "vite-plugin-svgr": "5.2.0"
   }
 }

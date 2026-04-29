@@ -1,12 +1,12 @@
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 
 import { peerDependencies } from "./package.json";
 
 export default defineConfig({
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [react(), dts({ bundleTypes: true })],
   build: {
     copyPublicDir: false,
     lib: {
@@ -15,7 +15,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => `index.${format === "es" ? "es" : "cjs"}.js`,
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [...Object.keys(peerDependencies), "react/jsx-runtime"],
     },
     sourcemap: true,
