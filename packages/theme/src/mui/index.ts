@@ -74,7 +74,7 @@ export const getMuiTheme = (
             },
             styleOverrides: {
               root: {
-                minHeight: 38,
+                minHeight: 30,
                 textTransform: "none",
                 borderRadius: 5,
                 borderWidth: 2,
