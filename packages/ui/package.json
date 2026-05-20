@@ -43,8 +43,9 @@
     "@mui/system": "^9",
     "@mui/x-date-pickers": "9.0.2",
     "@mui/x-tree-view": "9.0.2",
+    "@uiw/color-convert": "2.10.1",
+    "@uiw/react-color-circle": "2.10.1",
     "dayjs": "1.11.20",
-    "react-color": "2.19.3",
     "react-dropzone": "15.0.0"
   },
   "peerDependencies": {
@@ -57,7 +58,6 @@
   "devDependencies": {
     "@reduxjs/toolkit": "^2",
     "@types/react": "^19",
-    "@types/react-color": "^3",
     "@types/react-dom": "^19"
   }
 }

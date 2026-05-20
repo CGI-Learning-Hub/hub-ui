@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import type { SxProps } from "@mui/material/styles";
+import type { ColorResult } from "@uiw/color-convert";
+import Circle from "@uiw/react-color-circle";
 import { type FC, type KeyboardEvent, useState } from "react";
-import { CirclePicker, type ColorResult } from "react-color";
 
 import { CheckmarkSwatch } from "./CheckmarkSwatch";
 import { ColorPickerIcon } from "./ColorPickerIcon";
@@ -94,16 +95,23 @@ const ColorPicker: FC<ColorPickerProps> = ({
                 ))}
               </Box>
             ) : (
-              <CirclePicker
+              <Circle
                 colors={colorStrings}
                 color={value}
                 onChange={(newColor: ColorResult) => {
                   onChange(newColor.hex as HexaColor);
                   handleClose();
                 }}
-                circleSize={20}
-                circleSpacing={5}
-                width="15rem"
+                style={{
+                  gap: 5,
+                  width: "15rem",
+                }}
+                pointProps={{
+                  style: {
+                    width: 20,
+                    height: 20,
+                  },
+                }}
                 {...slotProps?.circlePicker}
               />
             )}

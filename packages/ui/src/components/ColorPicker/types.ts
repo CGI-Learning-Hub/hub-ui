@@ -1,7 +1,7 @@
 import type { BoxProps } from "@mui/material/Box";
 import type { ClickAwayListenerProps } from "@mui/material/ClickAwayListener";
+import type { CircleProps } from "@uiw/react-color-circle";
 import type { SVGAttributes } from "react";
-import type { CirclePickerProps } from "react-color";
 
 export type HexaColor = `#${string}`;
 
@@ -19,7 +19,7 @@ export type ColorOption = {
 
 export type ColorPickerSlotProps = {
   clickAwayListener?: Omit<ClickAwayListenerProps, "onClickAway" | "children">;
-  circlePicker?: Omit<CirclePickerProps, "colors" | "color" | "onChange">;
+  circlePicker?: Omit<CircleProps, "colors" | "color" | "onChange">;
   circlePickerBox?: BoxProps;
 };
 
