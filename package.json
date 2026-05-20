@@ -2,10 +2,10 @@
   "name": "@cgi-learning-hub/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@11.1.3",
   "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
+    "node": ">=22",
+    "pnpm": ">=10"
   },
   "scripts": {
     "dev": "pnpm --filter cgi-learning-hub-playground dev",

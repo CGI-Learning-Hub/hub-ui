@@ -3,3 +3,5 @@ packages:
   - "./packages/theme"
   - "./packages/ui"
   - "./apps/**"
+allowBuilds:
+  esbuild: false

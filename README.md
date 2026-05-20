@@ -11,8 +11,8 @@ React monorepo containing components, theme and icons libraries
 
 #### Requirements
 
-- `pnpm` version 9+
-- `node` version 20.19+, 22.19+
+- `pnpm` version 10+
+- `node` version 22.19+
 
 ```sh
 # install global project
