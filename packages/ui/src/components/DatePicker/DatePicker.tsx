@@ -4,8 +4,6 @@ import {
   type DatePickerProps as BaseDatePickerProps,
 } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import "dayjs/locale/en";
-import "dayjs/locale/fr";
 import type { FC } from "react";
 
 export type DatePickerProps = {

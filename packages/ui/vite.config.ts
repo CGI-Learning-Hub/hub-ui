@@ -4,7 +4,7 @@ import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 
-import { dependencies, peerDependencies } from "./package.json";
+import { peerDependencies } from "./package.json";
 
 export default defineConfig({
   plugins: [
@@ -25,7 +25,8 @@ export default defineConfig({
     },
     rolldownOptions: {
       external: [
-        ...Object.keys(dependencies),
+        /^@mui\/material/,
+        /^use-sync-external-store($|\/)/,
         ...Object.keys(peerDependencies),
         "react/jsx-runtime",
       ],
