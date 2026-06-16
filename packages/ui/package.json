@@ -38,14 +38,14 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@mui/icons-material": "9.0.0",
-    "@mui/lab": "9.0.0-beta.2",
+    "@mui/icons-material": "9.1.1",
+    "@mui/lab": "9.0.0-beta.5",
     "@mui/system": "^9",
-    "@mui/x-date-pickers": "9.0.2",
-    "@mui/x-tree-view": "9.0.2",
-    "@uiw/color-convert": "2.10.1",
-    "@uiw/react-color-circle": "2.10.1",
-    "dayjs": "1.11.20",
+    "@mui/x-date-pickers": "9.5.0",
+    "@mui/x-tree-view": "9.4.0",
+    "@uiw/color-convert": "2.10.3",
+    "@uiw/react-color-circle": "2.10.3",
+    "dayjs": "1.11.21",
     "react-dropzone": "15.0.0"
   },
   "peerDependencies": {

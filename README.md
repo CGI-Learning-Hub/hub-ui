@@ -168,7 +168,7 @@ You need to install these dependencies if you use `ui` package in your NextJS pr
 
 - `"@emotion/react": "^11"`
 - `"@emotion/styled": "^11"`
-- `"@mui/material": "^7"`
+- `"@mui/material": "^9"`
 
 You will need to add `"@cgi-learning-hub/ui` in devDependencies and add in docker-compose.yml your local project mount volumes
 
