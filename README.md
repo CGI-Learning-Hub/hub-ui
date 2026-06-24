@@ -1,240 +1,108 @@
 # CGI Learning Hub UI
 
-React monorepo containing components, theme and icons libraries
+React monorepo containing components, theme and icons libraries. It ships with a playground app for developing and trying the libraries locally.
 
-## How to Test setup
+## Packages
 
-- `apps/playground` is the local app to try out your libraries and will be run via http://localhost:3000
-- `packages/*` will be your libraries
+| Package | Description |
+| --- | --- |
+| `@cgi-learning-hub/ui` | Component library extending Material UI with additional components. |
+| `@cgi-learning-hub/theme` | Multi-tenant theming: MUI themes plus per-tenant Tailwind config presets. |
+| `@cgi-learning-hub/icons` | Shared icon set. |
 
-### Without docker (using your environment)
+## Documentation
 
-#### Requirements
+Storybook for all the libraries is published at https://cgi-learning-hub.github.io/hub-ui/ — built automatically from the `dev` branch.
 
-- `pnpm` version 10+
-- `node` version 22.19+
+## Requirements
 
-```sh
-# install global project
-pnpm install
+- **Node** 22.19+
+- **pnpm** 10+
+- **Docker** (optional) — only if you use the `cli.sh` workflow
 
-# run your playground app
-pnpm run dev
+## Getting started
 
-# depending in apps/playground/vite.config.ts
-# if you comment "resolve" object part, you need to run build and then (re-)run playground app
-pnpm run build
-pnpm run dev
+You can run everything either directly with **pnpm** or through **Docker** using the `cli.sh` wrapper.
 
-# build specific package (your choices)
-pnpm run build:icons
-pnpm run build:theme
-pnpm run build:ui
-
-# run total
-pnpm clean; pnpm install; pnpm build; pnpm install; pnpm run dev # we do a reinstall in order to apply playground the updated deps workspace:*
-```
-
-### Docker mode
-
-the file `cli.sh` is available for each project in order to run your instance
+### With pnpm
 
 ```sh
-# install global project
-./cli.sh install
-
-# run your playground app
-./cli.sh dev
-
-# depending in apps/playground/vite.config.ts
-# if you comment "resolve" object part, you need to run build and then (re-)run playground app
-./cli.sh build
-./cli.sh dev
-
-# build specific package (your choices)
-./cli.sh buildIcons
-./cli.sh buildTheme
-./cli.sh buildUi
-
-# run total
-./cli.sh clean install build install dev # we do a reinstall in order to apply playground the updated deps workspace:*
+pnpm install      # install the whole workspace
+pnpm run dev      # start the playground on http://localhost:3000
 ```
 
-### CLI shortcut (with docker)
-
-```bash
-./cli.sh install build dev
-```
-
-### Publish
-
-#### With docker
+### With Docker (cli.sh)
 
 ```sh
-# publish your packages
-./cli.sh publish
+./cli.sh install  # install the whole workspace
+./cli.sh dev      # start the playground on http://localhost:3000
 ```
 
-#### Without docker
+### Command reference
+
+| Task | pnpm | cli.sh |
+| --- | --- | --- |
+| Install workspace | `pnpm install` | `./cli.sh install` |
+| Run playground | `pnpm run dev` | `./cli.sh dev` |
+| Build all packages | `pnpm run build` | `./cli.sh build` |
+| Build icons | `pnpm run build:icons` | `./cli.sh buildIcons` |
+| Build theme | `pnpm run build:theme` | `./cli.sh buildTheme` |
+| Build ui | `pnpm run build:ui` | `./cli.sh buildUi` |
+| Watch icons | `pnpm run watch:icons` | `./cli.sh watchIcons` |
+| Watch theme | `pnpm run watch:theme` | `./cli.sh watchTheme` |
+| Watch ui | `pnpm run watch:ui` | `./cli.sh watchUi` |
+| Storybook | `pnpm run storybook` | `./cli.sh storybook` |
+| Clean | `pnpm clean` | `./cli.sh clean` |
+
+## Playground & live reload
+
+`apps/playground/vite.config.ts` controls how the playground resolves the libraries:
+
+- **`resolve` alias enabled (default)** — the playground imports the libraries straight from their `src`, giving you live reload as you edit them.
+- **`resolve` alias commented out** — the playground imports the built output instead. In that mode, build the packages first, then (re)start the playground:
 
 ```sh
-# publish your packages
-pnpm run publish
+pnpm run build && pnpm run dev
 ```
 
-### Extra command line
+## Storybook
 
-Please check all arguments in `cli.sh` and adapt it with/without docker for running format...
-
-## Storybook dev
-
-Try `pnpm run storybook` to run storybook in `http://localhost:6006`
-alternatively you can run `./cli.sh storybook` if you use `docker`
-
-# apps / playground
-
-in `vite.config.ts` you can comment out `resolve` to try your truth libs
-resolve allows you to have `live reload` in your libs.
-
-# Use this library repository with another repository
-
-If you are willing to use this repository for another repository project
-
-you can use `link:` or `file:`
-We will be using example to run locally these projects
-
-In your main repository where you want to use you library locally in dependencies
-
-Add `"file:../hub-ui/packages/ui"` (as the library is in the folder "hub-ui")
-
-If you use `file:` mode, you will need to build your library local and in your main repository, re-run install deps
-
-```bash
-# run build watch mode
-./cli.sh watchIcons
-./cli.sh watchTheme
-./cli.sh watchUi
-
-# same instruction without docker
-pnpm run watch:icons
-pnpm run watch:theme
-pnpm run watch:ui
-
+```sh
+pnpm run storybook     # or: ./cli.sh storybook
 ```
 
-```json
-# Example
-"devDependencies": {
-    "@cgi-learning-hub/ui": "file:../hub-ui/packages/ui"
-},
-```
+Storybook runs on http://localhost:6006.
 
-## docker mode
+## Wiring the libraries into a consuming app
 
-(You won't need this instruction if you do not use docker)
+These notes help whoever integrates the libraries into a downstream project.
 
-add new entry to your docker-compose.yml in order to include your library repository from your main app
+### Peer dependencies
 
-```bash
-# from your main app in its docker-compose.yml
-services:
-    ...
-    volumes:
-        ...
-        - ../../project/hub-ui/packages/ui:/hub-ui/packages/ui
-```
+The libraries are built on Material UI, so any consuming app must provide these peer dependencies:
 
-### local run library (ViteJS)
-
-`/hub-ui/packages/ui/src/index.ts` correspond au path utilisé dans le volumes docker-compose.yml
-
-```ts
-  const resolve = {
-    alias:{
-      '@cgi-learning-hub/ui' : path.resolve(__dirname, '/hub-ui/packages/ui/src/index.ts'),
-    }
-  }
-
-  return defineConfig({
-    ...
-    resolve,
-    ...
-  });
-```
-
-## local library from NextJS app
-
-You need to install these dependencies if you use `ui` package in your NextJS project :
-
-- `"@emotion/react": "^11"`
-- `"@emotion/styled": "^11"`
-- `"@mui/material": "^9"`
-
-You will need to add `"@cgi-learning-hub/ui` in devDependencies and add in docker-compose.yml your local project mount volumes
-
-In your next.config.js you will have to add `transpilePackages` in order to make your component work in your project (local or remote) :
-
-```js
-const nextConfig = {
-   ...
-   transpilePackages: ['@cgi-learning-hub'],
-   ...
+```jsonc
+{
+  "@emotion/react": "^11",
+  "@emotion/styled": "^11",
+  "@mui/material": "^9"
 }
 ```
 
-```json
-# packages.json
-"devDependencies": {
-  ...
-  "@cgi-learning-hub/ui": "file:../hub-ui/packages/ui",
-}
+### Unit tests (Jest)
 
-# docker-compose.yml
-volumes:
-  - ./:/app
-  - ../project/hub-ui/packages/ui:/hub-ui/packages/ui <== localisation de votre projet ui local
-```
+If the consuming project uses Jest, mock Emotion's `styled` in your setup file:
 
-From this library repository, run `pnpm run watch` from any libs you would like to work
-And from the another repository (NextJS), `next dev` and anytime you make any change from this repository, ViteJS will upgrade again your dist during its build-time but you will need to re-install your local library package
-
-TLDR :
-
-- (From repository library) : `pnpm run watch`
-- (From NextJS repository) : `pnpm run install`
-- (From NextJS repository) : `next dev` => run your local but can be make earlier
-- (From repository library) : Make any change => ViteJS build watch will proceed
-- (From NextJS repository) : `pnpm run install` or `pnpm run install <localLibraryDeps>`
-
-## Unit test
-
-For any projects that use Jest you must add :
-
-```js
-# jest.setup.tsx
-
-jest.mock('@emotion/styled', () => {
-  return (_: any) => jest.fn((...args) => {
-    return args;
-  });
+```tsx
+// jest.setup.tsx
+jest.mock("@emotion/styled", () => {
+  return (_: unknown) =>
+    jest.fn((...args) => {
+      return args;
+    });
 });
 ```
 
-## import hub theme if your project uses tailwind
+## Linking the library into a local app
 
-From your tailwind.config.ts if you wish to use our theme :
-
-```
-import { defaultTailwindThemeConfig } from "@cgi-learning-hub/theme"
-
-export default {
-  content: [
-    ...
-  ],
-  corePlugins: {
-    preflight: false,
-  },
-  plugins: [...],
-  theme: defaultTailwindThemeConfig,
-} satisfies Config;
-```
+To iterate on a library while testing it inside a separate app (local `file:`/`link:` linking, watch mode, Next.js `transpilePackages`, Docker volumes), see [packages/ui/docs/local-linking.md](packages/ui/docs/local-linking.md).
