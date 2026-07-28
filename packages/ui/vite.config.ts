@@ -18,10 +18,14 @@ export default defineConfig({
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        "tiptap/index": resolve(__dirname, "src/tiptap/index.ts"),
+      },
       name: "CGILearningHubUI",
       formats: ["es", "cjs"],
-      fileName: (format) => `index.${format === "es" ? "es" : "cjs"}.js`,
+      fileName: (format, entryName) =>
+        `${entryName}.${format === "es" ? "es" : "cjs"}.js`,
     },
     rolldownOptions: {
       external: [

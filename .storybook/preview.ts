@@ -18,6 +18,9 @@ import {
   entDefaultMuiTheme,
   imtMuiTheme,
 } from "../packages/theme/src/themes";
+import "../packages/ui/src/tiptap/components/node/blockquote-node/blockquote-node.scss";
+import "../packages/ui/src/tiptap/components/node/code-block-node/code-block-node.scss";
+import "../packages/ui/src/tiptap/components/node/list-node/list-node.scss";
 import "./global.css";
 
 export const decorators = [

@@ -4,6 +4,7 @@ packages:
   - "./packages/ui"
   - "./apps/**"
 allowBuilds:
+  '@parcel/watcher': true
   esbuild: false
 minimumReleaseAgeExclude:
   - '@storybook/addon-a11y@10.4.5'

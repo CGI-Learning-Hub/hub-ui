@@ -92,7 +92,7 @@ export { default as IconButton } from "@mui/material/IconButton";
 export * from "@mui/material/Input";
 export { default as Input } from "@mui/material/Input";
 export * from "@mui/material/InputBase";
-export { default as F } from "@mui/material/InputBase";
+export { default as InputBase } from "@mui/material/InputBase";
 export * from "@mui/material/InputLabel";
 export { default as InputLabel } from "@mui/material/InputLabel";
 export * from "@mui/material/LinearProgress";

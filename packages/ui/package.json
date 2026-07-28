@@ -21,6 +21,11 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
+    "./tiptap": {
+      "types": "./dist/tiptap/index.d.ts",
+      "import": "./dist/tiptap/index.es.js",
+      "require": "./dist/tiptap/index.cjs.js"
+    },
     "./index.css": "./dist/ui.css"
   },
   "main": "dist/index.cjs.js",
@@ -45,6 +50,7 @@
     "@mui/x-tree-view": "9.4.0",
     "@uiw/color-convert": "2.10.3",
     "@uiw/react-color-circle": "2.10.3",
+    "clsx": "2.1.1",
     "dayjs": "1.11.21",
     "react-dropzone": "15.0.0"
   },
@@ -52,12 +58,25 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@mui/material": "^9",
+    "@tiptap/pm": "^3",
+    "@tiptap/react": "^3",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
   },
+  "peerDependenciesMeta": {
+    "@tiptap/pm": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@base-ui/react": "^1",
     "@reduxjs/toolkit": "^2",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "class-variance-authority": "^0",
+    "sass-embedded": "^1.100.0"
   }
 }
