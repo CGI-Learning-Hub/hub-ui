@@ -1,0 +1,71 @@
+import { Canvas, Controls, Meta, Story } from "@storybook/addon-docs/blocks";
+import * as TiptapStories from "./Tiptap.stories";
+
+<Meta of={TiptapStories} />
+
+# Tiptap
+
+A flexible, headless-first rich text editor kit built on [Tiptap](https://tiptap.dev).
+Unlike a drop-in editor, this package exposes composable primitives —
+you own the `Editor` instance and `EditorContent`; the kit provides the
+UI chrome (`Toolbar`, `FormattingControls`, buttons, popovers) that
+you wire around it.
+
+## Examples
+
+<Canvas of={TiptapStories.Default} />
+
+`FormattingControls` reads the editor's active extensions and only
+renders buttons relevant to what's configured — it doesn't assume a
+fixed button set. See [With Superscript Subscript](?path=/story/others-tiptap--with-superscript-subscript)
+for the same editor with `Superscript` and `Subscript` added, with no
+changes to `Toolbar` or `FormattingControls` themselves.
+
+## Usage
+
+Wire up your own `Editor` instance with `useEditor`, then compose the
+toolbar around it:
+
+```tsx
+import { FormattingControls, Toolbar } from "@cgi-learning-hub/ui/tiptap";
+import TextAlign from "@tiptap/extension-text-align";
+import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+
+function MyEditor() {
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+    ],
+    content: "<p>Hello world</p>",
+  });
+
+  return (
+    <EditorContext.Provider value={{ editor }}>
+      <Toolbar>
+        <Spacer />
+        <FormattingControls editor={editor} />
+        <Spacer />
+      </Toolbar>
+      <EditorContent editor={editor} />
+    </EditorContext.Provider>
+  );
+}
+```
+
+Adding an extension is enough to surface its controls — no extra
+wiring needed in `FormattingControls`:
+
+```tsx
+extensions: [
+  StarterKit,
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+  }),
+  Subscript,
+  Superscript,
+],
+```

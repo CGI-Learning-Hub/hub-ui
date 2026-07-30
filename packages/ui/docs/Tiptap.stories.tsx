@@ -64,7 +64,7 @@ const EditorWithToolbar = ({ extensions }: EditorWithToolbarProps) => {
 };
 
 const meta = {
-  title: "Others/Tiptap/Toolbar",
+  title: "Others/Tiptap",
   component: EditorWithToolbar,
   argTypes: {},
 } satisfies Meta<typeof EditorWithToolbar>;

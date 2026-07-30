@@ -3,9 +3,10 @@ import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: [
-    "../packages/icons/docs/**/*.mdx",
     "../packages/theme/docs/**/*.mdx",
     "../packages/theme/docs/**/*.stories.@(ts|tsx)",
+    "../packages/icons/docs/**/*.mdx",
+    "../packages/ui/docs/**/*.mdx",
     "../packages/ui/docs/**/*.stories.@(ts|tsx)",
     "../packages/ui/src/**/*.mdx",
     "../packages/ui/src/components/stories/*.stories.@(ts|tsx)",
