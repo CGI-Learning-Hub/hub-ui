@@ -15,8 +15,6 @@ import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 import type { ButtonProps } from "../../ui-primitive/button";
 import { Button } from "../../ui-primitive/button";
 
-import "./link-popover.scss";
-
 export interface LinkMainProps {
   /**
    * The URL to set for the link.
@@ -116,10 +114,10 @@ const LinkMain: React.FC<LinkMainProps> = ({
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
-        className="tiptap-link-input"
         sx={{
           padding: ".25rem .625rem",
           fontSize: "0.875rem",
+          minWidth: "12rem",
         }}
       />
 
@@ -193,6 +191,7 @@ export const LinkPopover = forwardRef<HTMLElement, LinkPopoverProps>(
     const { editor } = useTiptapEditor(providedEditor);
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const internalRef = useRef<HTMLElement>(null);
+    const justSubmittedRef = useRef(false);
 
     const {
       isVisible,
@@ -232,8 +231,12 @@ export const LinkPopover = forwardRef<HTMLElement, LinkPopoverProps>(
     );
 
     const handleSetLink = useCallback(() => {
+      justSubmittedRef.current = true;
       setLink();
       setAnchorEl(null);
+      queueMicrotask(() => {
+        justSubmittedRef.current = false;
+      });
     }, [setLink]);
 
     const handleClick = useCallback(
@@ -246,7 +249,7 @@ export const LinkPopover = forwardRef<HTMLElement, LinkPopoverProps>(
     );
 
     useEffect(() => {
-      if (autoOpenOnLinkActive && isActive) {
+      if (autoOpenOnLinkActive && isActive && !justSubmittedRef.current) {
         setAnchorEl(internalRef.current);
       }
     }, [autoOpenOnLinkActive, isActive]);
@@ -262,7 +265,7 @@ export const LinkPopover = forwardRef<HTMLElement, LinkPopoverProps>(
         <LinkButton
           value="link"
           disabled={!canSet}
-          selected={isActive}
+          selected={isActive || open}
           data-disabled={!canSet}
           aria-label={label}
           tooltip={label}

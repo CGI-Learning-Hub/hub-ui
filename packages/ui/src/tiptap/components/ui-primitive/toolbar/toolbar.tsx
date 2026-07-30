@@ -119,6 +119,10 @@ const useToolbarNavigation = (
     const toolbar = toolbarRef.current;
     if (!toolbar) return;
 
+    const activeEl = toolbar.ownerDocument.activeElement;
+    const focusAlreadyOutside = activeEl && !toolbar.contains(activeEl);
+    if (focusAlreadyOutside) return;
+
     const initialContainerTabIndex = initialContainerTabIndexRef.current;
     const currentIndex = selectedIndex ?? -1;
 

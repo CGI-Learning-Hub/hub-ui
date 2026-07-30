@@ -49,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       return (
         <ToggleButton
           size="small"
+          color="primary"
           ref={ref}
           sx={{
             border: "none",
@@ -87,6 +88,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         <ToggleButton
           size="small"
+          color="primary"
           ref={ref}
           sx={{
             border: "none",
