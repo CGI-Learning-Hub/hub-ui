@@ -30,8 +30,10 @@ export default defineConfig({
     rolldownOptions: {
       external: [
         /^@mui\/material/,
+        /^@tiptap\/pm/,
         /^use-sync-external-store($|\/)/,
         ...Object.keys(peerDependencies),
+        "@tiptap/core",
         "react/jsx-runtime",
       ],
     },
