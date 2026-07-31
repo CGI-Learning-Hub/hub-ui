@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
+import { styled } from "@mui/material/styles";
 import type { Editor } from "@tiptap/react";
-import { Divider, IconButton, InputBase, Popover, Stack, styled } from "../../../..";
+import { Divider, IconButton, InputBase, Popover, Stack } from "../../../..";
 // --- Icons ---
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
