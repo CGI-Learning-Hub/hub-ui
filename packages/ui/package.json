@@ -26,7 +26,8 @@
       "import": "./dist/tiptap/index.es.js",
       "require": "./dist/tiptap/index.cjs.js"
     },
-    "./index.css": "./dist/ui.css"
+    "./index.css": "./dist/ui.css",
+    "./tiptap/styles.css": "./dist/tiptap/styles.css"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -39,7 +40,9 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "vite build",
+    "build:js": "vite build",
+    "build:css": "sass src/tiptap/styles/index.scss dist/tiptap/styles.css --no-source-map",
+    "build": "pnpm run build:js && pnpm run build:css",
     "watch": "vite build --watch"
   },
   "dependencies": {
