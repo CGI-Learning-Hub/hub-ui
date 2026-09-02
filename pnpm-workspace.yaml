@@ -4,16 +4,5 @@ packages:
   - "./packages/ui"
   - "./apps/**"
 allowBuilds:
-  '@parcel/watcher': true
+  "@parcel/watcher": true
   esbuild: false
-minimumReleaseAgeExclude:
-  - '@storybook/addon-a11y@10.4.5'
-  - '@storybook/addon-docs@10.4.5'
-  - '@storybook/addon-links@10.4.5'
-  - '@storybook/addon-themes@10.4.5'
-  - '@storybook/builder-vite@10.4.5'
-  - '@storybook/csf-plugin@10.4.5'
-  - '@storybook/react-dom-shim@10.4.5'
-  - '@storybook/react-vite@10.4.5'
-  - '@storybook/react@10.4.5'
-  - storybook@10.4.5

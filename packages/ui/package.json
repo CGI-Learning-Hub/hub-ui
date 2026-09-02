@@ -46,16 +46,16 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@mui/icons-material": "9.1.1",
-    "@mui/lab": "9.0.0-beta.5",
+    "@mui/icons-material": "9.4.0",
+    "@mui/lab": "9.0.0-beta.9",
     "@mui/system": "^9",
-    "@mui/x-date-pickers": "9.5.0",
-    "@mui/x-tree-view": "9.4.0",
+    "@mui/x-date-pickers": "9.12.0",
+    "@mui/x-tree-view": "9.12.0",
     "@uiw/color-convert": "2.10.3",
     "@uiw/react-color-circle": "2.10.3",
     "clsx": "2.1.1",
-    "dayjs": "1.11.21",
-    "react-dropzone": "15.0.0"
+    "dayjs": "1.11.23",
+    "react-dropzone": "20.1.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11",
@@ -80,6 +80,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "class-variance-authority": "^0",
-    "sass-embedded": "^1.100.0"
+    "sass-embedded": "^1"
   }
 }
