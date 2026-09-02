@@ -1,17 +1,17 @@
 .tiptap.ProseMirror {
-  --tt-collaboration-carets-label: var(--tt-gray-light-900);
-  --link-text-color: var(--tt-brand-color-500);
+  --tt-collaboration-carets-label: var(--theme-palette-grey-900);
+  --link-text-color: var(--theme-palette-primary-main);
   --placeholder-color: var(--tt-gray-light-a-400);
 
   // ai
-  --tiptap-ai-insertion-color: var(--tt-brand-color-600);
+  --tiptap-ai-insertion-color: var(--theme-palette-primary-dark);
 
   .dark & {
     --tt-collaboration-carets-label: var(--tt-gray-dark-100);
-    --link-text-color: var(--tt-brand-color-400);
+    --link-text-color: var(--theme-palette-primary-light);
     --placeholder-color: var(--tt-gray-dark-a-400);
 
-    --tiptap-ai-insertion-color: var(--tt-brand-color-400);
+    --tiptap-ai-insertion-color: var(--theme-palette-primary-light);
   }
 }
 
@@ -153,7 +153,7 @@
 .tiptap.ProseMirror {
   [data-type="mention"] {
     display: inline-block;
-    color: var(--tt-brand-color-500);
+    color: var(--theme-palette-primary-main);
   }
 }
 
@@ -194,7 +194,7 @@
      ===================== */
 .prosemirror-dropcursor-block,
 .prosemirror-dropcursor-inline {
-  background: var(--tt-brand-color-400) !important;
+  background: var(--theme-palette-primary-light) !important;
   border-radius: 0.25rem;
   margin-left: -1px;
   margin-right: -1px;
