@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
+import { TextStyleKit } from "@tiptap/extension-text-style";
 import {
   EditorContent,
   EditorContext,
@@ -76,6 +77,7 @@ export const Default: Story = {
   args: {
     extensions: [
       StarterKit,
+      TextStyleKit,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
@@ -84,7 +86,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Extensions: StarterKit + TextAlign",
+        story: "Extensions: StarterKit + TextStyleKit + TextAlign",
       },
     },
   },
@@ -94,6 +96,7 @@ export const WithSuperscriptSubscript: Story = {
   args: {
     extensions: [
       StarterKit,
+      TextStyleKit,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
@@ -104,7 +107,7 @@ export const WithSuperscriptSubscript: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Extensions: StarterKit + TextAlign + Superscript + Subscript",
+        story: "Extensions: StarterKit + TextStyleKit + TextAlign + Superscript + Subscript",
       },
     },
   },

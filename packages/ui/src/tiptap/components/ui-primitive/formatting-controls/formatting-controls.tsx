@@ -9,6 +9,7 @@ import { LinkPopover } from "../../ui/link-popover";
 import { ListButton } from "../../ui/list-button";
 import { MarkButton } from "../../ui/mark-button";
 import { TextAlignButton } from "../../ui/text-align-button";
+import { TextColorPopover } from "../../ui/text-color-popover";
 import { UndoRedoButton } from "../../ui/undo-redo-button";
 import { ToolbarGroup, ToolbarSeparator } from "../toolbar";
 
@@ -23,6 +24,7 @@ export const FormattingControls = ({ editor }: FormattingControlsProps) => {
   const hasSuperscriptSubscript = extensionNames.some(
     (name) => name === "subscript" || name === "superscript",
   );
+  const hasTextStyle = extensionNames.some((name) => name === "textStyle");
 
   return (
     <>
@@ -44,6 +46,7 @@ export const FormattingControls = ({ editor }: FormattingControlsProps) => {
       <ToolbarSeparator />
 
       <ToolbarGroup>
+        {hasTextStyle ? <TextColorPopover /> : null}
         <MarkButton type="bold" />
         <MarkButton type="italic" />
         <MarkButton type="strike" />
