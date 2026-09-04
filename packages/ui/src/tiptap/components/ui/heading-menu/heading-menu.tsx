@@ -11,6 +11,7 @@ import type { ButtonProps } from "../../ui-primitive/button";
 import { Button } from "../../ui-primitive/button";
 // --- Tiptap UI ---
 import { HeadingMenuItem } from "../heading-menu-item";
+import { ParagraphMenuItem } from "../paragraph-menu-item";
 // --- Hooks ---
 import type { UseHeadingMenuConfig } from "./use-heading-menu";
 import { useHeadingMenu } from "./use-heading-menu";
@@ -110,6 +111,7 @@ export const HeadingMenu = forwardRef<HTMLButtonElement, HeadingMenuProps>(
             },
           }}
         >
+          <ParagraphMenuItem editor={editor} onClick={handleClose} />
           {levels.map((level) => (
             <HeadingMenuItem
               key={`heading-${level}`}
