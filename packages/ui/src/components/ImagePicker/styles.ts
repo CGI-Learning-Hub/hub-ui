@@ -12,6 +12,7 @@ export const StyledStack = styled(Stack)<StyledStackProps>(
   ({ theme, disabled, hasFile, height, width }) => ({
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
     minWidth: "150px",
     width,
     minHeight: "150px",

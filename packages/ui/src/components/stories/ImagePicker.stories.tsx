@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { ImagePicker } from "..";
+import { ImagePicker, ImagePickerProps } from "..";
+
+const Component = (props: ImagePickerProps) => {
+  const handleChange = (file: File | null) => {
+    console.log(file?.name);
+  };
+
+  return <ImagePicker {...props} onFileChange={handleChange} />;
+};
 
 const meta: Meta<typeof ImagePicker> = {
   title: "Components/ImagePicker",
-  component: ImagePicker,
+  component: Component,
   argTypes: {
     defaultLabel: {
       description: "Le contenu affiché comme label par défaut (ReactNode).",
