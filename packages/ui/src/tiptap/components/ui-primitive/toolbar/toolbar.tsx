@@ -6,7 +6,6 @@ import { Divider } from "../../../..";
 import { useComposedRef } from "../../../hooks/use-composed-ref";
 import { useMenuNavigation } from "../../../hooks/use-menu-navigation";
 import { cn } from "../../../lib/tiptap-utils";
-import "./toolbar.scss";
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>;
 

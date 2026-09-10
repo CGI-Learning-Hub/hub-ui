@@ -1,4 +1,4 @@
-:root {
+.Toastify {
   --toastify-color-light: var(--theme-palette-common-white);
   --toastify-color-dark: var(--theme-palette-common-black);
   --toastify-color-info: var(--theme-palette-info-main);
