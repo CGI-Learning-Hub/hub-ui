@@ -26,6 +26,19 @@ const QueryError: FC<QueryErrorProps> = ({
           : null;
 
     if (
+      error.status === "PARSING_ERROR" ||
+      error.status === "FETCH_ERROR" ||
+      error.status === "TIMEOUT_ERROR"
+    ) {
+      return (
+        <EmptyState
+          image={<ServerErrorSvg height="100%" />}
+          title="Service non disponible"
+        />
+      );
+    }
+
+    if (
       typeof error.status === "number" &&
       error.status.toString().startsWith("4")
     ) {
