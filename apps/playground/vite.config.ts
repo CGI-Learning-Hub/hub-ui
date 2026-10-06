@@ -11,6 +11,7 @@ export default defineConfig({
     tsconfigPaths: true,
     alias: {
       "@cgi-learning-hub/icons": resolve(__dirname, "../../packages/icons/src/index.ts"),
+      "@cgi-learning-hub/theme/tailwind.css": resolve(__dirname, "../../packages/theme/public/tailwind.css"),
       "@cgi-learning-hub/theme": resolve(__dirname, "../../packages/theme/src/index.ts"),
       "@cgi-learning-hub/ui": resolve(__dirname, "../../packages/ui/src/index.ts"),
     },

@@ -1,7 +1,5 @@
 import { ThemeOptions } from "@mui/material/styles";
 
-import { getMuiTheme } from "../mui";
-import { getTailwindThemeConfig } from "../tailwind";
 import { Theme } from "../types";
 
 const theme: Theme = {
@@ -189,13 +187,4 @@ const muiOptions = {
   },
 } as ThemeOptions;
 
-const muiTheme = getMuiTheme(theme, muiOptions);
-
-const tailwindThemeConfig = getTailwindThemeConfig(theme);
-
-export {
-  muiOptions as ent1DMuiOptions,
-  muiTheme as ent1DMuiTheme,
-  tailwindThemeConfig as ent1DTailwindThemeConfig,
-  theme as ent1DTheme,
-};
+export { muiOptions as ent1DMuiOptions, theme as ent1DTheme };

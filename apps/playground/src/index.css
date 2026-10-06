@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@cgi-learning-hub/theme/tailwind.css";
 
 #root {
   display: flex;

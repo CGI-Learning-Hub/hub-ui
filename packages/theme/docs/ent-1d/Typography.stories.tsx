@@ -1,20 +1,21 @@
 import Stack from "@mui/material/Stack";
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FC } from "react";
 
-import { ent1DMuiTheme } from "../../src";
+import { getThemeById } from "../../src";
 
 type FontDetailProps = Pick<TypographyProps, "variant">;
 
 const FontDetails: FC<FontDetailProps> = ({ variant }) => {
+  const theme = useTheme();
+
   if (!variant) return null;
-  const { fontFamily, fontSize, fontWeight } =
-    ent1DMuiTheme.typography[variant];
+  const { fontFamily, fontSize, fontWeight } = theme.typography[variant];
 
   return (
-    <Stack direction="row" spacing={2} mt={1}>
+    <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
       <span style={{ fontSize: 14 }}>
         <b>Font: </b>
         {fontFamily}
@@ -36,7 +37,7 @@ const meta: Meta<typeof Typography> = {
   component: Typography,
   decorators: [
     (Story, { args }) => (
-      <ThemeProvider theme={ent1DMuiTheme}>
+      <ThemeProvider theme={getThemeById("ent1D")}>
         <Story />
         <FontDetails variant={args.variant} />
       </ThemeProvider>

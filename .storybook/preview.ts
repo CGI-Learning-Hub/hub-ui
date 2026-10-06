@@ -1,5 +1,3 @@
-// .storybook/preview.ts
-// Load Roboto fonts
 import "@fontsource/material-icons";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -9,29 +7,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 
-import {
-  campusMuiTheme,
-  cd77MuiTheme,
-  crnaMuiTheme,
-  defaultMuiTheme,
-  ent1DMuiTheme,
-  entDefaultMuiTheme,
-  imtMuiTheme,
-} from "../packages/theme/src/themes";
+import { ThemeId, getThemeById, themes } from "../packages/theme/src/themes";
 import "../packages/ui/src/tiptap/styles/index.scss";
 import "./global.css";
 
+const themeIds = Object.keys(themes) as ThemeId[];
 export const decorators = [
   withThemeFromJSXProvider({
-    themes: {
-      campus: campusMuiTheme,
-      cd77: cd77MuiTheme,
-      crna: crnaMuiTheme,
-      default: defaultMuiTheme,
-      entDefault: entDefaultMuiTheme,
-      imt: imtMuiTheme,
-      ent1D: ent1DMuiTheme,
-    },
+    themes: Object.fromEntries(themeIds.map((id) => [id, getThemeById(id)])),
     defaultTheme: "default",
     Provider: ThemeProvider,
     GlobalStyles: CssBaseline,

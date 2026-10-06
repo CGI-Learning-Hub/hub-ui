@@ -27,6 +27,7 @@ const ExampleComponent: FC<ExampleComponentProps> = ({
         {primaryText}
       </p>
       <p className="secondary-text">{secondaryText}</p>
+      <p className="bg-background text-primary">{primaryText}</p>
     </div>
   );
 };

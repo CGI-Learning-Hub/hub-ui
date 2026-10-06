@@ -1,5 +1,3 @@
-import { getMuiTheme } from "../mui";
-import { getTailwindThemeConfig } from "../tailwind";
 import { Theme } from "../types";
 
 const theme: Theme = {
@@ -68,13 +66,4 @@ const muiOptions = {
   },
 };
 
-const muiTheme = getMuiTheme(theme, muiOptions);
-
-const tailwindThemeConfig = getTailwindThemeConfig(theme);
-
-export {
-  muiOptions as entDefaultMuiOptions,
-  muiTheme as entDefaultMuiTheme,
-  tailwindThemeConfig as entDefaultTailwindThemeConfig,
-  theme as entDefaultTheme,
-};
+export { muiOptions as entDefaultMuiOptions, theme as entDefaultTheme };

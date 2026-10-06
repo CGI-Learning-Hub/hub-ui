@@ -16,7 +16,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    copyPublicDir: false,
     lib: {
       entry: {
         index: resolve(__dirname, "src/index.ts"),

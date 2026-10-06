@@ -7,7 +7,7 @@ React monorepo containing components, theme and icons libraries. It ships with a
 | Package | Description |
 | --- | --- |
 | `@cgi-learning-hub/ui` | Component library extending Material UI with additional components. |
-| `@cgi-learning-hub/theme` | Multi-tenant theming: MUI themes plus per-tenant Tailwind config presets. |
+| `@cgi-learning-hub/theme` | Multi-tenant theming: MUI themes plus a generated Tailwind v4 stylesheet (CSS variables per tenant). |
 | `@cgi-learning-hub/icons` | Shared icon set. |
 
 ## Documentation
@@ -88,6 +88,37 @@ The libraries are built on Material UI, so any consuming app must provide these 
   "@mui/material": "^9"
 }
 ```
+
+### Tailwind v4 (optional)
+
+The `theme` package ships a generated `tailwind.css` exposing every tenant palette as CSS variables, so a Tailwind v4 app gets theme-aware utilities (`bg-primary`, `text-secondary-dark`, `bg-grey-light`, …) that reskin per tenant at runtime — one build, no per-tenant config.
+
+Import it into your Tailwind entry CSS, after Tailwind itself:
+
+```css
+/* app.css */
+@import "tailwindcss";
+@import "@cgi-learning-hub/theme/fonts.css";
+@import "@cgi-learning-hub/theme/tailwind.css";
+```
+
+Then set the active tenant on a parent element — usually `<html>`, decided server-side:
+
+```html
+<html data-tenant="campus">
+```
+
+Available tenants: `default`, `ent-default`, `campus`, `cd77`, `crna`, `ent1D`, `imt`. The `default` palette also applies to `:root`, so no attribute means default.
+
+> **Preflight & MUI.** `@import "tailwindcss"` pulls in Tailwind's Preflight reset, which can clash with Material UI's resets. If you hit conflicts, import the layers without Preflight instead:
+>
+> ```css
+> @layer theme, base, components, utilities;
+> @import "tailwindcss/theme.css" layer(theme);
+> @import "tailwindcss/utilities.css" layer(utilities);
+> @import "@cgi-learning-hub/theme/fonts.css";
+> @import "@cgi-learning-hub/theme/tailwind.css";
+> ```
 
 ### Unit tests (Jest)
 

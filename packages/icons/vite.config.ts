@@ -8,7 +8,6 @@ import { peerDependencies } from "./package.json";
 export default defineConfig({
   plugins: [react(), dts({ bundleTypes: true })],
   build: {
-    copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "CGILearningHubIcons",

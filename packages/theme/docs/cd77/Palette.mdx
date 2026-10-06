@@ -1,10 +1,10 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-import { cd77MuiTheme } from "../../src/themes";
+import { getThemeById } from "../../src/themes";
 import { TemplatePalette } from "../TemplatePalette.jsx";
 
 <Meta title="Themes/CD77/Palette" />
 
 # Palette
 
-<TemplatePalette theme={cd77MuiTheme} />
+<TemplatePalette theme={getThemeById("cd77")} />

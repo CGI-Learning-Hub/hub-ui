@@ -1,10 +1,10 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-import { entDefaultMuiTheme } from "../../src/themes";
+import { getThemeById } from "../../src/themes";
 import { TemplatePalette } from "../TemplatePalette.jsx";
 
 <Meta title="Themes/ENT Default/Palette" />
 
 # Palette
 
-<TemplatePalette theme={entDefaultMuiTheme} />
+<TemplatePalette theme={getThemeById("entDefault")} />
