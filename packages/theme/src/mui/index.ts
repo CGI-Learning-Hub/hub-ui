@@ -15,7 +15,11 @@ export const getMuiTheme = (
           cssVarPrefix: "theme",
         },
         colorSchemes: {
-          light: true,
+          light: {
+            palette: {
+              Input: { autofillWebkitBoxShadow: "0 0 0 100px #e8f0fe inset" },
+            },
+          },
           dark: false,
         },
         palette: {
@@ -141,17 +145,6 @@ export const getMuiTheme = (
             styleOverrides: {
               root: {
                 padding: 24,
-              },
-            },
-          },
-          MuiOutlinedInput: {
-            styleOverrides: {
-              input: {
-                "&:-webkit-autofill": {
-                  WebkitBoxShadow: "0 0 0 100px var(--text-primary) inset",
-                  WebkitTextFillColor: "var(--text-primary)",
-                  caretColor: "#000000",
-                },
               },
             },
           },
