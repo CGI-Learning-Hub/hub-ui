@@ -48,7 +48,6 @@
   "dependencies": {
     "@mui/icons-material": "9.4.0",
     "@mui/lab": "9.0.0-beta.9",
-    "@mui/system": "^9",
     "@mui/x-date-pickers": "9.12.0",
     "@mui/x-tree-view": "9.12.0",
     "@uiw/color-convert": "2.10.3",
@@ -61,6 +60,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@mui/material": "^9",
+    "@mui/system": "^9",
     "@tiptap/pm": "^3",
     "@tiptap/react": "^3",
     "react": "^18 || ^19",
@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "@base-ui/react": "^1",
+    "@mui/system": "^9",
     "@reduxjs/toolkit": "^2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
